@@ -15,6 +15,31 @@ namespace Netbattle.Common {
         }
 
         /// <summary>
+        /// Convert an integer into a bit string.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="length"></param>
+        public static string Dec2Bin(int input, int length) {
+            byte[] asBytes = BitConverter.GetBytes(input);
+            string asBits = BytesToBinary(asBytes);
+
+            if (asBits.Length < length)
+                asBits = asBits.PadLeft(length, '0');
+
+            return asBits;
+        }
+
+        public static int Bin2Dec(string input) {
+            if (input.Length < 32)
+                input = input.PadLeft(32, '0');
+
+            var intBytes = BinaryToBytes(input);
+            Array.Reverse(intBytes); // -- I shouldn't need this.. why do I need this? Why is bitconverter suddenly big endian??
+            int result = BitConverter.ToInt32(intBytes, 0);
+            return result;
+        }
+
+        /// <summary>
         /// This method Takes a bit-string and converts it to bytes.
         /// </summary>
         /// <param name="bitString"></param>
@@ -74,7 +99,7 @@ namespace Netbattle.Common {
         }
 
         public static byte[] BinaryToBytes(string binary) {
-            var build = new byte[(binary.Length / 8) + 1];
+            var build = new byte[(binary.Length / 8)];
 
             var c = 0;
             for (var i = 0; i < binary.Length; i+=8) {
@@ -82,7 +107,7 @@ namespace Netbattle.Common {
                 build[c] = Convert.ToByte(binary.Substring(i, len), 2);
                 c++;
             }
-
+            
             return build;
         }
 

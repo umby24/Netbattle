@@ -38,6 +38,18 @@ namespace Netbattle.Common {
             }
         }
 
+        public static void Log(Exception ex) {
+            Log(LogType.Error, $"Error occured: {ex.Message}");
+            Log(LogType.Debug, ex.StackTrace);
+
+            if (ex.InnerException == null)
+                return;
+
+            Log(LogType.Debug, "INNER EXCEPTION:");
+            Log(LogType.Debug, ex.InnerException.Message);
+            Log(LogType.Debug, ex.InnerException.StackTrace);
+        }
+
         private static void ConsoleOutput(LogItem item) {
             if ((int)item.Type < (int)_minimumLevel)
                 return;

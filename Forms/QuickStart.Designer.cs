@@ -23,6 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.btnTeamBuilder = new System.Windows.Forms.Button();
             this.btnJoinServer = new System.Windows.Forms.Button();
             this.btnAbout = new System.Windows.Forms.Button();
@@ -77,9 +78,10 @@
             this.Controls.Add(this.btnAbout);
             this.Controls.Add(this.btnJoinServer);
             this.Controls.Add(this.btnTeamBuilder);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Quick Start";
+            this.Text = "QuickStart";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
 

@@ -145,6 +145,7 @@ namespace Netbattle.Common {
                 GSNo = int.Parse(entry[1]),
                 AdvNo = int.Parse(entry[2]),
                 Name = entry[3],
+                Nickname = entry[3],
                 Legendary = int.Parse(entry[4]) > 0,
                 Uber = int.Parse(entry[5]) > 0,
                 Type1 = (Elements)(int.Parse(entry[6])),
@@ -183,10 +184,10 @@ namespace Netbattle.Common {
 
             // -- Fill in max stats for this pokemon.
             result.Attack = BattleSystem.GetStat(100, result.BaseAttack, 15);
-            result.Defense = BattleSystem.GetStat(100, result.BaseAttack, 15);
-            result.Speed = BattleSystem.GetStat(100, result.BaseAttack, 15);
-            result.SpecialAttack = BattleSystem.GetStat(100, result.BaseAttack, 15);
-            result.SpecialDefense = BattleSystem.GetStat(100, result.BaseAttack, 15);
+            result.Defense = BattleSystem.GetStat(100, result.BaseDefense, 15);
+            result.Speed = BattleSystem.GetStat(100, result.BaseSpeed, 15);
+            result.SpecialAttack = BattleSystem.GetStat(100, result.BaseSAttack, 15);
+            result.SpecialDefense = BattleSystem.GetStat(100, result.BaseSDefense, 15);
             result.MaxHP = BattleSystem.GetHp(100, result.BaseHP, 15);
             result.MoveLevel = new byte[MoveDatabase.Moves.Count,3];
 

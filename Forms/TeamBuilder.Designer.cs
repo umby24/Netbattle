@@ -23,6 +23,23 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.ListViewItem listViewItem16 = new System.Windows.Forms.ListViewItem("#01", 0);
+            System.Windows.Forms.ListViewItem listViewItem17 = new System.Windows.Forms.ListViewItem("#02", 1);
+            System.Windows.Forms.ListViewItem listViewItem18 = new System.Windows.Forms.ListViewItem("#03", 2);
+            System.Windows.Forms.ListViewItem listViewItem19 = new System.Windows.Forms.ListViewItem("#04", 3);
+            System.Windows.Forms.ListViewItem listViewItem20 = new System.Windows.Forms.ListViewItem("#05", 4);
+            System.Windows.Forms.ListViewItem listViewItem21 = new System.Windows.Forms.ListViewItem("#06", 5);
+            System.Windows.Forms.ListViewItem listViewItem22 = new System.Windows.Forms.ListViewItem("#07", 6);
+            System.Windows.Forms.ListViewItem listViewItem23 = new System.Windows.Forms.ListViewItem("#08", 7);
+            System.Windows.Forms.ListViewItem listViewItem24 = new System.Windows.Forms.ListViewItem("#09", 8);
+            System.Windows.Forms.ListViewItem listViewItem25 = new System.Windows.Forms.ListViewItem("#10", 9);
+            System.Windows.Forms.ListViewItem listViewItem26 = new System.Windows.Forms.ListViewItem("#11", 10);
+            System.Windows.Forms.ListViewItem listViewItem27 = new System.Windows.Forms.ListViewItem("#12", 11);
+            System.Windows.Forms.ListViewItem listViewItem28 = new System.Windows.Forms.ListViewItem("#13", 12);
+            System.Windows.Forms.ListViewItem listViewItem29 = new System.Windows.Forms.ListViewItem("#14", 13);
+            System.Windows.Forms.ListViewItem listViewItem30 = new System.Windows.Forms.ListViewItem("#15", 14);
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TeamBuilder));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tbTrainer = new System.Windows.Forms.TabPage();
             this.grpAutoMessages = new System.Windows.Forms.GroupBox();
@@ -33,7 +50,7 @@
             this.grpInfo = new System.Windows.Forms.GroupBox();
             this.dropGraphics = new System.Windows.Forms.ComboBox();
             this.txtExtraInfo = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtUsername = new System.Windows.Forms.TextBox();
             this.lblExtraInfo = new System.Windows.Forms.Label();
             this.lblGraphics = new System.Windows.Forms.Label();
             this.lblUsername = new System.Windows.Forms.Label();
@@ -73,6 +90,9 @@
             this.tbSlot5 = new System.Windows.Forms.TabPage();
             this.tbSlot6 = new System.Windows.Forms.TabPage();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tbTrainer.SuspendLayout();
             this.grpAutoMessages.SuspendLayout();
@@ -81,6 +101,7 @@
             this.tbSlot1.SuspendLayout();
             this.grpStats.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picImage)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -96,7 +117,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 24);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(800, 426);
+            this.tabControl1.Size = new System.Drawing.Size(800, 452);
             this.tabControl1.TabIndex = 0;
             // 
             // tbTrainer
@@ -107,7 +128,7 @@
             this.tbTrainer.Location = new System.Drawing.Point(4, 22);
             this.tbTrainer.Name = "tbTrainer";
             this.tbTrainer.Padding = new System.Windows.Forms.Padding(3);
-            this.tbTrainer.Size = new System.Drawing.Size(792, 400);
+            this.tbTrainer.Size = new System.Drawing.Size(792, 426);
             this.tbTrainer.TabIndex = 0;
             this.tbTrainer.Text = "Trainer Info";
             this.tbTrainer.UseVisualStyleBackColor = true;
@@ -163,7 +184,7 @@
             // 
             this.grpInfo.Controls.Add(this.dropGraphics);
             this.grpInfo.Controls.Add(this.txtExtraInfo);
-            this.grpInfo.Controls.Add(this.textBox1);
+            this.grpInfo.Controls.Add(this.txtUsername);
             this.grpInfo.Controls.Add(this.lblExtraInfo);
             this.grpInfo.Controls.Add(this.lblGraphics);
             this.grpInfo.Controls.Add(this.lblUsername);
@@ -201,13 +222,13 @@
             this.txtExtraInfo.Size = new System.Drawing.Size(595, 73);
             this.txtExtraInfo.TabIndex = 4;
             // 
-            // textBox1
+            // txtUsername
             // 
-            this.textBox1.Location = new System.Drawing.Point(77, 13);
-            this.textBox1.MaxLength = 20;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(134, 20);
-            this.textBox1.TabIndex = 3;
+            this.txtUsername.Location = new System.Drawing.Point(77, 13);
+            this.txtUsername.MaxLength = 20;
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.Size = new System.Drawing.Size(134, 20);
+            this.txtUsername.TabIndex = 3;
             // 
             // lblExtraInfo
             // 
@@ -241,18 +262,41 @@
             this.grpImage.Controls.Add(this.listView1);
             this.grpImage.Location = new System.Drawing.Point(8, 6);
             this.grpImage.Name = "grpImage";
-            this.grpImage.Size = new System.Drawing.Size(150, 410);
+            this.grpImage.Size = new System.Drawing.Size(130, 410);
             this.grpImage.TabIndex = 1;
             this.grpImage.TabStop = false;
             this.grpImage.Text = "Image";
             // 
             // listView1
             // 
+            this.listView1.FullRowSelect = true;
+            this.listView1.HideSelection = false;
+            this.listView1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem16,
+            listViewItem17,
+            listViewItem18,
+            listViewItem19,
+            listViewItem20,
+            listViewItem21,
+            listViewItem22,
+            listViewItem23,
+            listViewItem24,
+            listViewItem25,
+            listViewItem26,
+            listViewItem27,
+            listViewItem28,
+            listViewItem29,
+            listViewItem30});
+            this.listView1.LargeImageList = this.imageList1;
             this.listView1.Location = new System.Drawing.Point(6, 19);
+            this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(138, 380);
+            this.listView1.Size = new System.Drawing.Size(113, 380);
+            this.listView1.SmallImageList = this.imageList1;
             this.listView1.TabIndex = 7;
             this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.List;
             // 
             // tbSlot1
             // 
@@ -274,7 +318,7 @@
             this.tbSlot1.Location = new System.Drawing.Point(4, 22);
             this.tbSlot1.Name = "tbSlot1";
             this.tbSlot1.Padding = new System.Windows.Forms.Padding(3);
-            this.tbSlot1.Size = new System.Drawing.Size(792, 400);
+            this.tbSlot1.Size = new System.Drawing.Size(792, 426);
             this.tbSlot1.TabIndex = 1;
             this.tbSlot1.Text = "Slot 1";
             this.tbSlot1.UseVisualStyleBackColor = true;
@@ -290,6 +334,7 @@
             // txtNickname
             // 
             this.txtNickname.Location = new System.Drawing.Point(221, 30);
+            this.txtNickname.MaxLength = 15;
             this.txtNickname.Name = "txtNickname";
             this.txtNickname.Size = new System.Drawing.Size(121, 20);
             this.txtNickname.TabIndex = 18;
@@ -509,7 +554,7 @@
             // 
             this.tbSlot2.Location = new System.Drawing.Point(4, 22);
             this.tbSlot2.Name = "tbSlot2";
-            this.tbSlot2.Size = new System.Drawing.Size(792, 400);
+            this.tbSlot2.Size = new System.Drawing.Size(792, 426);
             this.tbSlot2.TabIndex = 2;
             this.tbSlot2.Text = "Slot 2";
             this.tbSlot2.UseVisualStyleBackColor = true;
@@ -518,7 +563,7 @@
             // 
             this.tbSlot3.Location = new System.Drawing.Point(4, 22);
             this.tbSlot3.Name = "tbSlot3";
-            this.tbSlot3.Size = new System.Drawing.Size(792, 400);
+            this.tbSlot3.Size = new System.Drawing.Size(792, 426);
             this.tbSlot3.TabIndex = 3;
             this.tbSlot3.Text = "Slot 3";
             this.tbSlot3.UseVisualStyleBackColor = true;
@@ -527,7 +572,7 @@
             // 
             this.tbSlot4.Location = new System.Drawing.Point(4, 22);
             this.tbSlot4.Name = "tbSlot4";
-            this.tbSlot4.Size = new System.Drawing.Size(792, 400);
+            this.tbSlot4.Size = new System.Drawing.Size(792, 426);
             this.tbSlot4.TabIndex = 4;
             this.tbSlot4.Text = "Slot 4";
             this.tbSlot4.UseVisualStyleBackColor = true;
@@ -536,7 +581,7 @@
             // 
             this.tbSlot5.Location = new System.Drawing.Point(4, 22);
             this.tbSlot5.Name = "tbSlot5";
-            this.tbSlot5.Size = new System.Drawing.Size(792, 400);
+            this.tbSlot5.Size = new System.Drawing.Size(792, 426);
             this.tbSlot5.TabIndex = 5;
             this.tbSlot5.Text = "Slot 5";
             this.tbSlot5.UseVisualStyleBackColor = true;
@@ -545,29 +590,66 @@
             // 
             this.tbSlot6.Location = new System.Drawing.Point(4, 22);
             this.tbSlot6.Name = "tbSlot6";
-            this.tbSlot6.Size = new System.Drawing.Size(792, 400);
+            this.tbSlot6.Size = new System.Drawing.Size(792, 426);
             this.tbSlot6.TabIndex = 6;
             this.tbSlot6.Text = "Slot 6";
             this.tbSlot6.UseVisualStyleBackColor = true;
             // 
             // menuStrip1
             // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "trainer1.ico");
+            this.imageList1.Images.SetKeyName(1, "trainer2.ico");
+            this.imageList1.Images.SetKeyName(2, "trainer3.ico");
+            this.imageList1.Images.SetKeyName(3, "trainer4.ico");
+            this.imageList1.Images.SetKeyName(4, "trainer5.ico");
+            this.imageList1.Images.SetKeyName(5, "trainer6.ico");
+            this.imageList1.Images.SetKeyName(6, "trainer7.ico");
+            this.imageList1.Images.SetKeyName(7, "trainer8.ico");
+            this.imageList1.Images.SetKeyName(8, "trainer9.ico");
+            this.imageList1.Images.SetKeyName(9, "trainer10.ico");
+            this.imageList1.Images.SetKeyName(10, "trainer11.ico");
+            this.imageList1.Images.SetKeyName(11, "trainer12.ico");
+            this.imageList1.Images.SetKeyName(12, "trainer13.ico");
+            this.imageList1.Images.SetKeyName(13, "trainer14.ico");
+            this.imageList1.Images.SetKeyName(14, "trainer15.ico");
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saveToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "&File";
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Text = "&Save";
+            // 
             // TeamBuilder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 476);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "TeamBuilder";
             this.Text = "Team Builder";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TeamBuilder_FormClosing);
             this.Load += new System.EventHandler(this.TeamBuilder_Load);
             this.tabControl1.ResumeLayout(false);
             this.tbTrainer.ResumeLayout(false);
@@ -581,6 +663,8 @@
             this.grpStats.ResumeLayout(false);
             this.grpStats.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picImage)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -605,7 +689,7 @@
         private System.Windows.Forms.GroupBox grpInfo;
         private System.Windows.Forms.ComboBox dropGraphics;
         private System.Windows.Forms.TextBox txtExtraInfo;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.Label lblExtraInfo;
         private System.Windows.Forms.Label lblGraphics;
         private System.Windows.Forms.Label lblUsername;
@@ -638,5 +722,8 @@
         private System.Windows.Forms.ColumnHeader colAcc;
         private System.Windows.Forms.ColumnHeader colPP;
         private System.Windows.Forms.ColumnHeader colLearned;
+        private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
     }
 }

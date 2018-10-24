@@ -14,13 +14,14 @@ namespace Netbattle.Forms {
             qs.FormClosed += QsOnFormClosed;
             qs.Show();
 
-            UserSettings.CurrentGraphicsMode = GraphicsMode.nbGFXLF;
-            UserSettings.CurrentCompatibilityMode = CompatModes.nbFullAdvance;
 
             MoveDatabase.Load();
             TypeDatabase.Load();
             GraphicsDatabase.Load();
             PokemonDatabase.Load();
+            Configuration.Load();
+            UserSettings.Load();
+            new PnbFile("D:\\Documents\\myteam.pnb").Load();
         }
 
         private void QsOnFormClosed(object sender, FormClosedEventArgs formClosedEventArgs) {
