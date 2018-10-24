@@ -21,7 +21,6 @@ namespace Netbattle.Forms {
             PokemonDatabase.Load();
             Configuration.Load();
             UserSettings.Load();
-            new PnbFile("D:\\Documents\\myteam.pnb").Load();
         }
 
         private void QsOnFormClosed(object sender, FormClosedEventArgs formClosedEventArgs) {

@@ -2,6 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 using Netbattle.Common;
+using Netbattle.Database;
 
 namespace Netbattle.Network {
     #region Server-Bound
@@ -198,14 +199,15 @@ namespace Netbattle.Network {
             client.InvokeServerInfoReceived();
              // -- Reply..
             var up = new UserPacket {
-                Username = "BOT",
+                Username = UserSettings.CurrentSettings.Username,
                 ServerPassword = "potato",
                 Sid = "WAMABOTBOTEATERABCDEF",
                 ClientVersion = "0.9.7",
                 LoginCode = SigninCode,
-                ClientPicture = 4,
+                ClientPicture = UserSettings.CurrentSettings.IconUsed,
                 Options = new bool[10],
-                ExtraInfo = "LOL EXTRA INFO",
+                ExtraInfo = UserSettings.CurrentSettings.MoreInfo,
+                
             };
 
             client.SendPacket(up);

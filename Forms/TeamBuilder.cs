@@ -119,7 +119,6 @@ namespace Netbattle.Forms {
             if (dropPokemon.SelectedIndex != -1) {
                 UserSettings.CurrentSettings.Team[0] = PokemonDatabase.BasePokemon[dropPokemon.SelectedIndex];
                 var test = UserSettings.CurrentSettings.Team[0].ToString();
-                Console.WriteLine("a");
             }
 
         }

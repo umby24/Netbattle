@@ -99,7 +99,12 @@ namespace Netbattle.Common {
         }
 
         public static byte[] BinaryToBytes(string binary) {
-            var build = new byte[(binary.Length / 8)];
+            var additional = 0;
+
+            if (binary.Length % 8 > 0)
+                additional = 1;
+
+            var build = new byte[(binary.Length / 8) + additional];
 
             var c = 0;
             for (var i = 0; i < binary.Length; i+=8) {

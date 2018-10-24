@@ -83,8 +83,10 @@ namespace Netbattle.Forms {
             lstPlayers.Items.Clear();
 
             foreach (Player player in players) {
-                string[] row = {"", player.Name};
-                lstPlayers.Items.Add(new ListViewItem(row));
+                string[] row = {player.Name};
+                var lvi = new ListViewItem(row);
+                lvi.ImageIndex = player.Picture - 1;
+                lstPlayers.Items.Add(lvi);
             }
         }
 

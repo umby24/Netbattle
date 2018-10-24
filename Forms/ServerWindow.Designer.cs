@@ -24,13 +24,10 @@
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ServerWindow));
             this.txtChat = new System.Windows.Forms.RichTextBox();
             this.lstPlayers = new System.Windows.Forms.ListView();
-            this.imgColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.nameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.txtInput = new System.Windows.Forms.TextBox();
-            this.btnSend = new System.Windows.Forms.Button();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.playerMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.challengeInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.watchBattleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -38,10 +35,14 @@
             this.controlWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.kickToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.txtInput = new System.Windows.Forms.TextBox();
+            this.btnSend = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.awayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip1.SuspendLayout();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.playerMenu.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtChat
@@ -57,25 +58,70 @@
             // lstPlayers
             // 
             this.lstPlayers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.imgColumn,
             this.nameColumn});
             this.lstPlayers.ContextMenuStrip = this.playerMenu;
             this.lstPlayers.FullRowSelect = true;
+            this.lstPlayers.LargeImageList = this.imageList1;
             this.lstPlayers.Location = new System.Drawing.Point(12, 32);
             this.lstPlayers.Name = "lstPlayers";
             this.lstPlayers.Size = new System.Drawing.Size(121, 373);
+            this.lstPlayers.SmallImageList = this.imageList1;
             this.lstPlayers.TabIndex = 1;
             this.lstPlayers.UseCompatibleStateImageBehavior = false;
             this.lstPlayers.View = System.Windows.Forms.View.Details;
             // 
-            // imgColumn
-            // 
-            this.imgColumn.Width = 40;
-            // 
             // nameColumn
             // 
             this.nameColumn.Text = "Name";
-            this.nameColumn.Width = 75;
+            this.nameColumn.Width = 115;
+            // 
+            // playerMenu
+            // 
+            this.playerMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.challengeInfoToolStripMenuItem,
+            this.watchBattleToolStripMenuItem,
+            this.privateMessageToolStripMenuItem,
+            this.controlWindowToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.kickToolStripMenuItem});
+            this.playerMenu.Name = "playerMenu";
+            this.playerMenu.Size = new System.Drawing.Size(162, 120);
+            // 
+            // challengeInfoToolStripMenuItem
+            // 
+            this.challengeInfoToolStripMenuItem.Name = "challengeInfoToolStripMenuItem";
+            this.challengeInfoToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.challengeInfoToolStripMenuItem.Text = "Challenge/Info";
+            // 
+            // watchBattleToolStripMenuItem
+            // 
+            this.watchBattleToolStripMenuItem.Name = "watchBattleToolStripMenuItem";
+            this.watchBattleToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.watchBattleToolStripMenuItem.Text = "Watch Battle";
+            // 
+            // privateMessageToolStripMenuItem
+            // 
+            this.privateMessageToolStripMenuItem.Name = "privateMessageToolStripMenuItem";
+            this.privateMessageToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.privateMessageToolStripMenuItem.Text = "Private Message";
+            this.privateMessageToolStripMenuItem.Click += new System.EventHandler(this.privateMessageToolStripMenuItem_Click);
+            // 
+            // controlWindowToolStripMenuItem
+            // 
+            this.controlWindowToolStripMenuItem.Name = "controlWindowToolStripMenuItem";
+            this.controlWindowToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.controlWindowToolStripMenuItem.Text = "Control Window";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(158, 6);
+            // 
+            // kickToolStripMenuItem
+            // 
+            this.kickToolStripMenuItem.Name = "kickToolStripMenuItem";
+            this.kickToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.kickToolStripMenuItem.Text = "&Kick";
             // 
             // txtInput
             // 
@@ -105,54 +151,6 @@
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // playerMenu
-            // 
-            this.playerMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.challengeInfoToolStripMenuItem,
-            this.watchBattleToolStripMenuItem,
-            this.privateMessageToolStripMenuItem,
-            this.controlWindowToolStripMenuItem,
-            this.toolStripMenuItem1,
-            this.kickToolStripMenuItem});
-            this.playerMenu.Name = "playerMenu";
-            this.playerMenu.Size = new System.Drawing.Size(162, 120);
-            // 
-            // challengeInfoToolStripMenuItem
-            // 
-            this.challengeInfoToolStripMenuItem.Name = "challengeInfoToolStripMenuItem";
-            this.challengeInfoToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-            this.challengeInfoToolStripMenuItem.Text = "Challenge/Info";
-            // 
-            // watchBattleToolStripMenuItem
-            // 
-            this.watchBattleToolStripMenuItem.Name = "watchBattleToolStripMenuItem";
-            this.watchBattleToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-            this.watchBattleToolStripMenuItem.Text = "Watch Battle";
-            // 
-            // privateMessageToolStripMenuItem
-            // 
-            this.privateMessageToolStripMenuItem.Name = "privateMessageToolStripMenuItem";
-            this.privateMessageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.privateMessageToolStripMenuItem.Text = "Private Message";
-            this.privateMessageToolStripMenuItem.Click += new System.EventHandler(this.privateMessageToolStripMenuItem_Click);
-            // 
-            // controlWindowToolStripMenuItem
-            // 
-            this.controlWindowToolStripMenuItem.Name = "controlWindowToolStripMenuItem";
-            this.controlWindowToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-            this.controlWindowToolStripMenuItem.Text = "Control Window";
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(158, 6);
-            // 
-            // kickToolStripMenuItem
-            // 
-            this.kickToolStripMenuItem.Name = "kickToolStripMenuItem";
-            this.kickToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-            this.kickToolStripMenuItem.Text = "&Kick";
-            // 
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -164,8 +162,28 @@
             // awayToolStripMenuItem
             // 
             this.awayToolStripMenuItem.Name = "awayToolStripMenuItem";
-            this.awayToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.awayToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.awayToolStripMenuItem.Text = "&Away";
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "trainer1.ico");
+            this.imageList1.Images.SetKeyName(1, "trainer2.ico");
+            this.imageList1.Images.SetKeyName(2, "trainer3.ico");
+            this.imageList1.Images.SetKeyName(3, "trainer4.ico");
+            this.imageList1.Images.SetKeyName(4, "trainer5.ico");
+            this.imageList1.Images.SetKeyName(5, "trainer6.ico");
+            this.imageList1.Images.SetKeyName(6, "trainer7.ico");
+            this.imageList1.Images.SetKeyName(7, "trainer8.ico");
+            this.imageList1.Images.SetKeyName(8, "trainer9.ico");
+            this.imageList1.Images.SetKeyName(9, "trainer10.ico");
+            this.imageList1.Images.SetKeyName(10, "trainer11.ico");
+            this.imageList1.Images.SetKeyName(11, "trainer12.ico");
+            this.imageList1.Images.SetKeyName(12, "trainer13.ico");
+            this.imageList1.Images.SetKeyName(13, "trainer14.ico");
+            this.imageList1.Images.SetKeyName(14, "trainer15.ico");
             // 
             // ServerWindow
             // 
@@ -184,9 +202,9 @@
             this.Text = "Stadium:";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ServerWindow_FormClosing);
             this.Load += new System.EventHandler(this.ServerWindow_Load);
+            this.playerMenu.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.playerMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -198,7 +216,6 @@
         private System.Windows.Forms.ListView lstPlayers;
         private System.Windows.Forms.TextBox txtInput;
         private System.Windows.Forms.Button btnSend;
-        private System.Windows.Forms.ColumnHeader imgColumn;
         private System.Windows.Forms.ColumnHeader nameColumn;
         private System.Windows.Forms.ContextMenuStrip playerMenu;
         private System.Windows.Forms.ToolStripMenuItem challengeInfoToolStripMenuItem;
@@ -210,5 +227,6 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem awayToolStripMenuItem;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }
