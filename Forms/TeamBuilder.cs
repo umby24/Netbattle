@@ -105,7 +105,6 @@ namespace Netbattle.Forms {
                 _workingSettings.CurrentGraphicsMode = (GraphicsMode)dropGraphics.SelectedIndex;
                 LoadPokemonGraphic();
             }
-
         }
 
         private void TeamBuilder_FormClosing(object sender, FormClosingEventArgs e) {
@@ -131,12 +130,7 @@ namespace Netbattle.Forms {
             UserSettings.CurrentSettings.MoreInfo = txtExtraInfo.Text;
             UserSettings.CurrentSettings.IconUsed = (byte)listView1.SelectedIndices[0];
             UserSettings.CurrentSettings.Username = txtUsername.Text;
-
-            if (dropPokemon.SelectedIndex != -1) {
-                UserSettings.CurrentSettings.Team[0] = PokemonDatabase.BasePokemon[dropPokemon.SelectedIndex];
-                var test = UserSettings.CurrentSettings.Team[0].ToString();
-            }
-
+            UserSettings.CurrentSettings.Team = _workingSettings.Team;
         }
 
         private void SwitchPokemonButtonClick(object sender, EventArgs e) {
@@ -153,7 +147,7 @@ namespace Netbattle.Forms {
         }
 
         private void LoadPokemonGraphic() {
-            var img = GraphicsDatabase.GetSprite(_currentPokemon, _workingSettings.CurrentGraphicsMode, false);
+            byte[] img = GraphicsDatabase.GetSprite(_currentPokemon, _workingSettings.CurrentGraphicsMode, false);
 
             using (var ms = new MemoryStream(img)) {
                 picImage.Image = Image.FromStream(ms);
@@ -182,6 +176,7 @@ namespace Netbattle.Forms {
             dropPokemon.SelectedIndex = _workingSettings.Team[slot].No - 1;
             txtNickname.Text = _workingSettings.Team[slot].Nickname;
             _currentPokemon = _workingSettings.Team[slot];
+            dropItem.SelectedIndex = (int) _currentPokemon.Item;
 
             LoadPokemonGraphic();
 
@@ -192,6 +187,12 @@ namespace Netbattle.Forms {
             lblSpecialAttack.Text = "Sp. Attack: " + _currentPokemon.SpecialAttack;
             lblSpecialDefense.Text = "Sp. Defense: " + _currentPokemon.SpecialDefense;
             PopulateMoves();
+
+            for (var i = 0; i < 4; i++) {
+                if (_currentPokemon.Move[i] != -1)
+                    SelectMove(MoveDatabase.Moves[_currentPokemon.Move[i]].Name);
+            }
+
             UpdateMoveBoxes();
             _switching = false;
         }
@@ -206,6 +207,14 @@ namespace Netbattle.Forms {
             return -1;
         }
 
+        private void SelectMove(string name) {
+            foreach (ListViewItem item in listMoves.Items) {
+                if (item.Text == name) {
+                    item.Checked = true;
+                    break;
+                }
+            }
+        }
         private void listMoves_ItemChecked(object sender, ItemCheckedEventArgs e) {
             if (e.Item.Index >= _currentMoveset.Count || _switching)
                 return;
@@ -214,7 +223,7 @@ namespace Netbattle.Forms {
 
             if (e.Item.Checked == false) {
                 // -- Remove this move..
-                var moveIndex = GetMoveIndex(moveObj);
+                int moveIndex = GetMoveIndex(moveObj);
                 if (moveIndex == -1) return;
 
                 _currentPokemon.Move[moveIndex] = -1;
@@ -267,6 +276,16 @@ namespace Netbattle.Forms {
 
             if (move4 != null)
                 txtMove4.Text = move4.Name;
+        }
+
+        private void txtNickname_TextChanged(object sender, EventArgs e) {
+            if (_currentPokemon != null && txtNickname.Text != null && txtNickname.Text != _currentPokemon.Nickname)
+                _currentPokemon.Nickname = txtNickname.Text;
+        }
+
+        private void dropItem_SelectedIndexChanged(object sender, EventArgs e) {
+            if (_currentPokemon != null)
+            _currentPokemon.Item = (Items)Enum.Parse(typeof(Items), "nb" + dropItem.Text.Replace(" ", ""));
         }
     }
 }

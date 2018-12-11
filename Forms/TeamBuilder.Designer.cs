@@ -24,21 +24,21 @@
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("#01", 0);
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("#02", 1);
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("#03", 2);
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("#04", 3);
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("#05", 4);
-            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("#06", 5);
-            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("#07", 6);
-            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("#08", 7);
-            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem("#09", 8);
-            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem("#10", 9);
-            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem("#11", 10);
-            System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem("#12", 11);
-            System.Windows.Forms.ListViewItem listViewItem13 = new System.Windows.Forms.ListViewItem("#13", 12);
-            System.Windows.Forms.ListViewItem listViewItem14 = new System.Windows.Forms.ListViewItem("#14", 13);
-            System.Windows.Forms.ListViewItem listViewItem15 = new System.Windows.Forms.ListViewItem("#15", 14);
+            System.Windows.Forms.ListViewItem listViewItem16 = new System.Windows.Forms.ListViewItem("#01", 0);
+            System.Windows.Forms.ListViewItem listViewItem17 = new System.Windows.Forms.ListViewItem("#02", 1);
+            System.Windows.Forms.ListViewItem listViewItem18 = new System.Windows.Forms.ListViewItem("#03", 2);
+            System.Windows.Forms.ListViewItem listViewItem19 = new System.Windows.Forms.ListViewItem("#04", 3);
+            System.Windows.Forms.ListViewItem listViewItem20 = new System.Windows.Forms.ListViewItem("#05", 4);
+            System.Windows.Forms.ListViewItem listViewItem21 = new System.Windows.Forms.ListViewItem("#06", 5);
+            System.Windows.Forms.ListViewItem listViewItem22 = new System.Windows.Forms.ListViewItem("#07", 6);
+            System.Windows.Forms.ListViewItem listViewItem23 = new System.Windows.Forms.ListViewItem("#08", 7);
+            System.Windows.Forms.ListViewItem listViewItem24 = new System.Windows.Forms.ListViewItem("#09", 8);
+            System.Windows.Forms.ListViewItem listViewItem25 = new System.Windows.Forms.ListViewItem("#10", 9);
+            System.Windows.Forms.ListViewItem listViewItem26 = new System.Windows.Forms.ListViewItem("#11", 10);
+            System.Windows.Forms.ListViewItem listViewItem27 = new System.Windows.Forms.ListViewItem("#12", 11);
+            System.Windows.Forms.ListViewItem listViewItem28 = new System.Windows.Forms.ListViewItem("#13", 12);
+            System.Windows.Forms.ListViewItem listViewItem29 = new System.Windows.Forms.ListViewItem("#14", 13);
+            System.Windows.Forms.ListViewItem listViewItem30 = new System.Windows.Forms.ListViewItem("#15", 14);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TeamBuilder));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tbTrainer = new System.Windows.Forms.TabPage();
@@ -284,21 +284,21 @@
             this.listView1.HideSelection = false;
             this.listView1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3,
-            listViewItem4,
-            listViewItem5,
-            listViewItem6,
-            listViewItem7,
-            listViewItem8,
-            listViewItem9,
-            listViewItem10,
-            listViewItem11,
-            listViewItem12,
-            listViewItem13,
-            listViewItem14,
-            listViewItem15});
+            listViewItem16,
+            listViewItem17,
+            listViewItem18,
+            listViewItem19,
+            listViewItem20,
+            listViewItem21,
+            listViewItem22,
+            listViewItem23,
+            listViewItem24,
+            listViewItem25,
+            listViewItem26,
+            listViewItem27,
+            listViewItem28,
+            listViewItem29,
+            listViewItem30});
             this.listView1.LargeImageList = this.imageList1;
             this.listView1.Location = new System.Drawing.Point(6, 19);
             this.listView1.MultiSelect = false;
@@ -471,10 +471,87 @@
             // dropItem
             // 
             this.dropItem.FormattingEnabled = true;
+            this.dropItem.Items.AddRange(new object[] {
+            "No Item",
+            "Berry ",
+            "Berry Juice",
+            "Bitter Berry",
+            "Burnt Berry",
+            "Gold Berry",
+            "Ice Berry",
+            "Mint Berry",
+            "Miracle Berry",
+            "Mystery Berry",
+            "Paralyzecure Berry",
+            "Poisoncure Berry",
+            "Berserk Gene",
+            "Black Belt",
+            "Black Glasses",
+            "Bright Powder",
+            "Charcoal ",
+            "Dragon Fang",
+            "Focus Band",
+            "Hard Stone",
+            "Kings Rock",
+            "Leftovers ",
+            "Light Ball",
+            "Lucky Punch",
+            "Magnet ",
+            "Metal Coat",
+            "Metal Powder",
+            "Miracle Seed",
+            "Mystic Water",
+            "Nevermelt Ice",
+            "Pink Bow",
+            "Poison Barb",
+            "Polkadot Bow",
+            "Quick Claw",
+            "Scope Lens",
+            "Sharp Beak",
+            "Silver Powder",
+            "Soft Sand",
+            "Spell Tag",
+            "Stick",
+            "Thick Club",
+            "Twisted Spoon",
+            "Cheri Berry",
+            "Chesto Berry",
+            "Pecha Berry",
+            "Rawst Berry",
+            "Aspear Berry",
+            "Leppa Berry",
+            "Oran Berry",
+            "Persim Berry",
+            "Lum Berry",
+            "Sitrus Berry",
+            "Figy Berry",
+            "Iapapa Berry",
+            "Mago Berry",
+            "Wiki Berry",
+            "Aguav Berry",
+            "Liechi Berry",
+            "Ganlon Berry",
+            "Salac Berry",
+            "Petaya Berry",
+            "Apicot Berry",
+            "Lansat Berry",
+            "Starf Berry",
+            "Choice Band",
+            "Deep Sea Scale",
+            "Deep Sea Tooth",
+            "Lax Incense",
+            "Macho Brace",
+            "Mental Herb",
+            "Sea Incense",
+            "Shell Bell",
+            "Silk Scarf",
+            "Soul Dew",
+            "White Herb"});
             this.dropItem.Location = new System.Drawing.Point(221, 93);
             this.dropItem.Name = "dropItem";
             this.dropItem.Size = new System.Drawing.Size(121, 21);
             this.dropItem.TabIndex = 19;
+            this.dropItem.SelectedIndexChanged += new System.EventHandler(this.dropItem_SelectedIndexChanged);
             // 
             // txtNickname
             // 
@@ -483,6 +560,7 @@
             this.txtNickname.Name = "txtNickname";
             this.txtNickname.Size = new System.Drawing.Size(121, 20);
             this.txtNickname.TabIndex = 18;
+            this.txtNickname.TextChanged += new System.EventHandler(this.txtNickname_TextChanged);
             // 
             // txtMove4
             // 
