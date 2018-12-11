@@ -11,7 +11,7 @@ namespace Netbattle {
 
         private void btnJoinServer_Click(object sender, EventArgs e) {
             var browser = new ServerList(MdiParent);
-            browser.FormClosed += BrowserOnFormClosed;
+            browser.FormClosing += BrowserOnFormClosed;
             browser.Closed += BrowserOnClosed;
             browser.Show();
             Hide();
@@ -22,7 +22,7 @@ namespace Netbattle {
             Show();
         }
 
-        private void BrowserOnFormClosed(object sender, FormClosedEventArgs formClosedEventArgs) {
+        private void BrowserOnFormClosed(object sender, FormClosingEventArgs formClosedEventArgs) {
             Console.WriteLine("Browser closed, showing!");
             Show();
         }
@@ -40,6 +40,10 @@ namespace Netbattle {
 
         private void btnAbout_Click(object sender, EventArgs e) {
 
+        }
+
+        private void btnExit_Click(object sender, EventArgs e) {
+            Application.Exit();
         }
     }
 }

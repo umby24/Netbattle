@@ -177,6 +177,41 @@ namespace Netbattle.Common {
 
         }
 
+        /// <summary>
+        /// This method will take the newest pokemon from the database, and replay any user-choice fields on top of that object, and return it.
+        /// </summary>
+        /// <returns></returns>
+        public Pokemon SetupFromDatabase() {
+            Pokemon newPoke = PokemonDatabase.BasePokemon[No - 1];
+            newPoke.Gender = Gender;
+            newPoke.Level = Level;
+            newPoke.Shiny = Shiny;
+            newPoke.UnownLetter = UnownLetter;
+            newPoke.Condition = Condition;
+            newPoke.Item = Item;
+            newPoke.Nickname = Nickname;
+            newPoke.Attribute = Attribute;
+            newPoke.Move = Move;
+            newPoke.MaxPP = MaxPP;
+            newPoke.PP = PP;
+            newPoke.NatureNum = NatureNum;
+            newPoke.AttNum = AttNum;
+            newPoke.EV_Atk = EV_Atk;
+            newPoke.EV_Def = EV_Def;
+            newPoke.EV_HP = EV_HP;
+            newPoke.EV_SAtk = EV_SAtk;
+            newPoke.EV_SDef = EV_SDef;
+            newPoke.EV_Spd = EV_Spd;
+            newPoke.DV_Atk = DV_Atk;
+            newPoke.DV_Def = DV_Def;
+            newPoke.DV_HP = DV_HP;
+            newPoke.DV_SAtk = DV_SAtk;
+            newPoke.DV_SDef = DV_SDef;
+            newPoke.DV_Spd = DV_Spd;
+
+            return newPoke;
+        }
+
         public void GetCurrentMoveset() {
 
         }

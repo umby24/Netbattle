@@ -150,14 +150,16 @@ namespace Netbattle.Forms {
                 ip = "127.0.0.1";
 
             var srv = new ServerWindow(MdiParent, ip);
-            srv.FormClosed += Srv_FormClosed;
+            srv.FormClosing += Srv_FormClosed;
             srv.Show();
             Hide();
         }
 
-        private void Srv_FormClosed(object sender, FormClosedEventArgs e) {
-            Console.WriteLine("Closing sevrer list..");
+        private void Srv_FormClosed(object sender, FormClosingEventArgs e) {
+            Console.WriteLine("Closing Server list..");
+           
             Close();
+            Dispose();
         }
 
         private string UnpackIp(string ip) {

@@ -48,6 +48,10 @@ namespace Netbattle.Database {
                 CurrentSettings =
                     JsonConvert.DeserializeObject<UserSettings>(
                         File.ReadAllText(Configuration.CurrentSettings.LastJnb));
+                for (var i = 0; i < 6; i++) {
+                    if (CurrentSettings.Team[i] != null)
+                        CurrentSettings.Team[i] = CurrentSettings.Team[i].SetupFromDatabase();
+                }
             }
             catch (Exception ex) {
                 Logger.Log(LogType.Error, "Error loading JNB File:");

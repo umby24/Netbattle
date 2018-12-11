@@ -35,6 +35,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtChat.Location = new System.Drawing.Point(0, 0);
             this.txtChat.Name = "txtChat";
+            this.txtChat.ReadOnly = true;
             this.txtChat.Size = new System.Drawing.Size(301, 211);
             this.txtChat.TabIndex = 0;
             this.txtChat.Text = "";

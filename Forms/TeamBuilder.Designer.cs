@@ -24,21 +24,21 @@
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem16 = new System.Windows.Forms.ListViewItem("#01", 0);
-            System.Windows.Forms.ListViewItem listViewItem17 = new System.Windows.Forms.ListViewItem("#02", 1);
-            System.Windows.Forms.ListViewItem listViewItem18 = new System.Windows.Forms.ListViewItem("#03", 2);
-            System.Windows.Forms.ListViewItem listViewItem19 = new System.Windows.Forms.ListViewItem("#04", 3);
-            System.Windows.Forms.ListViewItem listViewItem20 = new System.Windows.Forms.ListViewItem("#05", 4);
-            System.Windows.Forms.ListViewItem listViewItem21 = new System.Windows.Forms.ListViewItem("#06", 5);
-            System.Windows.Forms.ListViewItem listViewItem22 = new System.Windows.Forms.ListViewItem("#07", 6);
-            System.Windows.Forms.ListViewItem listViewItem23 = new System.Windows.Forms.ListViewItem("#08", 7);
-            System.Windows.Forms.ListViewItem listViewItem24 = new System.Windows.Forms.ListViewItem("#09", 8);
-            System.Windows.Forms.ListViewItem listViewItem25 = new System.Windows.Forms.ListViewItem("#10", 9);
-            System.Windows.Forms.ListViewItem listViewItem26 = new System.Windows.Forms.ListViewItem("#11", 10);
-            System.Windows.Forms.ListViewItem listViewItem27 = new System.Windows.Forms.ListViewItem("#12", 11);
-            System.Windows.Forms.ListViewItem listViewItem28 = new System.Windows.Forms.ListViewItem("#13", 12);
-            System.Windows.Forms.ListViewItem listViewItem29 = new System.Windows.Forms.ListViewItem("#14", 13);
-            System.Windows.Forms.ListViewItem listViewItem30 = new System.Windows.Forms.ListViewItem("#15", 14);
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("#01", 0);
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("#02", 1);
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("#03", 2);
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("#04", 3);
+            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("#05", 4);
+            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("#06", 5);
+            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("#07", 6);
+            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("#08", 7);
+            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem("#09", 8);
+            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem("#10", 9);
+            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem("#11", 10);
+            System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem("#12", 11);
+            System.Windows.Forms.ListViewItem listViewItem13 = new System.Windows.Forms.ListViewItem("#13", 12);
+            System.Windows.Forms.ListViewItem listViewItem14 = new System.Windows.Forms.ListViewItem("#14", 13);
+            System.Windows.Forms.ListViewItem listViewItem15 = new System.Windows.Forms.ListViewItem("#15", 14);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TeamBuilder));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tbTrainer = new System.Windows.Forms.TabPage();
@@ -56,7 +56,15 @@
             this.lblUsername = new System.Windows.Forms.Label();
             this.grpImage = new System.Windows.Forms.GroupBox();
             this.listView1 = new System.Windows.Forms.ListView();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.tbSlot1 = new System.Windows.Forms.TabPage();
+            this.btnPoke6 = new System.Windows.Forms.Button();
+            this.imageList2 = new System.Windows.Forms.ImageList(this.components);
+            this.btnPoke5 = new System.Windows.Forms.Button();
+            this.btnPoke4 = new System.Windows.Forms.Button();
+            this.btnPoke3 = new System.Windows.Forms.Button();
+            this.btnPoke2 = new System.Windows.Forms.Button();
+            this.btnPoke1 = new System.Windows.Forms.Button();
             this.dropItem = new System.Windows.Forms.ComboBox();
             this.txtNickname = new System.Windows.Forms.TextBox();
             this.txtMove4 = new System.Windows.Forms.TextBox();
@@ -84,13 +92,7 @@
             this.btnSwitch = new System.Windows.Forms.Button();
             this.lblPokemon = new System.Windows.Forms.Label();
             this.picImage = new System.Windows.Forms.PictureBox();
-            this.tbSlot2 = new System.Windows.Forms.TabPage();
-            this.tbSlot3 = new System.Windows.Forms.TabPage();
-            this.tbSlot4 = new System.Windows.Forms.TabPage();
-            this.tbSlot5 = new System.Windows.Forms.TabPage();
-            this.tbSlot6 = new System.Windows.Forms.TabPage();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
@@ -108,11 +110,6 @@
             // 
             this.tabControl1.Controls.Add(this.tbTrainer);
             this.tabControl1.Controls.Add(this.tbSlot1);
-            this.tabControl1.Controls.Add(this.tbSlot2);
-            this.tabControl1.Controls.Add(this.tbSlot3);
-            this.tabControl1.Controls.Add(this.tbSlot4);
-            this.tabControl1.Controls.Add(this.tbSlot5);
-            this.tabControl1.Controls.Add(this.tbSlot6);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 24);
             this.tabControl1.Name = "tabControl1";
@@ -139,33 +136,43 @@
             this.grpAutoMessages.Controls.Add(this.txtWinMessage);
             this.grpAutoMessages.Controls.Add(this.lblAutoLose);
             this.grpAutoMessages.Controls.Add(this.lblAutoWin);
-            this.grpAutoMessages.Location = new System.Drawing.Point(164, 262);
+            this.grpAutoMessages.Location = new System.Drawing.Point(164, 214);
             this.grpAutoMessages.Name = "grpAutoMessages";
-            this.grpAutoMessages.Size = new System.Drawing.Size(620, 154);
+            this.grpAutoMessages.Size = new System.Drawing.Size(368, 191);
             this.grpAutoMessages.TabIndex = 3;
             this.grpAutoMessages.TabStop = false;
             this.grpAutoMessages.Text = "Auto Messages";
             // 
             // txtLoseMessage
             // 
-            this.txtLoseMessage.Location = new System.Drawing.Point(19, 97);
+            this.txtLoseMessage.Location = new System.Drawing.Point(19, 113);
+            this.txtLoseMessage.MaxLength = 200;
             this.txtLoseMessage.Multiline = true;
             this.txtLoseMessage.Name = "txtLoseMessage";
-            this.txtLoseMessage.Size = new System.Drawing.Size(581, 46);
+            this.txtLoseMessage.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtLoseMessage.Size = new System.Drawing.Size(332, 62);
             this.txtLoseMessage.TabIndex = 6;
+            this.txtLoseMessage.Text = "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
+    "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
+    "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
             // 
             // txtWinMessage
             // 
             this.txtWinMessage.Location = new System.Drawing.Point(19, 32);
+            this.txtWinMessage.MaxLength = 200;
             this.txtWinMessage.Multiline = true;
             this.txtWinMessage.Name = "txtWinMessage";
-            this.txtWinMessage.Size = new System.Drawing.Size(581, 46);
+            this.txtWinMessage.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtWinMessage.Size = new System.Drawing.Size(332, 62);
             this.txtWinMessage.TabIndex = 5;
+            this.txtWinMessage.Text = "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
+    "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
+    "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
             // 
             // lblAutoLose
             // 
             this.lblAutoLose.AutoSize = true;
-            this.lblAutoLose.Location = new System.Drawing.Point(18, 81);
+            this.lblAutoLose.Location = new System.Drawing.Point(18, 97);
             this.lblAutoLose.Name = "lblAutoLose";
             this.lblAutoLose.Size = new System.Drawing.Size(30, 13);
             this.lblAutoLose.TabIndex = 1;
@@ -190,7 +197,7 @@
             this.grpInfo.Controls.Add(this.lblUsername);
             this.grpInfo.Location = new System.Drawing.Point(164, 6);
             this.grpInfo.Name = "grpInfo";
-            this.grpInfo.Size = new System.Drawing.Size(620, 190);
+            this.grpInfo.Size = new System.Drawing.Size(368, 190);
             this.grpInfo.TabIndex = 2;
             this.grpInfo.TabStop = false;
             this.grpInfo.Text = "Info";
@@ -207,7 +214,7 @@
             "Ruby/Sapphire",
             "Leaf/Fire",
             "Emerald"});
-            this.dropGraphics.Location = new System.Drawing.Point(77, 46);
+            this.dropGraphics.Location = new System.Drawing.Point(217, 49);
             this.dropGraphics.Name = "dropGraphics";
             this.dropGraphics.Size = new System.Drawing.Size(134, 21);
             this.dropGraphics.TabIndex = 5;
@@ -219,12 +226,16 @@
             this.txtExtraInfo.MaxLength = 200;
             this.txtExtraInfo.Multiline = true;
             this.txtExtraInfo.Name = "txtExtraInfo";
-            this.txtExtraInfo.Size = new System.Drawing.Size(595, 73);
+            this.txtExtraInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtExtraInfo.Size = new System.Drawing.Size(332, 87);
             this.txtExtraInfo.TabIndex = 4;
+            this.txtExtraInfo.Text = "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
+    "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
+    "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
             // 
             // txtUsername
             // 
-            this.txtUsername.Location = new System.Drawing.Point(77, 13);
+            this.txtUsername.Location = new System.Drawing.Point(19, 50);
             this.txtUsername.MaxLength = 20;
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(134, 20);
@@ -242,7 +253,7 @@
             // lblGraphics
             // 
             this.lblGraphics.AutoSize = true;
-            this.lblGraphics.Location = new System.Drawing.Point(22, 49);
+            this.lblGraphics.Location = new System.Drawing.Point(217, 33);
             this.lblGraphics.Name = "lblGraphics";
             this.lblGraphics.Size = new System.Drawing.Size(49, 13);
             this.lblGraphics.TabIndex = 1;
@@ -251,7 +262,7 @@
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
-            this.lblUsername.Location = new System.Drawing.Point(16, 16);
+            this.lblUsername.Location = new System.Drawing.Point(16, 33);
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(55, 13);
             this.lblUsername.TabIndex = 0;
@@ -273,21 +284,21 @@
             this.listView1.HideSelection = false;
             this.listView1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem16,
-            listViewItem17,
-            listViewItem18,
-            listViewItem19,
-            listViewItem20,
-            listViewItem21,
-            listViewItem22,
-            listViewItem23,
-            listViewItem24,
-            listViewItem25,
-            listViewItem26,
-            listViewItem27,
-            listViewItem28,
-            listViewItem29,
-            listViewItem30});
+            listViewItem1,
+            listViewItem2,
+            listViewItem3,
+            listViewItem4,
+            listViewItem5,
+            listViewItem6,
+            listViewItem7,
+            listViewItem8,
+            listViewItem9,
+            listViewItem10,
+            listViewItem11,
+            listViewItem12,
+            listViewItem13,
+            listViewItem14,
+            listViewItem15});
             this.listView1.LargeImageList = this.imageList1;
             this.listView1.Location = new System.Drawing.Point(6, 19);
             this.listView1.MultiSelect = false;
@@ -298,8 +309,34 @@
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.List;
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "trainer1.ico");
+            this.imageList1.Images.SetKeyName(1, "trainer2.ico");
+            this.imageList1.Images.SetKeyName(2, "trainer3.ico");
+            this.imageList1.Images.SetKeyName(3, "trainer4.ico");
+            this.imageList1.Images.SetKeyName(4, "trainer5.ico");
+            this.imageList1.Images.SetKeyName(5, "trainer6.ico");
+            this.imageList1.Images.SetKeyName(6, "trainer7.ico");
+            this.imageList1.Images.SetKeyName(7, "trainer8.ico");
+            this.imageList1.Images.SetKeyName(8, "trainer9.ico");
+            this.imageList1.Images.SetKeyName(9, "trainer10.ico");
+            this.imageList1.Images.SetKeyName(10, "trainer11.ico");
+            this.imageList1.Images.SetKeyName(11, "trainer12.ico");
+            this.imageList1.Images.SetKeyName(12, "trainer13.ico");
+            this.imageList1.Images.SetKeyName(13, "trainer14.ico");
+            this.imageList1.Images.SetKeyName(14, "trainer15.ico");
+            // 
             // tbSlot1
             // 
+            this.tbSlot1.Controls.Add(this.btnPoke6);
+            this.tbSlot1.Controls.Add(this.btnPoke5);
+            this.tbSlot1.Controls.Add(this.btnPoke4);
+            this.tbSlot1.Controls.Add(this.btnPoke3);
+            this.tbSlot1.Controls.Add(this.btnPoke2);
+            this.tbSlot1.Controls.Add(this.btnPoke1);
             this.tbSlot1.Controls.Add(this.dropItem);
             this.tbSlot1.Controls.Add(this.txtNickname);
             this.tbSlot1.Controls.Add(this.txtMove4);
@@ -315,25 +352,133 @@
             this.tbSlot1.Controls.Add(this.btnSwitch);
             this.tbSlot1.Controls.Add(this.lblPokemon);
             this.tbSlot1.Controls.Add(this.picImage);
+            this.tbSlot1.ImageKey = "(none)";
             this.tbSlot1.Location = new System.Drawing.Point(4, 22);
             this.tbSlot1.Name = "tbSlot1";
             this.tbSlot1.Padding = new System.Windows.Forms.Padding(3);
             this.tbSlot1.Size = new System.Drawing.Size(792, 426);
             this.tbSlot1.TabIndex = 1;
-            this.tbSlot1.Text = "Slot 1";
+            this.tbSlot1.Text = "Team";
             this.tbSlot1.UseVisualStyleBackColor = true;
+            // 
+            // btnPoke6
+            // 
+            this.btnPoke6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPoke6.ImageIndex = 15;
+            this.btnPoke6.ImageList = this.imageList2;
+            this.btnPoke6.Location = new System.Drawing.Point(409, 6);
+            this.btnPoke6.Name = "btnPoke6";
+            this.btnPoke6.Size = new System.Drawing.Size(74, 23);
+            this.btnPoke6.TabIndex = 25;
+            this.btnPoke6.Text = "PKMN 6";
+            this.btnPoke6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPoke6.UseVisualStyleBackColor = true;
+            this.btnPoke6.Click += new System.EventHandler(this.SwitchPokemonButtonClick);
+            // 
+            // imageList2
+            // 
+            this.imageList2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList2.ImageStream")));
+            this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList2.Images.SetKeyName(0, "trainer1.ico");
+            this.imageList2.Images.SetKeyName(1, "trainer2.ico");
+            this.imageList2.Images.SetKeyName(2, "trainer3.ico");
+            this.imageList2.Images.SetKeyName(3, "trainer4.ico");
+            this.imageList2.Images.SetKeyName(4, "trainer5.ico");
+            this.imageList2.Images.SetKeyName(5, "trainer6.ico");
+            this.imageList2.Images.SetKeyName(6, "trainer7.ico");
+            this.imageList2.Images.SetKeyName(7, "trainer8.ico");
+            this.imageList2.Images.SetKeyName(8, "trainer9.ico");
+            this.imageList2.Images.SetKeyName(9, "trainer10.ico");
+            this.imageList2.Images.SetKeyName(10, "trainer11.ico");
+            this.imageList2.Images.SetKeyName(11, "trainer12.ico");
+            this.imageList2.Images.SetKeyName(12, "trainer13.ico");
+            this.imageList2.Images.SetKeyName(13, "trainer14.ico");
+            this.imageList2.Images.SetKeyName(14, "trainer15.ico");
+            this.imageList2.Images.SetKeyName(15, "greyPokeball.ico");
+            this.imageList2.Images.SetKeyName(16, "Icon22.ico");
+            // 
+            // btnPoke5
+            // 
+            this.btnPoke5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPoke5.ImageIndex = 15;
+            this.btnPoke5.ImageList = this.imageList2;
+            this.btnPoke5.Location = new System.Drawing.Point(329, 6);
+            this.btnPoke5.Name = "btnPoke5";
+            this.btnPoke5.Size = new System.Drawing.Size(74, 23);
+            this.btnPoke5.TabIndex = 24;
+            this.btnPoke5.Text = "PKMN 5";
+            this.btnPoke5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPoke5.UseVisualStyleBackColor = true;
+            this.btnPoke5.Click += new System.EventHandler(this.SwitchPokemonButtonClick);
+            // 
+            // btnPoke4
+            // 
+            this.btnPoke4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPoke4.ImageIndex = 15;
+            this.btnPoke4.ImageList = this.imageList2;
+            this.btnPoke4.Location = new System.Drawing.Point(249, 6);
+            this.btnPoke4.Name = "btnPoke4";
+            this.btnPoke4.Size = new System.Drawing.Size(74, 23);
+            this.btnPoke4.TabIndex = 23;
+            this.btnPoke4.Text = "PKMN 4";
+            this.btnPoke4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPoke4.UseVisualStyleBackColor = true;
+            this.btnPoke4.Click += new System.EventHandler(this.SwitchPokemonButtonClick);
+            // 
+            // btnPoke3
+            // 
+            this.btnPoke3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPoke3.ImageIndex = 15;
+            this.btnPoke3.ImageList = this.imageList2;
+            this.btnPoke3.Location = new System.Drawing.Point(169, 6);
+            this.btnPoke3.Name = "btnPoke3";
+            this.btnPoke3.Size = new System.Drawing.Size(74, 23);
+            this.btnPoke3.TabIndex = 22;
+            this.btnPoke3.Text = "PKMN 3";
+            this.btnPoke3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPoke3.UseVisualStyleBackColor = true;
+            this.btnPoke3.Click += new System.EventHandler(this.SwitchPokemonButtonClick);
+            // 
+            // btnPoke2
+            // 
+            this.btnPoke2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPoke2.ImageIndex = 15;
+            this.btnPoke2.ImageList = this.imageList2;
+            this.btnPoke2.Location = new System.Drawing.Point(89, 6);
+            this.btnPoke2.Name = "btnPoke2";
+            this.btnPoke2.Size = new System.Drawing.Size(74, 23);
+            this.btnPoke2.TabIndex = 21;
+            this.btnPoke2.Text = "PKMN 2";
+            this.btnPoke2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPoke2.UseVisualStyleBackColor = true;
+            this.btnPoke2.Click += new System.EventHandler(this.SwitchPokemonButtonClick);
+            // 
+            // btnPoke1
+            // 
+            this.btnPoke1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnPoke1.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnPoke1.ImageKey = "greyPokeball.ico";
+            this.btnPoke1.ImageList = this.imageList2;
+            this.btnPoke1.Location = new System.Drawing.Point(9, 6);
+            this.btnPoke1.Name = "btnPoke1";
+            this.btnPoke1.Size = new System.Drawing.Size(74, 23);
+            this.btnPoke1.TabIndex = 20;
+            this.btnPoke1.Text = "PKMN 1";
+            this.btnPoke1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPoke1.UseVisualStyleBackColor = true;
+            this.btnPoke1.Click += new System.EventHandler(this.SwitchPokemonButtonClick);
             // 
             // dropItem
             // 
             this.dropItem.FormattingEnabled = true;
-            this.dropItem.Location = new System.Drawing.Point(221, 56);
+            this.dropItem.Location = new System.Drawing.Point(221, 93);
             this.dropItem.Name = "dropItem";
             this.dropItem.Size = new System.Drawing.Size(121, 21);
             this.dropItem.TabIndex = 19;
             // 
             // txtNickname
             // 
-            this.txtNickname.Location = new System.Drawing.Point(221, 30);
+            this.txtNickname.Location = new System.Drawing.Point(221, 67);
             this.txtNickname.MaxLength = 15;
             this.txtNickname.Name = "txtNickname";
             this.txtNickname.Size = new System.Drawing.Size(121, 20);
@@ -341,36 +486,40 @@
             // 
             // txtMove4
             // 
-            this.txtMove4.Location = new System.Drawing.Point(373, 361);
+            this.txtMove4.Location = new System.Drawing.Point(684, 398);
             this.txtMove4.Name = "txtMove4";
+            this.txtMove4.ReadOnly = true;
             this.txtMove4.Size = new System.Drawing.Size(100, 20);
             this.txtMove4.TabIndex = 17;
             // 
             // txtMove3
             // 
-            this.txtMove3.Location = new System.Drawing.Point(253, 361);
+            this.txtMove3.Location = new System.Drawing.Point(503, 400);
             this.txtMove3.Name = "txtMove3";
+            this.txtMove3.ReadOnly = true;
             this.txtMove3.Size = new System.Drawing.Size(100, 20);
             this.txtMove3.TabIndex = 16;
             // 
             // txtMove2
             // 
-            this.txtMove2.Location = new System.Drawing.Point(132, 361);
+            this.txtMove2.Location = new System.Drawing.Point(201, 398);
             this.txtMove2.Name = "txtMove2";
+            this.txtMove2.ReadOnly = true;
             this.txtMove2.Size = new System.Drawing.Size(100, 20);
             this.txtMove2.TabIndex = 15;
             // 
             // txtMove1
             // 
-            this.txtMove1.Location = new System.Drawing.Point(9, 361);
+            this.txtMove1.Location = new System.Drawing.Point(9, 398);
             this.txtMove1.Name = "txtMove1";
+            this.txtMove1.ReadOnly = true;
             this.txtMove1.Size = new System.Drawing.Size(100, 20);
             this.txtMove1.TabIndex = 14;
             // 
             // lblLevel
             // 
             this.lblLevel.AutoSize = true;
-            this.lblLevel.Location = new System.Drawing.Point(33, 111);
+            this.lblLevel.Location = new System.Drawing.Point(33, 148);
             this.lblLevel.Name = "lblLevel";
             this.lblLevel.Size = new System.Drawing.Size(72, 13);
             this.lblLevel.TabIndex = 13;
@@ -385,7 +534,7 @@
             this.grpStats.Controls.Add(this.lblAttack);
             this.grpStats.Controls.Add(this.lblHp);
             this.grpStats.Controls.Add(this.lblTypes);
-            this.grpStats.Location = new System.Drawing.Point(429, 6);
+            this.grpStats.Location = new System.Drawing.Point(429, 43);
             this.grpStats.Name = "grpStats";
             this.grpStats.Size = new System.Drawing.Size(355, 129);
             this.grpStats.TabIndex = 7;
@@ -465,13 +614,14 @@
             this.colPP,
             this.colLearned});
             this.listMoves.FullRowSelect = true;
-            this.listMoves.Location = new System.Drawing.Point(9, 141);
+            this.listMoves.Location = new System.Drawing.Point(9, 178);
             this.listMoves.Name = "listMoves";
             this.listMoves.Size = new System.Drawing.Size(775, 214);
             this.listMoves.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.listMoves.TabIndex = 6;
             this.listMoves.UseCompatibleStateImageBehavior = false;
             this.listMoves.View = System.Windows.Forms.View.Details;
+            this.listMoves.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.listMoves_ItemChecked);
             // 
             // colMove
             // 
@@ -500,7 +650,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(188, 59);
+            this.label2.Location = new System.Drawing.Point(188, 96);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(27, 13);
             this.label2.TabIndex = 5;
@@ -509,7 +659,7 @@
             // lblNickname
             // 
             this.lblNickname.AutoSize = true;
-            this.lblNickname.Location = new System.Drawing.Point(160, 35);
+            this.lblNickname.Location = new System.Drawing.Point(160, 72);
             this.lblNickname.Name = "lblNickname";
             this.lblNickname.Size = new System.Drawing.Size(55, 13);
             this.lblNickname.TabIndex = 4;
@@ -518,7 +668,7 @@
             // dropPokemon
             // 
             this.dropPokemon.FormattingEnabled = true;
-            this.dropPokemon.Location = new System.Drawing.Point(221, 3);
+            this.dropPokemon.Location = new System.Drawing.Point(221, 40);
             this.dropPokemon.Name = "dropPokemon";
             this.dropPokemon.Size = new System.Drawing.Size(121, 21);
             this.dropPokemon.TabIndex = 3;
@@ -526,7 +676,7 @@
             // 
             // btnSwitch
             // 
-            this.btnSwitch.Location = new System.Drawing.Point(348, 1);
+            this.btnSwitch.Location = new System.Drawing.Point(348, 38);
             this.btnSwitch.Name = "btnSwitch";
             this.btnSwitch.Size = new System.Drawing.Size(75, 23);
             this.btnSwitch.TabIndex = 2;
@@ -536,7 +686,7 @@
             // lblPokemon
             // 
             this.lblPokemon.AutoSize = true;
-            this.lblPokemon.Location = new System.Drawing.Point(163, 8);
+            this.lblPokemon.Location = new System.Drawing.Point(163, 45);
             this.lblPokemon.Name = "lblPokemon";
             this.lblPokemon.Size = new System.Drawing.Size(52, 13);
             this.lblPokemon.TabIndex = 1;
@@ -544,56 +694,11 @@
             // 
             // picImage
             // 
-            this.picImage.Location = new System.Drawing.Point(8, 8);
+            this.picImage.Location = new System.Drawing.Point(8, 45);
             this.picImage.Name = "picImage";
             this.picImage.Size = new System.Drawing.Size(122, 100);
             this.picImage.TabIndex = 0;
             this.picImage.TabStop = false;
-            // 
-            // tbSlot2
-            // 
-            this.tbSlot2.Location = new System.Drawing.Point(4, 22);
-            this.tbSlot2.Name = "tbSlot2";
-            this.tbSlot2.Size = new System.Drawing.Size(792, 426);
-            this.tbSlot2.TabIndex = 2;
-            this.tbSlot2.Text = "Slot 2";
-            this.tbSlot2.UseVisualStyleBackColor = true;
-            // 
-            // tbSlot3
-            // 
-            this.tbSlot3.Location = new System.Drawing.Point(4, 22);
-            this.tbSlot3.Name = "tbSlot3";
-            this.tbSlot3.Size = new System.Drawing.Size(792, 426);
-            this.tbSlot3.TabIndex = 3;
-            this.tbSlot3.Text = "Slot 3";
-            this.tbSlot3.UseVisualStyleBackColor = true;
-            // 
-            // tbSlot4
-            // 
-            this.tbSlot4.Location = new System.Drawing.Point(4, 22);
-            this.tbSlot4.Name = "tbSlot4";
-            this.tbSlot4.Size = new System.Drawing.Size(792, 426);
-            this.tbSlot4.TabIndex = 4;
-            this.tbSlot4.Text = "Slot 4";
-            this.tbSlot4.UseVisualStyleBackColor = true;
-            // 
-            // tbSlot5
-            // 
-            this.tbSlot5.Location = new System.Drawing.Point(4, 22);
-            this.tbSlot5.Name = "tbSlot5";
-            this.tbSlot5.Size = new System.Drawing.Size(792, 426);
-            this.tbSlot5.TabIndex = 5;
-            this.tbSlot5.Text = "Slot 5";
-            this.tbSlot5.UseVisualStyleBackColor = true;
-            // 
-            // tbSlot6
-            // 
-            this.tbSlot6.Location = new System.Drawing.Point(4, 22);
-            this.tbSlot6.Name = "tbSlot6";
-            this.tbSlot6.Size = new System.Drawing.Size(792, 426);
-            this.tbSlot6.TabIndex = 6;
-            this.tbSlot6.Text = "Slot 6";
-            this.tbSlot6.UseVisualStyleBackColor = true;
             // 
             // menuStrip1
             // 
@@ -604,26 +709,6 @@
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "trainer1.ico");
-            this.imageList1.Images.SetKeyName(1, "trainer2.ico");
-            this.imageList1.Images.SetKeyName(2, "trainer3.ico");
-            this.imageList1.Images.SetKeyName(3, "trainer4.ico");
-            this.imageList1.Images.SetKeyName(4, "trainer5.ico");
-            this.imageList1.Images.SetKeyName(5, "trainer6.ico");
-            this.imageList1.Images.SetKeyName(6, "trainer7.ico");
-            this.imageList1.Images.SetKeyName(7, "trainer8.ico");
-            this.imageList1.Images.SetKeyName(8, "trainer9.ico");
-            this.imageList1.Images.SetKeyName(9, "trainer10.ico");
-            this.imageList1.Images.SetKeyName(10, "trainer11.ico");
-            this.imageList1.Images.SetKeyName(11, "trainer12.ico");
-            this.imageList1.Images.SetKeyName(12, "trainer13.ico");
-            this.imageList1.Images.SetKeyName(13, "trainer14.ico");
-            this.imageList1.Images.SetKeyName(14, "trainer15.ico");
             // 
             // fileToolStripMenuItem
             // 
@@ -636,7 +721,7 @@
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(98, 22);
             this.saveToolStripMenuItem.Text = "&Save";
             // 
             // TeamBuilder
@@ -675,11 +760,6 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tbTrainer;
         private System.Windows.Forms.TabPage tbSlot1;
-        private System.Windows.Forms.TabPage tbSlot2;
-        private System.Windows.Forms.TabPage tbSlot3;
-        private System.Windows.Forms.TabPage tbSlot4;
-        private System.Windows.Forms.TabPage tbSlot5;
-        private System.Windows.Forms.TabPage tbSlot6;
         private System.Windows.Forms.PictureBox picImage;
         private System.Windows.Forms.GroupBox grpAutoMessages;
         private System.Windows.Forms.TextBox txtLoseMessage;
@@ -725,5 +805,12 @@
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.Button btnPoke6;
+        private System.Windows.Forms.ImageList imageList2;
+        private System.Windows.Forms.Button btnPoke5;
+        private System.Windows.Forms.Button btnPoke4;
+        private System.Windows.Forms.Button btnPoke3;
+        private System.Windows.Forms.Button btnPoke2;
+        private System.Windows.Forms.Button btnPoke1;
     }
 }

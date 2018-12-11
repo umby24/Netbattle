@@ -177,6 +177,7 @@ namespace Netbattle.Common {
                 EggGroup2 = byte.Parse(entry[61]),
                 Illegals = illegalsArray,
                 BreedIllegals = breedIllegals,
+                Move = new[] { -1, -1, -1, -1 }
             };
             
             InsertMoveData(entry, ref result);
