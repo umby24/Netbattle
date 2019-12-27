@@ -35,12 +35,12 @@
             this.controlWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.kickToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.txtInput = new System.Windows.Forms.TextBox();
             this.btnSend = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.awayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.playerMenu.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -61,6 +61,7 @@
             this.nameColumn});
             this.lstPlayers.ContextMenuStrip = this.playerMenu;
             this.lstPlayers.FullRowSelect = true;
+            this.lstPlayers.HideSelection = false;
             this.lstPlayers.LargeImageList = this.imageList1;
             this.lstPlayers.Location = new System.Drawing.Point(12, 32);
             this.lstPlayers.Name = "lstPlayers";
@@ -123,6 +124,26 @@
             this.kickToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.kickToolStripMenuItem.Text = "&Kick";
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "trainer1.ico");
+            this.imageList1.Images.SetKeyName(1, "trainer2.ico");
+            this.imageList1.Images.SetKeyName(2, "trainer3.ico");
+            this.imageList1.Images.SetKeyName(3, "trainer4.ico");
+            this.imageList1.Images.SetKeyName(4, "trainer5.ico");
+            this.imageList1.Images.SetKeyName(5, "trainer6.ico");
+            this.imageList1.Images.SetKeyName(6, "trainer7.ico");
+            this.imageList1.Images.SetKeyName(7, "trainer8.ico");
+            this.imageList1.Images.SetKeyName(8, "trainer9.ico");
+            this.imageList1.Images.SetKeyName(9, "trainer10.ico");
+            this.imageList1.Images.SetKeyName(10, "trainer11.ico");
+            this.imageList1.Images.SetKeyName(11, "trainer12.ico");
+            this.imageList1.Images.SetKeyName(12, "trainer13.ico");
+            this.imageList1.Images.SetKeyName(13, "trainer14.ico");
+            this.imageList1.Images.SetKeyName(14, "trainer15.ico");
+            // 
             // txtInput
             // 
             this.txtInput.Location = new System.Drawing.Point(139, 385);
@@ -164,26 +185,6 @@
             this.awayToolStripMenuItem.Name = "awayToolStripMenuItem";
             this.awayToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.awayToolStripMenuItem.Text = "&Away";
-            // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "trainer1.ico");
-            this.imageList1.Images.SetKeyName(1, "trainer2.ico");
-            this.imageList1.Images.SetKeyName(2, "trainer3.ico");
-            this.imageList1.Images.SetKeyName(3, "trainer4.ico");
-            this.imageList1.Images.SetKeyName(4, "trainer5.ico");
-            this.imageList1.Images.SetKeyName(5, "trainer6.ico");
-            this.imageList1.Images.SetKeyName(6, "trainer7.ico");
-            this.imageList1.Images.SetKeyName(7, "trainer8.ico");
-            this.imageList1.Images.SetKeyName(8, "trainer9.ico");
-            this.imageList1.Images.SetKeyName(9, "trainer10.ico");
-            this.imageList1.Images.SetKeyName(10, "trainer11.ico");
-            this.imageList1.Images.SetKeyName(11, "trainer12.ico");
-            this.imageList1.Images.SetKeyName(12, "trainer13.ico");
-            this.imageList1.Images.SetKeyName(13, "trainer14.ico");
-            this.imageList1.Images.SetKeyName(14, "trainer15.ico");
             // 
             // ServerWindow
             // 

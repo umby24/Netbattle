@@ -190,15 +190,10 @@ namespace Netbattle.Network {
             var decompStream = new ByteBuffer();
             decompStream.AddBytes(decomp);
 
-            
-
             while (decompStream.Length > 0) {
                 byte length = decompStream.ReadByte();
                 InterpretPlayerData(decompStream.ReadByteArray(length));
             }
-
-            //var working = new ByteBuffer();
-            //working.AddBytes(decompStream.ReadByteArray(length));
         }
 
         public void AddPlayerlistData(byte[] data) {
@@ -209,6 +204,11 @@ namespace Netbattle.Network {
 
         public event EmptyEventArgs ServerConnected;
         public event EmptyEventArgs ServerDisconnected;
+        public event EmptyEventArgs ServerKickedYou;
+        public event EmptyEventArgs DuplicateNameKick;
+        public event EmptyEventArgs InvalidUserPassword;
+        public event EmptyEventArgs IpBanned;
+
         public event ServerInfoEventArgs ServerInfoReceived;
         public event MessageEventArgs ChatMessageReceived;
         public event MessageEventArgs WelcomeMessageReceived;
@@ -221,6 +221,22 @@ namespace Netbattle.Network {
         public event PlayerEventArgs PlayerInfoUpdated;
 
         public event PlayersEventArgs PlayerlistUpdated;
+
+        public void InvokeIpBanned() {
+            IpBanned?.Invoke();
+        }
+
+        public void InvokeBadPassword() {
+            InvalidUserPassword?.Invoke();
+        }
+
+        public void InvokeKicked() {
+            ServerKickedYou?.Invoke();
+        }
+
+        public void InvokeDuplicateName() {
+            DuplicateNameKick?.Invoke();
+        }
 
         public void InvokePrivateMessageReceived(Player p, string message) {
             PmReceived?.Invoke(p, message);
@@ -247,6 +263,14 @@ namespace Netbattle.Network {
 
         public void InvokePlayerUpdate(Player p) {
             PlayerInfoUpdated?.Invoke(p);
+        }
+
+        public void InvokePlayerAway(Player p) {
+            PlayerAway?.Invoke(p);
+        }
+
+        public void InvokePlayerBack(Player p) {
+            PlayerBack?.Invoke(p);
         }
 
         public void InvokePlayerLeft(int id) {

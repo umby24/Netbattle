@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Netbattle.Common;
 using Netbattle.Network;
@@ -32,7 +28,62 @@ namespace Netbattle.Forms {
             _client.PlayerJoined += ClientOnPlayerJoined;
             _client.PlayerLeft += ClientOnPlayerLeft;
             _client.PmReceived += ClientOnPmReceived;
+            _client.ServerKickedYou += ClientOnServerKickedYou;
+            _client.DuplicateNameKick += ClientOnDuplicateNameKick;
+            _client.InvalidUserPassword += ClientOnInvalidUserPassword;
+            _client.IpBanned += ClientOnIpBanned;
+            _client.PlayerAway += ClientOnPlayerAway;
+            _client.PlayerBack += ClientOnPlayerBack;
             _client.Connect();
+        }
+
+        private void ClientOnPlayerBack(Player player) {
+            if (InvokeRequired) {
+                Invoke(new PlayerEventArgs(ClientOnPlayerBack), player);
+                return;
+            }
+
+            if (player.BattlingWith == 1025) {
+                AddMessage($"{player.Name} has returned.");
+            }
+            else {
+                AddMessage($"{player.Name} is done battling.");
+                // -- If Watching, drop the watching form.
+                if (player.BattlingWith == _client.You.Id && _client.OnlinePlayers[_client.You.Id].Id == player.Id) {
+                    player.BattlingWith = 0;
+                    // -- Call "BOVER" to battle window.
+                }
+            }
+
+            player.BattlingWith = 0;
+            RefreshPlayerList();
+        }
+
+        private void ClientOnPlayerAway(Player player) {
+            if (InvokeRequired) {
+                Invoke(new PlayerEventArgs(ClientOnPlayerAway), player);
+                return;
+            }
+
+            AddMessage($"{player.Name} is away.");
+            player.BattlingWith = 1025;
+            RefreshPlayerList();
+        }
+
+        private void ClientOnIpBanned() {
+            AddMessage("You have been banned from this server.", Color.Red, true, true, true);
+        }
+
+        private void ClientOnInvalidUserPassword() {
+            AddMessage("Your user password is invalid. Try another.", Color.Red, true, true, true);
+        }
+
+        private void ClientOnDuplicateNameKick() {
+            AddMessage("Name Already In Use", Color.Red, true, true, true);
+        }
+
+        private void ClientOnServerKickedYou() {
+            AddMessage("Disconnected from server", Color.Red, true, true, true);
         }
 
         private void ClientOnPmReceived(Player player, string message) {
@@ -83,7 +134,7 @@ namespace Netbattle.Forms {
             lstPlayers.Items.Clear();
 
             foreach (Player player in players) {
-                string[] row = {player.Name};
+                string[] row = {player.Away ? "[" + player.Name + "]" : player.Name};
                 var lvi = new ListViewItem(row);
                 lvi.ImageIndex = player.Picture - 1;
                 lstPlayers.Items.Add(lvi);
@@ -127,6 +178,20 @@ namespace Netbattle.Forms {
         #endregion
 
         #region Form Helpers
+
+        public void RefreshPlayerList() {
+            lstPlayers.Items.Clear();
+
+            foreach (Player player in _client.OnlinePlayers.Values) {
+                string[] row = { player.Away ? "[" + player.Name + "]" : player.Name };
+
+                var lvi = new ListViewItem(row) {
+                    ImageIndex = player.Picture - 1, ForeColor = player.Away ? Color.Gray : Color.Black
+                };
+
+                lstPlayers.Items.Add(lvi);
+            }
+        }
 
         public delegate void AddMessageArgs(
             string message, Color color = default(Color), bool newLine = true, bool bold = false, bool italic = false);

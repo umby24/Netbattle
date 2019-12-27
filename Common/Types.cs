@@ -335,6 +335,7 @@ namespace Netbattle.Common {
         public int Authority { get; set; }
         public bool ShowTeam { get; set; }
         public bool StadiumOk { get; set; }
+        public bool Away { get; set; }
         public List<Pokemon> Team { get; set; }
         public int Wins { get; set; }
         public int Losses { get; set; }
