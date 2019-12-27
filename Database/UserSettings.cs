@@ -36,7 +36,7 @@ namespace Netbattle.Database {
 
         protected static void MakeNewSettings() {
             CurrentSettings = new UserSettings {
-                CurrentCompatibilityMode = CompatModes.nbFullAdvance,
+                CurrentCompatibilityMode = CompatModes.nbModAdv,
                 CurrentGraphicsMode = GraphicsMode.nbGFXEme,
                 IconUsed = 1,
                 Team = new Pokemon[6]
@@ -48,9 +48,12 @@ namespace Netbattle.Database {
                 CurrentSettings =
                     JsonConvert.DeserializeObject<UserSettings>(
                         File.ReadAllText(Configuration.CurrentSettings.LastJnb));
+                CurrentSettings.CurrentCompatibilityMode = CompatModes.nbFullAdvance;
                 for (var i = 0; i < 6; i++) {
-                    if (CurrentSettings.Team[i] != null)
+                    if (CurrentSettings.Team[i] != null) {
                         CurrentSettings.Team[i] = CurrentSettings.Team[i].SetupFromDatabase();
+                        CurrentSettings.Team[i].GameVersion = CompatModes.nbFullAdvance;
+                    }
                 }
             }
             catch (Exception ex) {

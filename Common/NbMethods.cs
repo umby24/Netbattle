@@ -21,13 +21,22 @@ namespace Netbattle.Common {
         /// <param name="length"></param>
         public static string Dec2Bin(int input, int length) {
             byte[] asBytes = BitConverter.GetBytes(input);
+            Array.Reverse(asBytes);
             string asBits = BytesToBinary(asBytes);
 
             if (asBits.Length < length)
                 asBits = asBits.PadLeft(length, '0');
+            else {
+                asBits = asBits.TrimStart('0').PadLeft(length, '0');
+            }
 
             return asBits;
         }
+        /// 000000001  - 1
+        /// 000000010 - 2
+        /// 000011110 - 30
+        /// 001100100 - 100
+        
 
         public static int Bin2Dec(string input) {
             if (input.Length < 32)

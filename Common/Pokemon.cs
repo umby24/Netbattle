@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json;
 
@@ -282,10 +283,9 @@ namespace Netbattle.Common {
             return resultPokemon;
         }
 
-        public override string ToString() {// -- Code.bas - 6078
+        public byte[] ToStringBytes() {// -- Code.bas - 6078
             var sb = new StringBuilder();
-
-            //sb.Append(Nickname.PadRight(15));
+            
             sb.Append(NbMethods.Dec2Bin(No, 9));
             sb.Append(NbMethods.Dec2Bin((int) GameVersion, 3));
             sb.Append(NbMethods.Dec2Bin(Level, 7));
@@ -314,7 +314,14 @@ namespace Netbattle.Common {
             sb.Append(NbMethods.Dec2Bin(EV_SAtk, 8));
             sb.Append(NbMethods.Dec2Bin(EV_SDef, 8));
 
-            return Nickname.PadRight(15) + Encoding.ASCII.GetString(NbMethods.BinaryToBytes(sb.ToString()));
+            byte[] nameBytes = Encoding.ASCII.GetBytes(Nickname.PadRight(15));
+            byte[] pokeBytes = NbMethods.BinaryToBytes(sb.ToString());
+
+            var final = new byte[15 + pokeBytes.Length];
+            Buffer.BlockCopy(nameBytes, 0, final, 0, 15);
+            Buffer.BlockCopy(pokeBytes, 0, final, 15, pokeBytes.Length);
+
+            return final;
         }
 
         public IEnumerable<Move> GetAdvMoves() {

@@ -48,6 +48,8 @@ namespace Netbattle.Forms {
                     // -- TODO: Set button icon to red.
                 }
             }
+
+            UpdateSelections();
         }
 
         private void dropPokemon_SelectedIndexChanged(object sender, EventArgs e) {
@@ -123,6 +125,42 @@ namespace Netbattle.Forms {
             }
         }
 
+        private void UpdateSelections() {
+            fullAdvancedToolStripMenuItem.Checked = false;
+            ruSaOnlyToolStripMenuItem.Checked = false;
+            gSCWithTradesToolStripMenuItem.Checked = false;
+            trueGSCToolStripMenuItem.Checked = false;
+            rBYWithTradesToolStripMenuItem.Checked = false;
+            trueRBYToolStripMenuItem.Checked = false;
+
+            // -- Load version..
+            switch (_workingSettings.CurrentCompatibilityMode) {
+                case CompatModes.nbTrueRBY:
+                    trueRBYToolStripMenuItem.Checked = true;
+                    break;
+                case CompatModes.nbRBYTrade:
+                    rBYWithTradesToolStripMenuItem.Checked = true;
+                    break;
+                case CompatModes.nbTrueGSC:
+                    trueGSCToolStripMenuItem.Checked = true;
+                    break;
+                case CompatModes.nbGSCTrade:
+                    gSCWithTradesToolStripMenuItem.Checked = true;
+                    break;
+                case CompatModes.nbTrueRuSa:
+                    ruSaOnlyToolStripMenuItem.Checked = true;
+                    break;
+                case CompatModes.nbFullAdvance:
+                    fullAdvancedToolStripMenuItem.Checked = true;
+                    break;
+                //case CompatModes.nbModAdv:
+            }
+
+            foreach (var poke in _workingSettings.Team) {
+                poke.GameVersion = _workingSettings.CurrentCompatibilityMode;
+            }
+        }
+
         private void UpdateWorking() {
             UserSettings.CurrentSettings.CurrentGraphicsMode = (GraphicsMode)dropGraphics.SelectedIndex;
             UserSettings.CurrentSettings.LoseMessage = txtLoseMessage.Text;
@@ -131,6 +169,8 @@ namespace Netbattle.Forms {
             UserSettings.CurrentSettings.IconUsed = (byte)listView1.SelectedIndices[0];
             UserSettings.CurrentSettings.Username = txtUsername.Text;
             UserSettings.CurrentSettings.Team = _workingSettings.Team;
+            UserSettings.CurrentSettings.CurrentCompatibilityMode =
+                (CompatModes) _workingSettings.CurrentCompatibilityMode;
         }
 
         private void SwitchPokemonButtonClick(object sender, EventArgs e) {
@@ -286,6 +326,37 @@ namespace Netbattle.Forms {
         private void dropItem_SelectedIndexChanged(object sender, EventArgs e) {
             if (_currentPokemon != null)
             _currentPokemon.Item = (Items)Enum.Parse(typeof(Items), "nb" + dropItem.Text.Replace(" ", ""));
+        }
+
+        private void fullAdvancedToolStripMenuItem_Click(object sender, EventArgs e) {
+            // -- TODO: Team compatibility check
+            _workingSettings.CurrentCompatibilityMode = CompatModes.nbFullAdvance;
+            UpdateSelections();
+        }
+
+        private void ruSaOnlyToolStripMenuItem_Click(object sender, EventArgs e) {// -- TODO: Team compatibility check
+            _workingSettings.CurrentCompatibilityMode = CompatModes.nbTrueRuSa;
+            UpdateSelections();
+        }
+
+        private void gSCWithTradesToolStripMenuItem_Click(object sender, EventArgs e) {// -- TODO: Team compatibility check
+            _workingSettings.CurrentCompatibilityMode = CompatModes.nbGSCTrade;
+            UpdateSelections();
+        } 
+
+        private void trueGSCToolStripMenuItem_Click(object sender, EventArgs e) {// -- TODO: Team compatibility check
+            _workingSettings.CurrentCompatibilityMode = CompatModes.nbTrueGSC;
+            UpdateSelections();
+        }
+
+        private void rBYWithTradesToolStripMenuItem_Click(object sender, EventArgs e) {// -- TODO: Team compatibility check
+            _workingSettings.CurrentCompatibilityMode = CompatModes.nbRBYTrade;
+            UpdateSelections();
+        }
+
+        private void trueRBYToolStripMenuItem_Click(object sender, EventArgs e) {// -- TODO: Team compatibility check
+            _workingSettings.CurrentCompatibilityMode = CompatModes.nbTrueRBY;
+            UpdateSelections();
         }
     }
 }

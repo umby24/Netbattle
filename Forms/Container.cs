@@ -5,14 +5,15 @@ using Netbattle.Database;
 
 namespace Netbattle.Forms {
     public partial class Container : Form {
+        private Form1 _qs;
+
         public Container() {
             InitializeComponent();
         }
 
         private void Container_Load(object sender, EventArgs e) {
-            var qs = new Form1(this);
-            qs.FormClosed += QsOnFormClosed;
-            qs.Show();
+            _qs = new Form1(this);
+            _qs.Show();
 
 
             MoveDatabase.Load();
@@ -22,9 +23,10 @@ namespace Netbattle.Forms {
             Configuration.Load();
             UserSettings.Load();
         }
+        
 
-        private void QsOnFormClosed(object sender, FormClosedEventArgs formClosedEventArgs) {
-            Console.WriteLine("THE QUICK START CLOSED!");
+        private void mehToolStripMenuItem_Click(object sender, EventArgs e) {
+            _qs.Show();
         }
     }
 }

@@ -103,16 +103,40 @@ namespace Netbattle.Network {
 
     public struct Team : IPacket {
         public string Command => "TEAM";
+        public bool AllowViewing { get; set; }
+        public int TeamPower { get; set; }
+        public GraphicsMode graphics { get; set; }
+        public Pokemon[] Pokemon { get; set; }
 
         public const string StaticTeam =
             "54 45 41 4D 3A 30 50 37 44 75 67 74 72 69 6F 20 20 20 20 20 20 20 20 19 BC 85 07 00 03 75 3A F1 81 FF FB DE F0 27 E0 07 E0 00 00 41 65 72 6F 64 61 63 74 79 6C 20 20 20 20 20 47 3C 85 08 00 0F C1 B9 6D 4F FF FB FF F0 27 E0 07 E0 00 00 41 6C 61 6B 61 7A 61 6D 20 20 20 20 20 20 20 20 BC 8A 54 00 06 34 C2 85 45 FF FF FF F8 00 00 07 E7 E0 20 47 65 6E 67 61 72 20 20 20 20 20 20 20 20 20 2F 3C 85 54 00 05 03 1A 61 D1 FF FF FF F8 00 00 07 E7 E0 00 45 6C 65 63 74 72 6F 64 65 20 20 20 20 20 20 32 BC 86 1E 00 10 B1 E3 9D D1 FF FF FF F8 00 20 07 E7 E0 00 53 74 61 72 6D 69 65 20 20 20 20 20 20 20 20 3C BC 85 69 00 10 C4 C3 65 D1 FF FF FF F8 00 04 07 E0 04 00";
+        //  ""54 45 41 4D 3A 31 64 35 57 41 52 20 20 20 20 20 20 20 20 20 20 20 20 08 00 00 00 00 00 00 00 00 00 00 00 09 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 02 40 00 00 02 3F 00 00 0C 40 00 00 0E 3F 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 43 48 41 52 20 20 20 20 20 20 20 20 20 20 20 04 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 07 20 00 00 08 00 00 00 08 40 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 56 45 4E 55 20 20 20 20 20 20 20 20 20 20 20 03 00 00 00 00 00 00 00 00 00 00 00 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 03 3F 20 00 0A 00 00 00 0B 3F 00 00 05 3F 20 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 43 59 4E 44 41 20 20 20 20 20 20 20 20 20 20 3F 00 00 00 00 00 00 00 00 00 00 00 03 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 07 20 00 00 08 3F 00 00 07 40 20 00 1B 3F 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 43 52 4F 43 20 20 20 20 20 20 20 20 20 20 20 3F 00 00 00 00 00 00 00 00 00 00 00 04 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 04 3F 00 00 04 3F 00 00 06 3F 00 00 0B 3F 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 42 41 59 20 20 20 20 20 20 20 20 20 20 20 20 3F 00 00 00 00 00 00 00 00 00 00 00 05 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 0A 00 00 00 03 3F 20 00 0D 40 00 00 13 3F 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
         public void Read(ByteBuffer reader) {
             throw new NotImplementedException();
         }
 
         public void Write(ByteBuffer writer) {
-            byte[] data = NbMethods.StringToByteArray(StaticTeam.Replace(" ", ""));
-            writer.AddBytes(data);
+            // -- Allow Viewing (Bool 2 bin)
+            // -- Ranking (Chr)
+            // -- FixedHex (You.Version, 1) (AKA Graphics mode)
+            // -- for i = 1 -> 6, add pkmn2str.
+            string build = Command + ":";
+
+            if (AllowViewing)
+                build += "1";
+            else
+                build += "0";
+            build += (char) TeamPower;
+            build += (int) graphics;
+            writer.AddBytes(Encoding.ASCII.GetBytes(build));
+
+            for (var i = 0; i < 6; i++) {
+                writer.AddBytes(Pokemon[i].ToStringBytes());
+            }
+            
+      //      var bytes = Encoding.UTF8.GetBytes(build);
+        //    var asString = BitConverter.ToString(bytes).Replace("-", " ");
+        
             writer.Purge();
         }
 
@@ -321,7 +345,13 @@ namespace Netbattle.Network {
             client.You.Id = YourPid;
             client.You.Authority = Authority;
 
-            var tm = new Team();
+            var tm = new Team {
+                Pokemon = UserSettings.CurrentSettings.Team,
+                AllowViewing = true,
+                graphics = UserSettings.CurrentSettings.CurrentGraphicsMode,
+                TeamPower = 100
+            };
+
             client.SendPacket(tm);
         }
     }
@@ -700,8 +730,10 @@ namespace Netbattle.Network {
 
     public struct BanYou : IPacket {
         public string Command => "ILLM";
+        public string Reason { get; set; }
+
         public void Read(ByteBuffer reader) {
-            throw new NotImplementedException();
+            Reason = reader.ReadString(reader.Length);
         }
 
         public void Write(ByteBuffer writer) {
@@ -709,7 +741,8 @@ namespace Netbattle.Network {
         }
 
         public void Handle(NbClient client) {
-            throw new NotImplementedException();
+            client.InvokeChatMessage("Illegal Team: " + Reason);
+            client.Disconnect();
         }
     }
 

@@ -156,10 +156,17 @@ namespace Netbattle.Forms {
         }
 
         private void Srv_FormClosed(object sender, FormClosingEventArgs e) {
-            Console.WriteLine("Closing Server list..");
-           
-            Close();
-            Dispose();
+            if (this.InvokeRequired) {
+                Invoke(new FormClosingEventHandler(Srv_FormClosed), sender, e);
+                return;
+            }
+
+            Invoke(new NoEventArgs(derpish));
+            
+        }
+
+        private void derpish() {
+            this.Close();
         }
 
         private string UnpackIp(string ip) {
