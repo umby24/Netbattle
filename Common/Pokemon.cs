@@ -213,8 +213,52 @@ namespace Netbattle.Common {
             return newPoke;
         }
 
-        public void GetCurrentMoveset() {
-
+        public List<Move> GetCurrentMoveset(CompatModes compatMode) {
+            List<Move> legalMoveSet = new List<Move>();
+            
+            switch (compatMode)
+            {
+                case CompatModes.nbTrueRBY:
+                    legalMoveSet.AddRange(this.RBYMoves);
+                    legalMoveSet.AddRange(this.RBYTM);
+                    legalMoveSet.AddRange(this.SpecialMoves);
+                    break;
+                case CompatModes.nbTrueGSC:
+                    legalMoveSet.AddRange(this.BaseMoves);
+                    legalMoveSet.AddRange(this.MachineMoves);
+                    legalMoveSet.AddRange(this.BreedingMoves);
+                    legalMoveSet.AddRange(this.MoveTutor);
+                    legalMoveSet.AddRange(this.SpecialMoves);
+                    break;
+                case CompatModes.nbRBYTrade:
+                case CompatModes.nbGSCTrade:
+                    legalMoveSet.AddRange(this.RBYMoves);
+                    legalMoveSet.AddRange(this.RBYTM);
+                    legalMoveSet.AddRange(this.SpecialMoves);
+                    legalMoveSet.AddRange(this.BaseMoves);
+                    legalMoveSet.AddRange(this.MachineMoves);
+                    legalMoveSet.AddRange(this.BreedingMoves);
+                    legalMoveSet.AddRange(this.MoveTutor);
+                    legalMoveSet.AddRange(this.SpecialMoves);
+                    break;
+                case CompatModes.nbTrueRuSa:
+                    legalMoveSet.AddRange(this.AdvMoves);
+                    legalMoveSet.AddRange(this.ADVTM);
+                    legalMoveSet.AddRange(this.AdvSpecial);
+                    legalMoveSet.AddRange(this.AdvBreeding);
+                    break;
+                case CompatModes.nbFullAdvance:
+                case CompatModes.nbModAdv:
+                    legalMoveSet.AddRange(this.AdvMoves);
+                    legalMoveSet.AddRange(this.ADVTM);
+                    legalMoveSet.AddRange(this.AdvSpecial);
+                    legalMoveSet.AddRange(this.AdvBreeding);
+                    legalMoveSet.AddRange(this.LFOnly);
+                    legalMoveSet.AddRange(this.AdvTutor);
+                    break;
+            }
+            
+            return legalMoveSet;
         }
 
         public static Pokemon FromBinary(string pokeData, string nickname) {
@@ -283,7 +327,7 @@ namespace Netbattle.Common {
             return resultPokemon;
         }
 
-        public byte[] ToStringBytes() {// -- Code.bas - 6078
+        public byte[] ToStringBytes() {// -- Code.bas - 6078 AKA PKMN2Str
             var sb = new StringBuilder();
             
             sb.Append(NbMethods.Dec2Bin(No, 9));
@@ -336,6 +380,32 @@ namespace Netbattle.Common {
 
 
             return result;
+        }
+
+        public void DowngradeToRBYStats() {
+            DV_Atk = 15;
+            DV_Def = 15;
+            DV_Spd = 15;
+            DV_SAtk = 15;
+            DV_SDef = 15;
+            DV_HP = 15;
+        }
+        
+        public void UpgradeToAdvStats() {
+            DV_Atk = 31;
+            DV_Def = 31;
+            DV_Spd = 31;
+            DV_SAtk = 31;
+            DV_SDef = 31;
+            DV_HP = 31;
+            NatureNum = 0;
+            AttNum = 0;
+            EV_Atk = 85;
+            EV_Def = 85;
+            EV_Spd = 85;
+            EV_SAtk = 85;
+            EV_SDef = 85;
+            EV_HP = 85;
         }
     }
 }

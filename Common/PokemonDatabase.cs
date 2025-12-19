@@ -6,8 +6,10 @@ using Netbattle.Database;
 namespace Netbattle.Common {
     public class PokemonDatabase {
         public static List<Pokemon> BasePokemon = new List<Pokemon>();
+        public static Dictionary<int, Pokemon> BasePokemonMap = new Dictionary<int, Pokemon>();
         public static Dictionary<int, PokedexInfo> Pokedex = new Dictionary<int, PokedexInfo>();
-
+        public static List<NatureType> NatureTypes = new List<NatureType>();
+        
         public static void Load() {
             var pokeDb = new CdbFile("PokeDB.cdb");
             pokeDb.Load();
@@ -17,10 +19,47 @@ namespace Netbattle.Common {
                 ParsePokedexInfo(entry);
                 ParsePokemonDbLine(entry);
             }
-
+            BuildMap();
+            LoadNatures();
             Logger.Log(LogType.Info, $"Pokemon Database loaded successfully. Showing {BasePokemon.Count} Pokemon.");
         }
 
+        private static void LoadNatures()
+        {
+            NatureTypes.Add(new NatureType("Hardy"));
+            NatureTypes.Add(new NatureType("Lonely"));
+            NatureTypes.Add(new NatureType("Brave"));
+            NatureTypes.Add(new NatureType("Adamant"));
+            NatureTypes.Add(new NatureType("Naughty"));
+            NatureTypes.Add(new NatureType("Bold"));
+            NatureTypes.Add(new NatureType("Docile"));
+            NatureTypes.Add(new NatureType("Relaxed"));
+            NatureTypes.Add(new NatureType("Impish"));
+            NatureTypes.Add(new NatureType("Lax"));
+            NatureTypes.Add(new NatureType("Timid"));
+            NatureTypes.Add(new NatureType("Hasty"));
+            NatureTypes.Add(new NatureType("Serious"));
+            NatureTypes.Add(new NatureType("Jolly"));
+            NatureTypes.Add(new NatureType("Naive"));
+            NatureTypes.Add(new NatureType("Modest"));
+            NatureTypes.Add(new NatureType("Mild"));
+            NatureTypes.Add(new NatureType("Quiet"));
+            NatureTypes.Add(new NatureType("Bashful"));
+            NatureTypes.Add(new NatureType("Rash"));
+            NatureTypes.Add(new NatureType("Calm"));
+            NatureTypes.Add(new NatureType("Gentle"));
+            NatureTypes.Add(new NatureType("Sassy"));
+            NatureTypes.Add(new NatureType("Careful"));
+            NatureTypes.Add(new NatureType("Quirky"));
+        }
+        private static void BuildMap()
+        {
+            BasePokemonMap.Clear();
+            foreach (var pokemon in BasePokemon)
+            {
+                BasePokemonMap.Add(pokemon.No, pokemon);
+            }
+        }
         private static void ParsePokedexInfo(string[] entry) {
             // -- Pokedex description for each gen
             var pokedexInfo = new PokedexInfo {
@@ -209,6 +248,93 @@ namespace Netbattle.Common {
 
         public static IEnumerable<int> ParseCsvIntString(string input) {
             return string.IsNullOrEmpty(input) ? new int[0] : input.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse);
+        }
+
+        public static bool IsLegalMove(Pokemon poke, Move move, CompatModes compatMode)
+        {
+            List<Move> legalMoveSet = poke.GetCurrentMoveset(compatMode);
+            List<int> illegalMoveIds = new List<int>();
+            if (compatMode == CompatModes.nbTrueGSC)
+            {
+                illegalMoveIds.AddRange(poke.Illegals[0].Split(new[] { '|' }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse));
+                illegalMoveIds.AddRange(poke.Illegals[1].Split(new[] { '|' }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse));
+            }
+            else
+            {
+                illegalMoveIds.AddRange(poke.Illegals[2].Split(new[] { '|' }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse));
+                illegalMoveIds.AddRange(poke.Illegals[3].Split(new[] { '|' }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse));
+            }
+            
+            if (compatMode == CompatModes.nbModAdv) // -- Illegal Moves from DB Mods
+            {
+                illegalMoveIds.AddRange(poke.IllegalMod.Split(new[] { '|' }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse));
+            }
+            
+            return legalMoveSet.Contains(move) && !illegalMoveIds.Contains(move.ID);
+        }
+
+        public static bool TrueGSCCheck(Pokemon poke, Move move)
+        {
+            var basePkmn = BasePokemonMap[poke.No];
+            var result = basePkmn.BaseMoves.Contains(move);
+            
+            if (basePkmn.MachineMoves.Contains(move)) result = true;
+            if (basePkmn.BreedingMoves.Contains(move)) result = true;
+            if (basePkmn.SpecialMoves.Contains(move)) result = true;
+            if (basePkmn.MoveTutor.Contains(move)) result = true;
+            if (poke.No == 83 && move.ID == 123) result = true; // -- Farfetch'd can learn Cut in GSC.
+            if (poke.No == 207 && move.ID == 55) result = true; // -- Gligar can learn Earthquake in GSC.
+            // -- Dratini, Moltres, Dragonite can learn Hyper Beam in GSC.
+            // -- Is this a bug in the OG Code? should mayvbe be Dragonair instead of moltres?
+            if ((poke.No == 147 || poke.No == 146 || poke.No == 149) && (move.ID == 61 || move.ID == 240)) result = true;
+            
+            // -- Elekid, Electabuzz..
+            if ((poke.No == 239 || poke.No == 125 
+                                // -- Pichu, Pikachu, Raichu
+                || poke.No == 172 || poke.No == 25 || poke.No == 26 
+                                // -- Cleffa, Clefariy, Clefable
+                || poke.No == 173 || poke.No == 35 || poke.No == 36
+                                // -- Igglybuff, Jigglypuff, Wigglytuff
+                || poke.No == 174 || poke.No == 39 || poke.No == 40
+                                // -- Smoochum, Jynx
+                || poke.No == 238 || poke.No == 124
+                                // -- Magby, Magmar
+                || poke.No == 240 || poke.No == 126 
+                                // -- Tyrogue, Hitmonlee, Hitmonchan, Hitmontop
+                || poke.No == 236 || poke.No == 106 || poke.No == 107 || poke.No == 237)
+                && move.ID == 45) result = true;
+            
+            return result;
+        }
+
+        public static bool TrueRBYCheck(Pokemon poke, Move move)
+        {
+            var basePkmn = BasePokemonMap[poke.No];
+            var result = basePkmn.RBYMoves.Contains(move);
+            if (basePkmn.RBYTM.Contains(move)) result = true;
+            // -- Amnesia Psyduck exception
+            if ((poke.No == 54 || poke.No == 55) && move.ID == 6) result = true;
+            return result;
+        }
+        
+        public static bool TrueAdvCheck(Pokemon poke, Move move)
+        {
+            var basePkmn = BasePokemonMap[poke.No];
+            var result = basePkmn.AdvMoves.Contains(move);
+            if (basePkmn.ADVTM.Contains(move)) result = true;
+            if (basePkmn.AdvBreeding.Contains(move)) result = true;
+            if (basePkmn.AdvSpecial.Contains(move)) result = true;
+            if (basePkmn.AdvTutor.Contains(move)) result = true;
+            return result;
+        }
+
+        public static bool TrueAdvPlusCheck(Pokemon poke, Move move)
+        {
+            var basePkmn = BasePokemonMap[poke.No];
+            var result = TrueAdvCheck(poke, move);
+            if (basePkmn.LFOnly.Contains(move)) result = true;
+            
+            return result;
         }
         
     }

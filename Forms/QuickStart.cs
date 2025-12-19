@@ -30,20 +30,26 @@ namespace Netbattle {
         private void btnTeamBuilder_Click(object sender, EventArgs e) {
             var tb = new TeamBuilder(MdiParent);
             tb.Show();
-            //var meh = new ServerWindow(MdiParent, "127.0.0.1");
-            //meh.Show();
         }
 
         private void Form1_Load(object sender, EventArgs e) {
 
         }
 
-        private void btnAbout_Click(object sender, EventArgs e) {
-
+        private void btnAbout_Click(object sender, EventArgs e)
+        {
+            var about = new About();
+            about.ShowDialog();
         }
 
         private void btnExit_Click(object sender, EventArgs e) {
             Application.Exit();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var settings = new Settings();
+            settings.ShowDialog();
         }
     }
 }

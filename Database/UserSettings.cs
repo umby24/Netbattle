@@ -15,15 +15,13 @@ namespace Netbattle.Database {
         public byte IconUsed { get; set; }
         public Pokemon[] Team;
         public string StationID { get; set; }
-
+        public string DbModName { get; set; }
+        public string DbMods { get; set; }
+        public string RegistryAddress { get; set; }
+        
         public static void Load() {
             if (!string.IsNullOrWhiteSpace(Configuration.CurrentSettings.LastJnb)) {
                 LoadJnb();
-                return;
-            }
-
-            if (!string.IsNullOrWhiteSpace(Configuration.CurrentSettings.LastPnb)) {
-                LoadPnb();
                 return;
             }
 
@@ -39,7 +37,8 @@ namespace Netbattle.Database {
                 CurrentCompatibilityMode = CompatModes.nbModAdv,
                 CurrentGraphicsMode = GraphicsMode.nbGFXEme,
                 IconUsed = 1,
-                Team = new Pokemon[6]
+                Team = new Pokemon[6],
+                RegistryAddress = "registry.pmnb.net"
             };
         }
 
@@ -60,6 +59,20 @@ namespace Netbattle.Database {
                 Logger.Log(LogType.Error, "Error loading JNB File:");
                 Logger.Log(ex);
                 MakeNewSettings();
+            }
+
+            if (string.IsNullOrEmpty(CurrentSettings.RegistryAddress))
+            {
+                CurrentSettings.RegistryAddress = "registry.pmnb.net";
+            }
+            if (CurrentSettings.Team.Length != 6)
+            {
+                var newTeam = new Pokemon[6];
+                for (var i = 0; i < Math.Min(CurrentSettings.Team.Length, 6); i++)
+                {
+                    newTeam[i] = CurrentSettings.Team[i];
+                }
+                CurrentSettings.Team = newTeam;
             }
         }
 

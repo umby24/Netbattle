@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Netbattle</RootNamespace>
     <AssemblyName>Netbattle</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -37,8 +38,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Sockets">
       <HintPath>.\Sockets.dll</HintPath>
@@ -57,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\ByteBuffer.cs" />
+    <Compile Include="Common\Constants.cs" />
     <Compile Include="Common\GZip.cs" />
     <Compile Include="Common\Logger.cs" />
     <Compile Include="Common\NbMethods.cs" />
@@ -73,6 +75,14 @@
     <Compile Include="Database\PnbFile.cs" />
     <Compile Include="Database\TypeDatabase.cs" />
     <Compile Include="Database\UserSettings.cs" />
+    <Compile Include="Forms\About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\About.Designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AdvExpert.cs" />
+    <Compile Include="Forms\AdvExpert.Designer.cs" />
     <Compile Include="Forms\ChallengeWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +119,12 @@
     <Compile Include="Forms\ServerWindow.Designer.cs">
       <DependentUpon>ServerWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Settings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Settings.Designer.cs">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\TeamBuilder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,6 +136,10 @@
     <Compile Include="Network\ServerPackets.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\About.resx">
+      <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AdvExpert.resx" />
     <EmbeddedResource Include="Forms\ChallengeWindow.resx">
       <DependentUpon>ChallengeWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -138,6 +158,9 @@
     <EmbeddedResource Include="Forms\ServerWindow.resx">
       <DependentUpon>ServerWindow.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Settings.resx">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\TeamBuilder.resx">
       <DependentUpon>TeamBuilder.cs</DependentUpon>
     </EmbeddedResource>
@@ -149,7 +172,9 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="OriginalFiles\PokeBall.png.Icon" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

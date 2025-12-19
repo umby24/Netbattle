@@ -268,5 +268,25 @@ namespace Netbattle.Forms {
         private void TheWindowOnFormClosing(object sender, FormClosingEventArgs e) {
             _pmWindows.Remove( ((PrivateMessage)sender)._playerTo.Id);
         }
+
+        public void ToggleAway()
+        {
+            awayToolStripMenuItem.Checked = !awayToolStripMenuItem.Checked;
+            if (awayToolStripMenuItem.Checked)
+            {
+                _client.You.Away = true;
+                _client.SendPacket(new PlayerAway());
+            }
+            else
+            {
+                _client.You.Away = false;
+                _client.SendPacket(new PlayerBack());
+            }
+        }
+        
+        private void awayToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ToggleAway();
+        }
     }
 }

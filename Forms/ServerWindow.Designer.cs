@@ -22,12 +22,13 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {
+        private void InitializeComponent()
+        {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ServerWindow));
             this.txtChat = new System.Windows.Forms.RichTextBox();
             this.lstPlayers = new System.Windows.Forms.ListView();
-            this.nameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.nameColumn = new System.Windows.Forms.ColumnHeader();
             this.playerMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.challengeInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.watchBattleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,8 +58,7 @@
             // 
             // lstPlayers
             // 
-            this.lstPlayers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.nameColumn});
+            this.lstPlayers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { this.nameColumn });
             this.lstPlayers.ContextMenuStrip = this.playerMenu;
             this.lstPlayers.FullRowSelect = true;
             this.lstPlayers.HideSelection = false;
@@ -78,13 +78,7 @@
             // 
             // playerMenu
             // 
-            this.playerMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.challengeInfoToolStripMenuItem,
-            this.watchBattleToolStripMenuItem,
-            this.privateMessageToolStripMenuItem,
-            this.controlWindowToolStripMenuItem,
-            this.toolStripMenuItem1,
-            this.kickToolStripMenuItem});
+            this.playerMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { this.challengeInfoToolStripMenuItem, this.watchBattleToolStripMenuItem, this.privateMessageToolStripMenuItem, this.controlWindowToolStripMenuItem, this.toolStripMenuItem1, this.kickToolStripMenuItem });
             this.playerMenu.Name = "playerMenu";
             this.playerMenu.Size = new System.Drawing.Size(162, 120);
             // 
@@ -164,8 +158,7 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.optionsToolStripMenuItem});
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { this.optionsToolStripMenuItem });
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(859, 24);
@@ -174,8 +167,7 @@
             // 
             // optionsToolStripMenuItem
             // 
-            this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.awayToolStripMenuItem});
+            this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { this.awayToolStripMenuItem });
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
             this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.optionsToolStripMenuItem.Text = "&Options";
@@ -185,6 +177,7 @@
             this.awayToolStripMenuItem.Name = "awayToolStripMenuItem";
             this.awayToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.awayToolStripMenuItem.Text = "&Away";
+            this.awayToolStripMenuItem.Click += new System.EventHandler(this.awayToolStripMenuItem_Click);
             // 
             // ServerWindow
             // 
@@ -208,7 +201,6 @@
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
@@ -226,8 +218,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem kickToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem awayToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem awayToolStripMenuItem;
         private System.Windows.Forms.ImageList imageList1;
     }
 }

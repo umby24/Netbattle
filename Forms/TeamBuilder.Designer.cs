@@ -22,7 +22,8 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {
+        private void InitializeComponent()
+        {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("#01", 0);
             System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("#02", 1);
@@ -56,10 +57,9 @@
             this.lblUsername = new System.Windows.Forms.Label();
             this.grpImage = new System.Windows.Forms.GroupBox();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.tbSlot1 = new System.Windows.Forms.TabPage();
             this.btnPoke6 = new System.Windows.Forms.Button();
-            this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.btnPoke5 = new System.Windows.Forms.Button();
             this.btnPoke4 = new System.Windows.Forms.Button();
             this.btnPoke3 = new System.Windows.Forms.Button();
@@ -81,11 +81,12 @@
             this.lblHp = new System.Windows.Forms.Label();
             this.lblTypes = new System.Windows.Forms.Label();
             this.listMoves = new System.Windows.Forms.ListView();
-            this.colMove = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colPower = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colAcc = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colPP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colLearned = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colMove = new System.Windows.Forms.ColumnHeader();
+            this.colPower = new System.Windows.Forms.ColumnHeader();
+            this.colAcc = new System.Windows.Forms.ColumnHeader();
+            this.colPP = new System.Windows.Forms.ColumnHeader();
+            this.colLearned = new System.Windows.Forms.ColumnHeader();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.lblNickname = new System.Windows.Forms.Label();
             this.dropPokemon = new System.Windows.Forms.ComboBox();
@@ -94,6 +95,7 @@
             this.picImage = new System.Windows.Forms.PictureBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.trueRBYToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -108,6 +110,13 @@
             this.noModLoadedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewCurrentModsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadNewModFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dataDexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pokedexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.moveDexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.battleDexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.damageCalcToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ofdPnb = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1.SuspendLayout();
             this.tbTrainer.SuspendLayout();
             this.grpAutoMessages.SuspendLayout();
@@ -127,7 +136,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 24);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(800, 452);
+            this.tabControl1.Size = new System.Drawing.Size(577, 452);
             this.tabControl1.TabIndex = 0;
             // 
             // tbTrainer
@@ -138,7 +147,7 @@
             this.tbTrainer.Location = new System.Drawing.Point(4, 22);
             this.tbTrainer.Name = "tbTrainer";
             this.tbTrainer.Padding = new System.Windows.Forms.Padding(3);
-            this.tbTrainer.Size = new System.Drawing.Size(792, 426);
+            this.tbTrainer.Size = new System.Drawing.Size(569, 426);
             this.tbTrainer.TabIndex = 0;
             this.tbTrainer.Text = "Trainer Info";
             this.tbTrainer.UseVisualStyleBackColor = true;
@@ -149,9 +158,9 @@
             this.grpAutoMessages.Controls.Add(this.txtWinMessage);
             this.grpAutoMessages.Controls.Add(this.lblAutoLose);
             this.grpAutoMessages.Controls.Add(this.lblAutoWin);
-            this.grpAutoMessages.Location = new System.Drawing.Point(164, 214);
+            this.grpAutoMessages.Location = new System.Drawing.Point(86, 150);
             this.grpAutoMessages.Name = "grpAutoMessages";
-            this.grpAutoMessages.Size = new System.Drawing.Size(368, 191);
+            this.grpAutoMessages.Size = new System.Drawing.Size(291, 191);
             this.grpAutoMessages.TabIndex = 3;
             this.grpAutoMessages.TabStop = false;
             this.grpAutoMessages.Text = "Auto Messages";
@@ -163,11 +172,9 @@
             this.txtLoseMessage.Multiline = true;
             this.txtLoseMessage.Name = "txtLoseMessage";
             this.txtLoseMessage.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtLoseMessage.Size = new System.Drawing.Size(332, 62);
+            this.txtLoseMessage.Size = new System.Drawing.Size(261, 62);
             this.txtLoseMessage.TabIndex = 6;
-            this.txtLoseMessage.Text = "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
-    "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
-    "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
+            this.txtLoseMessage.Text = "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" + "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" + "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
             // 
             // txtWinMessage
             // 
@@ -176,11 +183,9 @@
             this.txtWinMessage.Multiline = true;
             this.txtWinMessage.Name = "txtWinMessage";
             this.txtWinMessage.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtWinMessage.Size = new System.Drawing.Size(332, 62);
+            this.txtWinMessage.Size = new System.Drawing.Size(261, 62);
             this.txtWinMessage.TabIndex = 5;
-            this.txtWinMessage.Text = "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
-    "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
-    "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
+            this.txtWinMessage.Text = "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" + "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" + "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
             // 
             // lblAutoLose
             // 
@@ -208,9 +213,9 @@
             this.grpInfo.Controls.Add(this.lblExtraInfo);
             this.grpInfo.Controls.Add(this.lblGraphics);
             this.grpInfo.Controls.Add(this.lblUsername);
-            this.grpInfo.Location = new System.Drawing.Point(164, 6);
+            this.grpInfo.Location = new System.Drawing.Point(86, 6);
             this.grpInfo.Name = "grpInfo";
-            this.grpInfo.Size = new System.Drawing.Size(368, 190);
+            this.grpInfo.Size = new System.Drawing.Size(291, 138);
             this.grpInfo.TabIndex = 2;
             this.grpInfo.TabStop = false;
             this.grpInfo.Text = "Info";
@@ -218,16 +223,8 @@
             // dropGraphics
             // 
             this.dropGraphics.FormattingEnabled = true;
-            this.dropGraphics.Items.AddRange(new object[] {
-            "Green",
-            "Red/Blue",
-            "Yellow",
-            "Gold",
-            "Silver",
-            "Ruby/Sapphire",
-            "Leaf/Fire",
-            "Emerald"});
-            this.dropGraphics.Location = new System.Drawing.Point(217, 49);
+            this.dropGraphics.Items.AddRange(new object[] { "Green", "Red/Blue", "Yellow", "Gold", "Silver", "Ruby/Sapphire", "Leaf/Fire", "Emerald" });
+            this.dropGraphics.Location = new System.Drawing.Point(146, 35);
             this.dropGraphics.Name = "dropGraphics";
             this.dropGraphics.Size = new System.Drawing.Size(134, 21);
             this.dropGraphics.TabIndex = 5;
@@ -235,29 +232,27 @@
             // 
             // txtExtraInfo
             // 
-            this.txtExtraInfo.Location = new System.Drawing.Point(19, 97);
+            this.txtExtraInfo.Location = new System.Drawing.Point(18, 74);
             this.txtExtraInfo.MaxLength = 200;
             this.txtExtraInfo.Multiline = true;
             this.txtExtraInfo.Name = "txtExtraInfo";
             this.txtExtraInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtExtraInfo.Size = new System.Drawing.Size(332, 87);
+            this.txtExtraInfo.Size = new System.Drawing.Size(262, 51);
             this.txtExtraInfo.TabIndex = 4;
-            this.txtExtraInfo.Text = "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
-    "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
-    "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
+            this.txtExtraInfo.Text = "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" + "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" + "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
             // 
             // txtUsername
             // 
-            this.txtUsername.Location = new System.Drawing.Point(19, 50);
+            this.txtUsername.Location = new System.Drawing.Point(18, 35);
             this.txtUsername.MaxLength = 20;
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(134, 20);
+            this.txtUsername.Size = new System.Drawing.Size(122, 20);
             this.txtUsername.TabIndex = 3;
             // 
             // lblExtraInfo
             // 
             this.lblExtraInfo.AutoSize = true;
-            this.lblExtraInfo.Location = new System.Drawing.Point(19, 81);
+            this.lblExtraInfo.Location = new System.Drawing.Point(18, 58);
             this.lblExtraInfo.Name = "lblExtraInfo";
             this.lblExtraInfo.Size = new System.Drawing.Size(52, 13);
             this.lblExtraInfo.TabIndex = 2;
@@ -266,7 +261,7 @@
             // lblGraphics
             // 
             this.lblGraphics.AutoSize = true;
-            this.lblGraphics.Location = new System.Drawing.Point(217, 33);
+            this.lblGraphics.Location = new System.Drawing.Point(146, 16);
             this.lblGraphics.Name = "lblGraphics";
             this.lblGraphics.Size = new System.Drawing.Size(49, 13);
             this.lblGraphics.TabIndex = 1;
@@ -275,7 +270,7 @@
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
-            this.lblUsername.Location = new System.Drawing.Point(16, 33);
+            this.lblUsername.Location = new System.Drawing.Point(18, 19);
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(55, 13);
             this.lblUsername.TabIndex = 0;
@@ -286,7 +281,7 @@
             this.grpImage.Controls.Add(this.listView1);
             this.grpImage.Location = new System.Drawing.Point(8, 6);
             this.grpImage.Name = "grpImage";
-            this.grpImage.Size = new System.Drawing.Size(130, 410);
+            this.grpImage.Size = new System.Drawing.Size(72, 308);
             this.grpImage.TabIndex = 1;
             this.grpImage.TabStop = false;
             this.grpImage.Text = "Image";
@@ -296,51 +291,39 @@
             this.listView1.FullRowSelect = true;
             this.listView1.HideSelection = false;
             this.listView1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3,
-            listViewItem4,
-            listViewItem5,
-            listViewItem6,
-            listViewItem7,
-            listViewItem8,
-            listViewItem9,
-            listViewItem10,
-            listViewItem11,
-            listViewItem12,
-            listViewItem13,
-            listViewItem14,
-            listViewItem15});
-            this.listView1.LargeImageList = this.imageList1;
+            this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] { listViewItem1, listViewItem2, listViewItem3, listViewItem4, listViewItem5, listViewItem6, listViewItem7, listViewItem8, listViewItem9, listViewItem10, listViewItem11, listViewItem12, listViewItem13, listViewItem14, listViewItem15 });
+            this.listView1.LargeImageList = this.imageList2;
             this.listView1.Location = new System.Drawing.Point(6, 19);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(113, 380);
-            this.listView1.SmallImageList = this.imageList1;
+            this.listView1.Size = new System.Drawing.Size(56, 278);
+            this.listView1.SmallImageList = this.imageList2;
             this.listView1.TabIndex = 7;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.List;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
-            // imageList1
+            // imageList2
             // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "trainer1.ico");
-            this.imageList1.Images.SetKeyName(1, "trainer2.ico");
-            this.imageList1.Images.SetKeyName(2, "trainer3.ico");
-            this.imageList1.Images.SetKeyName(3, "trainer4.ico");
-            this.imageList1.Images.SetKeyName(4, "trainer5.ico");
-            this.imageList1.Images.SetKeyName(5, "trainer6.ico");
-            this.imageList1.Images.SetKeyName(6, "trainer7.ico");
-            this.imageList1.Images.SetKeyName(7, "trainer8.ico");
-            this.imageList1.Images.SetKeyName(8, "trainer9.ico");
-            this.imageList1.Images.SetKeyName(9, "trainer10.ico");
-            this.imageList1.Images.SetKeyName(10, "trainer11.ico");
-            this.imageList1.Images.SetKeyName(11, "trainer12.ico");
-            this.imageList1.Images.SetKeyName(12, "trainer13.ico");
-            this.imageList1.Images.SetKeyName(13, "trainer14.ico");
-            this.imageList1.Images.SetKeyName(14, "trainer15.ico");
+            this.imageList2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList2.ImageStream")));
+            this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList2.Images.SetKeyName(0, "trainer1.ico");
+            this.imageList2.Images.SetKeyName(1, "trainer2.ico");
+            this.imageList2.Images.SetKeyName(2, "trainer3.ico");
+            this.imageList2.Images.SetKeyName(3, "trainer4.ico");
+            this.imageList2.Images.SetKeyName(4, "trainer5.ico");
+            this.imageList2.Images.SetKeyName(5, "trainer6.ico");
+            this.imageList2.Images.SetKeyName(6, "trainer7.ico");
+            this.imageList2.Images.SetKeyName(7, "trainer8.ico");
+            this.imageList2.Images.SetKeyName(8, "trainer9.ico");
+            this.imageList2.Images.SetKeyName(9, "trainer10.ico");
+            this.imageList2.Images.SetKeyName(10, "trainer11.ico");
+            this.imageList2.Images.SetKeyName(11, "trainer12.ico");
+            this.imageList2.Images.SetKeyName(12, "trainer13.ico");
+            this.imageList2.Images.SetKeyName(13, "trainer14.ico");
+            this.imageList2.Images.SetKeyName(14, "trainer15.ico");
+            this.imageList2.Images.SetKeyName(15, "greyPokeball.ico");
+            this.imageList2.Images.SetKeyName(16, "Icon22.ico");
             // 
             // tbSlot1
             // 
@@ -369,7 +352,7 @@
             this.tbSlot1.Location = new System.Drawing.Point(4, 22);
             this.tbSlot1.Name = "tbSlot1";
             this.tbSlot1.Padding = new System.Windows.Forms.Padding(3);
-            this.tbSlot1.Size = new System.Drawing.Size(792, 426);
+            this.tbSlot1.Size = new System.Drawing.Size(569, 426);
             this.tbSlot1.TabIndex = 1;
             this.tbSlot1.Text = "Team";
             this.tbSlot1.UseVisualStyleBackColor = true;
@@ -387,28 +370,6 @@
             this.btnPoke6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnPoke6.UseVisualStyleBackColor = true;
             this.btnPoke6.Click += new System.EventHandler(this.SwitchPokemonButtonClick);
-            // 
-            // imageList2
-            // 
-            this.imageList2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList2.ImageStream")));
-            this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList2.Images.SetKeyName(0, "trainer1.ico");
-            this.imageList2.Images.SetKeyName(1, "trainer2.ico");
-            this.imageList2.Images.SetKeyName(2, "trainer3.ico");
-            this.imageList2.Images.SetKeyName(3, "trainer4.ico");
-            this.imageList2.Images.SetKeyName(4, "trainer5.ico");
-            this.imageList2.Images.SetKeyName(5, "trainer6.ico");
-            this.imageList2.Images.SetKeyName(6, "trainer7.ico");
-            this.imageList2.Images.SetKeyName(7, "trainer8.ico");
-            this.imageList2.Images.SetKeyName(8, "trainer9.ico");
-            this.imageList2.Images.SetKeyName(9, "trainer10.ico");
-            this.imageList2.Images.SetKeyName(10, "trainer11.ico");
-            this.imageList2.Images.SetKeyName(11, "trainer12.ico");
-            this.imageList2.Images.SetKeyName(12, "trainer13.ico");
-            this.imageList2.Images.SetKeyName(13, "trainer14.ico");
-            this.imageList2.Images.SetKeyName(14, "trainer15.ico");
-            this.imageList2.Images.SetKeyName(15, "greyPokeball.ico");
-            this.imageList2.Images.SetKeyName(16, "Icon22.ico");
             // 
             // btnPoke5
             // 
@@ -484,83 +445,8 @@
             // dropItem
             // 
             this.dropItem.FormattingEnabled = true;
-            this.dropItem.Items.AddRange(new object[] {
-            "No Item",
-            "Berry ",
-            "Berry Juice",
-            "Bitter Berry",
-            "Burnt Berry",
-            "Gold Berry",
-            "Ice Berry",
-            "Mint Berry",
-            "Miracle Berry",
-            "Mystery Berry",
-            "Paralyzecure Berry",
-            "Poisoncure Berry",
-            "Berserk Gene",
-            "Black Belt",
-            "Black Glasses",
-            "Bright Powder",
-            "Charcoal ",
-            "Dragon Fang",
-            "Focus Band",
-            "Hard Stone",
-            "Kings Rock",
-            "Leftovers ",
-            "Light Ball",
-            "Lucky Punch",
-            "Magnet ",
-            "Metal Coat",
-            "Metal Powder",
-            "Miracle Seed",
-            "Mystic Water",
-            "Nevermelt Ice",
-            "Pink Bow",
-            "Poison Barb",
-            "Polkadot Bow",
-            "Quick Claw",
-            "Scope Lens",
-            "Sharp Beak",
-            "Silver Powder",
-            "Soft Sand",
-            "Spell Tag",
-            "Stick",
-            "Thick Club",
-            "Twisted Spoon",
-            "Cheri Berry",
-            "Chesto Berry",
-            "Pecha Berry",
-            "Rawst Berry",
-            "Aspear Berry",
-            "Leppa Berry",
-            "Oran Berry",
-            "Persim Berry",
-            "Lum Berry",
-            "Sitrus Berry",
-            "Figy Berry",
-            "Iapapa Berry",
-            "Mago Berry",
-            "Wiki Berry",
-            "Aguav Berry",
-            "Liechi Berry",
-            "Ganlon Berry",
-            "Salac Berry",
-            "Petaya Berry",
-            "Apicot Berry",
-            "Lansat Berry",
-            "Starf Berry",
-            "Choice Band",
-            "Deep Sea Scale",
-            "Deep Sea Tooth",
-            "Lax Incense",
-            "Macho Brace",
-            "Mental Herb",
-            "Sea Incense",
-            "Shell Bell",
-            "Silk Scarf",
-            "Soul Dew",
-            "White Herb"});
-            this.dropItem.Location = new System.Drawing.Point(221, 93);
+            this.dropItem.Items.AddRange(new object[] { "No Item", "Berry ", "Berry Juice", "Bitter Berry", "Burnt Berry", "Gold Berry", "Ice Berry", "Mint Berry", "Miracle Berry", "Mystery Berry", "Paralyzecure Berry", "Poisoncure Berry", "Berserk Gene", "Black Belt", "Black Glasses", "Bright Powder", "Charcoal ", "Dragon Fang", "Focus Band", "Hard Stone", "Kings Rock", "Leftovers ", "Light Ball", "Lucky Punch", "Magnet ", "Metal Coat", "Metal Powder", "Miracle Seed", "Mystic Water", "Nevermelt Ice", "Pink Bow", "Poison Barb", "Polkadot Bow", "Quick Claw", "Scope Lens", "Sharp Beak", "Silver Powder", "Soft Sand", "Spell Tag", "Stick", "Thick Club", "Twisted Spoon", "Cheri Berry", "Chesto Berry", "Pecha Berry", "Rawst Berry", "Aspear Berry", "Leppa Berry", "Oran Berry", "Persim Berry", "Lum Berry", "Sitrus Berry", "Figy Berry", "Iapapa Berry", "Mago Berry", "Wiki Berry", "Aguav Berry", "Liechi Berry", "Ganlon Berry", "Salac Berry", "Petaya Berry", "Apicot Berry", "Lansat Berry", "Starf Berry", "Choice Band", "Deep Sea Scale", "Deep Sea Tooth", "Lax Incense", "Macho Brace", "Mental Herb", "Sea Incense", "Shell Bell", "Silk Scarf", "Soul Dew", "White Herb" });
+            this.dropItem.Location = new System.Drawing.Point(169, 91);
             this.dropItem.Name = "dropItem";
             this.dropItem.Size = new System.Drawing.Size(121, 21);
             this.dropItem.TabIndex = 19;
@@ -568,7 +454,7 @@
             // 
             // txtNickname
             // 
-            this.txtNickname.Location = new System.Drawing.Point(221, 67);
+            this.txtNickname.Location = new System.Drawing.Point(169, 65);
             this.txtNickname.MaxLength = 15;
             this.txtNickname.Name = "txtNickname";
             this.txtNickname.Size = new System.Drawing.Size(121, 20);
@@ -577,7 +463,7 @@
             // 
             // txtMove4
             // 
-            this.txtMove4.Location = new System.Drawing.Point(684, 398);
+            this.txtMove4.Location = new System.Drawing.Point(330, 398);
             this.txtMove4.Name = "txtMove4";
             this.txtMove4.ReadOnly = true;
             this.txtMove4.Size = new System.Drawing.Size(100, 20);
@@ -585,7 +471,7 @@
             // 
             // txtMove3
             // 
-            this.txtMove3.Location = new System.Drawing.Point(503, 400);
+            this.txtMove3.Location = new System.Drawing.Point(223, 398);
             this.txtMove3.Name = "txtMove3";
             this.txtMove3.ReadOnly = true;
             this.txtMove3.Size = new System.Drawing.Size(100, 20);
@@ -593,7 +479,7 @@
             // 
             // txtMove2
             // 
-            this.txtMove2.Location = new System.Drawing.Point(201, 398);
+            this.txtMove2.Location = new System.Drawing.Point(115, 398);
             this.txtMove2.Name = "txtMove2";
             this.txtMove2.ReadOnly = true;
             this.txtMove2.Size = new System.Drawing.Size(100, 20);
@@ -610,7 +496,7 @@
             // lblLevel
             // 
             this.lblLevel.AutoSize = true;
-            this.lblLevel.Location = new System.Drawing.Point(33, 148);
+            this.lblLevel.Location = new System.Drawing.Point(21, 131);
             this.lblLevel.Name = "lblLevel";
             this.lblLevel.Size = new System.Drawing.Size(72, 13);
             this.lblLevel.TabIndex = 13;
@@ -625,9 +511,9 @@
             this.grpStats.Controls.Add(this.lblAttack);
             this.grpStats.Controls.Add(this.lblHp);
             this.grpStats.Controls.Add(this.lblTypes);
-            this.grpStats.Location = new System.Drawing.Point(429, 43);
+            this.grpStats.Location = new System.Drawing.Point(377, 36);
             this.grpStats.Name = "grpStats";
-            this.grpStats.Size = new System.Drawing.Size(355, 129);
+            this.grpStats.Size = new System.Drawing.Size(184, 136);
             this.grpStats.TabIndex = 7;
             this.grpStats.TabStop = false;
             this.grpStats.Text = "Stats";
@@ -635,7 +521,7 @@
             // lblSpecialDefense
             // 
             this.lblSpecialDefense.AutoSize = true;
-            this.lblSpecialDefense.Location = new System.Drawing.Point(6, 105);
+            this.lblSpecialDefense.Location = new System.Drawing.Point(6, 95);
             this.lblSpecialDefense.Name = "lblSpecialDefense";
             this.lblSpecialDefense.Size = new System.Drawing.Size(66, 13);
             this.lblSpecialDefense.TabIndex = 11;
@@ -644,7 +530,7 @@
             // lblSpecialAttack
             // 
             this.lblSpecialAttack.AutoSize = true;
-            this.lblSpecialAttack.Location = new System.Drawing.Point(6, 88);
+            this.lblSpecialAttack.Location = new System.Drawing.Point(6, 79);
             this.lblSpecialAttack.Name = "lblSpecialAttack";
             this.lblSpecialAttack.Size = new System.Drawing.Size(57, 13);
             this.lblSpecialAttack.TabIndex = 10;
@@ -653,7 +539,7 @@
             // lblSpeed
             // 
             this.lblSpeed.AutoSize = true;
-            this.lblSpeed.Location = new System.Drawing.Point(6, 72);
+            this.lblSpeed.Location = new System.Drawing.Point(6, 65);
             this.lblSpeed.Name = "lblSpeed";
             this.lblSpeed.Size = new System.Drawing.Size(38, 13);
             this.lblSpeed.TabIndex = 9;
@@ -689,7 +575,7 @@
             // lblTypes
             // 
             this.lblTypes.AutoSize = true;
-            this.lblTypes.Location = new System.Drawing.Point(180, 16);
+            this.lblTypes.Location = new System.Drawing.Point(6, 108);
             this.lblTypes.Name = "lblTypes";
             this.lblTypes.Size = new System.Drawing.Size(34, 13);
             this.lblTypes.TabIndex = 12;
@@ -698,17 +584,14 @@
             // listMoves
             // 
             this.listMoves.CheckBoxes = true;
-            this.listMoves.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.colMove,
-            this.colPower,
-            this.colAcc,
-            this.colPP,
-            this.colLearned});
+            this.listMoves.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { this.colMove, this.colPower, this.colAcc, this.colPP, this.colLearned });
             this.listMoves.FullRowSelect = true;
             this.listMoves.HideSelection = false;
+            this.listMoves.LargeImageList = this.imageList1;
             this.listMoves.Location = new System.Drawing.Point(9, 178);
             this.listMoves.Name = "listMoves";
-            this.listMoves.Size = new System.Drawing.Size(775, 214);
+            this.listMoves.Size = new System.Drawing.Size(552, 214);
+            this.listMoves.SmallImageList = this.imageList1;
             this.listMoves.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.listMoves.TabIndex = 6;
             this.listMoves.UseCompatibleStateImageBehavior = false;
@@ -718,7 +601,7 @@
             // colMove
             // 
             this.colMove.Text = "Move";
-            this.colMove.Width = 237;
+            this.colMove.Width = 107;
             // 
             // colPower
             // 
@@ -739,10 +622,32 @@
             this.colLearned.Text = "Learned By";
             this.colLearned.Width = 157;
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "typeBug.ico");
+            this.imageList1.Images.SetKeyName(1, "typeDark.ico");
+            this.imageList1.Images.SetKeyName(2, "typeDragon.ico");
+            this.imageList1.Images.SetKeyName(3, "typeElec.ico");
+            this.imageList1.Images.SetKeyName(4, "typeFighting.ico");
+            this.imageList1.Images.SetKeyName(5, "typeFire.ico");
+            this.imageList1.Images.SetKeyName(6, "typeFlying.ico");
+            this.imageList1.Images.SetKeyName(7, "typeGhost.ico");
+            this.imageList1.Images.SetKeyName(8, "typeGrass.ico");
+            this.imageList1.Images.SetKeyName(9, "typeGround.ico");
+            this.imageList1.Images.SetKeyName(10, "typeIce.ico");
+            this.imageList1.Images.SetKeyName(11, "typeNormal.ico");
+            this.imageList1.Images.SetKeyName(12, "typePoison.ico");
+            this.imageList1.Images.SetKeyName(13, "typePsychic.ico");
+            this.imageList1.Images.SetKeyName(14, "typeRock.ico");
+            this.imageList1.Images.SetKeyName(15, "typeSteel.ico");
+            this.imageList1.Images.SetKeyName(16, "typeWater.ico");
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(188, 96);
+            this.label2.Location = new System.Drawing.Point(136, 94);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(27, 13);
             this.label2.TabIndex = 5;
@@ -751,7 +656,7 @@
             // lblNickname
             // 
             this.lblNickname.AutoSize = true;
-            this.lblNickname.Location = new System.Drawing.Point(160, 72);
+            this.lblNickname.Location = new System.Drawing.Point(111, 68);
             this.lblNickname.Name = "lblNickname";
             this.lblNickname.Size = new System.Drawing.Size(55, 13);
             this.lblNickname.TabIndex = 4;
@@ -760,7 +665,7 @@
             // dropPokemon
             // 
             this.dropPokemon.FormattingEnabled = true;
-            this.dropPokemon.Location = new System.Drawing.Point(221, 40);
+            this.dropPokemon.Location = new System.Drawing.Point(169, 38);
             this.dropPokemon.Name = "dropPokemon";
             this.dropPokemon.Size = new System.Drawing.Size(121, 21);
             this.dropPokemon.TabIndex = 3;
@@ -768,7 +673,7 @@
             // 
             // btnSwitch
             // 
-            this.btnSwitch.Location = new System.Drawing.Point(348, 38);
+            this.btnSwitch.Location = new System.Drawing.Point(296, 36);
             this.btnSwitch.Name = "btnSwitch";
             this.btnSwitch.Size = new System.Drawing.Size(75, 23);
             this.btnSwitch.TabIndex = 2;
@@ -778,7 +683,7 @@
             // lblPokemon
             // 
             this.lblPokemon.AutoSize = true;
-            this.lblPokemon.Location = new System.Drawing.Point(163, 45);
+            this.lblPokemon.Location = new System.Drawing.Point(114, 41);
             this.lblPokemon.Name = "lblPokemon";
             this.lblPokemon.Size = new System.Drawing.Size(52, 13);
             this.lblPokemon.TabIndex = 1;
@@ -788,50 +693,42 @@
             // 
             this.picImage.Location = new System.Drawing.Point(8, 45);
             this.picImage.Name = "picImage";
-            this.picImage.Size = new System.Drawing.Size(122, 100);
+            this.picImage.Size = new System.Drawing.Size(97, 83);
             this.picImage.TabIndex = 0;
             this.picImage.TabStop = false;
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.versionToolStripMenuItem});
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { this.fileToolStripMenuItem, this.versionToolStripMenuItem, this.sortToolStripMenuItem, this.dataDexToolStripMenuItem });
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(577, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.saveToolStripMenuItem});
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { this.openToolStripMenuItem, this.saveToolStripMenuItem });
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "&File";
             // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.openToolStripMenuItem.Text = "&Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(98, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.saveToolStripMenuItem.Text = "&Save";
             // 
             // versionToolStripMenuItem
             // 
-            this.versionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.trueRBYToolStripMenuItem,
-            this.rBYWithTradesToolStripMenuItem,
-            this.toolStripMenuItem1,
-            this.trueGSCToolStripMenuItem,
-            this.gSCWithTradesToolStripMenuItem,
-            this.toolStripMenuItem2,
-            this.ruSaOnlyToolStripMenuItem,
-            this.fullAdvancedToolStripMenuItem,
-            this.toolStripMenuItem3,
-            this.noModLoadedToolStripMenuItem,
-            this.viewCurrentModsToolStripMenuItem,
-            this.loadNewModFileToolStripMenuItem});
+            this.versionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { this.trueRBYToolStripMenuItem, this.rBYWithTradesToolStripMenuItem, this.toolStripMenuItem1, this.trueGSCToolStripMenuItem, this.gSCWithTradesToolStripMenuItem, this.toolStripMenuItem2, this.ruSaOnlyToolStripMenuItem, this.fullAdvancedToolStripMenuItem, this.toolStripMenuItem3, this.noModLoadedToolStripMenuItem, this.viewCurrentModsToolStripMenuItem, this.loadNewModFileToolStripMenuItem });
             this.versionToolStripMenuItem.Name = "versionToolStripMenuItem";
             this.versionToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.versionToolStripMenuItem.Text = "&Version";
@@ -914,13 +811,58 @@
             this.loadNewModFileToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
             this.loadNewModFileToolStripMenuItem.Text = "Load New Mod File...";
             // 
+            // sortToolStripMenuItem
+            // 
+            this.sortToolStripMenuItem.Name = "sortToolStripMenuItem";
+            this.sortToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+            this.sortToolStripMenuItem.Text = "&Sort";
+            // 
+            // dataDexToolStripMenuItem
+            // 
+            this.dataDexToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { this.pokedexToolStripMenuItem, this.moveDexToolStripMenuItem, this.battleDexToolStripMenuItem, this.damageCalcToolStripMenuItem });
+            this.dataDexToolStripMenuItem.Name = "dataDexToolStripMenuItem";
+            this.dataDexToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
+            this.dataDexToolStripMenuItem.Text = "&DataDex";
+            // 
+            // pokedexToolStripMenuItem
+            // 
+            this.pokedexToolStripMenuItem.Name = "pokedexToolStripMenuItem";
+            this.pokedexToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.pokedexToolStripMenuItem.Text = "&Pokedex";
+            // 
+            // moveDexToolStripMenuItem
+            // 
+            this.moveDexToolStripMenuItem.Name = "moveDexToolStripMenuItem";
+            this.moveDexToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.moveDexToolStripMenuItem.Text = "&MoveDex";
+            // 
+            // battleDexToolStripMenuItem
+            // 
+            this.battleDexToolStripMenuItem.Name = "battleDexToolStripMenuItem";
+            this.battleDexToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.battleDexToolStripMenuItem.Text = "&BattleDex";
+            // 
+            // damageCalcToolStripMenuItem
+            // 
+            this.damageCalcToolStripMenuItem.Name = "damageCalcToolStripMenuItem";
+            this.damageCalcToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.damageCalcToolStripMenuItem.Text = "&DamageCalc";
+            // 
+            // ofdPnb
+            // 
+            this.ofdPnb.DefaultExt = "pnb";
+            this.ofdPnb.FileName = "openFileDialog1";
+            this.ofdPnb.Filter = "Netbattle Saves|*.pnb";
+            this.ofdPnb.FileOk += new System.ComponentModel.CancelEventHandler(this.ofdPnb_FileOk);
+            // 
             // TeamBuilder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 476);
+            this.ClientSize = new System.Drawing.Size(577, 476);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "TeamBuilder";
             this.Text = "Team Builder";
@@ -942,8 +884,17 @@
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
+
+        private System.Windows.Forms.ToolStripMenuItem damageCalcToolStripMenuItem;
+
+        private System.Windows.Forms.ToolStripMenuItem battleDexToolStripMenuItem;
+
+        private System.Windows.Forms.ToolStripMenuItem pokedexToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem moveDexToolStripMenuItem;
+
+        private System.Windows.Forms.ToolStripMenuItem sortToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dataDexToolStripMenuItem;
 
         #endregion
 
@@ -1015,5 +966,7 @@
         private System.Windows.Forms.ToolStripMenuItem noModLoadedToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewCurrentModsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadNewModFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog ofdPnb;
     }
 }

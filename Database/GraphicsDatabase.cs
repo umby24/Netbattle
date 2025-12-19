@@ -4,12 +4,23 @@ using System.Text;
 using Netbattle.Common;
 
 namespace Netbattle.Database {
+    /*
+     * Graphics.bin file format:
+     * [short] Length of the database file (compressed)
+     * [short] Length of data uncompressed
+     *  [GZip compressed block] GZip compressed data block containing:
+     *  [string] '|' delimited list of sprite names
+     *  [byte[]] Array of 12-bit values concatinated, each one being [short] length of each sprite in bytes
+     *  [GZip compressed block] GZip compressed data block containing all sprite data concatenated
+     */
+    
     /// <summary>
     /// Database for the loading and managing of all pokemon sprites
     /// </summary>
     public class GraphicsDatabase {
         public static GraphicsData GraphicsMap;
-
+        public static bool HasColGraphics = false;
+        
         public static void Load() {
             GraphicsMap = new GraphicsData();
 
@@ -21,12 +32,13 @@ namespace Netbattle.Database {
                     // -- shorts? (There are two, we only need 1.. reading it from the stream using .ReadInt16() messes it up massively.
                     int compressedLength = gfxBytes[0] * 256 + gfxBytes[1]; // -- 'X' in the original code
 
-                    bs.ReadInt16(); // -- Strip GZip header.
+                    bs.ReadInt16(); // -- Strip uncompressed length, we don't need it.
 
-                    // -- Read and decompress sprite names
+                    // -- Decompress the contained data.
                     var temp = new byte[compressedLength - 2];
                     bs.Read(temp, 0, compressedLength - 2);
                     temp = GZip.Decompress2(temp);
+                    
                     // -- Split into individual values.
                     var gfxHeader = Encoding.UTF8.GetString(temp).Split('|');
                     GraphicsMap.Titles = gfxHeader;

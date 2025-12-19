@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using Netbattle.Common;
+using Netbattle.Database;
 using Netbattle.Network;
 using Sockets;
 using Sockets.EventArgs;
 
 namespace Netbattle.Forms {
     public partial class ServerList : Form {
-        private const string RegIp = "registry.pmnb.net";
         private const int RegPort = 30002;
         private readonly ClientSocket _regSock;
         private readonly ByteBuffer _sendBuffer;
@@ -27,7 +27,7 @@ namespace Netbattle.Forms {
             Servers = new List<ServerListing>();
             PopulatePackets();
 
-            _regSock = new ClientSocket(RegIp, RegPort);
+            _regSock = new ClientSocket(UserSettings.CurrentSettings.RegistryAddress, RegPort);
             _regSock.DataReceived += ReceivedRegistryData;
             _regSock.Disconnected += RegistryDisconnected;
             _canReceive = true;

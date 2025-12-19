@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
+using Netbattle.Database;
 
 namespace Netbattle.Common {
     /// <summary>
@@ -173,6 +174,124 @@ namespace Netbattle.Common {
             //    temp[(i*20) - 1] = builder[i - 1];
             //}
             return BinaryToBytes(temp.ToString());
+        }
+        
+        /**
+         * Generates a numerical power score for this pokemon.
+         * The score is essentially just jamming all the stats together into a big number.
+         */
+        public static int GetPokeRank(Pokemon p)
+        {
+            if (p == null || p.No == 0)
+                return 0;
+            int total = 0;
+            var basePkmn = PokemonDatabase.BasePokemonMap[p.No];
+            
+            if (p.GameVersion == CompatModes.nbFullAdvance)
+            {
+                total = (int)(BattleSystem.GetAdvHp(basePkmn.BaseHP, p.DV_HP, p.EV_HP, p.Level) / 1.5) +
+                        BattleSystem.GetAdvStat(basePkmn.BaseAttack, p.DV_Atk, p.EV_Atk, p.Level,
+                            PokemonDatabase.NatureTypes[p.NatureNum].StatChg[0]) +
+                        BattleSystem.GetAdvStat(basePkmn.BaseDefense, p.DV_Def, p.EV_Def, p.Level,
+                            PokemonDatabase.NatureTypes[p.NatureNum].StatChg[1]) +
+                        BattleSystem.GetAdvStat(basePkmn.BaseSpeed, p.DV_Spd, p.EV_Spd, p.Level,
+                            PokemonDatabase.NatureTypes[p.NatureNum].StatChg[2]) +
+                        BattleSystem.GetAdvStat(basePkmn.BaseSAttack, p.DV_SAtk, p.EV_SAtk, p.Level,
+                            PokemonDatabase.NatureTypes[p.NatureNum].StatChg[3]) +
+                        BattleSystem.GetAdvStat(basePkmn.BaseSDefense, p.DV_SDef, p.EV_SDef, p.Level,
+                            PokemonDatabase.NatureTypes[p.NatureNum].StatChg[4]);
+            }
+            else
+            {
+                total = (int)(BattleSystem.GetHp(p.Level, basePkmn.BaseHP, p.DV_HP) / 1.5) +
+                        BattleSystem.GetStat(p.Level, basePkmn.BaseAttack, p.DV_Atk) +
+                        BattleSystem.GetStat(p.Level, basePkmn.BaseDefense, p.DV_Def) +
+                        BattleSystem.GetStat(p.Level, basePkmn.BaseSAttack, p.DV_SAtk) +
+                        BattleSystem.GetStat(p.Level, basePkmn.BaseSDefense, p.DV_SDef) +
+                        BattleSystem.GetStat(p.Level, basePkmn.BaseSpeed, p.DV_Spd);
+            }
+            // -- Applies some type matrix scaling?
+            int matrixAdjust = 0;
+            for (var i = 1; i < 17; i++)
+            {
+                float battleDamage;
+                
+                if (basePkmn.Type2 == Elements.nbNoType)
+                    battleDamage = TypeDatabase.BattleMatrix[i, (int)basePkmn.Type1];
+                else
+                    battleDamage = TypeDatabase.BattleMatrix[i, (int)basePkmn.Type1] * TypeDatabase.BattleMatrix[i, (int)basePkmn.Type2];
+                
+                switch (battleDamage)
+                {
+                    case 0:
+                        matrixAdjust += 75;
+                        break;
+                    case 0.25f:
+                        matrixAdjust += 50;
+                        break;
+                    case 0.5f:
+                        matrixAdjust += 25;
+                        break;
+                    case 2:
+                        matrixAdjust -= 35;
+                        break;
+                    case 4:
+                        matrixAdjust -= 75;
+                        break;
+                }
+            }
+            total += matrixAdjust;
+            // -- Skew for OP Pokemon
+            switch (p.No)
+            {
+                case 150: // Mewtwo, Lugia, Ho-Oh
+                case 249:
+                case 250: 
+                case 382: // Kyogyre
+                case 383: // Groudon
+                case 384: // Raqyuaza
+                case 386: // Deoxys
+                case 387: // Turtwig... what.. maybe Deoxys subforms?
+                case 388: // Grotle
+                case 389: // Torterra..
+                    total += (p.Level * 5);
+                    break;
+                // Legendary birds and dogs, mew, Celebi
+                // Snorlax, Dragonite, Tyranitar.
+                case 143:
+                case 149:
+                case 248:
+                    total += (int)Math.Round(p.Level * 1.25);
+                    break;
+            }
+            
+            return total;
+        }
+        
+        /*
+         * Generates a 0-100 power rating for your team
+         * Takes all pokemon stats, adds them, then it is turned into a percentage of the calculated maximum for a team.
+         * Use the OP Pokemon above to really boost it..
+         */
+        public static int GetTeamRank(Pokemon[] team)
+        {
+            int total = 0;
+            
+            for (int i = 0; i < team.Length; i++)
+            {
+                total += GetPokeRank(team[i]);
+            }
+            
+            if (team[0].GameVersion == CompatModes.nbFullAdvance)
+            {
+                total = Math.Max((total * 100) / (Constants.ADVHighestRank - Constants.ADVLowestRank), 100);
+            }
+            else
+            {
+                total = Math.Max((total * 100) / (Constants.HighestRank - Constants.LowestRank), 100);
+            }
+            
+            return total;
         }
     }
 }

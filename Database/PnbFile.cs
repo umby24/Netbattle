@@ -13,7 +13,9 @@ namespace Netbattle.Database {
         public byte CurrentPicture { get; set; }
         public byte Version { get; set; }
         public Pokemon[] Team { get; set; }
-
+        public string DbModName { get; set; }
+        public string DbModString { get; set; }
+        
         private const string FileHeader = " PNB4.1";
         private readonly string _filePath;
 
@@ -23,17 +25,31 @@ namespace Netbattle.Database {
         }
 
         public void Save() {
-            // FileHeader + (nameLength as byte) + name
-            // -- + (ExtraLength as byte) + Extra
-            // -- + (WinLength as byte) + WinMessage
-            // -- + (LoseMess Length as byte) + LoseMessage
-            // -- + TBMode as byte
-            // -- + Chosen Picture
-            // -- + Version.
-            // -- Uses 'You' type in Code.bas.
-            // -- Next, does PKMN 2 STR for each pokemon in the team..
-            // -- if Modded DB, temp += DbModName & DbModStr
-            // -- Saved as is like that. :)
+            using (var br = new BinaryWriter(new FileStream(_filePath, FileMode.Create)))
+            {
+                br.Write(FileHeader);
+                br.Write((byte)Name.Length);
+                br.Write(Name.ToCharArray());
+                br.Write((byte)ExtraInfo.Length);
+                br.Write(ExtraInfo.ToCharArray());
+                br.Write((byte)WinMessage.Length);
+                br.Write(WinMessage.ToCharArray());
+                br.Write((byte)LoseMessage.Length);
+                br.Write(LoseMessage.ToCharArray());
+                br.Write((byte)TBMode);
+                br.Write((byte)CurrentPicture);
+                br.Write((byte)Version);
+                for (var i = 0; i < Team.Length; i++)
+                {
+                    br.Write(Team[i].ToStringBytes());
+                }
+
+                if ((CompatModes)Version == CompatModes.nbModAdv)
+                {
+                    br.Write(DbModName.PadRight(20));
+                    br.Write(DbModString);
+                }
+            }
         }
 
         public void Load() {
@@ -61,7 +77,8 @@ namespace Netbattle.Database {
                         Team[i] = Pokemon.FromBinary(decomposed, pokemonNickname);
                     }
 
-                    // -- TODO: Implement Database mod support.
+                    DbModName = Encoding.ASCII.GetString(br.ReadBytes(20)).TrimEnd('\0');
+                    DbModString = Encoding.ASCII.GetString(br.ReadBytes((int)(br.BaseStream.Length - br.BaseStream.Position)));
                 }
             }
 

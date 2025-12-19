@@ -1000,7 +1000,8 @@ namespace Netbattle.Network {
         }
 
         public void Write(ByteBuffer writer) {
-            throw new NotImplementedException();
+            writer.WriteString(Command + ":");
+            writer.Purge();
         }
 
         public void Handle(NbClient client) {

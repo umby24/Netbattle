@@ -223,6 +223,67 @@ namespace Netbattle.Common {
         nbSoulDew,
         nbWhiteHerb
     }
+    
+    public static class ItemsExtensions {
+        public static bool IsAdvanceItem(this Items item) {
+            // -- 0, 13-29, 31, 33-max are Advance items.
+            if (item == Items.nbNoItem)
+                return true;
+            
+            if ((int)item >= 13 && (int)item <= 29)
+                return true;
+            
+            if (item == Items.nbPoisonBarb)
+                return true;
+            
+            if ((int)item >= 33)
+                return true;
+
+            return false;
+        }
+        
+        public static bool IsBerry(this Items item) {
+            switch (item) {
+                case Items.nbBerry:
+                case Items.nbBerryJuice:
+                case Items.nbBitterBerry:
+                case Items.nbBurntBerry:
+                case Items.nbGoldBerry:
+                case Items.nbIceBerry:
+                case Items.nbMintBerry:
+                case Items.nbMiracleBerry:
+                case Items.nbMysteryBerry:
+                case Items.nbParalyzecureBerry:
+                case Items.nbPoisoncureBerry:
+                case Items.nbCheriBerry:
+                case Items.nbChestoBerry:
+                case Items.nbPechaBerry:
+                case Items.nbRawstBerry:
+                case Items.nbAspearBerry:
+                case Items.nbLeppaBerry:
+                case Items.nbOranBerry:
+                case Items.nbPersimBerry:
+                case Items.nbLumBerry:
+                case Items.nbSitrusBerry:
+                case Items.nbFigyBerry:
+                case Items.nbIapapaBerry:
+                case Items.nbMagoBerry:
+                case Items.nbWikiBerry:
+                case Items.nbAguavBerry:
+                case Items.nbLiechiBerry:
+                case Items.nbGanlonBerry:
+                case Items.nbSalacBerry:
+                case Items.nbPetayaBerry:
+                case Items.nbApicotBerry:
+                case Items.nbLansatBerry:
+                case Items.nbStarfBerry:
+                    return true;
+                default:
+                    return false;
+            }
+        }
+    }
+    
     public enum Conditions {
         nbNrm = 1,
         nbPsn,
@@ -244,7 +305,7 @@ namespace Netbattle.Common {
     }
 
     public enum GraphicsMode {
-        nbGFXGrn, // -- Green
+        nbGFXGrn=1, // -- Green
         nbGFXRB, // -- Red/Blue
         nbGFXYlo, // -- Yellow
         nbGFXGld, // -- Gold
@@ -256,6 +317,17 @@ namespace Netbattle.Common {
         nbGFXSml, // -- small (Advance mini pics)
     }
 
+    public struct NatureType
+    {
+        public NatureType(string nm)
+        {
+            Name = nm;
+            StatChg = new int[5];
+        }
+
+        public string Name { get; set; }
+        public int[] StatChg { get; set; }
+    }
 
     public struct GraphicsData {
         public long[] ByteCount { get; set; }
@@ -264,6 +336,23 @@ namespace Netbattle.Common {
         public byte[] InFile { get; set; }
     }
 
+    public enum MoveType
+    {
+        nbRBYLevel = 1,
+        nbRBYTM,
+        nbGSCLevel,
+        nbGSCTM,
+        nbGSCEgg,
+        nbGSCTutor,
+        nbGSCSpecial,
+        nbAdvLevel,
+        nbAdvTM,
+        nbAdvEgg,
+        nbAdvTutor,
+        nbAdvSpecial,
+        nbAdvFL
+    }
+    
     public enum Elements {
         nbNoType,
         nbNormal,
@@ -285,6 +374,51 @@ namespace Netbattle.Common {
         nbSteel
     }
 
+    public static class ElementsExtensions {
+        public static string ToFriendlyString(this Elements elements) {
+            switch (elements) {
+                case Elements.nbNoType:
+                    return "None";
+                case Elements.nbNormal:
+                    return "Normal";
+                case Elements.nbFire:
+                    return "Fire";
+                case Elements.nbWater:
+                    return "Water";
+                case Elements.nbElectr:
+                    return "Electric";
+                case Elements.nbGrass:
+                    return "Grass";
+                case Elements.nbIce:
+                    return "Ice";
+                case Elements.nbFight:
+                    return "Fight";
+                case Elements.nbPoison:
+                    return "Poison";
+                case Elements.nbGround:
+                    return "Ground";
+                case Elements.nbFlying:
+                    return "Flying";
+                case Elements.nbPsychc:
+                    return "Pshychc";
+                case Elements.nbBug:
+                    return "Bug";
+                case Elements.nbRock:
+                    return "Rock";
+                case Elements.nbGhost:
+                    return "Ghost";
+                case Elements.nbDragon:
+                    return "Dragon";
+                case Elements.nbDark:
+                    return "Dark";
+                case Elements.nbSteel:
+                    return "Steel";
+
+            }
+
+            return "Unknown";
+        }
+    }
     public enum MoveTargets {
         nbGlobal,
         nbSelectedTarget,
