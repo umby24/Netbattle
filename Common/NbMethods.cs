@@ -33,11 +33,6 @@ namespace Netbattle.Common {
 
             return asBits;
         }
-        /// 000000001  - 1
-        /// 000000010 - 2
-        /// 000011110 - 30
-        /// 001100100 - 100
-        
 
         public static int Bin2Dec(string input) {
             if (input.Length < 32)
@@ -95,7 +90,12 @@ namespace Netbattle.Common {
             hexed = hexed.Substring(diff, hexed.Length - diff);
             return hexed;
         }
-
+        
+        /// <summary>
+        /// Takes a byte array and converts it to a binary string.
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <returns></returns>
         public static string BytesToBinary(byte[] bytes) {
             var build = "";
 
@@ -107,7 +107,12 @@ namespace Netbattle.Common {
 
             return build;
         }
-
+        
+        /// <summary>
+        /// Takes a binary string and converts it to a byte array.
+        /// </summary>
+        /// <param name="binary">A string of only 0s and 1s.</param>
+        /// <returns></returns>
         public static byte[] BinaryToBytes(string binary) {
             var additional = 0;
 
@@ -176,10 +181,10 @@ namespace Netbattle.Common {
             return BinaryToBytes(temp.ToString());
         }
         
-        /**
-         * Generates a numerical power score for this pokemon.
-         * The score is essentially just jamming all the stats together into a big number.
-         */
+        /// <summary>
+        /// Generates a numerical power score for this pokemon.
+        /// The score is essentially just jamming all the stats together into a big number.
+        /// </summary>
         public static int GetPokeRank(Pokemon p)
         {
             if (p == null || p.No == 0)
@@ -284,7 +289,7 @@ namespace Netbattle.Common {
             
             if (team[0].GameVersion == CompatModes.nbFullAdvance)
             {
-                total = Math.Max((total * 100) / (Constants.ADVHighestRank - Constants.ADVLowestRank), 100);
+                total = (int)Math.Max((total * 100.0f) / (Constants.ADVHighestRank - Constants.ADVLowestRank), 100.0f);
             }
             else
             {

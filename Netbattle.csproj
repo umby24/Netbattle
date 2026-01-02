@@ -72,6 +72,7 @@
     <Compile Include="Common\CdbFile.cs" />
     <Compile Include="Database\GraphicsDatabase.cs" />
     <Compile Include="Database\MoveDatabase.cs" />
+    <Compile Include="Database\PbxFile.cs" />
     <Compile Include="Database\PnbFile.cs" />
     <Compile Include="Database\TypeDatabase.cs" />
     <Compile Include="Database\UserSettings.cs" />

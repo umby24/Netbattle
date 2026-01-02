@@ -14,7 +14,7 @@ namespace Netbattle.Common {
             byte[] iBytes = new byte[input.Length];//input.Select(c => (byte)c).ToArray();
             input.CopyTo(iBytes, 0);
 
-            int pLen = iLen + 8; // -- The end result has 8 extra bytes tacked on for flags and storing checksums, and the encryption key.
+            int pLen = iLen + 8; // -- The end result has 8 extra bytes tacked on for flags and storing checksums, and the encryption key. (In NB 9.6, this is only 4 bytes.)
 
             var oByte = new byte[pLen]; // -- Holder for the output.
             Array.Copy(iBytes, oByte, iBytes.Length);

@@ -1,0 +1,1131 @@
+﻿<html>
+	<head>
+		<META HTTP-EQUIV="Content-Type" content="text/html; charset=utf-8">
+		<link rel="stylesheet" href="_UpgradeReport_Files\UpgradeReport.css">
+		<title>PBSeverListing.vbp Upgrade Report</title>
+		
+		<script language="javascript">
+			function outliner () {
+				oMe = window.event.srcElement
+				//get child element
+				var child = document.all[event.srcElement.getAttribute("child",false)];
+				//if child element exists, expand or collapse it.
+				if (null != child)
+					child.className = child.className == "collapsed" ? "expanded" : "collapsed";
+			}
+		
+			function changepic() {
+				uMe = window.event.srcElement;
+				var check = uMe.src.toLowerCase();
+				if (check.lastIndexOf("upgradereport_plus.gif") != -1)
+				{
+					uMe.src = "_UpgradeReport_Files/UpgradeReport_Minus.gif"
+				}
+				else
+				{
+					uMe.src = "_UpgradeReport_Files/UpgradeReport_Plus.gif"
+				}
+			}
+		</script>
+		
+	</head>
+	<body topmargin="0" leftmargin="0" rightmargin="0" onclick="outliner();">
+		<h1>Upgrade Report for PBSeverListing.vbp</h1>
+		
+		<p><span class="note">
+		<b>Time of Upgrade:  </b>1/12/2009 12:29 AM<br>
+		</span></p>
+		
+		<h2>Upgrade Summary</h2>
+		<table cellpadding="2" cellspacing="0" width="98%" border="1" bordercolor="white" class="infotable">
+		    <tr>
+		        <td nowrap class="header" width="45%">Types of Issues Found</td>
+		        <td nowrap class="header" width="45%">Learn More</td>
+		        <td nowrap class="header" align="right">Count</td>
+		    </tr>
+		    <tr class="row">
+		    <td class="SummaryIssueTypeContent">
+		        <IMG alt="expand/collapse section" class="expanded" height="11" onclick=changepic() src="_UpgradeReport_Files/UpgradeReport_Minus.gif" width="9" child="SummaryIssueType0">
+		        &nbsp;Compile Errors
+		    </td>
+		    <td class="SummaryIssueTypeHelp">
+		        Issues were found that will prevent your project from compiling. These issues will need to be resolved before the application will run.
+		    </td>
+		    <td class="SummaryIssueTypeCount">
+		        5
+		    </td>
+		    </tr>
+		    <tr class="expanded" bgcolor="white" id="SummaryIssueType0">
+		        <td colspan="3">
+		            <table cellpadding="2" cellspacing="0" width="100%" border="1" bordercolor="white" class="content">
+		    <tr class="row">
+		        <td class="SummaryIssueContent">
+		            <IMG alt="expand/collapse section" class="expandable" height="11" onclick=changepic() src="_UpgradeReport_Files/UpgradeReport_Plus.gif" width="9" child="SummaryIssueType0GUID0">
+		            &nbsp;Some Events are no longer supported
+		        </td>
+		        <td class="SummaryIssueHelp">
+		            <a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="ABD9AF39-7E24-4AFF-AD8D-3675C1AA3054"'>Event is not supported</a>
+		        </td>
+		        <td class="SummaryCount">1</td>
+		    </tr>
+		    <tr class="collapsed" bgcolor="white" id="SummaryIssueType0GUID0">
+		        <td colspan="3">
+		            <table cellpadding="2" cellspacing="0" width="100%" border="1" bordercolor="white" class="content">
+		                <tr class="row">
+		                    <td colspan="3" width="97%" class="SummaryFileContent">
+		                        <IMG alt="expand/collapse section" class="expandable" height="11" onclick=changepic() src="_UpgradeReport_Files/UpgradeReport_Plus.gif" width="9" child="SummaryIssueType0GUID0File0">
+		                        &nbsp;SListing.frm
+		                    </td>
+		                    <td class="SummaryFileCount">1</td>
+		                </tr>
+		                <tr class="collapsed" id="SummaryIssueType0GUID0File0" bgcolor="#ffffff">
+		                    <td colspan="4">
+		                    <table cellpadding="2" cellspacing="0" width="97%" border="1" bordercolor="#dcdcdc" class="content">
+		                        <tr bgcolor="#ffffff">
+		                            <td width="10" class="issuehdr">#</td>
+		                            <td nowrap class="issuehdr">Location</td>
+		                            <td nowrap class="issuehdr">Object Type</td>
+		                            <td nowrap class="issuehdr">Object Name</td>
+		                            <td nowrap class="issuehdr">Property</td>
+		                            <td nowrap class="issuehdr">Description</td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">1</td>
+		                            <td class="issuecontent">ListDisplay_ItemClick</td>
+		                            <td class="issuecontent">MSComctlLib.ListView</td>
+		                            <td class="issuecontent">ListDisplay</td>
+		                            <td class="issuecontent">ItemClick</td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="ABD9AF39-7E24-4AFF-AD8D-3675C1AA3054"'>MSComctlLib.ListView event ListDisplay.ItemClick was not upgraded.</a></td>
+		                        </tr>
+		                    </table>
+		                    </td>
+		                </tr>
+		            </table>
+		        </td>
+		    </tr>
+		    <tr class="row">
+		        <td class="SummaryIssueContent">
+		            <IMG alt="expand/collapse section" class="expandable" height="11" onclick=changepic() src="_UpgradeReport_Files/UpgradeReport_Plus.gif" width="9" child="SummaryIssueType0GUID1">
+		            &nbsp;Some functions are no longer supported
+		        </td>
+		        <td class="SummaryIssueHelp">
+		            <a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="367764E5-F3F8-4E43-AC3E-7FE0B5E074E2"'>Function is not supported</a>
+		        </td>
+		        <td class="SummaryCount">2</td>
+		    </tr>
+		    <tr class="collapsed" bgcolor="white" id="SummaryIssueType0GUID1">
+		        <td colspan="3">
+		            <table cellpadding="2" cellspacing="0" width="100%" border="1" bordercolor="white" class="content">
+		                <tr class="row">
+		                    <td colspan="3" width="97%" class="SummaryFileContent">
+		                        <IMG alt="expand/collapse section" class="expandable" height="11" onclick=changepic() src="_UpgradeReport_Files/UpgradeReport_Plus.gif" width="9" child="SummaryIssueType0GUID1File0">
+		                        &nbsp;SListing.frm
+		                    </td>
+		                    <td class="SummaryFileCount">2</td>
+		                </tr>
+		                <tr class="collapsed" id="SummaryIssueType0GUID1File0" bgcolor="#ffffff">
+		                    <td colspan="4">
+		                    <table cellpadding="2" cellspacing="0" width="97%" border="1" bordercolor="#dcdcdc" class="content">
+		                        <tr bgcolor="#ffffff">
+		                            <td width="10" class="issuehdr">#</td>
+		                            <td nowrap class="issuehdr">Location</td>
+		                            <td nowrap class="issuehdr">Object Type</td>
+		                            <td nowrap class="issuehdr">Object Name</td>
+		                            <td nowrap class="issuehdr">Property</td>
+		                            <td nowrap class="issuehdr">Description</td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">1</td>
+		                            <td class="issuecontent">Bin2Dec</td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent">LenB</td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="367764E5-F3F8-4E43-AC3E-7FE0B5E074E2"'>LenB function is not supported.</a></td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">2</td>
+		                            <td class="issuecontent">Bin2Dec</td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent">StrPtr</td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="367764E5-F3F8-4E43-AC3E-7FE0B5E074E2"'>StrPtr function is not supported.</a></td>
+		                        </tr>
+		                    </table>
+		                    </td>
+		                </tr>
+		            </table>
+		        </td>
+		    </tr>
+		    <tr class="row">
+		        <td class="SummaryIssueContent">
+		            <IMG alt="expand/collapse section" class="expandable" height="11" onclick=changepic() src="_UpgradeReport_Files/UpgradeReport_Plus.gif" width="9" child="SummaryIssueType0GUID2">
+		            &nbsp;All parameters in a Declare statement must be fully qualified
+		        </td>
+		        <td class="SummaryIssueHelp">
+		            <a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="FAE78A8D-8978-4FD4-8208-5B7324A8F795"'>Declare statement does not support parameters of type As Any</a>
+		        </td>
+		        <td class="SummaryCount">2</td>
+		    </tr>
+		    <tr class="collapsed" bgcolor="white" id="SummaryIssueType0GUID2">
+		        <td colspan="3">
+		            <table cellpadding="2" cellspacing="0" width="100%" border="1" bordercolor="white" class="content">
+		                <tr class="row">
+		                    <td colspan="3" width="97%" class="SummaryFileContent">
+		                        <IMG alt="expand/collapse section" class="expandable" height="11" onclick=changepic() src="_UpgradeReport_Files/UpgradeReport_Plus.gif" width="9" child="SummaryIssueType0GUID2File0">
+		                        &nbsp;XORModule.bas
+		                    </td>
+		                    <td class="SummaryFileCount">2</td>
+		                </tr>
+		                <tr class="collapsed" id="SummaryIssueType0GUID2File0" bgcolor="#ffffff">
+		                    <td colspan="4">
+		                    <table cellpadding="2" cellspacing="0" width="97%" border="1" bordercolor="#dcdcdc" class="content">
+		                        <tr bgcolor="#ffffff">
+		                            <td width="10" class="issuehdr">#</td>
+		                            <td nowrap class="issuehdr">Location</td>
+		                            <td nowrap class="issuehdr">Object Type</td>
+		                            <td nowrap class="issuehdr">Object Name</td>
+		                            <td nowrap class="issuehdr">Property</td>
+		                            <td nowrap class="issuehdr">Description</td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">1</td>
+		                            <td class="issuecontent">CopyMemory</td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="FAE78A8D-8978-4FD4-8208-5B7324A8F795"'>Declaring a parameter 'As Any' is not supported.</a></td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">2</td>
+		                            <td class="issuecontent">CopyMemory</td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="FAE78A8D-8978-4FD4-8208-5B7324A8F795"'>Declaring a parameter 'As Any' is not supported.</a></td>
+		                        </tr>
+		                    </table>
+		                    </td>
+		                </tr>
+		            </table>
+		        </td>
+		    </tr>
+		            </table>
+		        </td>
+		    </tr>
+		    <tr class="row">
+		    <td class="SummaryIssueTypeContent">
+		        <IMG alt="expand/collapse section" class="expanded" height="11" onclick=changepic() src="_UpgradeReport_Files/UpgradeReport_Minus.gif" width="9" child="SummaryIssueType1">
+		        &nbsp;Design Errors
+		    </td>
+		    <td class="SummaryIssueTypeHelp">
+		        Some properties that were set at design time have no direct equivalent and could not be upgraded. You should test your application thoroughly to verify that it functions as desired.
+		    </td>
+		    <td class="SummaryIssueTypeCount">
+		        33
+		    </td>
+		    </tr>
+		    <tr class="expanded" bgcolor="white" id="SummaryIssueType1">
+		        <td colspan="3">
+		            <table cellpadding="2" cellspacing="0" width="100%" border="1" bordercolor="white" class="content">
+		    <tr class="row">
+		        <td class="SummaryIssueContent">
+		            <IMG alt="expand/collapse section" class="expandable" height="11" onclick=changepic() src="_UpgradeReport_Files/UpgradeReport_Plus.gif" width="9" child="SummaryIssueType1GUID0">
+		            &nbsp;Some properties and methods could not be upgraded
+		        </td>
+		        <td class="SummaryIssueHelp">
+		            <a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="076C26E5-B7A9-4E77-B69C-B4448DF39E58"'>Property or method was not upgraded</a>
+		        </td>
+		        <td class="SummaryCount">2</td>
+		    </tr>
+		    <tr class="collapsed" bgcolor="white" id="SummaryIssueType1GUID0">
+		        <td colspan="3">
+		            <table cellpadding="2" cellspacing="0" width="100%" border="1" bordercolor="white" class="content">
+		                <tr class="row">
+		                    <td colspan="3" width="97%" class="SummaryFileContent">
+		                        <IMG alt="expand/collapse section" class="expandable" height="11" onclick=changepic() src="_UpgradeReport_Files/UpgradeReport_Plus.gif" width="9" child="SummaryIssueType1GUID0File0">
+		                        &nbsp;SListing.frm
+		                    </td>
+		                    <td class="SummaryFileCount">2</td>
+		                </tr>
+		                <tr class="collapsed" id="SummaryIssueType1GUID0File0" bgcolor="#ffffff">
+		                    <td colspan="4">
+		                    <table cellpadding="2" cellspacing="0" width="97%" border="1" bordercolor="#dcdcdc" class="content">
+		                        <tr bgcolor="#ffffff">
+		                            <td width="10" class="issuehdr">#</td>
+		                            <td nowrap class="issuehdr">Location</td>
+		                            <td nowrap class="issuehdr">Object Type</td>
+		                            <td nowrap class="issuehdr">Object Name</td>
+		                            <td nowrap class="issuehdr">Property</td>
+		                            <td nowrap class="issuehdr">Description</td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">1</td>
+		                            <td class="issuecontent">RefreshListing</td>
+		                            <td class="issuecontent">MSComctlLib.ListView</td>
+		                            <td class="issuecontent">ListDisplay</td>
+		                            <td class="issuecontent">Sorted</td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="076C26E5-B7A9-4E77-B69C-B4448DF39E58"'>MSComctlLib.ListView property ListDisplay.Sorted was not upgraded.</a></td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">2</td>
+		                            <td class="issuecontent">(Layout)</td>
+		                            <td class="issuecontent">MSComctlLib.ListView</td>
+		                            <td class="issuecontent">ListDisplay</td>
+		                            <td class="issuecontent">Sorted</td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="076C26E5-B7A9-4E77-B69C-B4448DF39E58"'>MSComctlLib.ListView property ListDisplay.Sorted was not upgraded.</a></td>
+		                        </tr>
+		                    </table>
+		                    </td>
+		                </tr>
+		            </table>
+		        </td>
+		    </tr>
+		    <tr class="row">
+		        <td class="SummaryIssueContent">
+		            <IMG alt="expand/collapse section" class="expandable" height="11" onclick=changepic() src="_UpgradeReport_Files/UpgradeReport_Plus.gif" width="9" child="SummaryIssueType1GUID1">
+		            &nbsp;Some properties and methods could not be upgraded
+		        </td>
+		        <td class="SummaryIssueHelp">
+		            <a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="CC4C7EC0-C903-48FC-ACCC-81861D12DA4A"'>Property or method was not upgraded</a>
+		        </td>
+		        <td class="SummaryCount">10</td>
+		    </tr>
+		    <tr class="collapsed" bgcolor="white" id="SummaryIssueType1GUID1">
+		        <td colspan="3">
+		            <table cellpadding="2" cellspacing="0" width="100%" border="1" bordercolor="white" class="content">
+		                <tr class="row">
+		                    <td colspan="3" width="97%" class="SummaryFileContent">
+		                        <IMG alt="expand/collapse section" class="expandable" height="11" onclick=changepic() src="_UpgradeReport_Files/UpgradeReport_Plus.gif" width="9" child="SummaryIssueType1GUID1File0">
+		                        &nbsp;SListing.frm
+		                    </td>
+		                    <td class="SummaryFileCount">10</td>
+		                </tr>
+		                <tr class="collapsed" id="SummaryIssueType1GUID1File0" bgcolor="#ffffff">
+		                    <td colspan="4">
+		                    <table cellpadding="2" cellspacing="0" width="97%" border="1" bordercolor="#dcdcdc" class="content">
+		                        <tr bgcolor="#ffffff">
+		                            <td width="10" class="issuehdr">#</td>
+		                            <td nowrap class="issuehdr">Location</td>
+		                            <td nowrap class="issuehdr">Object Type</td>
+		                            <td nowrap class="issuehdr">Object Name</td>
+		                            <td nowrap class="issuehdr">Property</td>
+		                            <td nowrap class="issuehdr">Description</td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">1</td>
+		                            <td class="issuecontent">(Layout)</td>
+		                            <td class="issuecontent">MSComctlLib.ColumnHeader</td>
+		                            <td class="issuecontent">_ListDisplay_ColumnHeader_1</td>
+		                            <td class="issuecontent">Name</td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="CC4C7EC0-C903-48FC-ACCC-81861D12DA4A"'>MSComctlLib.ColumnHeader method _ListDisplay_ColumnHeader_1.Name was not upgraded.</a></td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">2</td>
+		                            <td class="issuecontent">(Layout)</td>
+		                            <td class="issuecontent">MSComctlLib.ColumnHeader</td>
+		                            <td class="issuecontent">_ListDisplay_ColumnHeader_2</td>
+		                            <td class="issuecontent">Name</td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="CC4C7EC0-C903-48FC-ACCC-81861D12DA4A"'>MSComctlLib.ColumnHeader method _ListDisplay_ColumnHeader_2.Name was not upgraded.</a></td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">3</td>
+		                            <td class="issuecontent">(Layout)</td>
+		                            <td class="issuecontent">MSComctlLib.ColumnHeader</td>
+		                            <td class="issuecontent">_ListDisplay_ColumnHeader_2</td>
+		                            <td class="issuecontent">SubItemIndex</td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="CC4C7EC0-C903-48FC-ACCC-81861D12DA4A"'>MSComctlLib.ColumnHeader property _ListDisplay_ColumnHeader_2.SubItemIndex was not upgraded.</a></td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">4</td>
+		                            <td class="issuecontent">(Layout)</td>
+		                            <td class="issuecontent">MSComctlLib.ColumnHeader</td>
+		                            <td class="issuecontent">_ListDisplay_ColumnHeader_3</td>
+		                            <td class="issuecontent">Name</td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="CC4C7EC0-C903-48FC-ACCC-81861D12DA4A"'>MSComctlLib.ColumnHeader method _ListDisplay_ColumnHeader_3.Name was not upgraded.</a></td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">5</td>
+		                            <td class="issuecontent">(Layout)</td>
+		                            <td class="issuecontent">MSComctlLib.ColumnHeader</td>
+		                            <td class="issuecontent">_ListDisplay_ColumnHeader_3</td>
+		                            <td class="issuecontent">SubItemIndex</td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="CC4C7EC0-C903-48FC-ACCC-81861D12DA4A"'>MSComctlLib.ColumnHeader property _ListDisplay_ColumnHeader_3.SubItemIndex was not upgraded.</a></td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">6</td>
+		                            <td class="issuecontent">(Layout)</td>
+		                            <td class="issuecontent">MSComctlLib.ColumnHeader</td>
+		                            <td class="issuecontent">_ListDisplay_ColumnHeader_4</td>
+		                            <td class="issuecontent">Name</td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="CC4C7EC0-C903-48FC-ACCC-81861D12DA4A"'>MSComctlLib.ColumnHeader method _ListDisplay_ColumnHeader_4.Name was not upgraded.</a></td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">7</td>
+		                            <td class="issuecontent">(Layout)</td>
+		                            <td class="issuecontent">MSComctlLib.ColumnHeader</td>
+		                            <td class="issuecontent">_ListDisplay_ColumnHeader_4</td>
+		                            <td class="issuecontent">SubItemIndex</td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="CC4C7EC0-C903-48FC-ACCC-81861D12DA4A"'>MSComctlLib.ColumnHeader property _ListDisplay_ColumnHeader_4.SubItemIndex was not upgraded.</a></td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">8</td>
+		                            <td class="issuecontent">(Layout)</td>
+		                            <td class="issuecontent">MSComctlLib.ColumnHeader</td>
+		                            <td class="issuecontent">_ListDisplay_ColumnHeader_5</td>
+		                            <td class="issuecontent">Name</td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="CC4C7EC0-C903-48FC-ACCC-81861D12DA4A"'>MSComctlLib.ColumnHeader method _ListDisplay_ColumnHeader_5.Name was not upgraded.</a></td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">9</td>
+		                            <td class="issuecontent">(Layout)</td>
+		                            <td class="issuecontent">MSComctlLib.ColumnHeader</td>
+		                            <td class="issuecontent">_ListDisplay_ColumnHeader_5</td>
+		                            <td class="issuecontent">SubItemIndex</td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="CC4C7EC0-C903-48FC-ACCC-81861D12DA4A"'>MSComctlLib.ColumnHeader property _ListDisplay_ColumnHeader_5.SubItemIndex was not upgraded.</a></td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">10</td>
+		                            <td class="issuecontent">(Layout)</td>
+		                            <td class="issuecontent">MSComctlLib.ListView</td>
+		                            <td class="issuecontent">ListDisplay</td>
+		                            <td class="issuecontent">NumItems</td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="CC4C7EC0-C903-48FC-ACCC-81861D12DA4A"'>MSComctlLib.ListView method ListDisplay.NumItems was not upgraded.</a></td>
+		                        </tr>
+		                    </table>
+		                    </td>
+		                </tr>
+		            </table>
+		        </td>
+		    </tr>
+		    <tr class="row">
+		        <td class="SummaryIssueContent">
+		            <IMG alt="expand/collapse section" class="expandable" height="11" onclick=changepic() src="_UpgradeReport_Files/UpgradeReport_Plus.gif" width="9" child="SummaryIssueType1GUID2">
+		            &nbsp;Some late-bound default property references could not be resolved
+		        </td>
+		        <td class="SummaryIssueHelp">
+		            <a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'>Late-bound default property reference could not be resolved</a>
+		        </td>
+		        <td class="SummaryCount">21</td>
+		    </tr>
+		    <tr class="collapsed" bgcolor="white" id="SummaryIssueType1GUID2">
+		        <td colspan="3">
+		            <table cellpadding="2" cellspacing="0" width="100%" border="1" bordercolor="white" class="content">
+		                <tr class="row">
+		                    <td colspan="3" width="97%" class="SummaryFileContent">
+		                        <IMG alt="expand/collapse section" class="expandable" height="11" onclick=changepic() src="_UpgradeReport_Files/UpgradeReport_Plus.gif" width="9" child="SummaryIssueType1GUID2File0">
+		                        &nbsp;SListing.frm
+		                    </td>
+		                    <td class="SummaryFileCount">21</td>
+		                </tr>
+		                <tr class="collapsed" id="SummaryIssueType1GUID2File0" bgcolor="#ffffff">
+		                    <td colspan="4">
+		                    <table cellpadding="2" cellspacing="0" width="97%" border="1" bordercolor="#dcdcdc" class="content">
+		                        <tr bgcolor="#ffffff">
+		                            <td width="10" class="issuehdr">#</td>
+		                            <td nowrap class="issuehdr">Location</td>
+		                            <td nowrap class="issuehdr">Object Type</td>
+		                            <td nowrap class="issuehdr">Object Name</td>
+		                            <td nowrap class="issuehdr">Property</td>
+		                            <td nowrap class="issuehdr">Description</td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">1</td>
+		                            <td class="issuecontent">(Layout)</td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'>Couldn't resolve default property of object New (System.Drawing.Size, 303, 18).</a></td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">2</td>
+		                            <td class="issuecontent">(Layout)</td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'>Couldn't resolve default property of object New (System.Windows.Forms.Padding, 0).</a></td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">3</td>
+		                            <td class="issuecontent">(Layout)</td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'>Couldn't resolve default property of object New (System.Windows.Forms.Padding, 0).</a></td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">4</td>
+		                            <td class="issuecontent">(Layout)</td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'>Couldn't resolve default property of object New (System.Drawing.Size, 96, 18).</a></td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">5</td>
+		                            <td class="issuecontent">(Layout)</td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'>Couldn't resolve default property of object New (System.Windows.Forms.Padding, 0).</a></td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">6</td>
+		                            <td class="issuecontent">(Layout)</td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'>Couldn't resolve default property of object New (System.Drawing.Size, 96, 18).</a></td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">7</td>
+		                            <td class="issuecontent">ChangeVar</td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'>Couldn't resolve default property of object Var.</a></td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">8</td>
+		                            <td class="issuecontent">ChangeVar</td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'>Couldn't resolve default property of object NewVal.</a></td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">9</td>
+		                            <td class="issuecontent">ChangeVar</td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'>Couldn't resolve default property of object Var.</a></td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">10</td>
+		                            <td class="issuecontent">ChangeVar</td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'>Couldn't resolve default property of object NewVal.</a></td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">11</td>
+		                            <td class="issuecontent">ClientSocket_ConnectionRequest</td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'>Couldn't resolve default property of object CPing(X).</a></td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">12</td>
+		                            <td class="issuecontent">DisconnectPlayer</td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'>Couldn't resolve default property of object Server(Number).</a></td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">13</td>
+		                            <td class="issuecontent">DisconnectPlayer</td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'>Couldn't resolve default property of object CPing(Number).</a></td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">14</td>
+		                            <td class="issuecontent">FHex</td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'>Couldn't resolve default property of object FHex.</a></td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">15</td>
+		                            <td class="issuecontent">FHex</td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'>Couldn't resolve default property of object FHex.</a></td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">16</td>
+		                            <td class="issuecontent">ServerSocket_ConnectionRequest</td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'>Couldn't resolve default property of object Server(X).</a></td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">17</td>
+		                            <td class="issuecontent">SetInfo</td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'>Couldn't resolve default property of object FHex().</a></td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">18</td>
+		                            <td class="issuecontent">SetInfo</td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'>Couldn't resolve default property of object FHex(Server(Index).Users).</a></td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">19</td>
+		                            <td class="issuecontent">SetInfo</td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'>Couldn't resolve default property of object FHex(Server(Index).MaxUsers).</a></td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">20</td>
+		                            <td class="issuecontent">ShortenIP</td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'>Couldn't resolve default property of object FHex().</a></td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">21</td>
+		                            <td class="issuecontent">ShortenIP</td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'>Couldn't resolve default property of object FHex().</a></td>
+		                        </tr>
+		                    </table>
+		                    </td>
+		                </tr>
+		            </table>
+		        </td>
+		    </tr>
+		            </table>
+		        </td>
+		    </tr>
+		    <tr class="row">
+		    <td class="SummaryIssueTypeContent">
+		        <IMG alt="expand/collapse section" class="expanded" height="11" onclick=changepic() src="_UpgradeReport_Files/UpgradeReport_Minus.gif" width="9" child="SummaryIssueType2">
+		        &nbsp;Warnings
+		    </td>
+		    <td class="SummaryIssueTypeHelp">
+		        There were some differences found that may causes unexpected results when your application is run. You should test your application thoroughly to verify that it functions as desired.
+		    </td>
+		    <td class="SummaryIssueTypeCount">
+		        15
+		    </td>
+		    </tr>
+		    <tr class="expanded" bgcolor="white" id="SummaryIssueType2">
+		        <td colspan="3">
+		            <table cellpadding="2" cellspacing="0" width="100%" border="1" bordercolor="white" class="content">
+		    <tr class="row">
+		        <td class="SummaryIssueContent">
+		            <IMG alt="expand/collapse section" class="expandable" height="11" onclick=changepic() src="_UpgradeReport_Files/UpgradeReport_Plus.gif" width="9" child="SummaryIssueType2GUID0">
+		            &nbsp;The use of ADODB was detected in the project
+		        </td>
+		        <td class="SummaryIssueHelp">
+		            <a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="48A49793-4B36-455A-A684-D0D50E2E42B3"'>For more information on using ADODB</a>
+		        </td>
+		        <td class="SummaryCount">1</td>
+		    </tr>
+		    <tr class="collapsed" bgcolor="white" id="SummaryIssueType2GUID0">
+		        <td colspan="3">
+		            <table cellpadding="2" cellspacing="0" width="100%" border="1" bordercolor="white" class="content">
+		                <tr class="row">
+		                    <td colspan="3" width="97%" class="SummaryFileContent">
+		                        <IMG alt="expand/collapse section" class="expandable" height="11" onclick=changepic() src="_UpgradeReport_Files/UpgradeReport_Plus.gif" width="9" child="SummaryIssueType2GUID0File0">
+		                        &nbsp;(Global Issues)
+		                    </td>
+		                    <td class="SummaryFileCount">1</td>
+		                </tr>
+		                <tr class="collapsed" id="SummaryIssueType2GUID0File0" bgcolor="#ffffff">
+		                    <td colspan="4">
+		                    <table cellpadding="2" cellspacing="0" width="97%" border="1" bordercolor="#dcdcdc" class="content">
+		                        <tr bgcolor="#ffffff">
+		                            <td width="10" class="issuehdr">#</td>
+		                            <td nowrap class="issuehdr">Location</td>
+		                            <td nowrap class="issuehdr">Object Type</td>
+		                            <td nowrap class="issuehdr">Object Name</td>
+		                            <td nowrap class="issuehdr">Property</td>
+		                            <td nowrap class="issuehdr">Description</td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">1</td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="48A49793-4B36-455A-A684-D0D50E2E42B3"'>Using ADODB on your upgraded VB.NET application.</a></td>
+		                        </tr>
+		                    </table>
+		                    </td>
+		                </tr>
+		            </table>
+		        </td>
+		    </tr>
+		    <tr class="row">
+		        <td class="SummaryIssueContent">
+		            <IMG alt="expand/collapse section" class="expandable" height="11" onclick=changepic() src="_UpgradeReport_Files/UpgradeReport_Plus.gif" width="9" child="SummaryIssueType2GUID1">
+		            &nbsp;Event behavior has changed
+		        </td>
+		        <td class="SummaryIssueHelp">
+		            <a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="8C49BE24-2706-4243-8090-5E48F6703313"'>Some events that were handled by container controls may be blocked by Line and Shape controls</a>
+		        </td>
+		        <td class="SummaryCount">1</td>
+		    </tr>
+		    <tr class="collapsed" bgcolor="white" id="SummaryIssueType2GUID1">
+		        <td colspan="3">
+		            <table cellpadding="2" cellspacing="0" width="100%" border="1" bordercolor="white" class="content">
+		                <tr class="row">
+		                    <td colspan="3" width="97%" class="SummaryFileContent">
+		                        <IMG alt="expand/collapse section" class="expandable" height="11" onclick=changepic() src="_UpgradeReport_Files/UpgradeReport_Plus.gif" width="9" child="SummaryIssueType2GUID1File0">
+		                        &nbsp;(Global Issues)
+		                    </td>
+		                    <td class="SummaryFileCount">1</td>
+		                </tr>
+		                <tr class="collapsed" id="SummaryIssueType2GUID1File0" bgcolor="#ffffff">
+		                    <td colspan="4">
+		                    <table cellpadding="2" cellspacing="0" width="97%" border="1" bordercolor="#dcdcdc" class="content">
+		                        <tr bgcolor="#ffffff">
+		                            <td width="10" class="issuehdr">#</td>
+		                            <td nowrap class="issuehdr">Location</td>
+		                            <td nowrap class="issuehdr">Object Type</td>
+		                            <td nowrap class="issuehdr">Object Name</td>
+		                            <td nowrap class="issuehdr">Property</td>
+		                            <td nowrap class="issuehdr">Description</td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">1</td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="8C49BE24-2706-4243-8090-5E48F6703313"'>Event behavior for container controls may be different.</a></td>
+		                        </tr>
+		                    </table>
+		                    </td>
+		                </tr>
+		            </table>
+		        </td>
+		    </tr>
+		    <tr class="row">
+		        <td class="SummaryIssueContent">
+		            <IMG alt="expand/collapse section" class="expandable" height="11" onclick=changepic() src="_UpgradeReport_Files/UpgradeReport_Plus.gif" width="9" child="SummaryIssueType2GUID2">
+		            &nbsp;Visual Basic PowerPack Library Is Missing
+		        </td>
+		        <td class="SummaryIssueHelp">
+		            <a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="915D0713-82C0-4C50-92BC-0B3C76E9A450"'>The Visual Basic PowerPack Library needs to be installed prior to use</a>
+		        </td>
+		        <td class="SummaryCount">1</td>
+		    </tr>
+		    <tr class="collapsed" bgcolor="white" id="SummaryIssueType2GUID2">
+		        <td colspan="3">
+		            <table cellpadding="2" cellspacing="0" width="100%" border="1" bordercolor="white" class="content">
+		                <tr class="row">
+		                    <td colspan="3" width="97%" class="SummaryFileContent">
+		                        <IMG alt="expand/collapse section" class="expandable" height="11" onclick=changepic() src="_UpgradeReport_Files/UpgradeReport_Plus.gif" width="9" child="SummaryIssueType2GUID2File0">
+		                        &nbsp;(Global Issues)
+		                    </td>
+		                    <td class="SummaryFileCount">1</td>
+		                </tr>
+		                <tr class="collapsed" id="SummaryIssueType2GUID2File0" bgcolor="#ffffff">
+		                    <td colspan="4">
+		                    <table cellpadding="2" cellspacing="0" width="97%" border="1" bordercolor="#dcdcdc" class="content">
+		                        <tr bgcolor="#ffffff">
+		                            <td width="10" class="issuehdr">#</td>
+		                            <td nowrap class="issuehdr">Location</td>
+		                            <td nowrap class="issuehdr">Object Type</td>
+		                            <td nowrap class="issuehdr">Object Name</td>
+		                            <td nowrap class="issuehdr">Property</td>
+		                            <td nowrap class="issuehdr">Description</td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">1</td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="915D0713-82C0-4C50-92BC-0B3C76E9A450"'>Controls Microsoft Visual Basic Power Pack requires to be installed after upgrading.</a></td>
+		                        </tr>
+		                    </table>
+		                    </td>
+		                </tr>
+		            </table>
+		        </td>
+		    </tr>
+		    <tr class="row">
+		        <td class="SummaryIssueContent">
+		            <IMG alt="expand/collapse section" class="expandable" height="11" onclick=changepic() src="_UpgradeReport_Files/UpgradeReport_Plus.gif" width="9" child="SummaryIssueType2GUID3">
+		            &nbsp;Changes to some functions may cause unexpected behavior
+		        </td>
+		        <td class="SummaryIssueHelp">
+		            <a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'>Function has a new behavior</a>
+		        </td>
+		        <td class="SummaryCount">1</td>
+		    </tr>
+		    <tr class="collapsed" bgcolor="white" id="SummaryIssueType2GUID3">
+		        <td colspan="3">
+		            <table cellpadding="2" cellspacing="0" width="100%" border="1" bordercolor="white" class="content">
+		                <tr class="row">
+		                    <td colspan="3" width="97%" class="SummaryFileContent">
+		                        <IMG alt="expand/collapse section" class="expandable" height="11" onclick=changepic() src="_UpgradeReport_Files/UpgradeReport_Plus.gif" width="9" child="SummaryIssueType2GUID3File0">
+		                        &nbsp;SListing.frm
+		                    </td>
+		                    <td class="SummaryFileCount">1</td>
+		                </tr>
+		                <tr class="collapsed" id="SummaryIssueType2GUID3File0" bgcolor="#ffffff">
+		                    <td colspan="4">
+		                    <table cellpadding="2" cellspacing="0" width="97%" border="1" bordercolor="#dcdcdc" class="content">
+		                        <tr bgcolor="#ffffff">
+		                            <td width="10" class="issuehdr">#</td>
+		                            <td nowrap class="issuehdr">Location</td>
+		                            <td nowrap class="issuehdr">Object Type</td>
+		                            <td nowrap class="issuehdr">Object Name</td>
+		                            <td nowrap class="issuehdr">Property</td>
+		                            <td nowrap class="issuehdr">Description</td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">1</td>
+		                            <td class="issuecontent">Form_Load</td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent">Dir</td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'>Dir has a new behavior.</a></td>
+		                        </tr>
+		                    </table>
+		                    </td>
+		                </tr>
+		            </table>
+		        </td>
+		    </tr>
+		    <tr class="row">
+		        <td class="SummaryIssueContent">
+		            <IMG alt="expand/collapse section" class="expandable" height="11" onclick=changepic() src="_UpgradeReport_Files/UpgradeReport_Plus.gif" width="9" child="SummaryIssueType2GUID4">
+		            &nbsp;The lower bounds of a collection has changed
+		        </td>
+		        <td class="SummaryIssueHelp">
+		            <a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="A3B628A0-A810-4AE2-BFA2-9E7A29EB9AD0"'>Lower bound of collection has changed to 0</a>
+		        </td>
+		        <td class="SummaryCount">5</td>
+		    </tr>
+		    <tr class="collapsed" bgcolor="white" id="SummaryIssueType2GUID4">
+		        <td colspan="3">
+		            <table cellpadding="2" cellspacing="0" width="100%" border="1" bordercolor="white" class="content">
+		                <tr class="row">
+		                    <td colspan="3" width="97%" class="SummaryFileContent">
+		                        <IMG alt="expand/collapse section" class="expandable" height="11" onclick=changepic() src="_UpgradeReport_Files/UpgradeReport_Plus.gif" width="9" child="SummaryIssueType2GUID4File0">
+		                        &nbsp;SListing.frm
+		                    </td>
+		                    <td class="SummaryFileCount">5</td>
+		                </tr>
+		                <tr class="collapsed" id="SummaryIssueType2GUID4File0" bgcolor="#ffffff">
+		                    <td colspan="4">
+		                    <table cellpadding="2" cellspacing="0" width="97%" border="1" bordercolor="#dcdcdc" class="content">
+		                        <tr bgcolor="#ffffff">
+		                            <td width="10" class="issuehdr">#</td>
+		                            <td nowrap class="issuehdr">Location</td>
+		                            <td nowrap class="issuehdr">Object Type</td>
+		                            <td nowrap class="issuehdr">Object Name</td>
+		                            <td nowrap class="issuehdr">Property</td>
+		                            <td nowrap class="issuehdr">Description</td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">1</td>
+		                            <td class="issuecontent">RefreshListing</td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="A3B628A0-A810-4AE2-BFA2-9E7A29EB9AD0"'>Lower bound of collection TempItem has changed from 1 to 0.</a></td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">2</td>
+		                            <td class="issuecontent">RefreshListing</td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="A3B628A0-A810-4AE2-BFA2-9E7A29EB9AD0"'>Lower bound of collection TempItem has changed from 1 to 0.</a></td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">3</td>
+		                            <td class="issuecontent">RefreshListing</td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="A3B628A0-A810-4AE2-BFA2-9E7A29EB9AD0"'>Lower bound of collection TempItem has changed from 1 to 0.</a></td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">4</td>
+		                            <td class="issuecontent">RefreshListing</td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="A3B628A0-A810-4AE2-BFA2-9E7A29EB9AD0"'>Lower bound of collection TempItem has changed from 1 to 0.</a></td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">5</td>
+		                            <td class="issuecontent">UpdateClientCount</td>
+		                            <td class="issuecontent">MSComctlLib.Panels</td>
+		                            <td class="issuecontent">StatusBar1.Panels</td>
+		                            <td class="issuecontent">Item</td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="A3B628A0-A810-4AE2-BFA2-9E7A29EB9AD0"'>Lower bound of collection StatusBar1.Panels has changed from 1 to 0.</a></td>
+		                        </tr>
+		                    </table>
+		                    </td>
+		                </tr>
+		            </table>
+		        </td>
+		    </tr>
+		    <tr class="row">
+		        <td class="SummaryIssueContent">
+		            <IMG alt="expand/collapse section" class="expandable" height="11" onclick=changepic() src="_UpgradeReport_Files/UpgradeReport_Plus.gif" width="9" child="SummaryIssueType2GUID5">
+		            &nbsp;Arrays must all have a lower bounds of zero
+		        </td>
+		        <td class="SummaryIssueHelp">
+		            <a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="0F1C9BE1-AF9D-476E-83B1-17D43BECFF20"'>Lower bound of array was changed to 0</a>
+		        </td>
+		        <td class="SummaryCount">6</td>
+		    </tr>
+		    <tr class="collapsed" bgcolor="white" id="SummaryIssueType2GUID5">
+		        <td colspan="3">
+		            <table cellpadding="2" cellspacing="0" width="100%" border="1" bordercolor="white" class="content">
+		                <tr class="row">
+		                    <td colspan="3" width="97%" class="SummaryFileContent">
+		                        <IMG alt="expand/collapse section" class="expandable" height="11" onclick=changepic() src="_UpgradeReport_Files/UpgradeReport_Plus.gif" width="9" child="SummaryIssueType2GUID5File0">
+		                        &nbsp;(Global Issues)
+		                    </td>
+		                    <td class="SummaryFileCount">1</td>
+		                </tr>
+		                <tr class="collapsed" id="SummaryIssueType2GUID5File0" bgcolor="#ffffff">
+		                    <td colspan="4">
+		                    <table cellpadding="2" cellspacing="0" width="97%" border="1" bordercolor="#dcdcdc" class="content">
+		                        <tr bgcolor="#ffffff">
+		                            <td width="10" class="issuehdr">#</td>
+		                            <td nowrap class="issuehdr">Location</td>
+		                            <td nowrap class="issuehdr">Object Type</td>
+		                            <td nowrap class="issuehdr">Object Name</td>
+		                            <td nowrap class="issuehdr">Property</td>
+		                            <td nowrap class="issuehdr">Description</td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">1</td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="0F1C9BE1-AF9D-476E-83B1-17D43BECFF20"'>Lower bound of array Queue was changed from 1 to 0.</a></td>
+		                        </tr>
+		                    </table>
+		                    </td>
+		                </tr>
+		                <tr class="row">
+		                    <td colspan="3" width="97%" class="SummaryFileContent">
+		                        <IMG alt="expand/collapse section" class="expandable" height="11" onclick=changepic() src="_UpgradeReport_Files/UpgradeReport_Plus.gif" width="9" child="SummaryIssueType2GUID5File1">
+		                        &nbsp;XORModule.bas
+		                    </td>
+		                    <td class="SummaryFileCount">5</td>
+		                </tr>
+		                <tr class="collapsed" id="SummaryIssueType2GUID5File1" bgcolor="#ffffff">
+		                    <td colspan="4">
+		                    <table cellpadding="2" cellspacing="0" width="97%" border="1" bordercolor="#dcdcdc" class="content">
+		                        <tr bgcolor="#ffffff">
+		                            <td width="10" class="issuehdr">#</td>
+		                            <td nowrap class="issuehdr">Location</td>
+		                            <td nowrap class="issuehdr">Object Type</td>
+		                            <td nowrap class="issuehdr">Object Name</td>
+		                            <td nowrap class="issuehdr">Property</td>
+		                            <td nowrap class="issuehdr">Description</td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">1</td>
+		                            <td class="issuecontent">XORDecrypt</td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="0F1C9BE1-AF9D-476E-83B1-17D43BECFF20"'>Lower bound of array iByte was changed from 1 to 0.</a></td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">2</td>
+		                            <td class="issuecontent">XORDecrypt</td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="0F1C9BE1-AF9D-476E-83B1-17D43BECFF20"'>Lower bound of array oByte was changed from 1 to 0.</a></td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">3</td>
+		                            <td class="issuecontent">XOREncrypt</td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="0F1C9BE1-AF9D-476E-83B1-17D43BECFF20"'>Lower bound of array iByte was changed from 1 to 0.</a></td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">4</td>
+		                            <td class="issuecontent">XOREncrypt</td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="0F1C9BE1-AF9D-476E-83B1-17D43BECFF20"'>Lower bound of array oByte was changed from 1 to 0.</a></td>
+		                        </tr>
+		                        <tr bgcolor="#ffffff">
+		                            <td class="issuecontent">5</td>
+		                            <td class="issuecontent">XOREncrypt</td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"></td>
+		                            <td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="0F1C9BE1-AF9D-476E-83B1-17D43BECFF20"'>Lower bound of array tByte was changed from 1 to 0.</a></td>
+		                        </tr>
+		                    </table>
+		                    </td>
+		                </tr>
+		            </table>
+		        </td>
+		    </tr>
+		            </table>
+		        </td>
+		    </tr>
+		    <tr class="row">
+		        <td colspan=2 class="content">Total</td>
+		        <td class="SummaryCount">53</td>
+		    </tr>
+		</table>
+		
+		<h2><IMG alt="expand/collapse section" class="expandable" height="11" onclick=changepic() src="_UpgradeReport_Files/UpgradeReport_Plus.gif" width="9" child="DetailList"> Details For Each File in Project</h2>
+		<span id="DetailList" class="collapsed">
+		<table cellpadding="2" cellspacing="0" width="98%" border="1"bordercolor="white" class="infotable">
+			<tr>
+				<td nowrap class="header">New Filename</td>
+				<td nowrap class="header">Original Filename</td>
+				<td nowrap class="header">File Type</td>
+				<td nowrap class="header">Status</td>
+				<td nowrap class="header">Errors</td>
+				<td nowrap class="header">Warnings</td>
+				<td nowrap class="header">Total Issues</td>
+			</tr>
+		<tr class="row">
+			<td class="content"><IMG alt="expand/collapse section" class="expandable" height="11"onclick=changepic() src="_UpgradeReport_Files/UpgradeReport_Minus.gif" width="9" child="issue0">&nbsp;(Global Issues)</td>
+			<td class="content"></td>
+			<td class="content"></td>
+			<td class="content">
+		</td>	<td class="content">0</td>
+			<td class="content">4</td>
+			<td class="content">4</td>
+		</tr>
+			<tr id="issue0" bgcolor="#ffffff"><td colspan="7">
+				<table width="97%" border="1" bordercolor="#dcdcdc" rules="cols" class="issuetable">
+				<tr><td colspan="7" class="issuetitle">Global update issues:</td></tr><tr><td width="10" class="issuehdr">#</td><td class="issuehdr" nowrap>Severity</td><td class="issuehdr">Location</td><td class="issuehdr">Object Type</td><td class="issuehdr">Object Name</td><td class="issuehdr">Property</td><td class="issuehdr">Description</td></tr>
+					<tr><td width="10" class="issuecontent">1</td><td class="issuecontent" nowrap>Global Warning</td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="48A49793-4B36-455A-A684-D0D50E2E42B3"'>Using ADODB on your upgraded VB.NET application.</a></td></tr>
+					<tr><td width="10" class="issuecontent">2</td><td class="issuecontent" nowrap>Global Warning</td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="8C49BE24-2706-4243-8090-5E48F6703313"'>Event behavior for container controls may be different.</a></td></tr>
+					<tr><td width="10" class="issuecontent">3</td><td class="issuecontent" nowrap>Global Warning</td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="915D0713-82C0-4C50-92BC-0B3C76E9A450"'>Controls Microsoft Visual Basic Power Pack requires to be installed after upgrading.</a></td></tr>
+					<tr><td width="10" class="issuecontent">4</td><td class="issuecontent" nowrap>Runtime Warning</td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="0F1C9BE1-AF9D-476E-83B1-17D43BECFF20"'>Lower bound of array Queue was changed from 1 to 0.</a></td></tr>
+				</table>
+			</td></tr>
+		<tr class="row">
+			<td class="content"><IMG alt="expand/collapse section" class="expandable" height="11"onclick=changepic() src="_UpgradeReport_Files/UpgradeReport_Plus.gif" width="9" child="issue1">&nbsp;SListing.vb</td>
+			<td class="content">SListing.frm</td>
+			<td class="content">Form</td>
+			<td class="content">
+		Upgraded with issues</td>	<td class="content">21</td>
+			<td class="content">21</td>
+			<td class="content">42</td>
+		</tr>
+			<tr class="collapsed" id="issue1" bgcolor="#ffffff"><td colspan="7">
+				<table width="97%" border="1" bordercolor="#dcdcdc" rules="cols" class="issuetable">
+				<tr><td colspan="7" class="issuetitle">Upgrade Issues for SListing.frm:</td></tr><tr><td width="10" class="issuehdr">#</td><td class="issuehdr" nowrap>Severity</td><td class="issuehdr">Location</td><td class="issuehdr">Object Type</td><td class="issuehdr">Object Name</td><td class="issuehdr">Property</td><td class="issuehdr">Description</td></tr>
+					<tr><td width="10" class="issuecontent">1</td><td class="issuecontent" nowrap>Compile Error</td><td class="issuecontent">Bin2Dec</td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent">LenB</td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="367764E5-F3F8-4E43-AC3E-7FE0B5E074E2"'>LenB function is not supported.</a></td></tr>
+					<tr><td width="10" class="issuecontent">2</td><td class="issuecontent" nowrap>Compile Error</td><td class="issuecontent">Bin2Dec</td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent">StrPtr</td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="367764E5-F3F8-4E43-AC3E-7FE0B5E074E2"'>StrPtr function is not supported.</a></td></tr>
+					<tr><td width="10" class="issuecontent">3</td><td class="issuecontent" nowrap>Compile Error</td><td class="issuecontent">ListDisplay_ItemClick</td><td class="issuecontent">MSComctlLib.ListView</td><td class="issuecontent">ListDisplay</td><td class="issuecontent">ItemClick</td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="ABD9AF39-7E24-4AFF-AD8D-3675C1AA3054"'>MSComctlLib.ListView event ListDisplay.ItemClick was not upgraded.</a></td></tr>
+					<tr><td width="10" class="issuecontent">4</td><td class="issuecontent" nowrap>Compile Error</td><td class="issuecontent">RefreshListing</td><td class="issuecontent">MSComctlLib.ListView</td><td class="issuecontent">ListDisplay</td><td class="issuecontent">Sorted</td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="076C26E5-B7A9-4E77-B69C-B4448DF39E58"'>MSComctlLib.ListView property ListDisplay.Sorted was not upgraded.</a></td></tr>
+					<tr><td width="10" class="issuecontent">5</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'>Couldn't resolve default property of object New (System.Drawing.Size, 303, 18).</a></td></tr>
+					<tr><td width="10" class="issuecontent">6</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'>Couldn't resolve default property of object New (System.Windows.Forms.Padding, 0).</a></td></tr>
+					<tr><td width="10" class="issuecontent">7</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'>Couldn't resolve default property of object New (System.Windows.Forms.Padding, 0).</a></td></tr>
+					<tr><td width="10" class="issuecontent">8</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'>Couldn't resolve default property of object New (System.Drawing.Size, 96, 18).</a></td></tr>
+					<tr><td width="10" class="issuecontent">9</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'>Couldn't resolve default property of object New (System.Windows.Forms.Padding, 0).</a></td></tr>
+					<tr><td width="10" class="issuecontent">10</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'>Couldn't resolve default property of object New (System.Drawing.Size, 96, 18).</a></td></tr>
+					<tr><td width="10" class="issuecontent">11</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">MSComctlLib.ColumnHeader</td><td class="issuecontent">_ListDisplay_ColumnHeader_1</td><td class="issuecontent">Name</td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="CC4C7EC0-C903-48FC-ACCC-81861D12DA4A"'>MSComctlLib.ColumnHeader method _ListDisplay_ColumnHeader_1.Name was not upgraded.</a></td></tr>
+					<tr><td width="10" class="issuecontent">12</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">MSComctlLib.ColumnHeader</td><td class="issuecontent">_ListDisplay_ColumnHeader_2</td><td class="issuecontent">Name</td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="CC4C7EC0-C903-48FC-ACCC-81861D12DA4A"'>MSComctlLib.ColumnHeader method _ListDisplay_ColumnHeader_2.Name was not upgraded.</a></td></tr>
+					<tr><td width="10" class="issuecontent">13</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">MSComctlLib.ColumnHeader</td><td class="issuecontent">_ListDisplay_ColumnHeader_2</td><td class="issuecontent">SubItemIndex</td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="CC4C7EC0-C903-48FC-ACCC-81861D12DA4A"'>MSComctlLib.ColumnHeader property _ListDisplay_ColumnHeader_2.SubItemIndex was not upgraded.</a></td></tr>
+					<tr><td width="10" class="issuecontent">14</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">MSComctlLib.ColumnHeader</td><td class="issuecontent">_ListDisplay_ColumnHeader_3</td><td class="issuecontent">Name</td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="CC4C7EC0-C903-48FC-ACCC-81861D12DA4A"'>MSComctlLib.ColumnHeader method _ListDisplay_ColumnHeader_3.Name was not upgraded.</a></td></tr>
+					<tr><td width="10" class="issuecontent">15</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">MSComctlLib.ColumnHeader</td><td class="issuecontent">_ListDisplay_ColumnHeader_3</td><td class="issuecontent">SubItemIndex</td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="CC4C7EC0-C903-48FC-ACCC-81861D12DA4A"'>MSComctlLib.ColumnHeader property _ListDisplay_ColumnHeader_3.SubItemIndex was not upgraded.</a></td></tr>
+					<tr><td width="10" class="issuecontent">16</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">MSComctlLib.ColumnHeader</td><td class="issuecontent">_ListDisplay_ColumnHeader_4</td><td class="issuecontent">Name</td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="CC4C7EC0-C903-48FC-ACCC-81861D12DA4A"'>MSComctlLib.ColumnHeader method _ListDisplay_ColumnHeader_4.Name was not upgraded.</a></td></tr>
+					<tr><td width="10" class="issuecontent">17</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">MSComctlLib.ColumnHeader</td><td class="issuecontent">_ListDisplay_ColumnHeader_4</td><td class="issuecontent">SubItemIndex</td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="CC4C7EC0-C903-48FC-ACCC-81861D12DA4A"'>MSComctlLib.ColumnHeader property _ListDisplay_ColumnHeader_4.SubItemIndex was not upgraded.</a></td></tr>
+					<tr><td width="10" class="issuecontent">18</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">MSComctlLib.ColumnHeader</td><td class="issuecontent">_ListDisplay_ColumnHeader_5</td><td class="issuecontent">Name</td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="CC4C7EC0-C903-48FC-ACCC-81861D12DA4A"'>MSComctlLib.ColumnHeader method _ListDisplay_ColumnHeader_5.Name was not upgraded.</a></td></tr>
+					<tr><td width="10" class="issuecontent">19</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">MSComctlLib.ColumnHeader</td><td class="issuecontent">_ListDisplay_ColumnHeader_5</td><td class="issuecontent">SubItemIndex</td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="CC4C7EC0-C903-48FC-ACCC-81861D12DA4A"'>MSComctlLib.ColumnHeader property _ListDisplay_ColumnHeader_5.SubItemIndex was not upgraded.</a></td></tr>
+					<tr><td width="10" class="issuecontent">20</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">MSComctlLib.ListView</td><td class="issuecontent">ListDisplay</td><td class="issuecontent">NumItems</td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="CC4C7EC0-C903-48FC-ACCC-81861D12DA4A"'>MSComctlLib.ListView method ListDisplay.NumItems was not upgraded.</a></td></tr>
+					<tr><td width="10" class="issuecontent">21</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">MSComctlLib.ListView</td><td class="issuecontent">ListDisplay</td><td class="issuecontent">Sorted</td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="076C26E5-B7A9-4E77-B69C-B4448DF39E58"'>MSComctlLib.ListView property ListDisplay.Sorted was not upgraded.</a></td></tr>
+					<tr><td width="10" class="issuecontent">22</td><td class="issuecontent" nowrap>Runtime Warning</td><td class="issuecontent">ChangeVar</td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'>Couldn't resolve default property of object Var.</a></td></tr>
+					<tr><td width="10" class="issuecontent">23</td><td class="issuecontent" nowrap>Runtime Warning</td><td class="issuecontent">ChangeVar</td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'>Couldn't resolve default property of object NewVal.</a></td></tr>
+					<tr><td width="10" class="issuecontent">24</td><td class="issuecontent" nowrap>Runtime Warning</td><td class="issuecontent">ChangeVar</td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'>Couldn't resolve default property of object Var.</a></td></tr>
+					<tr><td width="10" class="issuecontent">25</td><td class="issuecontent" nowrap>Runtime Warning</td><td class="issuecontent">ChangeVar</td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'>Couldn't resolve default property of object NewVal.</a></td></tr>
+					<tr><td width="10" class="issuecontent">26</td><td class="issuecontent" nowrap>Runtime Warning</td><td class="issuecontent">ClientSocket_ConnectionRequest</td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'>Couldn't resolve default property of object CPing(X).</a></td></tr>
+					<tr><td width="10" class="issuecontent">27</td><td class="issuecontent" nowrap>Runtime Warning</td><td class="issuecontent">DisconnectPlayer</td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'>Couldn't resolve default property of object Server(Number).</a></td></tr>
+					<tr><td width="10" class="issuecontent">28</td><td class="issuecontent" nowrap>Runtime Warning</td><td class="issuecontent">DisconnectPlayer</td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'>Couldn't resolve default property of object CPing(Number).</a></td></tr>
+					<tr><td width="10" class="issuecontent">29</td><td class="issuecontent" nowrap>Runtime Warning</td><td class="issuecontent">FHex</td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'>Couldn't resolve default property of object FHex.</a></td></tr>
+					<tr><td width="10" class="issuecontent">30</td><td class="issuecontent" nowrap>Runtime Warning</td><td class="issuecontent">FHex</td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'>Couldn't resolve default property of object FHex.</a></td></tr>
+					<tr><td width="10" class="issuecontent">31</td><td class="issuecontent" nowrap>Runtime Warning</td><td class="issuecontent">Form_Load</td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent">Dir</td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'>Dir has a new behavior.</a></td></tr>
+					<tr><td width="10" class="issuecontent">32</td><td class="issuecontent" nowrap>Runtime Warning</td><td class="issuecontent">RefreshListing</td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="A3B628A0-A810-4AE2-BFA2-9E7A29EB9AD0"'>Lower bound of collection TempItem has changed from 1 to 0.</a></td></tr>
+					<tr><td width="10" class="issuecontent">33</td><td class="issuecontent" nowrap>Runtime Warning</td><td class="issuecontent">RefreshListing</td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="A3B628A0-A810-4AE2-BFA2-9E7A29EB9AD0"'>Lower bound of collection TempItem has changed from 1 to 0.</a></td></tr>
+					<tr><td width="10" class="issuecontent">34</td><td class="issuecontent" nowrap>Runtime Warning</td><td class="issuecontent">RefreshListing</td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="A3B628A0-A810-4AE2-BFA2-9E7A29EB9AD0"'>Lower bound of collection TempItem has changed from 1 to 0.</a></td></tr>
+					<tr><td width="10" class="issuecontent">35</td><td class="issuecontent" nowrap>Runtime Warning</td><td class="issuecontent">RefreshListing</td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="A3B628A0-A810-4AE2-BFA2-9E7A29EB9AD0"'>Lower bound of collection TempItem has changed from 1 to 0.</a></td></tr>
+					<tr><td width="10" class="issuecontent">36</td><td class="issuecontent" nowrap>Runtime Warning</td><td class="issuecontent">ServerSocket_ConnectionRequest</td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'>Couldn't resolve default property of object Server(X).</a></td></tr>
+					<tr><td width="10" class="issuecontent">37</td><td class="issuecontent" nowrap>Runtime Warning</td><td class="issuecontent">SetInfo</td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'>Couldn't resolve default property of object FHex().</a></td></tr>
+					<tr><td width="10" class="issuecontent">38</td><td class="issuecontent" nowrap>Runtime Warning</td><td class="issuecontent">SetInfo</td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'>Couldn't resolve default property of object FHex(Server(Index).Users).</a></td></tr>
+					<tr><td width="10" class="issuecontent">39</td><td class="issuecontent" nowrap>Runtime Warning</td><td class="issuecontent">SetInfo</td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'>Couldn't resolve default property of object FHex(Server(Index).MaxUsers).</a></td></tr>
+					<tr><td width="10" class="issuecontent">40</td><td class="issuecontent" nowrap>Runtime Warning</td><td class="issuecontent">ShortenIP</td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'>Couldn't resolve default property of object FHex().</a></td></tr>
+					<tr><td width="10" class="issuecontent">41</td><td class="issuecontent" nowrap>Runtime Warning</td><td class="issuecontent">ShortenIP</td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'>Couldn't resolve default property of object FHex().</a></td></tr>
+					<tr><td width="10" class="issuecontent">42</td><td class="issuecontent" nowrap>Runtime Warning</td><td class="issuecontent">UpdateClientCount</td><td class="issuecontent">MSComctlLib.Panels</td><td class="issuecontent">StatusBar1.Panels</td><td class="issuecontent">Item</td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="A3B628A0-A810-4AE2-BFA2-9E7A29EB9AD0"'>Lower bound of collection StatusBar1.Panels has changed from 1 to 0.</a></td></tr>
+				</table>
+			</td></tr>
+		<tr class="row">
+			<td class="content"><IMG alt="expand/collapse section" class="expandable" height="11"onclick=changepic() src="_UpgradeReport_Files/UpgradeReport_Plus.gif" width="9" child="issue2">&nbsp;XORModule.vb</td>
+			<td class="content">XORModule.bas</td>
+			<td class="content">Module</td>
+			<td class="content">
+		Upgraded with issues</td>	<td class="content">2</td>
+			<td class="content">5</td>
+			<td class="content">7</td>
+		</tr>
+			<tr class="collapsed" id="issue2" bgcolor="#ffffff"><td colspan="7">
+				<table width="97%" border="1" bordercolor="#dcdcdc" rules="cols" class="issuetable">
+				<tr><td colspan="7" class="issuetitle">Upgrade Issues for XORModule.bas:</td></tr><tr><td width="10" class="issuehdr">#</td><td class="issuehdr" nowrap>Severity</td><td class="issuehdr">Location</td><td class="issuehdr">Object Type</td><td class="issuehdr">Object Name</td><td class="issuehdr">Property</td><td class="issuehdr">Description</td></tr>
+					<tr><td width="10" class="issuecontent">1</td><td class="issuecontent" nowrap>Compile Error</td><td class="issuecontent">CopyMemory</td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="FAE78A8D-8978-4FD4-8208-5B7324A8F795"'>Declaring a parameter 'As Any' is not supported.</a></td></tr>
+					<tr><td width="10" class="issuecontent">2</td><td class="issuecontent" nowrap>Compile Error</td><td class="issuecontent">CopyMemory</td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="FAE78A8D-8978-4FD4-8208-5B7324A8F795"'>Declaring a parameter 'As Any' is not supported.</a></td></tr>
+					<tr><td width="10" class="issuecontent">3</td><td class="issuecontent" nowrap>Runtime Warning</td><td class="issuecontent">XORDecrypt</td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="0F1C9BE1-AF9D-476E-83B1-17D43BECFF20"'>Lower bound of array iByte was changed from 1 to 0.</a></td></tr>
+					<tr><td width="10" class="issuecontent">4</td><td class="issuecontent" nowrap>Runtime Warning</td><td class="issuecontent">XORDecrypt</td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="0F1C9BE1-AF9D-476E-83B1-17D43BECFF20"'>Lower bound of array oByte was changed from 1 to 0.</a></td></tr>
+					<tr><td width="10" class="issuecontent">5</td><td class="issuecontent" nowrap>Runtime Warning</td><td class="issuecontent">XOREncrypt</td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="0F1C9BE1-AF9D-476E-83B1-17D43BECFF20"'>Lower bound of array iByte was changed from 1 to 0.</a></td></tr>
+					<tr><td width="10" class="issuecontent">6</td><td class="issuecontent" nowrap>Runtime Warning</td><td class="issuecontent">XOREncrypt</td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="0F1C9BE1-AF9D-476E-83B1-17D43BECFF20"'>Lower bound of array oByte was changed from 1 to 0.</a></td></tr>
+					<tr><td width="10" class="issuecontent">7</td><td class="issuecontent" nowrap>Runtime Warning</td><td class="issuecontent">XOREncrypt</td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"><a href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="0F1C9BE1-AF9D-476E-83B1-17D43BECFF20"'>Lower bound of array tByte was changed from 1 to 0.</a></td></tr>
+				</table>
+			</td></tr>
+		<tr valign="top">
+			<td class="foot">2 File(s)</td>
+			<td class="foot">&nbsp;</td>
+			<td class="foot">Forms: 1<br>Modules: 1</td>
+			<td class="foot">
+		Upgraded: 2<BR>
+		Not upgraded: 0
+		</td>
+			<td class="foot">23</td>
+			<td class="foot">30</td>
+			<td class="foot">53</td>
+		</tr>
+		</table>
+		</span>
+		<p class="help">
+			<A href='ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="a16bd8ca-916d-4cd3-821c-417999d3cb97"'>Click here for help with troubleshooting upgraded projects</A>
+		</p>
+				<p>
+					<table class = "note">
+						<tr><td nowrap><b>Upgrade Settings</b></td></tr>
+						<tr><td nowrap><b>Log File:</b> PBSeverListing.log</td></tr>
+						<tr><td nowrap><b>Migrate Project To:</b> WinExe</td></tr>
+						<tr><td nowrap><b>Output Directory:</b> D:\Documents and Settings\Tommy\Desktop\NetBattle v0.9.6 _P2_ VB6 source\Reg\NetBattleSL.NET1</td></tr>
+						<tr><td nowrap><b>Output Name:</b> PBSeverListing.vbproj</td></tr>
+						<tr><td nowrap><b>Project Name:</b> PBSeverListing</td></tr>
+						<tr><td nowrap><b>Project Path:</b> D:\Documents and Settings\Tommy\Desktop\NetBattle v0.9.6 _P2_ VB6 source\Reg\PBSeverListing.vbp</td></tr>
+					</table>
+				</p>
+	</body>
+</html>
