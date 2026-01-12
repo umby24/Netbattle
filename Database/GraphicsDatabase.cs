@@ -23,7 +23,11 @@ namespace Netbattle.Database {
         
         public static void Load() {
             GraphicsMap = new GraphicsData();
-
+            
+            if (!File.Exists("graphics.bin")) {
+                throw new FileNotFoundException("graphics.bin not found.");
+            }
+            
             using (var fs = new FileStream("graphics.bin", FileMode.Open)) {
                 using (var bs = new BinaryReader(fs)) {
                     var gfxBytes = new byte[4];
@@ -88,6 +92,9 @@ namespace Netbattle.Database {
         }
 
         public static byte[] GetSprite(int index) {
+            if (index < 0 || index >= GraphicsMap.Titles.Length)
+                throw new IndexOutOfRangeException("Sprite index out of range.");
+            
             long spriteLocation = GraphicsMap.ByteStart[index];
             long spriteLength = GraphicsMap.ByteCount[index];
             var resultBytes = new byte[spriteLength];
@@ -104,6 +111,11 @@ namespace Netbattle.Database {
 
         public static byte[] GetSprite(string spriteName) {
             var index = Array.IndexOf(GraphicsMap.Titles, spriteName) - 1;
+            
+            if (index == -2) {
+                throw new Exception("Sprite not found.");
+            }
+            
             return GetSprite(index);
         }
 
@@ -115,7 +127,27 @@ namespace Netbattle.Database {
             if (poke.No == 351) {
                 return GetCastformSprite(poke, graphics, backView, weather);
             }
+            
+            // -- A lot of exceptions from the original code to handle fallback scenarios.
+            if (poke.No > 151 && graphics <= GraphicsMode.nbGFXYlo) {
+                graphics = GraphicsMode.nbGFXSil; // -- Fallback to Gold/Silver graphics for pokemon beyond 151
+            }
+            if (poke.No > 251 && graphics <= GraphicsMode.nbGFXSil) {
+                graphics = GraphicsMode.nbGFXRS; // -- Fallback to Ruby/Sapphire graphics for pokemon beyond 251
+            }
 
+            if (backView && graphics == GraphicsMode.nbGFXSil)
+                graphics = GraphicsMode.nbGFXGld;
+            
+            if (graphics == GraphicsMode.nbGFXLF && poke.No > 151)
+                graphics = GraphicsMode.nbGFXRS; // -- Fallback to Ruby/Sapphire graphics for pokemon beyond 151
+
+            if (graphics == GraphicsMode.nbGFXEme && (poke.No == 201 || poke.No == 327 || poke.No > 385 || backView))
+                graphics = GraphicsMode.nbGFXRS;
+            
+            if (graphics == GraphicsMode.nbGFXCol && (backView || !HasColGraphics || poke.No > 386))
+                graphics = GraphicsMode.nbGFXRS;
+            
             var imageName = poke.No.ToString().PadLeft(3, '0');
             bool canShiny = true;
 

@@ -101,6 +101,7 @@ namespace Netbattle.Forms {
             }
 
             _currentPokemon = pkmnObj;
+            _currentPokemon.Initialize(_workingSettings.CurrentCompatibilityMode);
             _workingSettings.Team[_currentSlot] = _currentPokemon;
             _changed = true;
 
@@ -339,8 +340,6 @@ namespace Netbattle.Forms {
                     myArr[i].ImageIndex = 15;
                 }
             }
-
-            UpdateSelections();
         }
 
         private void LoadPokemonGraphic() {
@@ -436,7 +435,8 @@ namespace Netbattle.Forms {
                 return;
             }
 
-            if (_currentPokemon.Move[0] != -1 && _currentPokemon.Move[1] != -1 && _currentPokemon.Move[2] != -1 &&
+            if (_currentPokemon.Move[0] != 0 && _currentPokemon.Move[1] != 0 && _currentPokemon.Move[2] != 0 &&
+                _currentPokemon.Move[3] != 0 && _currentPokemon.Move[0] != -1 && _currentPokemon.Move[1] != -1 && _currentPokemon.Move[2] != -1 &&
                 _currentPokemon.Move[3] != -1) {
                 MessageBox.Show("A pokemon cannot have more than 4 moves!", "Too many moves!", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
@@ -445,7 +445,7 @@ namespace Netbattle.Forms {
             }
 
             for (var i = 0; i < 4; i++) {
-                if (_currentPokemon.Move[i] == -1) {
+                if (_currentPokemon.Move[i] == -1 || _currentPokemon.Move[i] == 0) {
                     _currentPokemon.Move[i] = moveObj.ID;
                     break;
                 }
@@ -519,6 +519,20 @@ namespace Netbattle.Forms {
                             changeString += p.Nickname + " - Item removed\n";
                             p.Item = Items.nbNoItem;
                         }
+
+                        for (var m = 0; m < 4; m++) {
+                            if (p.Move[m] != -1) {
+                                var mvObj = MoveDatabase.Moves[p.Move[m]];
+                                if (!mvObj.RBYMove) {
+                                    changeString += p.Nickname + " - Removed " + mvObj.Name + " (Newer Move)\n";
+                                    p.Move[m] = -1;
+                                }
+
+                                if (!p.RBYMoves.Contains(mvObj) && !p.RBYTM.Contains(mvObj)) {
+                                    changeString += p.Nickname + "- Removed " + mvObj.Name + " (Not Learnable in RBY)\n";
+                                }
+                            }
+                        }
                         break;
                     case CompatModes.nbTrueGSC:
                         if (!p.ExistGSC) {
@@ -535,6 +549,25 @@ namespace Netbattle.Forms {
                         if (p.Item > (Items)41) {
                             changeString += p.Nickname + " - Advance-Only Item removed\n";
                             p.Item = Items.nbNoItem;
+                        }
+                        for (var m = 0; m < 4; m++) {
+                            if (p.Move[m] != -1) {
+                                var mvObj = MoveDatabase.Moves[p.Move[m]];
+                                if (!mvObj.GSCMove) {
+                                    changeString += p.Nickname + " - Removed " + mvObj.Name + " (Newer Move)\n";
+                                    p.Move[m] = -1;
+                                }
+
+                                if (!p.BaseMoves.Contains(mvObj) &&
+                                    !p.MachineMoves.Contains(mvObj) &&
+                                    !p.BreedingMoves.Contains(mvObj) &&
+                                    !p.SpecialMoves.Contains(mvObj) &&
+                                    !p.MoveTutor.Contains(mvObj)) {
+                                    changeString += p.Nickname + "- Removed " + mvObj.Name + " (Not Learnable in GSC)\n";
+                                    p.Move[m] = -1;
+                                }
+                                
+                            }
                         }
                         break;
                     case CompatModes.nbGSCTrade:
@@ -585,6 +618,9 @@ namespace Netbattle.Forms {
         }
 
         private void txtNickname_TextChanged(object sender, EventArgs e) {
+            if (_switching)
+                return;
+            
             if (_currentPokemon != null && txtNickname.Text != null && txtNickname.Text != _currentPokemon.Nickname)
                 _currentPokemon.Nickname = txtNickname.Text;
         }
@@ -670,8 +706,40 @@ namespace Netbattle.Forms {
         private void listView1_SelectedIndexChanged(object sender, EventArgs e) {
             if (listView1.SelectedIndices.Count == 0)
                 return;
+
+            if (_workingSettings == null)
+                return;
             
             _workingSettings.IconUsed = (byte)(listView1.SelectedIndices[0] + 1);
         }
+
+        private void btnSwitch_Click(object sender, EventArgs e) {
+            _currentPokemon.GameVersion = _workingSettings.CurrentCompatibilityMode;
+            var expertForm = new AdvExpert(_currentPokemon);
+            this.Enabled = false;
+            expertForm.FormClosing += ExpertFormOnFormClosing;
+            expertForm.FormClosed += ExpertFormOnFormClosed;
+            expertForm.ShowDialog();
+        }
+
+        private void ExpertFormOnFormClosed(object sender, FormClosedEventArgs e) {
+            AdvExpert expertForm = (AdvExpert)sender;
+
+            if (expertForm.OkClicked) {
+                _currentPokemon = expertForm.workingPoke;
+                UpdateStatLabels();
+                UpdateTeamEvs();
+                LoadPokemonGraphic();
+                PopulateMoves();
+                
+            }
+
+            this.Enabled = true;
+        }
+
+        private void ExpertFormOnFormClosing(object sender, FormClosingEventArgs e) {
+            this.Enabled = true;
+        }
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Netbattle.Database;
 using Newtonsoft.Json;
 
 namespace Netbattle.Common {
@@ -261,6 +262,112 @@ namespace Netbattle.Common {
             return legalMoveSet;
         }
 
+        public void Initialize(CompatModes compatMode) {
+            GameVersion = compatMode;
+            if (string.IsNullOrEmpty(Nickname)) Nickname = Name;
+            if (Level > 100 || Level == 0) Level = 100;
+            Item = Items.nbNoItem;
+
+            switch (compatMode) {
+                case CompatModes.nbTrueRuSa:
+                case CompatModes.nbFullAdvance:
+                case CompatModes.nbModAdv:
+                    if (!Item.IsAdvanceItem())
+                        Item = Items.nbNoItem;
+
+                    int evTotal = EV_Atk + EV_Def + EV_HP + EV_SAtk + EV_SDef + EV_Spd;
+                    if (evTotal > 510) {
+                        EV_Atk = 85;
+                        EV_Def = 85;
+                        EV_HP = 85;
+                        EV_SAtk = 85;
+                        EV_SDef = 85;
+                        EV_Spd = 85;
+                    }
+
+                    ModAttr[0] = PokemonDatabase.BasePokemonMap[No].ModAttr[0];
+                    ModAttr[1] = PokemonDatabase.BasePokemonMap[No].ModAttr[1];
+
+                    if (compatMode == CompatModes.nbModAdv) {
+                        if (AttNum == 1 && ModAttr[1] == Traits.nbNoTrait) AttNum = 0;
+                        Attribute = ModAttr[AttNum];
+                    }
+                    else {
+                        if (AttNum == 1 && PAtt[1] == Traits.nbNoTrait) AttNum = 0;
+                        Attribute = PAtt[AttNum];
+                    }
+
+                    if (NatureNum > 24) NatureNum = 0;
+                    MaxHP = BattleSystem.GetAdvHp(BaseHP, DV_HP, EV_HP, Level);
+                    Attack = BattleSystem.GetAdvStat(BaseAttack, DV_Atk, EV_Atk, Level,
+                        BattleSystem.NatureStats[NatureNum].StatChg[1]);
+                    Defense = BattleSystem.GetAdvStat(BaseDefense, DV_Def, EV_Def, Level,
+                        BattleSystem.NatureStats[NatureNum].StatChg[2]);
+                    Speed = BattleSystem.GetAdvStat(BaseSpeed, DV_Spd, EV_Spd, Level,
+                        BattleSystem.NatureStats[NatureNum].StatChg[3]);
+                    SpecialAttack = BattleSystem.GetAdvStat(BaseSAttack, DV_SAtk, EV_SAtk, Level,
+                        BattleSystem.NatureStats[NatureNum].StatChg[4]);
+                    SpecialDefense = BattleSystem.GetAdvStat(BaseSDefense, DV_SDef, EV_SDef, Level,
+                        BattleSystem.NatureStats[NatureNum].StatChg[5]);
+                    if (PercentFemale == -1) Gender = 0;
+                    if (PercentFemale == 0) Gender = 1;
+                    if (PercentFemale == 16) Gender = 2;
+                    if (UnownLetter > 27) UnownLetter = 0;
+
+                    break;
+                default:
+                    if (DV_Atk > 15) DV_Atk = 15;
+                    if (DV_Def > 15) DV_Def = 15;
+                    if (DV_Spd > 15) DV_Spd = 15;
+                    if (DV_SAtk > 15) DV_SAtk = 15;
+                    DV_SDef = 0;
+                    Attack = BattleSystem.GetStat(Level, BaseAttack, DV_Atk);
+                    Defense = BattleSystem.GetStat(Level, BaseDefense, DV_Def);
+                    Speed = BattleSystem.GetStat(Level, BaseSpeed, DV_Spd);
+
+                    if (GameVersion == 0 || GameVersion == (CompatModes)5) {
+                        SpecialAttack = BattleSystem.GetStat(Level, BaseSpecial, DV_SAtk);
+                        SpecialDefense = BattleSystem.GetStat(Level, BaseSpecial, DV_SAtk); // -- Bug? or feature?
+                        Item = Items.nbNoItem;
+                        Shiny = false;
+                    }
+                    else {
+                        SpecialAttack = BattleSystem.GetStat(Level, BaseSAttack, DV_SAtk);
+                        SpecialDefense = BattleSystem.GetStat(Level, BaseSDefense, DV_SAtk); // -- Bug? or feature?
+                        Shiny = BattleSystem.ShinyDV(DV_HP) && DV_Def == 10 && DV_Spd == 10 && DV_SAtk == 10;
+                    }
+
+                    DV_HP = 0;
+                    if (DV_Atk % 2 == 1) DV_HP += 8;
+                    if (DV_Def % 2 == 1) DV_HP += 4;
+                    if (DV_Spd % 2 == 1) DV_HP += 2;
+                    if (DV_SAtk % 2 == 1) DV_HP += 1;
+                    MaxHP = BattleSystem.GetHp(Level, BaseHP, DV_HP);
+                    HP = MaxHP;
+                    if (PercentFemale == -1) {
+                        Gender = 0;
+                    }
+                    else {
+                        if (DV_Atk <= PercentFemale - 1) {
+                            Gender = 2;
+                        }
+                        else {
+                            Gender = 1;
+                        }
+                    }
+
+                    Attribute = Traits.nbNoTrait;
+                    if (Item > (Items)41) Item = Items.nbNoItem;
+                    if (No == 201) {
+                        UnownLetter = (byte) ((DV_Atk % 8 / 2 * 64 + DV_Def % 8 / 2 * 16 + (DV_Spd % 8) / 2 * 4 + (DV_SAtk % 8) / 2) / 10 % 26);
+                    }
+                    else {
+                        UnownLetter = 0;
+                    }
+                    break;
+            }
+        }
+        
         public static Pokemon FromBinary(string pokeData, string nickname) {
             
             var No = NbMethods.Bin2Dec(pokeData.Substring(0, 9));

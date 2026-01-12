@@ -22,8 +22,7 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
-        {
+        private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("#01", 0);
             System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("#02", 1);
@@ -521,7 +520,7 @@
             // lblSpecialDefense
             // 
             this.lblSpecialDefense.AutoSize = true;
-            this.lblSpecialDefense.Location = new System.Drawing.Point(6, 95);
+            this.lblSpecialDefense.Location = new System.Drawing.Point(0, 81);
             this.lblSpecialDefense.Name = "lblSpecialDefense";
             this.lblSpecialDefense.Size = new System.Drawing.Size(66, 13);
             this.lblSpecialDefense.TabIndex = 11;
@@ -530,7 +529,7 @@
             // lblSpecialAttack
             // 
             this.lblSpecialAttack.AutoSize = true;
-            this.lblSpecialAttack.Location = new System.Drawing.Point(6, 79);
+            this.lblSpecialAttack.Location = new System.Drawing.Point(9, 68);
             this.lblSpecialAttack.Name = "lblSpecialAttack";
             this.lblSpecialAttack.Size = new System.Drawing.Size(57, 13);
             this.lblSpecialAttack.TabIndex = 10;
@@ -539,7 +538,7 @@
             // lblSpeed
             // 
             this.lblSpeed.AutoSize = true;
-            this.lblSpeed.Location = new System.Drawing.Point(6, 65);
+            this.lblSpeed.Location = new System.Drawing.Point(28, 55);
             this.lblSpeed.Name = "lblSpeed";
             this.lblSpeed.Size = new System.Drawing.Size(38, 13);
             this.lblSpeed.TabIndex = 9;
@@ -548,7 +547,7 @@
             // lblDefense
             // 
             this.lblDefense.AutoSize = true;
-            this.lblDefense.Location = new System.Drawing.Point(6, 52);
+            this.lblDefense.Location = new System.Drawing.Point(19, 42);
             this.lblDefense.Name = "lblDefense";
             this.lblDefense.Size = new System.Drawing.Size(47, 13);
             this.lblDefense.TabIndex = 8;
@@ -557,7 +556,7 @@
             // lblAttack
             // 
             this.lblAttack.AutoSize = true;
-            this.lblAttack.Location = new System.Drawing.Point(6, 34);
+            this.lblAttack.Location = new System.Drawing.Point(28, 29);
             this.lblAttack.Name = "lblAttack";
             this.lblAttack.Size = new System.Drawing.Size(38, 13);
             this.lblAttack.TabIndex = 7;
@@ -566,7 +565,7 @@
             // lblHp
             // 
             this.lblHp.AutoSize = true;
-            this.lblHp.Location = new System.Drawing.Point(6, 16);
+            this.lblHp.Location = new System.Drawing.Point(44, 16);
             this.lblHp.Name = "lblHp";
             this.lblHp.Size = new System.Drawing.Size(22, 13);
             this.lblHp.TabIndex = 6;
@@ -575,7 +574,7 @@
             // lblTypes
             // 
             this.lblTypes.AutoSize = true;
-            this.lblTypes.Location = new System.Drawing.Point(6, 108);
+            this.lblTypes.Location = new System.Drawing.Point(32, 94);
             this.lblTypes.Name = "lblTypes";
             this.lblTypes.Size = new System.Drawing.Size(34, 13);
             this.lblTypes.TabIndex = 12;
@@ -679,6 +678,7 @@
             this.btnSwitch.TabIndex = 2;
             this.btnSwitch.Text = "Expert";
             this.btnSwitch.UseVisualStyleBackColor = true;
+            this.btnSwitch.Click += new System.EventHandler(this.btnSwitch_Click);
             // 
             // lblPokemon
             // 

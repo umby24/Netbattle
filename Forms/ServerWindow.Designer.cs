@@ -22,8 +22,7 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
-        {
+        private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ServerWindow));
             this.txtChat = new System.Windows.Forms.RichTextBox();
@@ -40,6 +39,12 @@
             this.txtInput = new System.Windows.Forms.TextBox();
             this.btnSend = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.teamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rearrangeTeamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.accessBoxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changeItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openTeamBuilderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadAnotherTeamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.awayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.playerMenu.SuspendLayout();
@@ -158,12 +163,49 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { this.optionsToolStripMenuItem });
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { this.teamToolStripMenuItem, this.optionsToolStripMenuItem });
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(859, 24);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // teamToolStripMenuItem
+            // 
+            this.teamToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { this.rearrangeTeamToolStripMenuItem, this.accessBoxToolStripMenuItem, this.changeItemsToolStripMenuItem, this.openTeamBuilderToolStripMenuItem, this.loadAnotherTeamToolStripMenuItem });
+            this.teamToolStripMenuItem.Name = "teamToolStripMenuItem";
+            this.teamToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
+            this.teamToolStripMenuItem.Text = "&Team";
+            // 
+            // rearrangeTeamToolStripMenuItem
+            // 
+            this.rearrangeTeamToolStripMenuItem.Name = "rearrangeTeamToolStripMenuItem";
+            this.rearrangeTeamToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.rearrangeTeamToolStripMenuItem.Text = "Rearrange Team";
+            // 
+            // accessBoxToolStripMenuItem
+            // 
+            this.accessBoxToolStripMenuItem.Name = "accessBoxToolStripMenuItem";
+            this.accessBoxToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.accessBoxToolStripMenuItem.Text = "Access Box";
+            // 
+            // changeItemsToolStripMenuItem
+            // 
+            this.changeItemsToolStripMenuItem.Name = "changeItemsToolStripMenuItem";
+            this.changeItemsToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.changeItemsToolStripMenuItem.Text = "Change Items";
+            // 
+            // openTeamBuilderToolStripMenuItem
+            // 
+            this.openTeamBuilderToolStripMenuItem.Name = "openTeamBuilderToolStripMenuItem";
+            this.openTeamBuilderToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.openTeamBuilderToolStripMenuItem.Text = "&Open Team Builder";
+            // 
+            // loadAnotherTeamToolStripMenuItem
+            // 
+            this.loadAnotherTeamToolStripMenuItem.Name = "loadAnotherTeamToolStripMenuItem";
+            this.loadAnotherTeamToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.loadAnotherTeamToolStripMenuItem.Text = "Load Another Team";
             // 
             // optionsToolStripMenuItem
             // 
@@ -202,6 +244,17 @@
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.ToolStripMenuItem loadAnotherTeamToolStripMenuItem;
+
+        private System.Windows.Forms.ToolStripMenuItem changeItemsToolStripMenuItem;
+
+        private System.Windows.Forms.ToolStripMenuItem accessBoxToolStripMenuItem;
+
+        private System.Windows.Forms.ToolStripMenuItem rearrangeTeamToolStripMenuItem;
+
+        private System.Windows.Forms.ToolStripMenuItem teamToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openTeamBuilderToolStripMenuItem;
 
         #endregion
 

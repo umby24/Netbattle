@@ -298,5 +298,9 @@ namespace Netbattle.Common {
             
             return total;
         }
+        
+        public static int GetNatureMod(byte workingPokeNatureNum, int stat) {
+            return BattleSystem.NatureStats[workingPokeNatureNum].StatChg[stat];
+        }
     }
 }

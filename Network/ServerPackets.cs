@@ -761,8 +761,18 @@ namespace Netbattle.Network {
 
     public struct ChallengeReceived : IPacket {
         public string Command => "CHLN";
+        public string ChallengerSlot;
+        public BattleModes ChallengeMode;
+        public TerrainTypes ChallengeTerrain;
+        public byte[] rules;
+        public int ping;
+        
         public void Read(ByteBuffer reader) {
-            throw new NotImplementedException();
+            ChallengerSlot = reader.ReadString(3);
+            ChallengeMode = (BattleModes)reader.ReadByte();
+            ChallengeTerrain = (TerrainTypes)reader.ReadByte();
+            rules = reader.ReadByteArray(8);
+            ping = Convert.ToInt32(reader.ReadString(reader.Length), 16);
         }
 
         public void Write(ByteBuffer writer) {
@@ -770,22 +780,33 @@ namespace Netbattle.Network {
         }
 
         public void Handle(NbClient client) {
-            throw new NotImplementedException();
+            if (client.You.Away || client.You.BattlingWith == 1025 || client.Battling) {
+                var bsy = new PlayerBusy() { Slot = ChallengerSlot  };
+                client.SendPacket(bsy);
+                return;
+            }
+            
+            client.InvokeChallengeReceived(ChallengerSlot, ChallengeMode, ChallengeTerrain, rules, ping);
         }
     }
 
     public struct PlayerBusy : IPacket {
         public string Command => "PBSY";
+        public string Slot { get; set; }
+        
         public void Read(ByteBuffer reader) {
-            throw new NotImplementedException();
+            Slot = reader.ReadString(reader.Length);
         }
 
         public void Write(ByteBuffer writer) {
-            throw new NotImplementedException();
+            writer.WriteString(Command + ":");
+            writer.WriteString(Slot);
+            writer.Purge();
         }
 
         public void Handle(NbClient client) {
-            throw new NotImplementedException();
+            client.InvokeChatMessage("Player " + Slot + " is busy and cannot battle right now.\nThey may be in battle, switching teams, or away.");
+            client.You.BattlingWith = -1;
         }
     }
 

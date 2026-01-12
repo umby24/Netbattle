@@ -22,6 +22,7 @@ namespace Netbattle.Forms {
             PokemonDatabase.Load();
             Configuration.Load();
             UserSettings.Load();
+            BattleSystem.GenerateStatTable();
         }
         
 

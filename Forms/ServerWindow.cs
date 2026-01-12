@@ -288,5 +288,9 @@ namespace Netbattle.Forms {
         {
             ToggleAway();
         }
+        
+        private void openTeamBuilderToolStripMenuItem_Click_1(object sender, EventArgs e) {
+            throw new System.NotImplementedException();
+        }
     }
 }

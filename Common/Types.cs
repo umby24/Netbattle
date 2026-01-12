@@ -61,11 +61,22 @@ namespace Netbattle.Common {
         public string ServerName;
     }
 
+    public delegate void ChallengeEventArgs(Player challenger, TerrainTypes terrain, BattleModes challengeMode,
+        byte[] ruleSet);
+    
     public delegate void ServerInfoEventArgs(ServerInfo info);
 
     public delegate void PrivateMessageEventArgs(Player player, string message);
     public delegate void MessageEventArgs(string message);
-
+    public enum StatTypes {
+        nbHP = 0,
+        nbAttack,
+        nbDefense,
+        nbSpeed,
+        nbSpAttack,
+        nbSpDefense
+    }
+    
     public enum Traits {
         nbNoTrait,
         nbStench,
@@ -223,6 +234,12 @@ namespace Netbattle.Common {
         nbSoulDew,
         nbWhiteHerb
     }
+
+    public enum Gender {
+        Genderless = 0,
+        Male = 1,
+        Female = 2
+    }
     
     public static class ItemsExtensions {
         public static bool IsAdvanceItem(this Items item) {
@@ -316,13 +333,17 @@ namespace Netbattle.Common {
         nbGFXCol, // -- Colosseum
         nbGFXSml, // -- small (Advance mini pics)
     }
-
-    public struct NatureType
+    
+    public class NatureType
     {
+        public NatureType() {
+            StatChg = new int[6];
+        }
+        
         public NatureType(string nm)
         {
             Name = nm;
-            StatChg = new int[5];
+            StatChg = new int[6];
         }
 
         public string Name { get; set; }
@@ -374,6 +395,26 @@ namespace Netbattle.Common {
         nbSteel
     }
 
+    public enum TerrainTypes {
+        nbShortGrass,
+        nbTallGrass,
+        nbVeryTallGrass,
+        nbOcean,
+        nbPond,
+        nbsAnd,
+        nbCave,
+        nbMountain,
+        nbUnderwater,
+        nbStadium
+    }
+    
+    public enum BattleModes
+    {
+        nbRBYBattle,
+        nbGSCBattle,
+        nbAdvBattle
+    }
+    
     public static class ElementsExtensions {
         public static string ToFriendlyString(this Elements elements) {
             switch (elements) {
@@ -470,6 +511,7 @@ namespace Netbattle.Common {
         public bool ShowTeam { get; set; }
         public bool StadiumOk { get; set; }
         public bool Away { get; set; }
+        public bool Battling { get; set; }
         public List<Pokemon> Team { get; set; }
         public int Wins { get; set; }
         public int Losses { get; set; }

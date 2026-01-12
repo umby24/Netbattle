@@ -13,7 +13,9 @@ namespace Netbattle.Network {
         public string ServerIp { get; set; }
         public bool EncryptionEnabled { get; set; }
         public bool Connected { get; set; }
-
+        
+        public bool Battling { get; set; }
+        
         public Dictionary<int, Player> OnlinePlayers { get; set; }
         #region Private Variables
         private ClientSocket _serverSocket;
@@ -44,7 +46,7 @@ namespace Netbattle.Network {
             _plistBuffer = new ByteBuffer();
             OnlinePlayers = new Dictionary<int, Player>();
             _outBuffer.DataAdded += OutBufferOnDataAdded;
-
+            Battling = false;
             PopulatePackets();
         }
 
@@ -221,6 +223,7 @@ namespace Netbattle.Network {
         public event PlayerEventArgs PlayerInfoUpdated;
 
         public event PlayersEventArgs PlayerlistUpdated;
+        public event ChallengeEventArgs ChallengeReceived;
 
         public void InvokeIpBanned() {
             IpBanned?.Invoke();
@@ -274,6 +277,9 @@ namespace Netbattle.Network {
         }
 
         public void InvokePlayerLeft(int id) {
+            if (!OnlinePlayers.ContainsKey(id)) {
+                return;
+            }
             Player p = OnlinePlayers[id];
             PlayerLeft?.Invoke(p);
             OnlinePlayers.Remove(id);
@@ -372,5 +378,20 @@ namespace Netbattle.Network {
             }
         }
         #endregion
+
+        public void InvokeChallengeReceived(string challengerSlot, BattleModes challengeMode, TerrainTypes challengeTerrain, byte[] rules, int ping) {
+            if (!int.TryParse(challengerSlot, out int slot)) {
+                Logger.Log(LogType.Error, $"[Weird Server Behavior] Invalid challengerSlot {challengerSlot}");
+                return;
+            }
+            if (!OnlinePlayers.ContainsKey(slot)) {
+                Logger.Log(LogType.Error, $"[Weird Server Behavior] Challenge received from unknown slot {slot}");
+                return;
+            }
+            Player challenger = OnlinePlayers[slot];
+            challenger.Ping = ping;
+            
+            ChallengeReceived?.Invoke(challenger, challengeTerrain, challengeMode, rules);
+        }
     }
 }
