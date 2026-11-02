@@ -19,6 +19,7 @@ namespace Netbattle.Forms {
             MoveDatabase.Load();
             TypeDatabase.Load();
             GraphicsDatabase.Load();
+            GraphicsDatabase.LoadNbs();
             PokemonDatabase.Load();
             Configuration.Load();
             UserSettings.Load();

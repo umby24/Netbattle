@@ -34,7 +34,55 @@ namespace Netbattle.Forms {
             _client.IpBanned += ClientOnIpBanned;
             _client.PlayerAway += ClientOnPlayerAway;
             _client.PlayerBack += ClientOnPlayerBack;
+            _client.ChallengeReceived += ClientOnChallengeReceived;
+            _client.PasswordRequested += ClientOnPasswordRequested;
+            _client.RegistryMessageReceived += ClientOnRegistryMessageReceived;
+            _client.TempBanned += ClientOnTempBanned;
+            _client.ServerLocked += ClientOnServerLocked;
+            _client.PlayerInfoUpdated += ClientOnPlayerInfoUpdated;
             _client.Connect();
+        }
+
+        private void ClientOnPlayerInfoUpdated(Player player) {
+            if (InvokeRequired) {
+                Invoke(new PlayerEventArgs(ClientOnPlayerInfoUpdated), player);
+                return;
+            }
+            
+            RefreshPlayerList();
+        }
+
+        private void ClientOnServerLocked() {
+            throw new NotImplementedException();
+        }
+
+        private void ClientOnTempBanned(string message) {
+            throw new NotImplementedException();
+        }
+
+        private void ClientOnRegistryMessageReceived(string message) {
+            if (InvokeRequired) {
+                Invoke(new MessageEventArgs(ClientOnRegistryMessageReceived), message);
+                return;
+            }
+            
+            AddMessage("NETWORK-WIDE MESSAGE: ", ColorTranslator.FromOle(0x80ff), false, true);
+            AddMessage(message);
+        }
+
+        private void ClientOnPasswordRequested() {
+            var passwordForm = new ServerPassword();
+            if (passwordForm.ShowDialog() == DialogResult.OK) {
+                _client.SendServerPassword(passwordForm.Password);
+            }
+            else {
+                _client.Disconnect();
+                Close();
+            }
+        }
+
+        private void ClientOnChallengeReceived(Player challenger, TerrainTypes terrain, BattleModes challengeMode, byte[] ruleSet) {
+            throw new NotImplementedException();
         }
 
         private void ClientOnPlayerBack(Player player) {
@@ -124,21 +172,14 @@ namespace Netbattle.Forms {
 
             AddMessage($"{player.Name} joined.");
         }
-
+        
         private void ClientOnPlayerlistUpdated(List<Player> players) {
             if (InvokeRequired) {
                 Invoke(new PlayersEventArgs(ClientOnPlayerlistUpdated), players);
                 return;
             }
 
-            lstPlayers.Items.Clear();
-
-            foreach (Player player in players) {
-                string[] row = {player.Away ? "[" + player.Name + "]" : player.Name};
-                var lvi = new ListViewItem(row);
-                lvi.ImageIndex = player.Picture - 1;
-                lstPlayers.Items.Add(lvi);
-            }
+            RefreshPlayerList();
         }
 
         private void ClientOnWelcomeMessageReceived(string message) {
@@ -148,7 +189,7 @@ namespace Netbattle.Forms {
 
         private void ClientOnChatMessageReceived(string message) {
             if (message.Contains(":") && !message.StartsWith("*** ")) {
-                Color nameColor = Color.Teal;
+                Color nameColor = ColorTranslator.FromOle(0x99AA00);
                 var name = message.Substring(0, message.IndexOf(":"));
 
                 if (name == _client.You.Name)
@@ -162,7 +203,7 @@ namespace Netbattle.Forms {
                 message = message.Substring(name.Length, message.Length - name.Length);
                 AddMessage(message);
             } else if (message.StartsWith("*** ")) {
-                AddMessage(message, Color.DarkOrchid);
+                AddMessage(message, ColorTranslator.FromOle(0xC000C0));
             }
             else {
 
@@ -183,7 +224,15 @@ namespace Netbattle.Forms {
             lstPlayers.Items.Clear();
 
             foreach (Player player in _client.OnlinePlayers.Values) {
-                string[] row = { player.Away ? "[" + player.Name + "]" : player.Name };
+                var displayName = player.Away ? "[" + player.Name + "]" : player.Name;
+                
+                if (player.Authority == 2)
+                    displayName += " *";
+                
+                if (player.Authority == 3)
+                    displayName += " **";
+                
+                string[] row = { displayName };
 
                 var lvi = new ListViewItem(row) {
                     ImageIndex = player.Picture - 1, ForeColor = player.Away ? Color.Gray : Color.Black

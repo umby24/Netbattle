@@ -1,0 +1,340 @@
+﻿using System.Text;
+using Netbattle.Core.Common;
+
+namespace Netbattle.Core.Database {
+    /*
+     * Graphics.bin file format:
+     * [short] Length of the database file (compressed)
+     * [short] Length of data uncompressed
+     *  [GZip compressed block] GZip compressed data block containing:
+     *  [string] '|' delimited list of sprite names
+     *  [byte[]] Array of 12-bit values concatinated, each one being [short] length of each sprite in bytes
+     *  [GZip compressed block] GZip compressed data block containing all sprite data concatenated
+     */
+    
+    /// <summary>
+    /// Database for the loading and managing of all pokemon sprites
+    /// </summary>
+    public class GraphicsDatabase {
+        public static GraphicsData GraphicsMap;
+        public static GraphicsData NbsGraphicsMap;
+        public static GraphicsData ColGraphicsMap;
+        
+        public static bool HasColGraphics = false;
+
+        public static void LoadNbs() {
+            NbsGraphicsMap = new GraphicsData();
+            if (!System.IO.File.Exists("nbsgraphics.bin")) {
+                return;
+            }
+
+            using var fs = new FileStream("nbsgraphics.bin", FileMode.Open);
+            using var bs = new BinaryReader(fs);
+            var gfxBytes = new byte[5];
+            var read = bs.Read(gfxBytes, 0, 5);
+
+            // -- shorts? (There are two, we only need 1.. reading it from the stream using .ReadInt16() messes it up massively.
+            int compressedLength = 46245;//gfxBytes[0] * 512 + gfxBytes[1] * 256 + gfxBytes[2]; // -- 'X' in the original code
+            int uncomp = gfxBytes[3] * 256 + gfxBytes[4]; // -- 'Y' in the original code
+            bs.ReadInt16(); // -- Strip uncompressed length, we don't need it.
+            bs.ReadByte(); // -- In NBS, this is 3 bytes. Not sure how it's encoded, but we dont need it anyway so fuck it.
+                    
+            // -- Decompress the contained data.
+            var temp = new byte[compressedLength - 2];
+            bs.Read(temp, 0, compressedLength - 2);
+            temp = GZip.Decompress2(temp);
+            if (temp == null)
+            {
+                return;
+            }
+            // -- Split into individual values.
+            var gfxHeader = Encoding.UTF8.GetString(temp).Split('|');
+            GraphicsMap.Titles = gfxHeader;
+            compressedLength = gfxHeader.Length;
+            int uncompressedLength = (compressedLength * 12) / 8; // -- The number of sets of 12 we have.
+
+            // -- Read in the image lengths.
+            temp = new byte[uncompressedLength];
+            bs.Read(temp, 0, uncompressedLength - 1);
+
+            string imageLengths = NbMethods.BytesToBinary(temp);// -- expand each character into a bit string..
+            GraphicsMap.ByteCount = new long[compressedLength + 1];
+            GraphicsMap.ByteStart = new long[compressedLength + 1];
+            GraphicsMap.InFile = new byte[compressedLength + 1];
+            var z = 0;
+
+            // -- this grabs the bits, 12 at a time, converts those to an Int, and that's the number of bytes this GIF is.
+            for (var y = 0; y < compressedLength; y++) {
+                // -- Get the value off the top of the string
+                string build = "0000" + imageLengths.Substring(0, 12);
+                // -- update the string for the next usage.
+                imageLengths = imageLengths.Substring(12);
+                // -- Convert to bytes
+                byte[] bytesAgain = NbMethods.BinaryToBytes(build);
+                // -- Convert to short/int.
+                var size = 0;
+                size |= bytesAgain[0] << 8;
+                size |= bytesAgain[1];
+                // -- Add value to db.
+                GraphicsMap.ByteStart[y] = z;
+                GraphicsMap.ByteCount[y] = size;
+                z += size;
+                GraphicsMap.InFile[y] = 1;
+            }
+
+            // -- The whole rest of the file is the actual GZIP compressed data now.
+            long bytesToRead = bs.BaseStream.Length - bs.BaseStream.Position;
+            var finalData = new byte[bytesToRead - 2];
+            bs.ReadInt16();
+            bs.Read(finalData, 0, (int)(bytesToRead - 2));
+            System.IO.File.WriteAllBytes("temp.bin", finalData);
+
+            byte[] decompressedFinal = GZip.Decompress2(finalData);
+            System.IO.File.WriteAllBytes("gfxtmp.bin", decompressedFinal); // -- TODO: Just keep this in memory? OG NB just dumps it to a temp file and reads from it when needed.
+        }
+        
+        public static void Load() {
+            GraphicsMap = new GraphicsData();
+            
+            if (!System.IO.File.Exists("graphics.bin")) {
+                throw new FileNotFoundException("graphics.bin not found.");
+            }
+            
+            using (var fs = new FileStream("graphics.bin", FileMode.Open)) {
+                using (var bs = new BinaryReader(fs)) {
+                    var gfxBytes = new byte[4];
+                    bs.Read(gfxBytes, 0, 4);
+
+                    // -- shorts? (There are two, we only need 1.. reading it from the stream using .ReadInt16() messes it up massively.
+                    int compressedLength = gfxBytes[0] * 256 + gfxBytes[1]; // -- 'X' in the original code
+                    int uncomp = gfxBytes[2] * 256 + gfxBytes[3]; // -- 'Y' in the original code
+                    bs.ReadInt16(); // -- Strip uncompressed length, we don't need it.
+
+                    // -- Decompress the contained data.
+                    var temp = new byte[compressedLength - 2];
+                    bs.Read(temp, 0, compressedLength - 2);
+                    temp = GZip.Decompress2(temp);
+                    
+                    // -- Split into individual values.
+                    var gfxHeader = Encoding.UTF8.GetString(temp).Split('|');
+                    GraphicsMap.Titles = gfxHeader;
+                    compressedLength = gfxHeader.Length;
+                    int uncompressedLength = (compressedLength * 12) / 8; // -- The number of sets of 12 we have.
+
+                    // -- Read in the image lengths.
+                    temp = new byte[uncompressedLength];
+                    bs.Read(temp, 0, uncompressedLength - 1);
+
+                    string imageLengths = NbMethods.BytesToBinary(temp);// -- expand each character into a bit string..
+                    GraphicsMap.ByteCount = new long[compressedLength + 1];
+                    GraphicsMap.ByteStart = new long[compressedLength + 1];
+                    GraphicsMap.InFile = new byte[compressedLength + 1];
+                    var z = 0;
+
+                    // -- this grabs the bits, 12 at a time, converts those to an Int, and that's the number of bytes this GIF is.
+                    for (var y = 0; y < compressedLength; y++) {
+                        // -- Get the value off the top of the string
+                        string build = "0000" + imageLengths.Substring(0, 12);
+                        // -- update the string for the next usage.
+                        imageLengths = imageLengths.Substring(12);
+                        // -- Convert to bytes
+                        byte[] bytesAgain = NbMethods.BinaryToBytes(build);
+                        // -- Convert to short/int.
+                        var size = 0;
+                        size |= bytesAgain[0] << 8;
+                        size |= bytesAgain[1];
+                        // -- Add value to db.
+                        GraphicsMap.ByteStart[y] = z;
+                        GraphicsMap.ByteCount[y] = size;
+                        z += size;
+                        GraphicsMap.InFile[y] = 1;
+                    }
+
+                    // -- The whole rest of the file is the actual GZIP compressed data now.
+                    long bytesToRead = bs.BaseStream.Length - bs.BaseStream.Position;
+                    var finalData = new byte[bytesToRead - 2];
+                    bs.ReadInt16();
+                    bs.Read(finalData, 0, (int)bytesToRead - 2);
+                    System.IO.File.WriteAllBytes("temp.bin", finalData);
+
+                    byte[] decompressedFinal = GZip.Decompress2(finalData);
+                    System.IO.File.WriteAllBytes("gfxtmp.bin", decompressedFinal); // -- TODO: Just keep this in memory? OG NB just dumps it to a temp file and reads from it when needed.
+                }
+            }
+        }
+
+        public static byte[] GetSprite(int index) {
+            if (index < 0 || index >= GraphicsMap.Titles.Length)
+                throw new IndexOutOfRangeException("Sprite index out of range.");
+            
+            long spriteLocation = GraphicsMap.ByteStart[index];
+            long spriteLength = GraphicsMap.ByteCount[index];
+            var resultBytes = new byte[spriteLength];
+
+            using (var fs = new FileStream("gfxtmp.bin", FileMode.Open)) {
+                using (var bs = new BinaryReader(fs)) {
+                    fs.Seek(spriteLocation, SeekOrigin.Begin);
+                    bs.Read(resultBytes, 0, (int)spriteLength);
+                }
+            }
+
+            return resultBytes;
+        }
+
+        public static byte[] GetSprite(string spriteName) {
+            var index = Array.IndexOf(GraphicsMap.Titles, spriteName) - 1;
+            
+            if (index == -2) {
+                throw new Exception("Sprite not found.");
+            }
+            
+            return GetSprite(index);
+        }
+
+        public static byte[] GetSprite(TeamMember poke, GraphicsMode graphics, bool backView, byte weather = 0) {
+            if (poke.Pokemon.No == 201) {
+                return GetUnknownSprite(poke, graphics, backView);
+            }
+
+            if (poke.Pokemon.No == 351) {
+                return GetCastformSprite(poke, graphics, backView, weather);
+            }
+            
+            // -- A lot of exceptions from the original code to handle fallback scenarios.
+            if (poke.Pokemon.No > 151 && graphics <= GraphicsMode.nbGFXYlo) {
+                graphics = GraphicsMode.nbGFXSil; // -- Fallback to Gold/Silver graphics for pokemon beyond 151
+            }
+            if (poke.Pokemon.No > 251 && graphics <= GraphicsMode.nbGFXSil) {
+                graphics = GraphicsMode.nbGFXRS; // -- Fallback to Ruby/Sapphire graphics for pokemon beyond 251
+            }
+
+            if (backView && graphics == GraphicsMode.nbGFXSil)
+                graphics = GraphicsMode.nbGFXGld;
+            
+            if (graphics == GraphicsMode.nbGFXLF && poke.Pokemon.No > 151)
+                graphics = GraphicsMode.nbGFXRS; // -- Fallback to Ruby/Sapphire graphics for pokemon beyond 151
+
+            if (graphics == GraphicsMode.nbGFXEme && (poke.Pokemon.No == 201 || poke.Pokemon.No == 327 || poke.Pokemon.No > 385 || backView))
+                graphics = GraphicsMode.nbGFXRS;
+            
+            if (graphics == GraphicsMode.nbGFXCol && (backView || !HasColGraphics || poke.Pokemon.No > 386))
+                graphics = GraphicsMode.nbGFXRS;
+            
+            var imageName = poke.Pokemon.No.ToString().PadLeft(3, '0');
+            bool canShiny = true;
+
+            switch (graphics) {
+                case GraphicsMode.nbGFXRB:
+                    imageName += "rb";
+                    canShiny = false;
+                    break;
+                case GraphicsMode.nbGFXGrn:
+                    imageName += "rg";
+                    canShiny = false;
+                    break;
+                case GraphicsMode.nbGFXYlo:
+                    imageName += "y";
+                    canShiny = false;
+                    break;
+                case GraphicsMode.nbGFXGld:
+                    imageName += "g";
+                    break;
+                case GraphicsMode.nbGFXSil:
+                    imageName += "s";
+                    break;
+                case GraphicsMode.nbGFXRS:
+                    imageName += "rs";
+                    break;
+                case GraphicsMode.nbGFXLF:
+                    imageName += "fl";
+                    break;
+                case GraphicsMode.nbGFXCol:
+                    imageName += "c";
+                    break;
+                case GraphicsMode.nbGFXEme:
+                    imageName += "e";
+                    break;
+                case GraphicsMode.nbGFXSml:
+                    imageName += "_1";
+                    canShiny = false;
+                    break;
+            }
+
+            if (backView && graphics != GraphicsMode.nbGFXSml)
+                imageName += "b";
+
+            if (canShiny && poke.Shiny)
+                imageName += "s";
+
+            return GetSprite(imageName);
+        }
+
+        private static byte[] GetCastformSprite(TeamMember poke, GraphicsMode graphics, bool backview, byte Weather) {
+            var spriteName = "";
+
+            switch (graphics) {
+                case GraphicsMode.nbGFXSml:
+                    spriteName = "351_1";
+                    break;
+                case GraphicsMode.nbGFXCol:
+                    if (Weather == 0 || Weather == 3) {
+                        spriteName = "351c";
+                        if (poke.Shiny)
+                            spriteName += "s";
+                        break;
+                    }
+
+                    goto default;
+                default:
+                    spriteName = "351rs";
+                    if (backview)
+                        spriteName += "b";
+                    if ((Weather == 0 || Weather == 3) && poke.Shiny) {
+                        spriteName += "s";
+                    } else if (Weather != 0 && Weather != 3) {
+                        spriteName += Weather.ToString();
+                    }
+
+                    break;
+            }
+
+            return GetSprite(spriteName);
+        }
+
+        private static byte[] GetUnknownSprite(TeamMember poke, GraphicsMode graphics, bool backView) {
+            var spriteName = "";
+
+            switch (graphics) {
+                case GraphicsMode.nbGFXSml:
+                    var temp = (char) (poke.UnownLetter + 97);
+                    var build = "";
+                    if (temp == '{')
+                        build = "ep";
+                    if (temp == '|')
+                        build = "qw";
+                    spriteName = $"201{build}_1";
+                    break;
+                case GraphicsMode.nbGFXSil:
+                case GraphicsMode.nbGFXGld:
+                    spriteName = $"201{poke.UnownLetter + 1}00";
+                    if (backView)
+                        spriteName += "b";
+
+                    break;
+                case GraphicsMode.nbGFXCol:
+                    spriteName = $"201{poke.UnownLetter + 1}00c";
+                    break;
+                default:
+                    spriteName = $"unown{poke.UnownLetter + 1}00";
+                    if (backView)
+                        spriteName += "b";
+                    break;
+            }
+
+            if (poke.Shiny)
+                spriteName += "s";
+
+            return GetSprite(spriteName);
+        }
+    }
+}

@@ -1,0 +1,557 @@
+﻿using System;
+using System.Collections.Generic;
+using Netbattle.Core.Database;
+using Netbattle.Core.Network;
+
+namespace Netbattle.Core.Common {
+ public interface IRegPacket {
+         string Command { get; }
+        void Read(ByteBuffer reader);
+        void Write(ByteBuffer writer);
+        void Handle(RegistryClient client);
+    }
+ 
+    public interface IPacket {
+        string Command { get; }
+        void Read(ByteBuffer reader);
+        void Write(ByteBuffer writer);
+        void Handle(NbClient client);
+    }
+
+    public struct ServerListing {
+        public int ServerNumber { get; set; }
+        public string Name { get; set; }
+        public string Owner { get; set; }
+        public string Description { get; set; }
+        public string Ip { get; set; }
+        public int OnlinePlayers { get; set; }
+        public int MaxPlayers { get; set; }
+    }
+
+    public delegate void EmptyEventArgs();
+
+    public enum LogType {
+        Verbose,
+        Debug,
+        Error,
+        Warning,
+        Info,
+        Chat,
+        Command
+    }
+
+    public struct LogItem {
+        public LogType Type;
+        public DateTime Time;
+        public string Message;
+    }
+
+    public abstract class TaskItem {
+        public TimeSpan Interval;
+        public DateTime LastRun;
+        public abstract void Setup();
+        public abstract void Main();
+        public abstract void Teardown();
+    }
+
+    public struct ServerInfo {
+        public string ServerVersion;
+        public int FloodTolerance;
+        public int OnlinePlayers;
+        public int MaxPlayers;
+        public string ServerName;
+    }
+
+    public delegate void ChallengeEventArgs(Player challenger, TerrainTypes terrain, BattleModes challengeMode,
+        byte[] ruleSet);
+    
+    public delegate void ServerInfoEventArgs(ServerInfo info);
+
+    public delegate void PrivateMessageEventArgs(Player player, string message);
+    public delegate void MessageEventArgs(string message);
+    
+    public enum StatTypes {
+        nbHP = 0,
+        nbAttack,
+        nbDefense,
+        nbSpeed,
+        nbSpAttack,
+        nbSpDefense
+    }
+    
+    public enum Traits {
+        nbNoTrait,
+        nbStench,
+        nbDrizzle,
+        nbSpeedBoost,
+        nbBattleArmor,
+        nbSturdy,
+        nbDamp,
+        nbLimber,
+        nbSandVeil,
+        nbStatic,
+        nbVoltAbsorb,
+        nbWaterAbsorb,
+        nbOblivious,
+        nbCloudNine,
+        nbCompoundEyes,
+        nbInsomnia,
+        nbColorChange,
+        nbImmunity,
+        nbFlashFire,
+        nbShieldDust,
+        nbOwnTempo,
+        nbSuctionCups,
+        nbIntimidate,
+        nbShadowTag,
+        nbRoughSkin,
+        nbWonderGuard,
+        nbLevitate,
+        nbEffectSpore,
+        nbSynchronize,
+        nbClearBody,
+        nbNaturalCure,
+        nbLightningRod,
+        nbSereneGrace,
+        nbSwiftSwim,
+        nbChlorophyll,
+        nbIlluminate,
+        nbTrace,
+        nbHugePower,
+        nbPoisonPoint,
+        nbInnerFocus,
+        nbMagmaArmor,
+        nbWaterVeil,
+        nbMagnetPull,
+        nbSoundproof,
+        nbRainDish,
+        nbSandStream,
+        nbPressure,
+        nbThickFat,
+        nbEarlyBird,
+        nbFlameBody,
+        nbRunAway,
+        nbKeenEye,
+        nbHyperCutter,
+        nbPickup,
+        nbTruant,
+        nbHustle,
+        nbCuteCharm,
+        nbPlus,
+        nbMinus,
+        nbForecast,
+        nbStickyHold,
+        nbShedSkin,
+        nbGuts,
+        nbMarvelScale,
+        nbLiquidOoze,
+        nbOvergrow,
+        nbBlaze,
+        nbTorrent,
+        nbSwarm,
+        nbRockHead,
+        nbDrought,
+        nbArenaTrap,
+        nbVitalSpirit,
+        nbWhiteSmoke,
+        nbPurePower,
+        nbShellArmor,
+        nbCacophony,
+        nbAirLock
+    }
+    public enum Items {
+        nbNoItem,
+        nbBerry,
+        nbBerryJuice,
+        nbBitterBerry,
+        nbBurntBerry,
+        nbGoldBerry,
+        nbIceBerry,
+        nbMintBerry,
+        nbMiracleBerry,
+        nbMysteryBerry,
+        nbParalyzecureBerry,
+        nbPoisoncureBerry,
+        nbBerserkGene,
+        nbBlackBelt,
+        nbBlackGlasses,
+        nbBrightPowder,
+        nbCharcoal,
+        nbDragonFang,
+        nbFocusBand,
+        nbHardStone,
+        nbKingsRock,
+        nbLeftovers,
+        nbLightBall,
+        nbLuckyPunch,
+        nbMagnet,
+        nbMetalCoat,
+        nbMetalPowder,
+        nbMiracleSeed,
+        nbMysticWater,
+        nbNevermeltIce,
+        nbPinkBow,
+        nbPoisonBarb,
+        nbPolkadotBow,
+        nbQuickClaw,
+        nbScopeLens,
+        nbSharpBeak,
+        nbSilverPowder,
+        nbSoftSand,
+        nbSpellTag,
+        nbStick,
+        nbThickClub,
+        nbTwistedSpoon,
+        nbCheriBerry,
+        nbChestoBerry,
+        nbPechaBerry,
+        nbRawstBerry,
+        nbAspearBerry,
+        nbLeppaBerry,
+        nbOranBerry,
+        nbPersimBerry,
+        nbLumBerry,
+        nbSitrusBerry,
+        nbFigyBerry,
+        nbIapapaBerry,
+        nbMagoBerry,
+        nbWikiBerry,
+        nbAguavBerry,
+        nbLiechiBerry,
+        nbGanlonBerry,
+        nbSalacBerry,
+        nbPetayaBerry,
+        nbApicotBerry,
+        nbLansatBerry,
+        nbStarfBerry,
+        nbChoiceBand,
+        nbDeepSeaScale,
+        nbDeepSeaTooth,
+        nbLaxIncense,
+        nbMachoBrace,
+        nbMentalHerb,
+        nbSeaIncense,
+        nbShellBell,
+        nbSilkScarf,
+        nbSoulDew,
+        nbWhiteHerb
+    }
+
+    public enum Gender {
+        Genderless = 0,
+        Male = 1,
+        Female = 2
+    }
+    
+    public static class ItemsExtensions {
+        public static bool IsAdvanceItem(this Items item) {
+            // -- 0, 13-29, 31, 33-max are Advance items.
+            if (item == Items.nbNoItem)
+                return true;
+            
+            if ((int)item >= 13 && (int)item <= 29)
+                return true;
+            
+            if (item == Items.nbPoisonBarb)
+                return true;
+            
+            if ((int)item >= 33)
+                return true;
+
+            return false;
+        }
+        
+        public static bool IsBerry(this Items item) {
+            switch (item) {
+                case Items.nbBerry:
+                case Items.nbBerryJuice:
+                case Items.nbBitterBerry:
+                case Items.nbBurntBerry:
+                case Items.nbGoldBerry:
+                case Items.nbIceBerry:
+                case Items.nbMintBerry:
+                case Items.nbMiracleBerry:
+                case Items.nbMysteryBerry:
+                case Items.nbParalyzecureBerry:
+                case Items.nbPoisoncureBerry:
+                case Items.nbCheriBerry:
+                case Items.nbChestoBerry:
+                case Items.nbPechaBerry:
+                case Items.nbRawstBerry:
+                case Items.nbAspearBerry:
+                case Items.nbLeppaBerry:
+                case Items.nbOranBerry:
+                case Items.nbPersimBerry:
+                case Items.nbLumBerry:
+                case Items.nbSitrusBerry:
+                case Items.nbFigyBerry:
+                case Items.nbIapapaBerry:
+                case Items.nbMagoBerry:
+                case Items.nbWikiBerry:
+                case Items.nbAguavBerry:
+                case Items.nbLiechiBerry:
+                case Items.nbGanlonBerry:
+                case Items.nbSalacBerry:
+                case Items.nbPetayaBerry:
+                case Items.nbApicotBerry:
+                case Items.nbLansatBerry:
+                case Items.nbStarfBerry:
+                    return true;
+                default:
+                    return false;
+            }
+        }
+    }
+    
+    public enum Conditions {
+        nbNrm = 1,
+        nbPsn,
+        nbTox,
+        nbSlp,
+        nbBrn,
+        nbPar,
+        nbFrz,
+        nbFnt,
+    }
+    public enum CompatModes {
+        nbRBYTrade,
+        nbGSCTrade,
+        nbTrueRuSa,
+        nbFullAdvance,
+        nbModAdv,
+        nbTrueRBY,
+        nbTrueGSC,
+    }
+
+    public enum GraphicsMode {
+        nbGFXGrn=1, // -- Green
+        nbGFXRB, // -- Red/Blue
+        nbGFXYlo, // -- Yellow
+        nbGFXGld, // -- Gold
+        nbGFXSil, // -- Silver
+        nbGFXRS,// -- Ruby/Sapphire
+        nbGFXLF, // -- Leafgreen/Firered
+        nbGFXEme, // -- Emerald
+        nbGFXCol, // -- Colosseum
+        nbGFXSml, // -- small (Advance mini pics)
+    }
+    
+    public class NatureType
+    {
+        public NatureType() {
+            StatChg = new int[6];
+        }
+        
+        public NatureType(string nm)
+        {
+            Name = nm;
+            StatChg = new int[6];
+        }
+
+        public string Name { get; set; }
+        public int[] StatChg { get; set; }
+    }
+
+    public struct GraphicsData {
+        public long[] ByteCount { get; set; }
+        public long[] ByteStart { get; set; }
+        public string[] Titles { get; set; }
+        public byte[] InFile { get; set; }
+    }
+    
+    public enum Elements {
+        nbNoType,
+        nbNormal,
+        nbFire,
+        nbWater,
+        nbElectr,
+        nbGrass,
+        nbIce,
+        nbFight,
+        nbPoison,
+        nbGround,
+        nbFlying,
+        nbPsychc,
+        nbBug,
+        nbRock,
+        nbGhost,
+        nbDragon,
+        nbDark,
+        nbSteel
+    }
+
+    public enum TerrainTypes {
+        nbShortGrass,
+        nbTallGrass,
+        nbVeryTallGrass,
+        nbOcean,
+        nbPond,
+        nbsAnd,
+        nbCave,
+        nbMountain,
+        nbUnderwater,
+        nbStadium
+    }
+    
+    public enum BattleModes
+    {
+        nbRBYBattle,
+        nbGSCBattle,
+        nbAdvBattle
+    }
+
+    public static class MoveTypesExtensions {
+        public static string ToFriendlyString(this MoveTypes type) {
+            switch (type) {
+                
+                    case MoveTypes.nbAdvLevel:
+                    case MoveTypes.nbGSCLevel:
+                    case MoveTypes.nbRBYLevel:
+                        return "Level Up";
+                case MoveTypes.nbAdvFL:
+                    return "FL/LG Special";
+                    case MoveTypes.nbAdvSpecial:
+                    case MoveTypes.nbGSCSpecial:
+                        return "Special";
+                    case MoveTypes.nbAdvTM:
+                    case MoveTypes.nbGSCTM:
+                    case MoveTypes.nbRBYTM:
+                        return "TM/HM";
+                    case MoveTypes.nbAdvTutor:
+                    case MoveTypes.nbGSCTutor:
+                        return "Move Tutor";
+                    case MoveTypes.nbAdvEgg:
+                    case MoveTypes.nbGSCEgg:
+                        return "Egg";
+                    default:
+                        return "Unknown";
+            }
+        }
+    }
+    public static class ElementsExtensions {
+        public static string ToFriendlyString(this Elements elements) {
+            switch (elements) {
+                case Elements.nbNoType:
+                    return "None";
+                case Elements.nbNormal:
+                    return "Normal";
+                case Elements.nbFire:
+                    return "Fire";
+                case Elements.nbWater:
+                    return "Water";
+                case Elements.nbElectr:
+                    return "Electric";
+                case Elements.nbGrass:
+                    return "Grass";
+                case Elements.nbIce:
+                    return "Ice";
+                case Elements.nbFight:
+                    return "Fight";
+                case Elements.nbPoison:
+                    return "Poison";
+                case Elements.nbGround:
+                    return "Ground";
+                case Elements.nbFlying:
+                    return "Flying";
+                case Elements.nbPsychc:
+                    return "Pshychc";
+                case Elements.nbBug:
+                    return "Bug";
+                case Elements.nbRock:
+                    return "Rock";
+                case Elements.nbGhost:
+                    return "Ghost";
+                case Elements.nbDragon:
+                    return "Dragon";
+                case Elements.nbDark:
+                    return "Dark";
+                case Elements.nbSteel:
+                    return "Steel";
+
+            }
+
+            return "Unknown";
+        }
+    }
+    public enum MoveTargets {
+        nbGlobal,
+        nbSelectedTarget,
+        nbBothEnemies,
+        nbSelfAffecting,
+        nbTeamAffecting,
+        nbEveryoneElse,
+        nbRandomEnemy,
+        nbReactionTarget,
+        nbMoveCalled
+    }
+
+    public class Move {
+        public short ID { get; set; }
+        public string Name { get; set; }
+        public Elements Type { get; set; }
+        public short Power { get; set; }
+        public byte Accuracy { get; set; }
+        public byte PP { get; set; }
+        public string Text { get; set; }
+        public byte SpecialPercent { get; set; }
+        public byte SpecialEffect { get; set; }
+        public bool WorksRight { get; set; }
+        public bool BrightPowder { get; set; }
+        public bool KingsRock { get; set; }
+        // -- TODO: Replace this with 'ValidGenerations' or something.
+        public bool RBYMove { get; set; }
+        public bool GSCMove { get; set; }
+        public bool AdvMove { get; set; }
+        public bool HitsTeam { get; set; }
+        public bool SelfMove { get; set; }
+        public string OldTM { get; set; }
+        public string NewTM { get; set; }
+        public string ADVTM { get; set; }
+        public bool SubstituteBlocks { get; set; }
+        public bool HitsAll { get; set; }
+        public bool SoundMove { get; set; }
+        public bool PhysMove { get; set; }
+        public MoveTargets Target { get; set; }
+        public bool MagicCoat { get; set; }
+        public MoveTypes Source { get; set; }
+    }
+
+    public class Player {
+        public int Id { get; set; }
+        public int GameVersion { get; set; }
+        public int Picture { get; set; }
+        public int GraphicsVersion { get; set; }
+        public int Authority { get; set; }
+        public bool ShowTeam { get; set; }
+        public bool StadiumOk { get; set; }
+        public bool Away { get; set; }
+        public bool Battling { get; set; }
+        public List<TeamMember> Team { get; set; }
+        public int Wins { get; set; }
+        public int Losses { get; set; }
+        public int Ties { get; set; }
+        public int Disconnects { get; set; }
+        public int Compatibility { get; set; }
+        public int TeamPower { get; set; }
+        public int BattlingWith { get; set; } // -- TODO: Make this a reference to another player?
+
+        public int Ping { get; set; } // -- Client's ping with the server..
+        public string Name { get; set; }
+        public string Version { get; set; }
+        public string Description { get; set; }
+    }
+
+    public struct PokedexInfo {
+        public string RedBlue { get; set; }
+        public string Yellow { get; set; }
+        public string Gold { get; set; }
+        public string Silver { get; set; }
+        public string Crystal { get; set; }
+        public string Ruby { get; set; }
+        public string Sapphire { get; set; }
+    }
+
+    public delegate void NoArgs();
+    public delegate void PlayerEventArgs(Player player);
+    public delegate void PlayersEventArgs(List<Player> players);
+}

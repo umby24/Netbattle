@@ -22,7 +22,8 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {
+        private void InitializeComponent()
+        {
             this.txtChat = new System.Windows.Forms.RichTextBox();
             this.txtInput = new System.Windows.Forms.TextBox();
             this.btnChallenge = new System.Windows.Forms.Button();
@@ -31,29 +32,26 @@
             // 
             // txtChat
             // 
-            this.txtChat.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtChat.Dock = System.Windows.Forms.DockStyle.Top;
             this.txtChat.Location = new System.Drawing.Point(0, 0);
             this.txtChat.Name = "txtChat";
             this.txtChat.ReadOnly = true;
-            this.txtChat.Size = new System.Drawing.Size(301, 211);
+            this.txtChat.Size = new System.Drawing.Size(250, 178);
             this.txtChat.TabIndex = 0;
             this.txtChat.Text = "";
             // 
             // txtInput
             // 
-            this.txtInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtInput.Location = new System.Drawing.Point(0, 217);
+            this.txtInput.Location = new System.Drawing.Point(0, 184);
             this.txtInput.Multiline = true;
             this.txtInput.Name = "txtInput";
-            this.txtInput.Size = new System.Drawing.Size(301, 40);
+            this.txtInput.Size = new System.Drawing.Size(245, 40);
             this.txtInput.TabIndex = 1;
             // 
             // btnChallenge
             // 
             this.btnChallenge.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnChallenge.Location = new System.Drawing.Point(0, 263);
+            this.btnChallenge.Location = new System.Drawing.Point(0, 230);
             this.btnChallenge.Name = "btnChallenge";
             this.btnChallenge.Size = new System.Drawing.Size(75, 23);
             this.btnChallenge.TabIndex = 2;
@@ -63,7 +61,7 @@
             // btnSend
             // 
             this.btnSend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSend.Location = new System.Drawing.Point(226, 263);
+            this.btnSend.Location = new System.Drawing.Point(170, 230);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(75, 23);
             this.btnSend.TabIndex = 3;
@@ -76,7 +74,7 @@
             this.AcceptButton = this.btnSend;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(306, 290);
+            this.ClientSize = new System.Drawing.Size(250, 257);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.btnChallenge);
             this.Controls.Add(this.txtInput);
@@ -88,7 +86,6 @@
             this.Load += new System.EventHandler(this.PrivateMessage_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion

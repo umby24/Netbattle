@@ -99,6 +99,39 @@ namespace Netbattle.Forms {
                     }
                 }
             }
+            // -- Compatibility Check
+
+            switch (_workingSettings.CurrentCompatibilityMode)
+            {
+                case CompatModes.nbTrueRBY:
+                case CompatModes.nbRBYTrade:
+                    if (!pkmnObj.ExistRBY) {
+                        MessageBox.Show("This pokemon does not exist in RBY!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    break;
+                case CompatModes.nbGSCTrade:
+                    if (pkmnObj.No <= 251)
+                    {
+                        MessageBox.Show("This pokemon does not exist in Gen 2!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    break;
+                case CompatModes.nbTrueRuSa:
+                    if (!pkmnObj.ExistRBY)
+                    {
+                        MessageBox.Show("This pokemon does not exist in RBY!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    break;
+                case CompatModes.nbTrueGSC:
+                    if (!pkmnObj.ExistGSC)
+                    {
+                        MessageBox.Show("This pokemon does not exist in GSC!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    break;
+            }
 
             _currentPokemon = pkmnObj;
             _currentPokemon.Initialize(_workingSettings.CurrentCompatibilityMode);
@@ -383,7 +416,7 @@ namespace Netbattle.Forms {
         }
 
         private void UpdateStatLabels() {
-            lblHp.Text = "HP: " + _currentPokemon.MaxHP;
+            lblHp.Text = "HP: " + _currentPokemon.HP;
             lblAttack.Text = "Attack: " + _currentPokemon.Attack;
             lblDefense.Text = "Defense: " + _currentPokemon.Defense;
             lblSpeed.Text = "Speed: " + _currentPokemon.Speed;
