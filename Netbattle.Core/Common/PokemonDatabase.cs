@@ -53,6 +53,9 @@ namespace Netbattle.Common {
             NatureTypes.Add(new NatureType("Sassy"));
             NatureTypes.Add(new NatureType("Careful"));
             NatureTypes.Add(new NatureType("Quirky"));
+
+            for (var i = 0; i < NatureTypes.Count; i++)
+                NatureTypes[i].StatChg = BattleSystem.NatureStats[i].StatChg;
         }
         private static void BuildMap()
         {
@@ -118,9 +121,7 @@ namespace Netbattle.Common {
 
             foreach (var item in ParseCsvIntString(intString)) {
                 if (item == 0) continue;
-                Move move = MoveDatabase.Moves[item];
-                move.Source = type;
-                result.Add(move);
+                result.Add(MoveDatabase.Moves[item].WithSource(type));
             }
 
             return result;

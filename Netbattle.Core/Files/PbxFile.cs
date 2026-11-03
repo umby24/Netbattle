@@ -1,53 +1,53 @@
-﻿using Netbattle.Core.Common;
+﻿using System.Text;
+using Netbattle.Core.Common;
 
 namespace Netbattle.Core.Files {
     public class PbxFile {
         public string FilePath { get; set; }
         private const string FileHeader = "BOX2.1";
+        private const string OldFileHeader = "BOX2.0"; // -- Same format, but with 10 character nicknames.
         public List<TeamMember> BoxPokemon { get; set; }
-        
+
         public PbxFile(string filePath) {
             FilePath = filePath;
         }
 
         public void Load() {
-            using var sr = new StreamReader(FilePath);
-            var headerChars = new char[FileHeader.Length];
-            sr.Read(headerChars, 0, FileHeader.Length);
-            var header = new string(headerChars);
-            if (header != FileHeader) {
+            byte[] file = System.IO.File.ReadAllBytes(FilePath);
+            string header = file.Length >= FileHeader.Length ? Encoding.Latin1.GetString(file, 0, FileHeader.Length) : "";
+
+            if (header != FileHeader && header != OldFileHeader) {
                 throw new InvalidDataException("Invalid PBX file header.");
             }
-                
+
+            int nicknameLength = header == OldFileHeader ? 10 : 15;
+            int recordLength = 1 + nicknameLength + 20; // -- Marker is one hex character.
+
             BoxPokemon = [];
-            while (!sr.EndOfStream) {
-                var markerBytes = new char[2];
-                sr.Read(markerBytes, 0, 2);
-                    
-                var packedPkmnData = new char[20];
-                sr.Read(packedPkmnData, 0, 20);
-                    
-                string decomposed = NbMethods.BytesToBinary(packedPkmnData.Select(c => (byte)c).ToArray());
-                TeamMember pkmnObj = TeamMember.FromBinary(decomposed, "");
-                    
-                int markerNum = int.Parse(new string(markerBytes), System.Globalization.NumberStyles.HexNumber);
-                pkmnObj.MarkerNum = (byte)markerNum;
+            for (int i = FileHeader.Length; i + recordLength <= file.Length; i += recordLength) {
+                var marker = Convert.ToByte(Encoding.Latin1.GetString(file, i, 1), 16);
+                string nickname = Encoding.Latin1.GetString(file, i + 1, nicknameLength);
+                string decomposed = NbMethods.BytesToBinary(file.Skip(i + 1 + nicknameLength).Take(20).ToArray());
+
+                TeamMember? pkmnObj = TeamMember.FromBinary(decomposed, nickname);
+                if (pkmnObj == null)
+                    continue;
+
+                pkmnObj.Initialize(pkmnObj.GameVersion);
+                pkmnObj.MarkerNum = marker;
                 BoxPokemon.Add(pkmnObj);
             }
         }
-        
+
         public void Save() {
-            using var sw = new StreamWriter(FilePath);
-            sw.Write(FileHeader);
-            
+            using var fs = new FileStream(FilePath, FileMode.Create);
+            fs.Write(Encoding.Latin1.GetBytes(FileHeader));
+
             foreach (TeamMember pkmn in BoxPokemon) {
-                sw.Write(pkmn.MarkerNum.ToString("X"));
-                sw.WriteLine(pkmn.ToStringBytes());
+                fs.Write(Encoding.Latin1.GetBytes(pkmn.MarkerNum.ToString("X")));
+                fs.Write(pkmn.ToStringBytes());
             }
-            
-            sw.Flush();
-            sw.Close();
         }
-        
+
     }
 }

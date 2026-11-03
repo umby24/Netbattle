@@ -129,27 +129,30 @@ namespace Netbattle.Core.Network {
                     var shiny = Convert.ToBoolean(Convert.ToInt32(bval));
                     binary = binary.Substring(1, binary.Length - 1);
 
-                    p.Team.Add(new TeamMember(PokemonDatabase.BasePokemonMap[id]) {
+                    if (!PokemonDatabase.BasePokemonMap.TryGetValue(id, out PokemonSpecies? species))
+                        continue; // -- Empty team slot.
+
+                    p.Team.Add(new TeamMember(species) {
                         Shiny = shiny,
                         UnownLetter = (byte)unknownLetter
                     });
                 }
 
                 // -- 16: Wins
-                p.Wins = Convert.ToInt32(binary.Substring(0, 2), 2);
-                binary = binary.Substring(2, binary.Length - 2);
+                p.Wins = Convert.ToInt32(binary.Substring(0, 16), 2);
+                binary = binary.Substring(16, binary.Length - 16);
                 // -- 16: Losses
-                p.Losses = Convert.ToInt32(binary.Substring(0, 2), 2);
-                binary = binary.Substring(2, binary.Length - 2);
+                p.Losses = Convert.ToInt32(binary.Substring(0, 16), 2);
+                binary = binary.Substring(16, binary.Length - 16);
                 // -- 16: Ties
-                p.Ties = Convert.ToInt32(binary.Substring(0, 2), 2);
-                binary = binary.Substring(2, binary.Length - 2);
+                p.Ties = Convert.ToInt32(binary.Substring(0, 16), 2);
+                binary = binary.Substring(16, binary.Length - 16);
                 // -- 16: Disconnect
-                p.Disconnects = Convert.ToInt32(binary.Substring(0, 2), 2);
-                binary = binary.Substring(2, binary.Length - 2);
+                p.Disconnects = Convert.ToInt32(binary.Substring(0, 16), 2);
+                binary = binary.Substring(16, binary.Length - 16);
                 // -- 16: Compatibility
-                p.Compatibility = Convert.ToInt32(binary.Substring(0, 2), 2);
-                binary = binary.Substring(2, binary.Length - 2);
+                p.Compatibility = Convert.ToInt32(binary.Substring(0, 16), 2);
+                binary = binary.Substring(16, binary.Length - 16);
                 // -- 16: Rank
                 p.TeamPower = Convert.ToInt32(binary.Substring(0, 16), 2);
                 binary = binary.Substring(16, binary.Length - 16);
@@ -167,7 +170,7 @@ namespace Netbattle.Core.Network {
                 p.Version = playerVersion;
                 p.Description = playerInfo;
 
-                OnlinePlayers.Add(p.Id, p);
+                OnlinePlayers[p.Id] = p; // -- The server resends a player's data when it changes.
 
                 if (announce)
                     InvokePlayerJoined(p);
@@ -372,7 +375,7 @@ namespace Netbattle.Core.Network {
         private void Handle() {
             while (_inputBuffer.Length > 0) {
                 lock (_inputBuffer) {
-                    var length = (byte) (_inputBuffer.PeekByte() + 1);
+                    int length = _inputBuffer.PeekByte() + 1; // -- Up to 256, so not a byte.
 
                     if (_inputBuffer.Length - 1 < length)
                         break;
@@ -386,18 +389,24 @@ namespace Netbattle.Core.Network {
                     var tempBuffer = new ByteBuffer(); // -- Create a new bytebuffer with the data
                     tempBuffer.AddBytes(data);
 
-                    string cmd = tempBuffer.ReadString(5); // -- Get the command to find the regPacket parser..
+                    string cmd = tempBuffer.ReadString(Math.Min(5, tempBuffer.Length)); // -- Get the command to find the regPacket parser..
                     // tempBuffer.ReadByte(); // -- Trim off the colon.
 
                     // -- try to find the Packet.
                     IPacket packet;
-                    if (!_packets.TryGetValue(cmd.Substring(0, 4), out packet) && !_packets.TryGetValue(cmd, out packet)) {
+                    if (!_packets.TryGetValue(cmd.Substring(0, Math.Min(4, cmd.Length)), out packet) && !_packets.TryGetValue(cmd, out packet)) {
                         Logger.Log(LogType.Error, "Invalid packet received!!");
-                        return;
+                        continue;
                     }
 
-                    packet.Read(tempBuffer);
-                    packet.Handle(this);
+                    try {
+                        packet.Read(tempBuffer);
+                        packet.Handle(this);
+                    }
+                    catch (Exception e) when (e is NotImplementedException or EndOfStreamException) {
+                        // -- Plenty of packets aren't ported yet, they shouldn't take down the socket thread.
+                        Logger.Log(LogType.Warning, $"Couldn't process packet {cmd}: {e.Message}");
+                    }
                 }
             }
         }

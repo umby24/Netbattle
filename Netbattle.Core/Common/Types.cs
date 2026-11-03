@@ -514,6 +514,18 @@ namespace Netbattle.Core.Common {
         public MoveTargets Target { get; set; }
         public bool MagicCoat { get; set; }
         public MoveTypes Source { get; set; }
+
+        /// <summary>
+        /// A copy labelled with how a particular pokemon learns this move.
+        /// </summary>
+        public Move WithSource(MoveTypes source) {
+            var copy = (Move)MemberwiseClone();
+            copy.Source = source;
+            return copy;
+        }
+
+        public override bool Equals(object? obj) => obj is Move other && other.ID == ID;
+        public override int GetHashCode() => ID;
     }
 
     public class Player {

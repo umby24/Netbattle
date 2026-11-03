@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.645
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Netbattle", "Netbattle.csproj", "{3D7965E4-5DA9-4250-B7BB-CF2B045B095B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetbattleTests", "..\NetbattleTests\NetbattleTests.csproj", "{C7154AE5-D920-4003-968D-8DCD23345E28}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetbattleTests", "NetbattleTests\NetbattleTests.csproj", "{C7154AE5-D920-4003-968D-8DCD23345E28}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseEditor", "DatabaseEditor\DatabaseEditor.csproj", "{E3801827-9C06-48EF-A368-32EA888D070A}"
 EndProject

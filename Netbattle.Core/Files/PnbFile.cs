@@ -13,8 +13,11 @@ namespace Netbattle.Core.Files {
         public TeamMember[] Team { get; set; }
         public string DbModName { get; set; }
         public string DbModString { get; set; }
-        
+
         private const string FileHeader = " PNB4.1";
+        private const string OldFileHeader = " PNB4.0"; // -- Same format, but with 10 character nicknames.
+        private const int NicknameLength = 15;
+        private const int OldNicknameLength = 10;
         private readonly string _filePath;
 
         public PnbFile(string filePath) {
@@ -25,29 +28,31 @@ namespace Netbattle.Core.Files {
         public void Save() {
             using (var br = new BinaryWriter(new FileStream(_filePath, FileMode.Create)))
             {
-                br.Write(FileHeader);
-                br.Write((byte)Name.Length);
-                br.Write(Name.ToCharArray());
-                br.Write((byte)ExtraInfo.Length);
-                br.Write(ExtraInfo.ToCharArray());
-                br.Write((byte)WinMessage.Length);
-                br.Write(WinMessage.ToCharArray());
-                br.Write((byte)LoseMessage.Length);
-                br.Write(LoseMessage.ToCharArray());
+                br.Write(Encoding.Latin1.GetBytes(FileHeader));
+                WritePrefixedString(br, Name);
+                WritePrefixedString(br, ExtraInfo);
+                WritePrefixedString(br, WinMessage);
+                WritePrefixedString(br, LoseMessage);
                 br.Write((byte)TBMode);
                 br.Write((byte)CurrentPicture);
                 br.Write((byte)GraphicsVersion);
                 for (var i = 0; i < Team.Length; i++)
                 {
-                    br.Write(Team[i].ToStringBytes());
+                    br.Write(Team[i]?.ToStringBytes() ?? TeamMember.EmptySlotBytes());
                 }
 
-                if ((CompatModes)GraphicsVersion == CompatModes.nbModAdv)
+                if (Team[0]?.GameVersion == CompatModes.nbModAdv)
                 {
-                    br.Write(DbModName.PadRight(20));
-                    br.Write(DbModString);
+                    br.Write(Encoding.Latin1.GetBytes((DbModName ?? "").PadRight(20)));
+                    br.Write(Encoding.Latin1.GetBytes(DbModString ?? ""));
                 }
             }
+        }
+
+        private static void WritePrefixedString(BinaryWriter writer, string value) {
+            byte[] data = Encoding.Latin1.GetBytes(value ?? "");
+            writer.Write((byte)data.Length);
+            writer.Write(data);
         }
 
         public void Load() {
@@ -56,28 +61,35 @@ namespace Netbattle.Core.Files {
 
             using (var ms = new MemoryStream(myFile)) {
                 using (var br = new BinaryReader(ms)) {
-                    br.ReadBytes(7); // -- Should be the header.
+                    string header = Encoding.Latin1.GetString(br.ReadBytes(7));
+                    if (header != FileHeader && header != OldFileHeader)
+                        throw new InvalidDataException($"Unsupported PNB file: {_filePath}");
+
                     byte nameLen = br.ReadByte();
-                    Name = Encoding.ASCII.GetString(br.ReadBytes(nameLen));
+                    Name = Encoding.Latin1.GetString(br.ReadBytes(nameLen));
                     nameLen = br.ReadByte();
-                    ExtraInfo = Encoding.ASCII.GetString(br.ReadBytes(nameLen));
+                    ExtraInfo = Encoding.Latin1.GetString(br.ReadBytes(nameLen));
                     nameLen = br.ReadByte();
-                    WinMessage = Encoding.ASCII.GetString(br.ReadBytes(nameLen));
+                    WinMessage = Encoding.Latin1.GetString(br.ReadBytes(nameLen));
                     nameLen = br.ReadByte();
-                    LoseMessage = Encoding.ASCII.GetString(br.ReadBytes(nameLen));
+                    LoseMessage = Encoding.Latin1.GetString(br.ReadBytes(nameLen));
                     TBMode = br.ReadByte();
                     CurrentPicture = br.ReadByte();
                     GraphicsVersion = br.ReadByte();
 
+                    int nicknameLength = header == OldFileHeader ? OldNicknameLength : NicknameLength;
+
                     for (var i = 0; i < 6; i++) { // -- Read all 6 pokemon..
-                        string pokemonNickname = Encoding.ASCII.GetString(br.ReadBytes(15));
+                        string pokemonNickname = Encoding.Latin1.GetString(br.ReadBytes(nicknameLength));
                         string decomposed = NbMethods.BytesToBinary(br.ReadBytes(20));
                         Team[i] = TeamMember.FromBinary(decomposed, pokemonNickname);
-                        Team[i].RegenCurrentStats();
+                        Team[i]?.Initialize(Team[i].GameVersion);
                     }
 
-                    DbModName = Encoding.ASCII.GetString(br.ReadBytes(20)).TrimEnd('\0');
-                    DbModString = Encoding.ASCII.GetString(br.ReadBytes((int)(br.BaseStream.Length - br.BaseStream.Position)));
+                    if (Team[0]?.GameVersion == CompatModes.nbModAdv) {
+                        DbModName = Encoding.Latin1.GetString(br.ReadBytes(20)).Trim();
+                        DbModString = Encoding.Latin1.GetString(br.ReadBytes((int)(br.BaseStream.Length - br.BaseStream.Position)));
+                    }
                 }
             }
 

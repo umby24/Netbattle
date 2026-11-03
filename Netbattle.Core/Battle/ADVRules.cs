@@ -14,12 +14,13 @@ public class ADVRules : IGenerationRuleset
             _ => 1
         };
 
-        return (int)Math.Round(((baseVal * 2 + iv + (ev / 4)) * level / 100 + 5) * p);
+        // -- VB multiplies by a Single widened to a Double, so 0.9 is slightly under and can land a point lower.
+        return (int)Math.Floor(((baseVal * 2 + iv + (ev / 4)) * level / 100 + 5) * (double)p);
     }
 
     public int GetHp(int baseVal, int iv, int ev, int level) {
         if (baseVal == 1) return 1; // Shedninja
-        return (int)Math.Round((baseVal * 2.0f + iv + (ev / 4)) * level / 100 + 10 + level);
+        return (baseVal * 2 + iv + (ev / 4)) * level / 100 + 10 + level;
     }
 
     public bool CheckMove(PokemonSpecies species, Move move)
@@ -34,27 +35,18 @@ public class ADVRules : IGenerationRuleset
         return result;
     }
 
-    public int HiddenPower(TeamMember member)
-    {
-        var result = 0;
-        
-        if ((member.DVs[StatTypes.nbHP] / 2) % 2 == 1) result++;
-        if ((member.DVs[StatTypes.nbAttack] / 2) % 2 == 1) result+= 2;
-        if ((member.DVs[StatTypes.nbDefense] / 2) % 2 == 1) result+= 4;
-        if ((member.DVs[StatTypes.nbSpeed] / 2) % 2 == 1) result+= 8;
-        if ((member.DVs[StatTypes.nbSpAttack] / 2) % 2 == 1) result+= 16;
-        if ((member.DVs[StatTypes.nbSpDefense] / 2) % 2 == 1) result += 32;
-
-        return result * 40 / 63 + 30;
-    }
-
     public int HiddenPowerStrength(StatSet DVs)
     {
-        int X = 8 * ((DVs[StatTypes.nbAttack] >= 8) ? 1 : 0) + 4 * ((DVs[StatTypes.nbDefense] >= 8) ? 1 : 0) +
-    2 * ((DVs[StatTypes.nbSpeed] >= 8) ? 1 : 0) + ((DVs[StatTypes.nbSpAttack] >= 8) ? 1 : 0);
+        var result = 0;
 
-        int Y = DVs[StatTypes.nbSpAttack] % 4;
-        return (5 * X + Y) / 2 + 31;
+        if ((DVs[StatTypes.nbHP] / 2) % 2 == 1) result++;
+        if ((DVs[StatTypes.nbAttack] / 2) % 2 == 1) result+= 2;
+        if ((DVs[StatTypes.nbDefense] / 2) % 2 == 1) result+= 4;
+        if ((DVs[StatTypes.nbSpeed] / 2) % 2 == 1) result+= 8;
+        if ((DVs[StatTypes.nbSpAttack] / 2) % 2 == 1) result+= 16;
+        if ((DVs[StatTypes.nbSpDefense] / 2) % 2 == 1) result += 32;
+
+        return result * 40 / 63 + 30;
     }
 
     public Elements HiddenPowerType(StatSet DVs)

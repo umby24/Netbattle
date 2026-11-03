@@ -48,34 +48,33 @@ public class RegistryClient {
 
     public void HandlePackets() {
         lock (_receiveBuffer) {
-            if (_receiveBuffer.Length == 0)
-                return;
-            
-            // -- Every packet is prefixed with a length byte, so we can check if we have enough data to read the packet.
-            var length = (byte) (_receiveBuffer.PeekByte() + 1);
+            while (_receiveBuffer.Length > 0) {
+                // -- Every packet is prefixed with a length byte, so we can check if we have enough data to read the packet.
+                int length = _receiveBuffer.PeekByte() + 1; // -- Up to 256, so not a byte.
 
-            if (_receiveBuffer.Length - 1 < length)
-                return; // -- Not enough yet, wait for more data to come in.
+                if (_receiveBuffer.Length - 1 < length)
+                    return; // -- Not enough yet, wait for more data to come in.
 
-            _receiveBuffer.ReadByte(); // -- Dispose of the length code..
-            // -- Decrypt the data (Registry is always encrypted)
-            byte[] data = XorModule.XorDecrypt(_receiveBuffer.ReadByteArray(length));
+                _receiveBuffer.ReadByte(); // -- Dispose of the length code..
+                // -- Decrypt the data (Registry is always encrypted)
+                byte[] data = XorModule.XorDecrypt(_receiveBuffer.ReadByteArray(length));
 
-            var tempBuffer = new ByteBuffer(); // -- Create a new bytebuffer with the decrypted data
-            tempBuffer.AddBytes(data);
+                var tempBuffer = new ByteBuffer(); // -- Create a new bytebuffer with the decrypted data
+                tempBuffer.AddBytes(data);
 
-            string cmd = tempBuffer.ReadString(4); // -- Get the command to find the regPacket parser..
-            tempBuffer.ReadByte(); // -- Trim off the colon.
+                // -- Get the command to find the regPacket parser.. 5 characters, which is usually 4 and a colon.
+                string cmd = tempBuffer.ReadString(Math.Min(5, tempBuffer.Length)).TrimEnd(':');
 
-            // -- try to find the regPacket.
-            IRegPacket regPacket;
-            if (!_packets.TryGetValue(cmd, out regPacket)) {
-                Logger.Log(LogType.Error,$"[RegistryClient] Unknown packet received: {cmd}");
-                return;
+                // -- try to find the regPacket.
+                IRegPacket regPacket;
+                if (!_packets.TryGetValue(cmd, out regPacket)) {
+                    Logger.Log(LogType.Error,$"[RegistryClient] Unknown packet received: {cmd}");
+                    continue;
+                }
+
+                regPacket.Read(tempBuffer);
+                regPacket.Handle(this);
             }
-
-            regPacket.Read(tempBuffer);
-            regPacket.Handle(this);
         }
     }
     

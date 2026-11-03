@@ -1,4 +1,5 @@
-﻿using Netbattle.Core.Common;
+﻿using System.Globalization;
+using Netbattle.Core.Common;
 using Netbattle.Core.Files;
 
 namespace Netbattle.Core.Database {
@@ -105,7 +106,7 @@ namespace Netbattle.Core.Database {
         }
         private static void ParseFileEntry(IReadOnlyList<string> entry) {
             for (var i = 0; i < 17; i++) { // -- OG: X = 1 -> 17.
-                BattleMatrix[int.Parse(entry[0]), i] = float.Parse(entry[i + 1]);
+                BattleMatrix[int.Parse(entry[0]), i + 1] = float.Parse(entry[i + 1], CultureInfo.InvariantCulture);
             }
         }
     }

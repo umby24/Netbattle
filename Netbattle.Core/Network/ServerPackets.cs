@@ -132,11 +132,11 @@ namespace Netbattle.Network {
                 build += "0";
 
             build += (char) TeamPower;
-            build += (int) graphics;
-            writer.AddBytes(Encoding.ASCII.GetBytes(build));
+            build += NbMethods.FixedHex((int) graphics, 1);
+            writer.AddBytes(Encoding.Latin1.GetBytes(build));
 
-            for (var i = 0; i < 6; i++) 
-                writer.AddBytes(Pokemon[i].ToStringBytes());
+            for (var i = 0; i < 6; i++)
+                writer.AddBytes(Pokemon[i]?.ToStringBytes() ?? TeamMember.EmptySlotBytes());
         
             writer.Purge();
         }
@@ -619,7 +619,7 @@ namespace Netbattle.Network {
         public int PlayerId { get; set; }
 
         public void Read(ByteBuffer reader) {
-            PlayerId = Convert.ToInt32(((char)reader.ReadByte()).ToString());
+            PlayerId = int.Parse(reader.ReadString(reader.Length));
         }
 
         public void Write(ByteBuffer writer) {
@@ -636,7 +636,7 @@ namespace Netbattle.Network {
         public int PlayerId { get; set; }
 
         public void Read(ByteBuffer reader) {
-            var playeridString = reader.ReadString(1);
+            var playeridString = reader.ReadString(reader.Length);
             PlayerId = int.Parse(playeridString);
         }
 
@@ -645,8 +645,12 @@ namespace Netbattle.Network {
         }
 
         public void Handle(NbClient client) {
-            client.OnlinePlayers[PlayerId].Away = false;
-            client.InvokePlayerBack(client.OnlinePlayers[PlayerId]);
+            if (!client.OnlinePlayers.TryGetValue(PlayerId, out Player player))
+                return;
+
+            player.Away = false;
+            client.InvokePlayerBack(player); // -- Reads BattlingWith to tell returned and done battling apart.
+            player.BattlingWith = 0;
         }
     }
 
@@ -1069,7 +1073,7 @@ namespace Netbattle.Network {
         public int Socket;
 
         public void Read(ByteBuffer reader) {
-            var socketStr = reader.ReadString(1);
+            var socketStr = reader.ReadString(reader.Length);
             Socket = int.Parse(socketStr);
         }
 
@@ -1079,8 +1083,12 @@ namespace Netbattle.Network {
         }
 
         public void Handle(NbClient client) {
-            client.OnlinePlayers[Socket].Away = true;
-            client.InvokePlayerAway(client.OnlinePlayers[Socket]);
+            if (!client.OnlinePlayers.TryGetValue(Socket, out Player player))
+                return;
+
+            player.Away = true;
+            player.BattlingWith = 1025; // -- The original's marker for an away player.
+            client.InvokePlayerAway(player);
         }
     }
 

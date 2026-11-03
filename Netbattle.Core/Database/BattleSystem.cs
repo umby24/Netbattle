@@ -4,7 +4,7 @@ using Netbattle.Core.Common;
 
 namespace Netbattle.Core.Database {
     public class BattleSystem {
-        public static NatureType[] NatureStats;
+        public static NatureType[] NatureStats = BuildStatTable();
 
         public static int GetGenerationStat(CompatModes mode, int baseVal, int iv, int ev, int level, int pmod) {
             switch (mode) {
@@ -64,24 +64,32 @@ namespace Netbattle.Core.Database {
                     throw new ArgumentOutOfRangeException(nameof(mode), mode, null);
             }
         }
+        public static bool IsAdvance(CompatModes mode) {
+            return mode is CompatModes.nbTrueRuSa or CompatModes.nbFullAdvance or CompatModes.nbModAdv;
+        }
+
         public static bool ShinyDV(short DVAtk) {
             var vals = new[] { 15, 14, 11, 10, 7, 6, 3, 2 };
             return vals.Contains(DVAtk);
         }
         
         public static void GenerateStatTable() {
-            NatureStats = new NatureType[25];
+            NatureStats = BuildStatTable();
+        }
 
-            for (int i = 0; i < 24; i++) {
-                if (NatureStats[i] == null) {
-                    NatureStats[i] = new NatureType();
-                }
+        private static NatureType[] BuildStatTable() {
+            var natures = new NatureType[25];
+
+            for (int i = 0; i < 25; i++) {
+                natures[i] = new NatureType();
 
                 int y = i / 5 + 1;
-                NatureStats[i].StatChg[y] += 1;
+                natures[i].StatChg[y] += 1;
                 y = i % 5 + 1;
-                NatureStats[i].StatChg[y] -= 1;
+                natures[i].StatChg[y] -= 1;
             }
+
+            return natures;
         }
         
         /// <summary>

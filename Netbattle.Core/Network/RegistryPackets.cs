@@ -39,7 +39,7 @@ namespace Netbattle.Core.Network {
     public struct TempbanRegPacket : IRegPacket {
         public string Command => "TBAN";
         public void Read(ByteBuffer reader) {
-            throw new NotImplementedException();
+            // -- "0" for pong flooding, anything else for too many connections. Same outcome for us.
         }
 
         public void Write(ByteBuffer writer) {
@@ -54,7 +54,6 @@ namespace Netbattle.Core.Network {
     public struct DupeRegPacket : IRegPacket {
         public string Command => "MULTI";
         public void Read(ByteBuffer reader) {
-            throw new NotImplementedException();
         }
 
         public void Write(ByteBuffer writer) {
@@ -99,9 +98,10 @@ namespace Netbattle.Core.Network {
 
     public struct MoveToTopRegPacket : IRegPacket {
         public string Command => "DISC";
+        public string Ip;
 
         public void Read(ByteBuffer reader) {
-            throw new NotImplementedException();
+            Ip = reader.ReadString(reader.Length);
         }
 
         public void Write(ByteBuffer writer) {
@@ -109,7 +109,9 @@ namespace Netbattle.Core.Network {
         }
 
         public void Handle(RegistryClient client) {
-            throw new NotImplementedException();
+            string ip = Ip;
+            client.Servers.RemoveAll(a => a.Ip == ip);
+            client.RaiseServerListChanged();
         }
     }
 }

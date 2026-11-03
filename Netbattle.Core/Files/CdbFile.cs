@@ -26,7 +26,7 @@ namespace Netbattle.Core.Files {
                 throw new Exception("Failed to decompress CDB File.");
             }
 
-            IndividualLines = Encoding.UTF8.GetString(decompressed).Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+            IndividualLines = Encoding.Latin1.GetString(decompressed).Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
 
             foreach (string individualLine in IndividualLines) {
                 string[] lineSplit = CsvLineSplit(individualLine);

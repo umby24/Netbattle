@@ -106,12 +106,13 @@ namespace Netbattle.Core.Common {
         #endregion
 
         /// <summary>
-        /// Waits for the buffer to have the asked for length.
+        /// Checks the buffer has the asked for length. Every read holds the lock AddBytes needs,
+        /// so more data can't arrive while a read is waiting.
         /// </summary>
         /// <param name="length"></param>
         private void WaitForData(int length) {
-            while (_buffer.Length < length) {
-                Thread.Sleep(0);
+            if (_buffer.Length < length) {
+                throw new EndOfStreamException($"Wanted {length} bytes, only have {_buffer.Length}.");
             }
         }
 

@@ -86,8 +86,9 @@ namespace Netbattle.Forms {
                 return;
 
             var newMember = new TeamMember(PokemonDatabase.BasePokemon.FirstOrDefault(a => a.Name == dropPokemon.SelectedItem.ToString()));
+            newMember.ApplyDefaultStats(_workingSettings.CurrentCompatibilityMode);
             newMember.Initialize(_workingSettings.CurrentCompatibilityMode);
-            
+
             // -- Deoxys form check
             if (newMember.Pokemon.No == 386 || newMember.Pokemon.No == 387 || newMember.Pokemon.No == 388 || newMember.Pokemon.No == 389) {
                 for (int i = 0; i < 6; i++) {
@@ -112,16 +113,16 @@ namespace Netbattle.Forms {
                     }
                     break;
                 case CompatModes.nbGSCTrade:
-                    if (newMember.Pokemon.No <= 251)
+                    if (newMember.Pokemon.No > 251)
                     {
                         MessageBox.Show("This pokemon does not exist in Gen 2!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                     break;
                 case CompatModes.nbTrueRuSa:
-                    if (!newMember.Pokemon.ExistRBY)
+                    if (!newMember.Pokemon.ExistADV)
                     {
-                        MessageBox.Show("This pokemon does not exist in RBY!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("This pokemon does not exist in RuSa!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                     break;
@@ -354,11 +355,11 @@ namespace Netbattle.Forms {
         }
 
         private void UpdateWorking() {
-            UserSettings.CurrentSettings.CurrentGraphicsMode = (GraphicsMode)dropGraphics.SelectedIndex;
+            UserSettings.CurrentSettings.CurrentGraphicsMode = (GraphicsMode)dropGraphics.SelectedIndex + 1;
             UserSettings.CurrentSettings.LoseMessage = txtLoseMessage.Text;
             UserSettings.CurrentSettings.WinMessage = txtWinMessage.Text;
             UserSettings.CurrentSettings.MoreInfo = txtExtraInfo.Text;
-            UserSettings.CurrentSettings.IconUsed = (byte)listView1.SelectedIndices[0];
+            UserSettings.CurrentSettings.IconUsed = (byte)(listView1.SelectedIndices[0] + 1);
             UserSettings.CurrentSettings.Username = txtUsername.Text;
             UserSettings.CurrentSettings.Team = _workingSettings.Team;
             UserSettings.CurrentSettings.CurrentCompatibilityMode =
@@ -568,7 +569,7 @@ namespace Netbattle.Forms {
                         }
 
                         for (var m = 0; m < 4; m++) {
-                            if (p.Move[m] != -1) {
+                            if (p.Move[m] > 0) {
                                 var mvObj = MoveDatabase.Moves[p.Move[m]];
                                 if (!mvObj.RBYMove) {
                                     changeString += p.Nickname + " - Removed " + mvObj.Name + " (Newer Move)\n";
@@ -578,6 +579,7 @@ namespace Netbattle.Forms {
                                 
                                 if (!rules.CheckMove(p.Pokemon, mvObj)) {
                                     changeString += p.Nickname + "- Removed " + mvObj.Name + " (Not Learnable in RBY)\n";
+                                    p.Move[m] = -1;
                                 }
                             }
                         }
@@ -600,7 +602,7 @@ namespace Netbattle.Forms {
                             p.Item = Items.nbNoItem;
                         }
                         for (var m = 0; m < 4; m++) {
-                            if (p.Move[m] != -1) {
+                            if (p.Move[m] > 0) {
                                 var mvObj = MoveDatabase.Moves[p.Move[m]];
                                 if (!mvObj.GSCMove) {
                                     changeString += p.Nickname + " - Removed " + mvObj.Name + " (Newer Move)\n";
@@ -636,7 +638,7 @@ namespace Netbattle.Forms {
                         }
                         var rulesAgainStupidScopeBullshit = new ADVRules();
                         for (var m = 0; m < 4; m++) {
-                            if (p.Move[m] != -1) {
+                            if (p.Move[m] > 0) {
                                 var mvObj = MoveDatabase.Moves[p.Move[m]];
                                 if (!rulesAgainStupidScopeBullshit.CheckMove(p.Pokemon, mvObj)) {
                                     changeString += p.Nickname + " - Removed " + mvObj.Name + " (Not Learnable in RuSa)\n";
@@ -726,7 +728,7 @@ namespace Netbattle.Forms {
             if (ofdPnb.FileName.EndsWith(".pnb")) {
                 PnbFile save = new PnbFile(ofdPnb.FileName);
                 save.Load();
-                _workingSettings.CurrentCompatibilityMode = save.Team[0].GameVersion;
+                _workingSettings.CurrentCompatibilityMode = save.Team.FirstOrDefault(a => a != null)?.GameVersion ?? _workingSettings.CurrentCompatibilityMode;
                 _workingSettings.Team = save.Team;
                 _workingSettings.IconUsed = save.CurrentPicture;
                 _workingSettings.CurrentGraphicsMode = (GraphicsMode)(save.GraphicsVersion);

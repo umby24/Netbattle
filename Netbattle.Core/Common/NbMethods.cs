@@ -38,17 +38,8 @@ namespace Netbattle.Core.Common {
         /// <param name="input"></param>
         /// <param name="length"></param>
         public static string Dec2Bin(int input, int length) {
-            byte[] asBytes = BitConverter.GetBytes(input);
-            Array.Reverse(asBytes);
-            string asBits = BytesToBinary(asBytes);
-
-            if (asBits.Length < length)
-                asBits = asBits.PadLeft(length, '0');
-            else {
-                asBits = asBits.TrimStart('0').PadLeft(length, '0');
-            }
-
-            return asBits;
+            string asBits = Convert.ToString(input, 2).PadLeft(length, '0');
+            return asBits.Substring(asBits.Length - length);
         }
 
         public static int Bin2Dec(string input) {
@@ -95,7 +86,7 @@ namespace Netbattle.Core.Common {
         /// <param name="length"></param>
         /// <returns></returns>
         public static string FixedHex(int number, int length) {
-            string hexed = Convert.ToString(number, 16); // -- Convert the number to base-16 (HEX)
+            string hexed = Convert.ToString(number, 16).ToUpperInvariant(); // -- Convert the number to base-16 (HEX)
 
             if (hexed.Length == length)
                 return hexed;
@@ -131,21 +122,7 @@ namespace Netbattle.Core.Common {
         /// <param name="binary">A string of only 0s and 1s.</param>
         /// <returns></returns>
         public static byte[] BinaryToBytes(string binary) {
-            var additional = 0;
-
-            if (binary.Length % 8 > 0)
-                additional = 1;
-
-            var build = new byte[(binary.Length / 8) + additional];
-
-            var c = 0;
-            for (var i = 0; i < binary.Length; i+=8) {
-                int len = (binary.Length < i + 8 ? (binary.Length - i) : 8);
-                build[c] = Convert.ToByte(binary.Substring(i, len), 2);
-                c++;
-            }
-            
-            return build;
+            return Bin2Chr(binary);
         }
 
         /// <summary>
@@ -210,28 +187,30 @@ namespace Netbattle.Core.Common {
             var basePkmn = PokemonDatabase.BasePokemonMap[p.Pokemon.No];
 
             var ruleSet = BattleSystem.GetGenerationRuleset(p.GameVersion);
-            var hp = (int)(ruleSet.GetHp(basePkmn.BaseStats[StatTypes.nbHP], p.DVs[StatTypes.nbHP], p.EVs[StatTypes.nbHP],
-                p.Level) / 1.5);
+            // -- RBY and GSC share one Special DV.
+            StatTypes spDefDv = BattleSystem.IsAdvance(p.GameVersion) ? StatTypes.nbSpDefense : StatTypes.nbSpAttack;
+            double hp = ruleSet.GetHp(basePkmn.BaseStats[StatTypes.nbHP], p.DVs[StatTypes.nbHP], p.EVs[StatTypes.nbHP],
+                p.Level) / 1.5;
             var atk = ruleSet.GetStat(basePkmn.BaseStats[StatTypes.nbAttack], p.DVs[StatTypes.nbAttack],
-                p.EVs[StatTypes.nbAttack], p.Level, PokemonDatabase.NatureTypes[p.NatureNum].StatChg[0]);
-            
+                p.EVs[StatTypes.nbAttack], p.Level, GetNatureMod(p.NatureNum, 1));
+
             var def = ruleSet.GetStat(basePkmn.BaseStats[StatTypes.nbDefense], p.DVs[StatTypes.nbDefense],
-                p.EVs[StatTypes.nbDefense], p.Level, PokemonDatabase.NatureTypes[p.NatureNum].StatChg[1]);
-            
+                p.EVs[StatTypes.nbDefense], p.Level, GetNatureMod(p.NatureNum, 2));
+
             var spd = ruleSet.GetStat(basePkmn.BaseStats[StatTypes.nbSpeed], p.DVs[StatTypes.nbSpeed],
-                p.EVs[StatTypes.nbSpeed], p.Level, PokemonDatabase.NatureTypes[p.NatureNum].StatChg[2]);
-            
+                p.EVs[StatTypes.nbSpeed], p.Level, GetNatureMod(p.NatureNum, 3));
+
             var spatk = ruleSet.GetStat(basePkmn.BaseStats[StatTypes.nbSpAttack], p.DVs[StatTypes.nbSpAttack],
-                p.EVs[StatTypes.nbSpAttack], p.Level, PokemonDatabase.NatureTypes[p.NatureNum].StatChg[3]);
-            
-            var spdef = ruleSet.GetStat(basePkmn.BaseStats[StatTypes.nbSpDefense], p.DVs[StatTypes.nbSpDefense],
-                p.EVs[StatTypes.nbSpDefense], p.Level, PokemonDatabase.NatureTypes[p.NatureNum].StatChg[4]);
-            
-            total = hp + atk + def + spd + spatk + spdef;
-            
+                p.EVs[StatTypes.nbSpAttack], p.Level, GetNatureMod(p.NatureNum, 4));
+
+            var spdef = ruleSet.GetStat(basePkmn.BaseStats[StatTypes.nbSpDefense], p.DVs[spDefDv],
+                p.EVs[StatTypes.nbSpDefense], p.Level, GetNatureMod(p.NatureNum, 5));
+
+            total = (int)Math.Round(hp + atk + def + spd + spatk + spdef); // -- VB rounds to even when assigning to an Integer.
+
             // -- Applies some type matrix scaling?
             int matrixAdjust = 0;
-            for (var i = 1; i < 17; i++)
+            for (var i = 1; i < 18; i++)
             {
                 float battleDamage;
                 
@@ -276,11 +255,19 @@ namespace Netbattle.Core.Common {
                     total += (p.Level * 5);
                     break;
                 // Legendary birds and dogs, mew, Celebi
+                case 144 or 145 or 146:
+                case 151:
+                case 243 or 244 or 245 or 246:
+                case 251:
+                case 379 or 380 or 381:
+                case 385:
+                    total = (int)Math.Round(total + p.Level * 2.5);
+                    break;
                 // Snorlax, Dragonite, Tyranitar.
                 case 143:
                 case 149:
                 case 248:
-                    total += (int)Math.Round(p.Level * 1.25);
+                    total = (int)Math.Round(total + p.Level * 1.25);
                     break;
             }
             
@@ -294,24 +281,22 @@ namespace Netbattle.Core.Common {
          */
         public static int GetTeamRank(TeamMember[] team)
         {
-            int total = team.Sum(GetPokeRank);
-
-            total -= Constants.LowestRank;
             if (team[0] == null) {
                 return 0;
             }
-            
-            if (team[0].GameVersion == CompatModes.nbFullAdvance)
-                total = (int)Math.Max((total * 100.0f) / (Constants.ADVHighestRank - Constants.ADVLowestRank), 100.0f);
-            else {
-                total = Math.Max((total * 100) / (Constants.HighestRank - Constants.LowestRank), 100);
-            }
-            
-            return total;
+
+            int total = team.Sum(GetPokeRank);
+            total -= Constants.LowestRank;
+
+            int range = BattleSystem.IsAdvance(team[0].GameVersion)
+                ? Constants.ADVHighestRank - Constants.ADVLowestRank
+                : Constants.HighestRank - Constants.LowestRank;
+
+            return Math.Min((int)Math.Floor(total * 100.0 / range), 100);
         }
-        
+
         public static int GetNatureMod(byte workingPokeNatureNum, int stat) {
-            if (workingPokeNatureNum == 255) {
+            if (workingPokeNatureNum >= BattleSystem.NatureStats.Length) {
                 return 0;
             }
             

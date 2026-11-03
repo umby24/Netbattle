@@ -1,13 +1,16 @@
 ﻿using System.Text;
-using System.Text.Json.Serialization;
 using Netbattle.Common;
 using Netbattle.Core.Database;
 using Netbattle.Core.Pokemon;
+using Newtonsoft.Json;
 
 namespace Netbattle.Core.Common;
 
 public class TeamMember {
+    public const int PackedLength = 35; // -- 15 byte nickname + 20 bytes of packed bits.
+
     public string Nickname { get; set; }
+    [JsonConverter(typeof(SpeciesNumberConverter))]
     public PokemonSpecies Pokemon { get; set; }
     public CompatModes GameVersion { get; set; }
     public byte UnownLetter { get; set; }
@@ -30,7 +33,7 @@ public class TeamMember {
     // -- Box attributes.
     public int InBox { get; set; }
     public byte MarkerNum { get; set; }
-    
+
     public TeamMember(PokemonSpecies species) {
         Pokemon = species;
         CurrentStats = new StatSet();
@@ -41,7 +44,7 @@ public class TeamMember {
         PP = new byte[4];
         MarkerNum = 0;
     }
-    
+
     public IEnumerable<Move> GetAdvMoves() {
         var result = new List<Move>();
 
@@ -53,6 +56,16 @@ public class TeamMember {
         return result;
     }
 
+    /// <summary>
+    /// Gives a newly picked pokemon the Teambuilder's starting DVs and EVs for this game version.
+    /// </summary>
+    public void ApplyDefaultStats(CompatModes compatMode) {
+        if (BattleSystem.IsAdvance(compatMode))
+            UpgradeToAdvStats();
+        else
+            DowngradeToRBYStats();
+    }
+
     public void DowngradeToRBYStats() {
         DVs[StatTypes.nbHP] = 15;
         DVs[StatTypes.nbDefense] = 15;
@@ -60,6 +73,7 @@ public class TeamMember {
         DVs[StatTypes.nbSpeed] = 15;
         DVs[StatTypes.nbSpAttack] = 15;
         DVs[StatTypes.nbSpDefense] = 15;
+        EVs = new StatSet();
     }
 
     public void UpgradeToAdvStats() {
@@ -80,157 +94,133 @@ public class TeamMember {
     }
 
     public void RegenCurrentStats() {
-        var ruleset = BattleSystem.GetGenerationRuleset(this.GameVersion);
-        
+        var ruleset = BattleSystem.GetGenerationRuleset(GameVersion);
+        bool isRby = GameVersion is CompatModes.nbRBYTrade or CompatModes.nbTrueRBY;
+        // -- RBY has a single Special base stat. RBY and GSC both share one Special DV.
+        int spAtkBase = isRby ? Pokemon.BaseSpecial : Pokemon.BaseStats[StatTypes.nbSpAttack];
+        int spDefBase = isRby ? Pokemon.BaseSpecial : Pokemon.BaseStats[StatTypes.nbSpDefense];
+        StatTypes spDefDv = BattleSystem.IsAdvance(GameVersion) ? StatTypes.nbSpDefense : StatTypes.nbSpAttack;
+
+        int GetStat(StatTypes stat, int baseVal, StatTypes dv) {
+            return ruleset.GetStat(baseVal, DVs[dv], EVs[stat], Level, NbMethods.GetNatureMod(NatureNum, (int)stat));
+        }
+
         CurrentStats = new StatSet() {
-            [StatTypes.nbHP] = ruleset.GetHp(Pokemon.BaseStats[StatTypes.nbHP], DVs[StatTypes.nbHP],
-                EVs[StatTypes.nbHP], Level),
-            [StatTypes.nbAttack] = ruleset.GetStat(Pokemon.BaseStats[StatTypes.nbAttack],
-                DVs[StatTypes.nbAttack], EVs[StatTypes.nbAttack], Level,
-                PokemonDatabase.NatureTypes[NatureNum].StatChg[0]),
-            [StatTypes.nbDefense] = ruleset.GetStat(Pokemon.BaseStats[StatTypes.nbDefense],
-                DVs[StatTypes.nbDefense], EVs[StatTypes.nbDefense], Level,
-                PokemonDatabase.NatureTypes[NatureNum].StatChg[1]),
-            [StatTypes.nbSpeed] = ruleset.GetStat(Pokemon.BaseStats[StatTypes.nbSpeed],
-                DVs[StatTypes.nbSpeed], EVs[StatTypes.nbSpeed], Level,
-                PokemonDatabase.NatureTypes[NatureNum].StatChg[2]),
-            [StatTypes.nbSpAttack] = ruleset.GetStat(Pokemon.BaseStats[StatTypes.nbSpAttack],
-                DVs[StatTypes.nbSpAttack], EVs[StatTypes.nbSpAttack], Level,
-                PokemonDatabase.NatureTypes[NatureNum].StatChg[3]),
-            [StatTypes.nbSpDefense] = ruleset.GetStat(Pokemon.BaseStats[StatTypes.nbSpDefense],
-                DVs[StatTypes.nbSpDefense], EVs[StatTypes.nbSpDefense], Level,
-                PokemonDatabase.NatureTypes[NatureNum].StatChg[4]),
+            [StatTypes.nbHP] = ruleset.GetHp(Pokemon.BaseStats[StatTypes.nbHP], DVs[StatTypes.nbHP], EVs[StatTypes.nbHP], Level),
+            [StatTypes.nbAttack] = GetStat(StatTypes.nbAttack, Pokemon.BaseStats[StatTypes.nbAttack], StatTypes.nbAttack),
+            [StatTypes.nbDefense] = GetStat(StatTypes.nbDefense, Pokemon.BaseStats[StatTypes.nbDefense], StatTypes.nbDefense),
+            [StatTypes.nbSpeed] = GetStat(StatTypes.nbSpeed, Pokemon.BaseStats[StatTypes.nbSpeed], StatTypes.nbSpeed),
+            [StatTypes.nbSpAttack] = GetStat(StatTypes.nbSpAttack, spAtkBase, StatTypes.nbSpAttack),
+            [StatTypes.nbSpDefense] = GetStat(StatTypes.nbSpDefense, spDefBase, spDefDv),
         };
-        
     }
-    
+
+    /// <summary>
+    /// Code.bas FillInPokeData. Cleans up the loaded values for this game version, then calculates the stats.
+    /// </summary>
     public void Initialize(CompatModes compatMode) {
         GameVersion = compatMode;
         if (string.IsNullOrEmpty(Nickname)) Nickname = this.Pokemon.Name;
         if (Level > 100 || Level == 0) Level = 100;
-        Item = Items.nbNoItem;
+        if (!Enum.IsDefined(Item)) Item = Items.nbNoItem;
 
-        switch (Pokemon.PercentFemale) {
-            case -1:
-                Gender = 0;
-                break;
-            case 0:
-                Gender = 1;
-                break;
-            case 16:
-                Gender = 2;
-                break;
-        }
+        if (BattleSystem.IsAdvance(compatMode)) {
+            if (!Item.IsAdvanceItem())
+                Item = Items.nbNoItem;
 
-        if (UnownLetter > 27) UnownLetter = 0;
+            if (EVs.Total > 510) {
+                EVs[StatTypes.nbHP] = 85;
+                EVs[StatTypes.nbDefense] = 85;
+                EVs[StatTypes.nbAttack] = 85;
+                EVs[StatTypes.nbSpeed] = 85;
+                EVs[StatTypes.nbSpAttack] = 85;
+                EVs[StatTypes.nbSpDefense] = 85;
+            }
 
-        switch (compatMode) {
-            case CompatModes.nbTrueRuSa:
-            case CompatModes.nbFullAdvance:
-            case CompatModes.nbModAdv:
-                if (!Item.IsAdvanceItem())
-                    Item = Items.nbNoItem;
+            if (compatMode == CompatModes.nbModAdv) {
+                if (AttNum == 1 && Pokemon.ModAttr[1] == Traits.nbNoTrait) AttNum = 0;
+                Attribute = Pokemon.ModAttr[AttNum];
+            }
+            else {
+                if (AttNum == 1 && Pokemon.PAtt[1] == Traits.nbNoTrait) AttNum = 0;
+                Attribute = Pokemon.PAtt[AttNum];
+            }
 
-                int evTotal = EVs.Total;
-                if (evTotal > 510) {
-                    EVs[StatTypes.nbHP] = 85;
-                    EVs[StatTypes.nbDefense] = 85;
-                    EVs[StatTypes.nbAttack] = 85;
-                    EVs[StatTypes.nbSpeed] = 85;
-                    EVs[StatTypes.nbSpAttack] = 85;
-                    EVs[StatTypes.nbSpDefense] = 85;
-                }
+            if (NatureNum > 24) NatureNum = 0;
 
-                Pokemon.ModAttr[0] = PokemonDatabase.BasePokemonMap[Pokemon.No].ModAttr[0];
-                Pokemon.ModAttr[1] = PokemonDatabase.BasePokemonMap[Pokemon.No].ModAttr[1];
-
-                if (compatMode == CompatModes.nbModAdv) {
-                    if (AttNum == 1 && Pokemon.ModAttr[1] == Traits.nbNoTrait) AttNum = 0;
-                    Attribute = Pokemon.ModAttr[AttNum];
-                }
-                else {
-                    if (AttNum == 1 && Pokemon.PAtt[1] == Traits.nbNoTrait) AttNum = 0;
-                    Attribute = Pokemon.PAtt[AttNum];
-                }
-
-                if (NatureNum > 24) NatureNum = 0;
-                Pokemon.MaxHP = BattleSystem.GetGenerationHp(compatMode, Pokemon.BaseStats[StatTypes.nbHP], 
-                    DVs[StatTypes.nbHP], EVs[StatTypes.nbHP], Level);
-                
-                CurrentStats[StatTypes.nbAttack] = BattleSystem.GetGenerationStat(compatMode, Pokemon.BaseStats[StatTypes.nbAttack], DVs[StatTypes.nbAttack], EVs[StatTypes.nbAttack], Level,
-                    BattleSystem.NatureStats[NatureNum].StatChg[1]);
-                CurrentStats[StatTypes.nbDefense] = BattleSystem.GetGenerationStat(compatMode, Pokemon.BaseStats[StatTypes.nbDefense], DVs[StatTypes.nbDefense], EVs[StatTypes.nbDefense], Level,
-                    BattleSystem.NatureStats[NatureNum].StatChg[2]);
-                CurrentStats[StatTypes.nbSpeed] = BattleSystem.GetGenerationStat(compatMode, Pokemon.BaseStats[StatTypes.nbSpeed], DVs[StatTypes.nbSpeed], EVs[StatTypes.nbSpeed], Level,
-                    BattleSystem.NatureStats[NatureNum].StatChg[3]);
-                CurrentStats[StatTypes.nbSpAttack] = BattleSystem.GetGenerationStat(compatMode, Pokemon.BaseStats[StatTypes.nbSpAttack], DVs[StatTypes.nbSpAttack], EVs[StatTypes.nbSpAttack], Level,
-                    BattleSystem.NatureStats[NatureNum].StatChg[4]);
-                CurrentStats[StatTypes.nbSpDefense] = BattleSystem.GetGenerationStat(compatMode, Pokemon.BaseStats[StatTypes.nbSpDefense], DVs[StatTypes.nbSpDefense], EVs[StatTypes.nbSpDefense], Level,
-                    BattleSystem.NatureStats[NatureNum].StatChg[5]);
-
-                break;
-            default:
-                DowngradeToRBYStats();
-                CurrentStats[StatTypes.nbAttack] = BattleSystem.GetGenerationStat(compatMode, Pokemon.BaseStats[StatTypes.nbAttack], DVs[StatTypes.nbAttack], EVs[StatTypes.nbAttack], Level,
-                    BattleSystem.NatureStats[NatureNum].StatChg[1]);
-                CurrentStats[StatTypes.nbDefense] = BattleSystem.GetGenerationStat(compatMode, Pokemon.BaseStats[StatTypes.nbDefense], DVs[StatTypes.nbDefense], EVs[StatTypes.nbDefense], Level,
-                    BattleSystem.NatureStats[NatureNum].StatChg[2]);
-                CurrentStats[StatTypes.nbSpeed] = BattleSystem.GetGenerationStat(compatMode, Pokemon.BaseStats[StatTypes.nbSpeed], DVs[StatTypes.nbSpeed], EVs[StatTypes.nbSpeed], Level,
-                    BattleSystem.NatureStats[NatureNum].StatChg[3]);
-                CurrentStats[StatTypes.nbSpAttack] = BattleSystem.GetGenerationStat(compatMode, Pokemon.BaseStats[StatTypes.nbSpAttack], DVs[StatTypes.nbSpAttack], EVs[StatTypes.nbSpAttack], Level,
-                    BattleSystem.NatureStats[NatureNum].StatChg[4]);
-                CurrentStats[StatTypes.nbSpDefense] = BattleSystem.GetGenerationStat(compatMode, Pokemon.BaseStats[StatTypes.nbSpDefense], DVs[StatTypes.nbSpDefense], EVs[StatTypes.nbSpDefense], Level,
-                    BattleSystem.NatureStats[NatureNum].StatChg[5]);
-                
-                if (GameVersion == 0 || GameVersion == (CompatModes)5) {
-                    Item = Items.nbNoItem;
-                    Shiny = false;
-                }
-                else {
-                    Shiny = BattleSystem.ShinyDV((short)DVs[StatTypes.nbHP]) && DVs[StatTypes.nbDefense] == 10 && DVs[StatTypes.nbSpeed] == 10 && DVs[StatTypes.nbSpAttack] == 10;
-                }
-
-                DVs[StatTypes.nbHP] = 0;
-                if (DVs[StatTypes.nbAttack] % 2 == 1) DVs[StatTypes.nbHP] += 8;
-                if (DVs[StatTypes.nbDefense] % 2 == 1) DVs[StatTypes.nbHP] += 4;
-                if (DVs[StatTypes.nbSpeed] % 2 == 1) DVs[StatTypes.nbHP] += 2;
-                if (DVs[StatTypes.nbSpAttack] % 2 == 1) DVs[StatTypes.nbHP] += 1;
-                Pokemon.MaxHP = BattleSystem.GetGenerationHp(compatMode, Pokemon.BaseStats[StatTypes.nbHP], 
-                    DVs[StatTypes.nbHP], EVs[StatTypes.nbHP], Level);
-                CurrentStats[StatTypes.nbHP] = Pokemon.MaxHP;
-                
-                if (Pokemon.PercentFemale == -1) {
+            switch (Pokemon.PercentFemale) {
+                case -1:
                     Gender = 0;
-                }
-                else {
-                    if (DVs[StatTypes.nbAttack] <= Pokemon.PercentFemale - 1) {
-                        Gender = 2;
-                    }
-                    else {
-                        Gender = 1;
-                    }
-                }
+                    break;
+                case 0:
+                    Gender = 1;
+                    break;
+                case 16:
+                    Gender = 2;
+                    break;
+            }
 
-                Attribute = Traits.nbNoTrait;
-                if (Item > (Items)41) Item = Items.nbNoItem;
-                if (Pokemon.No == 201) {
-                    UnownLetter =
-                        (byte)((DVs[StatTypes.nbAttack] % 8 / 2 * 64 + DVs[StatTypes.nbDefense] % 8 / 2 * 16 + (DVs[StatTypes.nbSpeed] % 8) / 2 * 4 + (DVs[StatTypes.nbSpAttack] % 8) / 2) /
-                            10 % 26);
-                }
-                else {
-                    UnownLetter = 0;
-                }
-
-                break;
+            if (UnownLetter > 27) UnownLetter = 0;
         }
+        else {
+            if (DVs[StatTypes.nbAttack] > 15) DVs[StatTypes.nbAttack] = 15;
+            if (DVs[StatTypes.nbDefense] > 15) DVs[StatTypes.nbDefense] = 15;
+            if (DVs[StatTypes.nbSpeed] > 15) DVs[StatTypes.nbSpeed] = 15;
+            if (DVs[StatTypes.nbSpAttack] > 15) DVs[StatTypes.nbSpAttack] = 15;
+            DVs[StatTypes.nbSpDefense] = 0;
+
+            if (compatMode is CompatModes.nbRBYTrade or CompatModes.nbTrueRBY) {
+                Item = Items.nbNoItem;
+                Shiny = false;
+            }
+            else {
+                Shiny = BattleSystem.ShinyDV((short)DVs[StatTypes.nbAttack]) && DVs[StatTypes.nbDefense] == 10 && DVs[StatTypes.nbSpeed] == 10 && DVs[StatTypes.nbSpAttack] == 10;
+            }
+
+            DVs[StatTypes.nbHP] = 0;
+            if (DVs[StatTypes.nbAttack] % 2 == 1) DVs[StatTypes.nbHP] += 8;
+            if (DVs[StatTypes.nbDefense] % 2 == 1) DVs[StatTypes.nbHP] += 4;
+            if (DVs[StatTypes.nbSpeed] % 2 == 1) DVs[StatTypes.nbHP] += 2;
+            if (DVs[StatTypes.nbSpAttack] % 2 == 1) DVs[StatTypes.nbHP] += 1;
+
+            if (Pokemon.PercentFemale == -1) {
+                Gender = 0;
+            }
+            else {
+                if (DVs[StatTypes.nbAttack] <= Pokemon.PercentFemale - 1) {
+                    Gender = 2;
+                }
+                else {
+                    Gender = 1;
+                }
+            }
+
+            Attribute = Traits.nbNoTrait;
+            if (Item > (Items)41) Item = Items.nbNoItem;
+            if (Pokemon.No == 201) {
+                UnownLetter =
+                    (byte)((DVs[StatTypes.nbAttack] % 8 / 2 * 64 + DVs[StatTypes.nbDefense] % 8 / 2 * 16 + (DVs[StatTypes.nbSpeed] % 8) / 2 * 4 + (DVs[StatTypes.nbSpAttack] % 8) / 2) /
+                        10 % 26);
+            }
+            else {
+                UnownLetter = 0;
+            }
+        }
+
+        RegenCurrentStats();
     }
 
-    public static TeamMember FromBinary(string pokeData, string nickname) {
+    /// <summary>
+    /// Code.bas Str2PKMN. Returns null for an empty slot.
+    /// </summary>
+    public static TeamMember? FromBinary(string pokeData, string nickname) {
         var No = NbMethods.Bin2Dec(pokeData.Substring(0, 9));
 
-        var resultPokemon = new TeamMember(PokemonDatabase.BasePokemon[No - 1]);
-        resultPokemon.Nickname = nickname;
+        if (!PokemonDatabase.BasePokemonMap.TryGetValue(No, out PokemonSpecies? species))
+            return null;
+
+        var resultPokemon = new TeamMember(species);
+        resultPokemon.Nickname = nickname.Trim();
 
         var GvBits = NbMethods.Bin2Dec(pokeData.Substring(9, 3));
         resultPokemon.GameVersion = (CompatModes)GvBits;
@@ -309,10 +299,11 @@ public class TeamMember {
         sb.Append(Shiny ? 1 : 0);
         sb.Append(NbMethods.Dec2Bin(InBox, 4));
         sb.Append(NbMethods.Dec2Bin(UnownLetter, 5));
-        sb.Append(NbMethods.Dec2Bin(Move[0], 9));
-        sb.Append(NbMethods.Dec2Bin(Move[1], 9));
-        sb.Append(NbMethods.Dec2Bin(Move[2], 9));
-        sb.Append(NbMethods.Dec2Bin(Move[3], 9));
+        // -- The teambuilder marks a cleared move as -1, the file format uses 0.
+        sb.Append(NbMethods.Dec2Bin(Math.Max(Move[0], 0), 9));
+        sb.Append(NbMethods.Dec2Bin(Math.Max(Move[1], 0), 9));
+        sb.Append(NbMethods.Dec2Bin(Math.Max(Move[2], 0), 9));
+        sb.Append(NbMethods.Dec2Bin(Math.Max(Move[3], 0), 9));
         sb.Append(NbMethods.Dec2Bin(DVs[StatTypes.nbHP], 5));
         sb.Append(NbMethods.Dec2Bin(DVs[StatTypes.nbAttack], 5));
         sb.Append(NbMethods.Dec2Bin(DVs[StatTypes.nbDefense], 5));
@@ -327,7 +318,7 @@ public class TeamMember {
         sb.Append(NbMethods.Dec2Bin(EVs[StatTypes.nbSpAttack], 8));
         sb.Append(NbMethods.Dec2Bin(EVs[StatTypes.nbSpDefense], 8));
 
-        byte[] nameBytes = Encoding.ASCII.GetBytes(Nickname.PadRight(15));
+        byte[] nameBytes = Encoding.Latin1.GetBytes((Nickname ?? "").PadRight(15));
         byte[] pokeBytes = NbMethods.BinaryToBytes(sb.ToString());
 
         var final = new byte[15 + pokeBytes.Length];
@@ -335,5 +326,14 @@ public class TeamMember {
         Buffer.BlockCopy(pokeBytes, 0, final, 15, pokeBytes.Length);
 
         return final;
+    }
+
+    /// <summary>
+    /// What PKMN2Str gives for an unused team slot.
+    /// </summary>
+    public static byte[] EmptySlotBytes() {
+        var result = new byte[PackedLength];
+        Array.Fill(result, (byte)' ', 0, 15);
+        return result;
     }
 }
