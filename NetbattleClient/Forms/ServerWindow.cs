@@ -17,6 +17,7 @@ namespace Netbattle.Forms {
         public ServerWindow(Form parent, string ip) {
             this.MdiParent = parent;
             InitializeComponent();
+            MdiMenu.MergeIntoParent(this, menuStrip1);
             _serverIp = ip;
             var font = new Font("MS Sans Serif", 8.25f);
             lstPlayers.Font = font;
@@ -46,7 +47,6 @@ namespace Netbattle.Forms {
             _client.TempBanned += ClientOnTempBanned;
             _client.ServerLocked += ClientOnServerLocked;
             _client.PlayerInfoUpdated += ClientOnPlayerInfoUpdated;
-            _client.PlayerAway += ClientOnPlayerKicked;
             _client.PlayerKicked += ClientOnPlayerKicked;
             _client.Connect();
         }
@@ -203,12 +203,12 @@ namespace Netbattle.Forms {
         private void ClientOnChatMessageReceived(string message) {
             if (message.Contains(":") && !message.StartsWith("*** ")) {
                 Color nameColor = ColorTranslator.FromOle(0x99AA00);
-                var name = message.Substring(0, message.IndexOf(":"));
+                string name = message.Substring(0, message.IndexOf(":"));
 
                 if (name == _client.You.Name)
                     nameColor = Color.Red;
                 
-                if (_client.OnlinePlayers != null && _client.OnlinePlayers.Values.Any(a => a.Name == name && a.Name != _client.You.Name)) {
+                if (_client.OnlinePlayers.Values.Any(a => a.Name == name && a.Name != _client.You.Name)) {
                     nameColor = Color.Blue;
                 }
                 
@@ -247,8 +247,9 @@ namespace Netbattle.Forms {
                 
                 string[] row = { displayName };
 
+                // -- Pictures are 1-based, like the VB ListImages they index.
                 var lvi = new ListViewItem(row) {
-                    ImageIndex = player.Picture, ForeColor = player.Away ? Color.Gray : Color.Black
+                    ImageIndex = player.Picture - 1, ForeColor = player.Away ? Color.Gray : Color.Black
                 };
 
                 lstPlayers.Items.Add(lvi);
@@ -293,7 +294,8 @@ namespace Netbattle.Forms {
             AddMessage($"Server {info.ServerName} - NetBattle {info.ServerVersion}", Color.Blue, true, true);
             AddMessage($"Currently {info.OnlinePlayers} trainer(s) online, with a maximum of {info.MaxPlayers} trainers.", Color.Blue, true, true);
             AddMessage($"Flood count is set to {info.FloodTolerance}", Color.Red, true, true);
-
+            AddMessage($"Your team's power is {_client.You.TeamPower}.", Color.Black, true, true);
+            
             if (_client.EncryptionEnabled)
                 AddMessage("This server encrypts traffic.", Color.Green, true, true);
 
@@ -351,8 +353,16 @@ namespace Netbattle.Forms {
             ToggleAway();
         }
         
-        private void openTeamBuilderToolStripMenuItem_Click_1(object sender, EventArgs e) {
-            throw new System.NotImplementedException();
+        private void openTeamBuilderToolStripMenuItem_Click(object sender, EventArgs e) {
+            if (!_client.You.Away)
+                ToggleAway();
+            
+            var tb = new TeamBuilder(this);
+            tb.FormClosed += (s, args) => {
+                if (_client.You.Away)
+                    ToggleAway();
+            };
+            tb.Show();
         }
     }
 }

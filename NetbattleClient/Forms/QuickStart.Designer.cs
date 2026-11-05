@@ -22,90 +22,140 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
-        {
+        private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            btnTeamBuilder = new Button();
-            btnJoinServer = new Button();
-            btnAbout = new Button();
-            btnExit = new Button();
+            btnTeamBuilder = new System.Windows.Forms.Button();
+            btnJoinServer = new System.Windows.Forms.Button();
+            btnAbout = new System.Windows.Forms.Button();
+            btnExit = new System.Windows.Forms.Button();
+            menuStrip1 = new System.Windows.Forms.MenuStrip();
+            fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // btnTeamBuilder
             // 
-            btnTeamBuilder.BackgroundImage = Properties.Resources.TeamBuilder_Up;
-            btnTeamBuilder.BackgroundImageLayout = ImageLayout.Stretch;
+            btnTeamBuilder.BackgroundImage = global::NetbattleClient.Properties.Resources.TeamBuilder_Up;
+            btnTeamBuilder.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             btnTeamBuilder.FlatAppearance.BorderSize = 0;
-            btnTeamBuilder.FlatStyle = FlatStyle.Flat;
-            btnTeamBuilder.Location = new Point(11, 9);
-            btnTeamBuilder.Margin = new Padding(4, 3, 4, 3);
+            btnTeamBuilder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnTeamBuilder.Location = new System.Drawing.Point(11, 9);
+            btnTeamBuilder.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             btnTeamBuilder.Name = "btnTeamBuilder";
-            btnTeamBuilder.Size = new Size(250, 40);
+            btnTeamBuilder.Size = new System.Drawing.Size(250, 40);
             btnTeamBuilder.TabIndex = 0;
             btnTeamBuilder.UseVisualStyleBackColor = true;
             btnTeamBuilder.Click += btnTeamBuilder_Click;
             // 
             // btnJoinServer
             // 
-            btnJoinServer.BackgroundImage = Properties.Resources.StartBattling_Up;
-            btnJoinServer.BackgroundImageLayout = ImageLayout.Center;
+            btnJoinServer.BackgroundImage = global::NetbattleClient.Properties.Resources.StartBattling_Up;
+            btnJoinServer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             btnJoinServer.FlatAppearance.BorderSize = 0;
-            btnJoinServer.FlatStyle = FlatStyle.Flat;
-            btnJoinServer.Location = new Point(12, 55);
-            btnJoinServer.Margin = new Padding(4, 3, 4, 3);
+            btnJoinServer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnJoinServer.Location = new System.Drawing.Point(12, 55);
+            btnJoinServer.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             btnJoinServer.Name = "btnJoinServer";
-            btnJoinServer.Size = new Size(250, 40);
+            btnJoinServer.Size = new System.Drawing.Size(250, 40);
             btnJoinServer.TabIndex = 1;
             btnJoinServer.UseVisualStyleBackColor = true;
             btnJoinServer.Click += btnJoinServer_Click;
             // 
             // btnAbout
             // 
-            btnAbout.BackgroundImage = Properties.Resources.About_Up;
-            btnAbout.BackgroundImageLayout = ImageLayout.Stretch;
+            btnAbout.BackgroundImage = global::NetbattleClient.Properties.Resources.About_Up;
+            btnAbout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             btnAbout.FlatAppearance.BorderSize = 0;
-            btnAbout.FlatStyle = FlatStyle.Flat;
-            btnAbout.Location = new Point(11, 102);
-            btnAbout.Margin = new Padding(4, 3, 4, 3);
+            btnAbout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnAbout.Location = new System.Drawing.Point(11, 102);
+            btnAbout.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             btnAbout.Name = "btnAbout";
-            btnAbout.Size = new Size(125, 40);
+            btnAbout.Size = new System.Drawing.Size(125, 40);
             btnAbout.TabIndex = 2;
             btnAbout.UseVisualStyleBackColor = true;
             btnAbout.Click += btnAbout_Click;
             // 
             // btnExit
             // 
-            btnExit.BackgroundImage = Properties.Resources.Exit_Up;
-            btnExit.BackgroundImageLayout = ImageLayout.Stretch;
+            btnExit.BackgroundImage = global::NetbattleClient.Properties.Resources.Exit_Up;
+            btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             btnExit.FlatAppearance.BorderSize = 0;
-            btnExit.FlatStyle = FlatStyle.Flat;
-            btnExit.Location = new Point(144, 102);
-            btnExit.Margin = new Padding(4, 3, 4, 3);
+            btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnExit.Location = new System.Drawing.Point(144, 102);
+            btnExit.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             btnExit.Name = "btnExit";
-            btnExit.Size = new Size(125, 40);
+            btnExit.Size = new System.Drawing.Size(125, 40);
             btnExit.TabIndex = 3;
             btnExit.UseVisualStyleBackColor = true;
             btnExit.Click += btnExit_Click;
             // 
+            // menuStrip1
+            // 
+            menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { fileToolStripMenuItem });
+            menuStrip1.Location = new System.Drawing.Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new System.Drawing.Size(271, 24);
+            menuStrip1.TabIndex = 4;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { newToolStripMenuItem, openToolStripMenuItem, settingsToolStripMenuItem });
+            fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            fileToolStripMenuItem.Text = "&File";
+            // 
+            // newToolStripMenuItem
+            // 
+            newToolStripMenuItem.Name = "newToolStripMenuItem";
+            newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            newToolStripMenuItem.Text = "&New";
+            // 
+            // openToolStripMenuItem
+            // 
+            openToolStripMenuItem.Name = "openToolStripMenuItem";
+            openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            openToolStripMenuItem.Text = "&Open";
+            // 
+            // settingsToolStripMenuItem
+            // 
+            settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            settingsToolStripMenuItem.Text = "&Settings";
+            settingsToolStripMenuItem.Click += settingsToolStripMenuItem_Click;
+            // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
-            BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(271, 160);
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            BackgroundImage = ((System.Drawing.Image)resources.GetObject("$this.BackgroundImage"));
+            BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            ClientSize = new System.Drawing.Size(271, 160);
             Controls.Add(btnExit);
             Controls.Add(btnAbout);
             Controls.Add(btnJoinServer);
             Controls.Add(btnTeamBuilder);
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(4, 3, 4, 3);
-            Name = "Form1";
-            StartPosition = FormStartPosition.CenterScreen;
+            Controls.Add(menuStrip1);
+            Icon = ((System.Drawing.Icon)resources.GetObject("$this.Icon"));
+            MainMenuStrip = menuStrip1;
+            Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             Text = "QuickStart";
             Load += Form1_Load;
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
+
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
 
         #endregion
 

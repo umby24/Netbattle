@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using Netbattle.Common;
 using Netbattle.Core.Database;
@@ -301,6 +302,41 @@ namespace Netbattle.Core.Common {
             }
             
             return BattleSystem.NatureStats[workingPokeNatureNum].StatChg[stat];
+        }
+
+        [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool GetVolumeInformation(string rootPathName, StringBuilder? volumeNameBuffer, int volumeNameSize,
+            out uint volumeSerialNumber, IntPtr maximumComponentLength, IntPtr fileSystemFlags, StringBuilder? fileSystemNameBuffer, int fileSystemNameSize);
+
+        /// <summary>
+        /// A recreation of Code.bas GetSerialNumber: the compressed, 13-byte Station ID. Pass it to DecompressSid for the
+        /// 21-character form. It hashes the hard drive serial (from SerialGrabber), or the Windows drive's volume serial
+        /// when no usable drive serial is found.
+        /// </summary>
+        /// <param name="useThisOne">Hash this instead of reading the drive. Used as given, without upper-casing (as in the VB).</param>
+        public static byte[] GetSerialNumber(string? useThisOne = null) {
+            string build = !string.IsNullOrEmpty(useThisOne)
+                ? useThisOne
+                : OperatingSystem.IsWindows() ? new SerialGrabber().GetSerial().ToUpperInvariant() : "";
+
+            // -- Keep '0' through 'Z' only.
+            var temp = new string(build.Where(c => c >= 48 && c <= 90).ToArray());
+
+            if (temp.Length == 0 || temp.All(c => c == '0')) {
+                // -- "Bad SID": fall back to the volume serial of the drive Windows is on.
+                uint volumeSerial = 0;
+                if (OperatingSystem.IsWindows()) {
+                    string root = Path.GetPathRoot(Environment.GetFolderPath(Environment.SpecialFolder.Windows)) ?? @"C:\";
+                    GetVolumeInformation(root, null, 0, out volumeSerial, IntPtr.Zero, IntPtr.Zero, null, 0);
+                }
+
+                temp = volumeSerial.ToString("X"); // -- VB Hex(): uppercase, no padding.
+            }
+
+            // -- MD5 hex, each digit as 4 bits, cut to 100 bits: the first 100 bits of the digest.
+            byte[] hash = System.Security.Cryptography.MD5.HashData(Encoding.Latin1.GetBytes(temp));
+            return BinaryToBytes(BytesToBinary(hash).Substring(0, 100));
         }
     }
 }

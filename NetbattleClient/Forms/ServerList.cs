@@ -6,6 +6,11 @@ namespace NetbattleClient.Forms {
     public partial class ServerList : Form {
         private RegistryClient _regClient;
 
+        /// <summary>
+        /// The server window opened from this list, if the user connected to one.
+        /// </summary>
+        public ServerWindow? OpenedServer { get; private set; }
+
         public ServerList(Form parent) {
             MdiParent = parent;
             InitializeComponent();
@@ -63,25 +68,11 @@ namespace NetbattleClient.Forms {
             if (ip == "66.69.46.171")
                 ip = "127.0.0.1";
 
-            var srv = new ServerWindow(MdiParent, ip);
-            srv.FormClosing += Srv_FormClosed;
-            srv.Show();
-            Hide();
-        }
-        
-        
-        private void Srv_FormClosed(object sender, FormClosingEventArgs e) {
-            if (this.InvokeRequired) {
-                Invoke(new FormClosingEventHandler(Srv_FormClosed), sender, e);
-                return;
-            }
-
-            Invoke(new NoArgs(derpish));
-            
-        }
-
-        private void derpish() {
-            this.Close();
+            // -- Close rather than Hide: hiding an MDI child destroys its handle, and a later Close() then disposes it
+            // -- without raising FormClosing/FormClosed. Whoever opened us picks the server window up from OpenedServer.
+            OpenedServer = new ServerWindow(MdiParent, ip);
+            OpenedServer.Show();
+            Close();
         }
 
         private string UnpackIp(string ip) {
@@ -98,7 +89,8 @@ namespace NetbattleClient.Forms {
         }
 
         private void ServerList_FormClosed(object sender, FormClosedEventArgs e) {
-
+            _regClient.ServerListChanged -= RefreshList;
+            _regClient.Disconnect();
         }
     }
 }

@@ -254,17 +254,17 @@ namespace Netbattle.Network {
             client.Info = info;
             client.InvokeServerInfoReceived();
              // -- Reply..
-            var up = new UserPacket {
-                Username = UserSettings.CurrentSettings.Username,
-                ServerPassword = "potato",
-                Sid = "WAMABOTBOTEATERABCDEF",
-                ClientVersion = "0.9.7",
-                LoginCode = SigninCode,
-                ClientPicture = UserSettings.CurrentSettings.IconUsed,
-                Options = new bool[10],
-                ExtraInfo = UserSettings.CurrentSettings.MoreInfo,
-                
-            };
+             var up = new UserPacket {
+                 Username = client.You.Name,
+                 Password = "",
+                 ServerPassword =  "potato",
+                 LoginCode = SigninCode,
+                 Sid = client.You.StationID,
+                 ClientVersion = client.You.Version,
+                 ClientPicture = client.You.Picture,
+                 Options = new bool[10],
+                 ExtraInfo = client.You.Description
+             };
 
             client.SendPacket(up);
         }
@@ -641,7 +641,8 @@ namespace Netbattle.Network {
         }
 
         public void Write(ByteBuffer writer) {
-            throw new NotImplementedException();
+            writer.WriteString(Command + ":");
+            writer.Purge();
         }
 
         public void Handle(NbClient client) {

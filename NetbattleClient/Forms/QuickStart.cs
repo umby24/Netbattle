@@ -9,20 +9,21 @@ namespace NetbattleClient.Forms {
 
         private void btnJoinServer_Click(object sender, EventArgs e) {
             var browser = new ServerList(MdiParent);
-            browser.FormClosing += BrowserOnFormClosed;
-            browser.Closed += BrowserOnClosed;
+            browser.FormClosed += BrowserOnFormClosed;
             browser.Show();
             Hide();
         }
 
-        private void BrowserOnClosed(object sender, EventArgs eventArgs) {
-            Console.WriteLine("Browser closed2, showing!");
-            Show();
-        }
+        private void BrowserOnFormClosed(object sender, FormClosedEventArgs e) {
+            ServerWindow? server = ((ServerList)sender).OpenedServer;
 
-        private void BrowserOnFormClosed(object sender, FormClosingEventArgs formClosedEventArgs) {
-            Console.WriteLine("Browser closed, showing!");
-            Show();
+            if (server == null) {
+                Show();
+                return;
+            }
+
+            // -- Back to the quick start once the server window closes (it disconnects itself while closing).
+            server.FormClosed += (_, _) => Show();
         }
 
         private void btnTeamBuilder_Click(object sender, EventArgs e) {
@@ -44,8 +45,7 @@ namespace NetbattleClient.Forms {
             Application.Exit();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e) {
             var settings = new Settings();
             settings.ShowDialog();
         }

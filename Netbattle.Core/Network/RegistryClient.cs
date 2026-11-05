@@ -79,6 +79,10 @@ public class RegistryClient {
     }
     
     
+    public void Disconnect() {
+        _regSock.Disconnect("Disconnect called");
+    }
+
     private void SendBufferOnDataAdded() {
         byte[] data = _sendBuffer.GetAllBytes();
         byte[] encrypted = XorModule.XorEncrypt(data);

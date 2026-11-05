@@ -16,13 +16,16 @@ namespace Netbattle.Forms {
         private ServerWindow _serverWindow;
 
         public TeamBuilder(Form parent) {
-            this.MdiParent = parent;
-            InitializeComponent();
-            _changed = false;
             if (parent is ServerWindow window) {
                 _serverWindow = window;
-                // -- Send Away Command! TODO:;
+                this.MdiParent = parent.MdiParent;
+            } else {
+                this.MdiParent = parent;
             }
+            InitializeComponent();
+            MdiMenu.MergeIntoParent(this, menuStrip1);
+            _changed = false;
+
             if (GraphicsDatabase.HasColGraphics) {
                 dropGraphics.Items.Add("Colosseum");
             }
@@ -49,21 +52,10 @@ namespace Netbattle.Forms {
             listView1.Items[UserSettings.CurrentSettings.IconUsed-1].Selected = true;
 
             _workingSettings = UserSettings.CurrentSettings;
-            // -- Load your team
-
-            for (var i = 0; i < 6; i++) {
-                if (UserSettings.CurrentSettings.Team[i] != null) {
-                    LoadPokemonSlot(i);
-                }
-
-                if (_workingSettings.Team[i] != null) {
-                    // -- If you have a pokemon in a slot, turn the icon red from gray.
-                    btnPoke1.ImageIndex = 16;
-                }
-                else {
-                    btnPoke1.ImageIndex = 15;
-                }
-            }
+            // -- Load your team. Only the selected slot goes in the editor: loading every slot left _currentPokemon on slot 6
+            // -- while _currentSlot was still 0, and switching slots then copied slot 6 over slot 1.
+            LoadPokemonSlot(_currentSlot);
+            UpdateSlotIcons();
 
             // -- Updates menu and dropdown selections across the form
             UpdateSelections();
@@ -144,6 +136,7 @@ namespace Netbattle.Forms {
 
             // -- Format No to '000' + e for emerald.
             PopulateMoves();
+            UpdateSlotIcons(); // -- A new pick starts with no moves.
         }
 
 
@@ -375,15 +368,20 @@ namespace Netbattle.Forms {
 
             LoadPokemonSlot(theSlot);
             btnObj.FlatStyle = FlatStyle.Popup;
-            Button[] myArr = new[] { btnPoke1, btnPoke2, btnPoke3, btnPoke4, btnPoke5, btnPoke6 };
+            UpdateSlotIcons();
+        }
+
+        /// <summary>
+        /// Turns a slot's button icon red when it holds a pokemon with at least one move, gray otherwise.
+        /// </summary>
+        private void UpdateSlotIcons() {
+            const int grayIcon = 15, redIcon = 16;
+            Button[] slotButtons = { btnPoke1, btnPoke2, btnPoke3, btnPoke4, btnPoke5, btnPoke6 };
 
             for (var i = 0; i < 6; i++) {
-                if (_workingSettings.Team[i] != null) {
-                    myArr[i].ImageIndex = 16;
-                }
-                else {
-                    myArr[i].ImageIndex = 15;
-                }
+                TeamMember? member = _workingSettings.Team[i];
+                bool ready = member?.Pokemon != null && member.Move.Any(m => m > 0);
+                slotButtons[i].ImageIndex = ready ? redIcon : grayIcon;
             }
         }
 
@@ -398,7 +396,8 @@ namespace Netbattle.Forms {
 
         private void LoadPokemonSlot(int slot) {
             _switching = true;
-            // -- Save working pokemon..
+            // -- Always track the slot being shown, empty or not, so edits and switches never write a stale pokemon back.
+            _currentPokemon = _workingSettings.Team[slot];
 
             if (_workingSettings.Team[slot] == null) {
                 dropPokemon.SelectedIndex = -1;
@@ -509,8 +508,9 @@ namespace Netbattle.Forms {
                 }
             }
 
+            _changed = true;
             UpdateMoveBoxes();
-            // -- If you have 4 moves, set tab icon to red. Otherwise set as grey.
+            UpdateSlotIcons();
         }
 
         private void UpdateMoveBoxes() {
@@ -540,6 +540,8 @@ namespace Netbattle.Forms {
 
             if (move4 != null)
                 txtMove4.Text = move4.Name;
+
+            UpdateSlotIcons();
         }
 
         private void DoVersionChange(CompatModes newCompatMode) {
@@ -658,20 +660,24 @@ namespace Netbattle.Forms {
             }
             
             _workingSettings.CurrentCompatibilityMode = newCompatMode;
+            UpdateSlotIcons(); // -- Pokemon and moves may have been removed from any slot.
         }
 
         private void txtNickname_TextChanged(object sender, EventArgs e) {
             if (_switching)
                 return;
-            
-            if (_currentPokemon != null && txtNickname.Text != null && txtNickname.Text != _currentPokemon.Nickname)
+
+            if (_currentPokemon != null && txtNickname.Text != null && txtNickname.Text != _currentPokemon.Nickname) {
                 _currentPokemon.Nickname = txtNickname.Text;
+                _changed = true;
+            }
         }
 
         private void dropItem_SelectedIndexChanged(object sender, EventArgs e) {
             if (_currentPokemon != null) {
                 _currentPokemon.Item = (Items)Enum.Parse(typeof(Items), "nb" + dropItem.Text.Replace(" ", ""));
                 RefreshCompatTree();
+                _changed = true;
             }
         }
 
@@ -737,6 +743,8 @@ namespace Netbattle.Forms {
                 txtLoseMessage.Text = save.LoseMessage;
                 txtExtraInfo.Text = save.ExtraInfo;
                 listView1.Items[save.CurrentPicture - 1].Selected = true;
+                dropGraphics.SelectedIndex = save.GraphicsVersion;
+                LoadPokemonGraphic();
                 _workingSettings.Username = save.Name;
                 _workingSettings.WinMessage = save.WinMessage;
                 _workingSettings.LoseMessage = save.LoseMessage;
@@ -744,6 +752,7 @@ namespace Netbattle.Forms {
 
                 LoadPokemonSlot(_currentSlot);
                 UpdateSelections();
+                UpdateSlotIcons();
             }
         }
 
@@ -783,7 +792,13 @@ namespace Netbattle.Forms {
         }
 
         private void ExpertFormOnFormClosing(object sender, FormClosingEventArgs e) {
+            AdvExpert expertForm = (AdvExpert)sender;
             this.Enabled = true;
+            _changed = true;
+            _currentPokemon = expertForm.workingPoke;
+            UpdateTeamEvs();
+            UpdateStatLabels();
+            LoadPokemonGraphic();
         }
 
     }

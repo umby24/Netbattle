@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Netbattle.Core", "Netbattle
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetbattleClient", "NetbattleClient\NetbattleClient.csproj", "{5437BA6D-54AD-4E91-8BE1-03FC2949E491}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetbattleServer", "NetbattleServer\NetbattleServer.csproj", "{3D7B721A-E79D-4951-AFC0-204FD775BF7F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{5437BA6D-54AD-4E91-8BE1-03FC2949E491}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5437BA6D-54AD-4E91-8BE1-03FC2949E491}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5437BA6D-54AD-4E91-8BE1-03FC2949E491}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D7B721A-E79D-4951-AFC0-204FD775BF7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D7B721A-E79D-4951-AFC0-204FD775BF7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D7B721A-E79D-4951-AFC0-204FD775BF7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D7B721A-E79D-4951-AFC0-204FD775BF7F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

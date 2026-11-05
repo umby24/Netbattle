@@ -20,5 +20,9 @@ namespace Netbattle.Forms
         {
             txtRegAddr.Text = UserSettings.CurrentSettings.RegistryAddress;
         }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e) {
+            throw new System.NotImplementedException();
+        }
     }
 }

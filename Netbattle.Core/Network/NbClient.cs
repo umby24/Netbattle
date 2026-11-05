@@ -32,8 +32,16 @@ namespace Netbattle.Core.Network {
 
         public NbClient(string ip) {
             You = new Player {
-                Name = "BOT"
+                Name = UserSettings.CurrentSettings.Username,
+                Picture = UserSettings.CurrentSettings.IconUsed,
+                Team = UserSettings.CurrentSettings.Team.ToList(),
+                Description = UserSettings.CurrentSettings.MoreInfo,
+                Version = "0.9.7",
+                GameVersion = (int)UserSettings.CurrentSettings.CurrentCompatibilityMode,
+                GraphicsVersion = (int)UserSettings.CurrentSettings.CurrentGraphicsMode,
+                StationID = NbMethods.DecompressSid(NbMethods.GetSerialNumber())
             };
+            
             ServerIp = ip;
             // -- Setup the Socket
             _serverSocket = new ClientSocket(ip, 30000);
@@ -381,10 +389,17 @@ namespace Netbattle.Core.Network {
                         break;
 
                     _inputBuffer.ReadByte(); // -- Dispose of the length code..
-
-                    byte[] data = EncryptionEnabled
-                        ? XorModule.XorDecrypt(_inputBuffer.ReadByteArray(length))
-                        : _inputBuffer.ReadByteArray(length);
+                    byte[] data;
+                    try {
+                      data = EncryptionEnabled
+                            ? XorModule.XorDecrypt(_inputBuffer.ReadByteArray(length))
+                            : _inputBuffer.ReadByteArray(length);
+                    }
+                    catch (Exception e) {
+                        Logger.Log(LogType.Error, $"Error occurred while processing packet: {e.Message}");
+                        // -- Data has been read, but we don't know what it is. Just skip it.
+                        continue;
+                    }
 
                     var tempBuffer = new ByteBuffer(); // -- Create a new bytebuffer with the data
                     tempBuffer.AddBytes(data);
@@ -433,15 +448,15 @@ namespace Netbattle.Core.Network {
 
         public void SendServerPassword(string password) {
             var up = new UserPacket {
-                Username = UserSettings.CurrentSettings.Username,
+                Username = You.Name,
                 Password = password,
                 ServerPassword =  "potato",
                 LoginCode = LoginCode,
-                Sid = "WAMABOTBOTEATERABCDEF",
-                ClientVersion = "0.9.7",
-                ClientPicture = UserSettings.CurrentSettings.IconUsed,
+                Sid = You.StationID,
+                ClientVersion = You.Version,
+                ClientPicture = You.Picture,
                 Options = new bool[10],
-                ExtraInfo = UserSettings.CurrentSettings.MoreInfo,
+                ExtraInfo = You.Description
             };
 
             SendPacket(up);
