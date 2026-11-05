@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Newtonsoft.Json" Version="14.0.1-beta2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Sockets">
+        <HintPath>..\Sockets.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+</Project>

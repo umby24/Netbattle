@@ -1,0 +1,127 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net10.0-windows</TargetFramework>
+        <Nullable>enable</Nullable>
+        <UseWindowsForms>true</UseWindowsForms>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <ApplicationVisualStyles>false</ApplicationVisualStyles>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Update="Forms\About.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="Forms\AdvExpert.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="Forms\ChallengeWindow.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="Forms\Container.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="Forms\PrivateMessage.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="Forms\QuickStart.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="Forms\ServerList.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="Forms\ServerPassword.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="Forms\ServerWindow.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="Forms\Settings.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="Forms\TeamBuilder.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="Forms\TempBanSet.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="Forms\AdvancedConnect.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="Forms\BattleWindow.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="Forms\BoxArrange.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="Forms\ChangeItems.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="Forms\ConfigWizard.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="Forms\DebugText.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="Forms\ExpertBuild.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="Forms\MasterDex.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="Forms\MoveToBox.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="Forms\PokedexSearch.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="Forms\PokemonLoader.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="Forms\RandomForm.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="Forms\RearrangeTeam.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="Forms\SidDebug.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="Forms\SoundPicker.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="Forms\Splash.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="Forms\StadiumSelect.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="Forms\TeamLoader.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="Forms\TeamPower.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="Forms\UserInfo.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="Properties\Resources.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Resources.resx</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Netbattle.Core\Netbattle.Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Update="Properties\Resources.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+    </ItemGroup>
+
+</Project>

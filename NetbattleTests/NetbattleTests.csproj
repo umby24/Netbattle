@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>disable</Nullable>
+        <IsPackable>false</IsPackable>
+        <IsTestProject>true</IsTestProject>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+      <PackageReference Include="MSTest.TestAdapter" Version="3.9.3" />
+      <PackageReference Include="MSTest.TestFramework" Version="3.9.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Netbattle.Core\Netbattle.Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="..\OriginalFiles\MoveDB.cdb" Link="MoveDB.cdb" CopyToOutputDirectory="PreserveNewest" />
+      <None Include="..\OriginalFiles\PokeDB.cdb" Link="PokeDB.cdb" CopyToOutputDirectory="PreserveNewest" />
+      <None Include="..\OriginalFiles\TypeDB.cdb" Link="TypeDB.cdb" CopyToOutputDirectory="PreserveNewest" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net10.0-windows</TargetFramework>
+        <Nullable>enable</Nullable>
+        <UseWindowsForms>true</UseWindowsForms>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Update="forms\DatabaseChanges.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="forms\ServerDataManager.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="forms\ServerOptions.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="forms\ServerScript.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="forms\SocketStatus.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="forms\TrayIcon.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="forms\MasterServer.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="forms\PlayerInfo.cs">
+        <SubType>Form</SubType>
+      </Compile>
+    </ItemGroup>
+
+</Project>
