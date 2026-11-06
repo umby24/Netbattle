@@ -178,7 +178,8 @@ namespace Netbattle.Network {
         public void Handle(NbClient client) {
             client.EncryptionEnabled = UseEncryption;
             client.LoginCode = loginCode;
-            
+            client.FloodCount = FloodTolerance;
+
             var info = new ServerInfo {
                 FloodTolerance = FloodTolerance,
                 MaxPlayers = MaxUsers,
@@ -976,7 +977,7 @@ namespace Netbattle.Network {
         public string Command => "PCAN";
         public byte ChallengeNumber { get; set; }
         public void Read(ByteBuffer reader) {
-            ChallengeNumber = reader.ReadByte();
+            ChallengeNumber = byte.Parse(reader.ReadString(reader.Length));
         }
 
         public void Write(ByteBuffer writer) {
@@ -986,7 +987,7 @@ namespace Netbattle.Network {
         }
 
         public void Handle(NbClient client) {
-            throw new NotImplementedException();
+            client.RaiseChallengeCancelled(client.OnlinePlayers[ChallengeNumber]);
         }
     }
 
@@ -1041,8 +1042,9 @@ namespace Netbattle.Network {
 
     public struct FloodcountChange : IPacket {
         public string Command => "FTCG";
+        public string FloodVal { get; set; }
         public void Read(ByteBuffer reader) {
-            throw new NotImplementedException();
+            FloodVal = reader.ReadString(reader.Length);
         }
 
         public void Write(ByteBuffer writer) {
@@ -1050,14 +1052,18 @@ namespace Netbattle.Network {
         }
 
         public void Handle(NbClient client) {
-            throw new NotImplementedException();
+            client.FloodCount = int.Parse(FloodVal);
         }
     }
-
+    
+    /// <summary>
+    /// This might actually be Player Battle Start..
+    /// </summary>
     public struct PlayersBusy : IPacket {
         public string Command => "PRBS";
+        public string Blob { get; set; }
         public void Read(ByteBuffer reader) {
-            throw new NotImplementedException();
+            Blob = reader.ReadString(reader.Length);
         }
 
         public void Write(ByteBuffer writer) {
@@ -1065,7 +1071,17 @@ namespace Netbattle.Network {
         }
 
         public void Handle(NbClient client) {
-            throw new NotImplementedException();
+            var parts = Blob.Split(',');
+            var gotPlayer1 = client.OnlinePlayers.TryGetValue(int.Parse(parts[0]), out Player player1);
+            var gotPlayer2 = client.OnlinePlayers.TryGetValue(int.Parse(parts[1]), out Player player2);
+            if (gotPlayer1 && gotPlayer2)
+            {
+                player1.Battling = true;
+                player2.Battling = true;
+                player1.BattlingWith = player2.Id;
+                player2.BattlingWith = player1.Id;
+                client.InvokeBattleStarted(player1, player2);
+            }
         }
     }
 
@@ -1095,8 +1111,11 @@ namespace Netbattle.Network {
 
     public struct PlayerPing : IPacket {
         public string Command => "PSPD";
+        public byte playerId { get; set; }
+        public string Ping { get; set; }
         public void Read(ByteBuffer reader) {
-            throw new NotImplementedException();
+            playerId = reader.ReadByte();
+            Ping = reader.ReadString(reader.Length);
         }
 
         public void Write(ByteBuffer writer) {
@@ -1104,7 +1123,11 @@ namespace Netbattle.Network {
         }
 
         public void Handle(NbClient client) {
-            throw new NotImplementedException();
+            if (!client.OnlinePlayers.ContainsKey(playerId))
+                return;
+
+            client.OnlinePlayers[playerId].Ping = int.Parse(Ping);
+            client.InvokePingUpdated(client.OnlinePlayers[playerId]);
         }
 
 // -- 'Player Speed', lel.
@@ -1112,8 +1135,9 @@ namespace Netbattle.Network {
 
     public struct ModKick : IPacket {
         public string Command => "MKCK";
+        public string Blob { get; set; }
         public void Read(ByteBuffer reader) {
-            throw new NotImplementedException();
+            Blob = reader.ReadString(reader.Length);
         }
 
         public void Write(ByteBuffer writer) {
@@ -1127,8 +1151,11 @@ namespace Netbattle.Network {
 
     public struct ModBan : IPacket {
         public string Command => "MBAN";
+        public byte PlayerId { get; set; }
+        public string BannedName { get; set; }
         public void Read(ByteBuffer reader) {
-            throw new NotImplementedException();
+            PlayerId = reader.ReadByte();
+            BannedName = reader.ReadString(reader.Length);
         }
 
         public void Write(ByteBuffer writer) {
@@ -1136,14 +1163,19 @@ namespace Netbattle.Network {
         }
 
         public void Handle(NbClient client) {
-            throw new NotImplementedException();
+            client.InvokePlayerBanned(PlayerId, BannedName);
         }
     }
 
+    /// <summary>
+    /// Recieved from the server to update the 'UserInfo' modal status strip.
+    /// Should be a single byte packet, where 0 = ban successful. 1 = user already banned 2 = user not found 3 = authority conflict 4 = tempban success.
+    /// </summary>
     public struct BanResult : IPacket {
         public string Command => "BRLT";
+        public byte Response { get; set; }
         public void Read(ByteBuffer reader) {
-            throw new NotImplementedException();
+            Response = reader.ReadByte();
         }
 
         public void Write(ByteBuffer writer) {
@@ -1157,38 +1189,46 @@ namespace Netbattle.Network {
 
     public struct Lookup : IPacket {
         public string Command => "LOOK";
+        public string PlayerName { get; set; }
+        public string Data { get; set; }
         public void Read(ByteBuffer reader) {
-            throw new NotImplementedException();
+            Data = reader.ReadString(reader.Length);
         }
 
         public void Write(ByteBuffer writer) {
-            throw new NotImplementedException();
+            writer.WriteString(Command + ":" + PlayerName);
+            writer.Purge();
         }
 
         public void Handle(NbClient client) {
-            throw new NotImplementedException();
+            client.InvokeLookupResult(Data);
         }
     }
 
     public struct Aliases : IPacket {
         public string Command => "ALIA";
+        public string PlayerName { get; set; }
+        public string AliasData { get; set; }
         public void Read(ByteBuffer reader) {
-            throw new NotImplementedException();
+            AliasData = reader.ReadString(reader.Length);
         }
 
         public void Write(ByteBuffer writer) {
-            throw new NotImplementedException();
+            writer.WriteString(Command + ":" + PlayerName);
+            writer.Purge();
         }
 
         public void Handle(NbClient client) {
-            throw new NotImplementedException();
+            client.ProcessAliasData(AliasData);
         }
     }
-
+   
     public struct BanLookup : IPacket {
+        public static string BanLookupCache = "";
         public string Command => "BANL";
+        public string Data { get; set; }
         public void Read(ByteBuffer reader) {
-            throw new NotImplementedException();
+            Data = reader.ReadString(reader.Length);
         }
 
         public void Write(ByteBuffer writer) {
@@ -1196,14 +1236,90 @@ namespace Netbattle.Network {
         }
 
         public void Handle(NbClient client) {
+            BanLookupCache += Data;
+            if (Data.Length <= 200)
+            {
+                client.ProcessBanList(BanLookupCache);
+                BanLookupCache = "";
+            }
+        }
+    }
+    public struct SIDBan : IPacket {
+        public string Command => "IDBN";
+        public string PlayerName { get; set; }
+        public void Read(ByteBuffer reader) {
+            throw new NotImplementedException();
+        }
+
+        public void Write(ByteBuffer writer) {
+            writer.WriteString(Command + ":" + PlayerName);
+            writer.Purge();
+        }
+
+        public void Handle(NbClient client) {
             throw new NotImplementedException();
         }
     }
+    public struct IPBan : IPacket {
+        public string Command => "IPBN";
+        public string PlayerName { get; set; }
+        public void Read(ByteBuffer reader) {
+            throw new NotImplementedException();
+        }
 
+        public void Write(ByteBuffer writer) {
+            writer.WriteString(Command + ":" + PlayerName);
+            writer.Purge();
+        }
+
+        public void Handle(NbClient client) {
+            throw new NotImplementedException();
+        }
+    }
+    
+    public struct UnbanPacket : IPacket {
+        public string Command => "UBAN";
+        public string Tag { get; set; }
+        public string PlayerName { get; set; }
+        public void Read(ByteBuffer reader) {
+            throw new NotImplementedException();
+        }
+
+        public void Write(ByteBuffer writer) {
+            writer.WriteString(Command + ":" +Tag + PlayerName);
+            writer.Purge();
+        }
+
+        public void Handle(NbClient client) {
+            throw new NotImplementedException();
+        }
+    }
+    
+    public struct TempBan : IPacket {
+        public string Command => "TMPB";
+        public string PlayerName { get; set; }
+        public int Duration { get; set; }
+        public void Read(ByteBuffer reader) {
+            throw new NotImplementedException();
+        }
+
+        public void Write(ByteBuffer writer) {
+            writer.WriteString(Command + ":" + Duration.ToString("D4") + PlayerName);
+        }
+
+        public void Handle(NbClient client) {
+            throw new NotImplementedException();
+        }
+    }
     public struct ModTempBan : IPacket {
         public string Command => "MTBN";
+        public int PlayerId { get; set; }
+        public short Duration { get; set; }
+        public string PlayerBanned { get; set; }
         public void Read(ByteBuffer reader) {
-            throw new NotImplementedException();
+            PlayerId = reader.ReadByte();
+            Duration = reader.ReadShort();
+            PlayerBanned = reader.ReadString(reader.Length);
         }
 
         public void Write(ByteBuffer writer) {
@@ -1211,7 +1327,7 @@ namespace Netbattle.Network {
         }
 
         public void Handle(NbClient client) {
-            throw new NotImplementedException();
+            client.InvokePlayerTempBanned(PlayerId, Duration, PlayerBanned);
         }
     }
 

@@ -92,5 +92,9 @@ namespace NetbattleClient.Forms {
             _regClient.ServerListChanged -= RefreshList;
             _regClient.Disconnect();
         }
+
+        private void lstServers_MouseDoubleClick(object sender, MouseEventArgs e) {
+            btnConnect.PerformClick();
+        }
     }
 }

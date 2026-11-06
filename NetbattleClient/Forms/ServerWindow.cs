@@ -9,12 +9,14 @@ using Netbattle.Core.Network;
 using Netbattle.Network;
 
 namespace Netbattle.Forms {
-    public partial class ServerWindow : Form {
+    public partial class ServerWindow : Form
+    {
         private string _serverIp;
         private NbClient _client;
         private Dictionary<int, PrivateMessage> _pmWindows = new Dictionary<int, PrivateMessage>();
 
-        public ServerWindow(Form parent, string ip) {
+        public ServerWindow(Form parent, string ip)
+        {
             this.MdiParent = parent;
             InitializeComponent();
             MdiMenu.MergeIntoParent(this, menuStrip1);
@@ -26,7 +28,8 @@ namespace Netbattle.Forms {
         }
 
         #region Form Events
-        private void ServerWindow_Load(object sender, EventArgs e) {
+        private void ServerWindow_Load(object sender, EventArgs e)
+        {
             _client = new NbClient(_serverIp);
             _client.ServerInfoReceived += ClientOnServerInfoReceived;
             _client.ChatMessageReceived += ClientOnChatMessageReceived;
@@ -48,68 +51,118 @@ namespace Netbattle.Forms {
             _client.ServerLocked += ClientOnServerLocked;
             _client.PlayerInfoUpdated += ClientOnPlayerInfoUpdated;
             _client.PlayerKicked += ClientOnPlayerKicked;
+            _client.PlayerBanned += _client_PlayerBanned;
+            _client.PlayerTempBanned += _client_PlayerTempBanned;
+            _client.BattleStarted += _client_BattleStarted;
             _client.Connect();
         }
 
-        private void ClientOnPlayerKicked(Player player) {
+        private void _client_BattleStarted(Player player1, Player player2)
+        {
+            AddMessage($"{player1.Name} and {player2.Name} are battling.");
+        }
+
+        private void _client_PlayerTempBanned(Player player1, Player player2)
+        {
+            var authString = "";
+            if (player1.Authority == 1)
+            {
+                authString = "Moderator";
+            } else
+            {
+                authString = "Admin";
+            }
+
+            AddMessage($"{authString} {player1.Name} has TempBanned {player2.Name}.", Color.Red, true, true);
+        }
+
+        private void _client_PlayerBanned(Player player1, Player player2)
+        {
+            AddMessage($"Admin {player1.Name} has banned " + player2.Name, Color.Red, true, true);
+        }
+
+        private void ClientOnPlayerKicked(Player player)
+        {
             AddMessage($"SERVER HAS KICKED TRAINER: {player.Name}", Color.Red, true, true);
         }
 
-        private void ClientOnPlayerInfoUpdated(Player player) {
-            if (InvokeRequired) {
+        private void ClientOnPlayerInfoUpdated(Player player)
+        {
+            if (InvokeRequired)
+            {
                 Invoke(new PlayerEventArgs(ClientOnPlayerInfoUpdated), player);
                 return;
             }
-            
+
             RefreshPlayerList();
         }
 
-        private void ClientOnServerLocked() {
+        private void ClientOnServerLocked()
+        {
             throw new NotImplementedException();
         }
 
-        private void ClientOnTempBanned(string message) {
+        private void ClientOnTempBanned(string message)
+        {
             throw new NotImplementedException();
         }
 
-        private void ClientOnRegistryMessageReceived(string message) {
-            if (InvokeRequired) {
+        private void ClientOnRegistryMessageReceived(string message)
+        {
+            if (InvokeRequired)
+            {
                 Invoke(new MessageEventArgs(ClientOnRegistryMessageReceived), message);
                 return;
             }
-            
+
             AddMessage("NETWORK-WIDE MESSAGE: ", ColorTranslator.FromOle(0x80ff), false, true);
             AddMessage(message);
         }
 
-        private void ClientOnPasswordRequested() {
+        private void ClientOnPasswordRequested()
+        {
             var passwordForm = new ServerPassword();
-            if (passwordForm.ShowDialog() == DialogResult.OK) {
+            if (passwordForm.ShowDialog() == DialogResult.OK)
+            {
                 _client.SendServerPassword(passwordForm.Password);
             }
-            else {
+            else
+            {
                 _client.Disconnect();
                 Close();
             }
         }
 
-        private void ClientOnChallengeReceived(Player challenger, TerrainTypes terrain, BattleModes challengeMode, byte[] ruleSet) {
-            throw new NotImplementedException();
+        private void ClientOnChallengeReceived(Player challenger, TerrainTypes terrain, BattleModes challengeMode, byte[] ruleSet)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new ChallengeEventArgs(ClientOnChallengeReceived), challenger, terrain, challengeMode, ruleSet);
+                return;
+            }
+
+            var chWind = new ChallengeWindow(_client, challenger, this, terrain, challengeMode, ruleSet);
+            chWind.Show();
         }
 
-        private void ClientOnPlayerBack(Player player) {
-            if (InvokeRequired) {
+        private void ClientOnPlayerBack(Player player)
+        {
+            if (InvokeRequired)
+            {
                 Invoke(new PlayerEventArgs(ClientOnPlayerBack), player);
                 return;
             }
 
-            if (player.BattlingWith == 1025) {
+            if (player.BattlingWith == 1025)
+            {
                 AddMessage($"{player.Name} has returned.");
             }
-            else {
+            else
+            {
                 AddMessage($"{player.Name} is done battling.");
                 // -- If Watching, drop the watching form.
-                if (player.BattlingWith == _client.You.Id && _client.OnlinePlayers[_client.You.Id].Id == player.Id) {
+                if (player.BattlingWith == _client.You.Id && _client.OnlinePlayers[_client.You.Id].Id == player.Id)
+                {
                     player.BattlingWith = 0;
                     // -- Call "BOVER" to battle window.
                 }
@@ -119,8 +172,10 @@ namespace Netbattle.Forms {
             RefreshPlayerList();
         }
 
-        private void ClientOnPlayerAway(Player player) {
-            if (InvokeRequired) {
+        private void ClientOnPlayerAway(Player player)
+        {
+            if (InvokeRequired)
+            {
                 Invoke(new PlayerEventArgs(ClientOnPlayerAway), player);
                 return;
             }
@@ -130,46 +185,56 @@ namespace Netbattle.Forms {
             RefreshPlayerList();
         }
 
-        private void ClientOnIpBanned() {
+        private void ClientOnIpBanned()
+        {
             AddMessage("You have been banned from this server.", Color.Red, true, true, true);
         }
 
-        private void ClientOnInvalidUserPassword() {
+        private void ClientOnInvalidUserPassword()
+        {
             AddMessage("Your user password is invalid. Try another.", Color.Red, true, true, true);
         }
 
-        private void ClientOnDuplicateNameKick() {
+        private void ClientOnDuplicateNameKick()
+        {
             AddMessage("Name Already In Use", Color.Red, true, true, true);
         }
 
-        private void ClientOnServerKickedYou() {
+        private void ClientOnServerKickedYou()
+        {
             MessageBox.Show("You have been kicked by server " + _client.Info.ServerName, "Server Kicked You", MessageBoxButtons.OK, MessageBoxIcon.Error);
             AddMessage("Disconnected from server", Color.Red, true, true, true);
         }
 
-        private void ClientOnPmReceived(Player player, string message) {
-            if (InvokeRequired) {
+        private void ClientOnPmReceived(Player player, string message)
+        {
+            if (InvokeRequired)
+            {
                 Invoke(new PrivateMessageEventArgs(ClientOnPmReceived), player, message);
                 return;
             }
 
             PrivateMessage theWindow;
 
-            if (!_pmWindows.ContainsKey(player.Id)) {
+            if (!_pmWindows.ContainsKey(player.Id))
+            {
                 theWindow = new PrivateMessage(this.MdiParent, _client, player);
                 theWindow.FormClosing += TheWindowOnFormClosing;
                 _pmWindows.Add(player.Id, theWindow);
                 theWindow.Show();
             }
-            else {
+            else
+            {
                 theWindow = _pmWindows[player.Id];
             }
 
             theWindow.HandleIncoming(message);
         }
 
-        private void ClientOnPlayerLeft(Player player) {
-            if (InvokeRequired) {
+        private void ClientOnPlayerLeft(Player player)
+        {
+            if (InvokeRequired)
+            {
                 Invoke(new PlayerEventArgs(ClientOnPlayerLeft), player);
                 return;
             }
@@ -177,17 +242,21 @@ namespace Netbattle.Forms {
             AddMessage($"{player.Name} left.");
         }
 
-        private void ClientOnPlayerJoined(Player player) {
-            if (InvokeRequired) {
+        private void ClientOnPlayerJoined(Player player)
+        {
+            if (InvokeRequired)
+            {
                 Invoke(new PlayerEventArgs(ClientOnPlayerJoined), player);
                 return;
             }
 
             AddMessage($"{player.Name} joined.");
         }
-        
-        private void ClientOnPlayerlistUpdated(List<Player> players) {
-            if (InvokeRequired) {
+
+        private void ClientOnPlayerlistUpdated(List<Player> players)
+        {
+            if (InvokeRequired)
+            {
                 Invoke(new PlayersEventArgs(ClientOnPlayerlistUpdated), players);
                 return;
             }
@@ -195,37 +264,45 @@ namespace Netbattle.Forms {
             RefreshPlayerList();
         }
 
-        private void ClientOnWelcomeMessageReceived(string message) {
+        private void ClientOnWelcomeMessageReceived(string message)
+        {
             AddMessage("Welcome Message: ", Color.Red, false, true, true);
             AddMessage(message);
         }
 
-        private void ClientOnChatMessageReceived(string message) {
-            if (message.Contains(":") && !message.StartsWith("*** ")) {
+        private void ClientOnChatMessageReceived(string message)
+        {
+            if (message.Contains(":") && !message.StartsWith("*** "))
+            {
                 Color nameColor = ColorTranslator.FromOle(0x99AA00);
                 string name = message.Substring(0, message.IndexOf(":"));
 
                 if (name == _client.You.Name)
                     nameColor = Color.Red;
-                
-                if (_client.OnlinePlayers.Values.Any(a => a.Name == name && a.Name != _client.You.Name)) {
+
+                if (_client.OnlinePlayers.Values.Any(a => a.Name == name && a.Name != _client.You.Name))
+                {
                     nameColor = Color.Blue;
                 }
-                
+
                 AddMessage(name, nameColor, false, true);
                 message = message.Substring(name.Length, message.Length - name.Length);
                 AddMessage(message);
-            } else if (message.StartsWith("*** ")) {
+            }
+            else if (message.StartsWith("*** "))
+            {
                 AddMessage(message, ColorTranslator.FromOle(0xC000C0));
             }
-            else {
+            else
+            {
 
                 AddMessage(message);
             }
         }
 
 
-        private void btnSend_Click(object sender, EventArgs e) {
+        private void btnSend_Click(object sender, EventArgs e)
+        {
             _client.SendChat(txtInput.Text);
             txtInput.Clear();
         }
@@ -233,23 +310,27 @@ namespace Netbattle.Forms {
 
         #region Form Helpers
 
-        public void RefreshPlayerList() {
+        public void RefreshPlayerList()
+        {
             lstPlayers.Items.Clear();
 
-            foreach (Player player in _client.OnlinePlayers.Values) {
+            foreach (Player player in _client.OnlinePlayers.Values)
+            {
                 var displayName = player.Away ? "[" + player.Name + "]" : player.Name;
-                
+
                 if (player.Authority == 2)
                     displayName += " *";
-                
+
                 if (player.Authority == 3)
                     displayName += " **";
-                
+
                 string[] row = { displayName };
 
                 // -- Pictures are 1-based, like the VB ListImages they index.
-                var lvi = new ListViewItem(row) {
-                    ImageIndex = player.Picture - 1, ForeColor = player.Away ? Color.Gray : Color.Black
+                var lvi = new ListViewItem(row)
+                {
+                    ImageIndex = player.Picture - 1,
+                    ForeColor = player.Away ? Color.Gray : Color.Black
                 };
 
                 lstPlayers.Items.Add(lvi);
@@ -259,8 +340,10 @@ namespace Netbattle.Forms {
         public delegate void AddMessageArgs(
             string message, Color color = default(Color), bool newLine = true, bool bold = false, bool italic = false);
 
-        public void AddMessage(string message, Color color = default(Color), bool newLine = true, bool bold = false, bool italic = false) {
-            if (InvokeRequired) {
+        public void AddMessage(string message, Color color = default(Color), bool newLine = true, bool bold = false, bool italic = false)
+        {
+            if (InvokeRequired)
+            {
                 Invoke(new AddMessageArgs(AddMessage), message, color, newLine, bold, italic);
                 return;
             }
@@ -277,7 +360,7 @@ namespace Netbattle.Forms {
             txtChat.SelectionColor = color;
 
             FontStyle style = (bold ? FontStyle.Bold : 0) | (italic ? FontStyle.Italic : 0);
-            
+
             txtChat.SelectionFont = new Font("MS Sans Serif", 8, style);
             txtChat.Select(txtChat.Text.Length, txtChat.Text.Length);
             txtChat.ScrollToCaret();
@@ -285,8 +368,10 @@ namespace Netbattle.Forms {
         #endregion
 
         #region Event Handlers
-        private void ClientOnServerInfoReceived(ServerInfo info) {
-            if (InvokeRequired) {
+        private void ClientOnServerInfoReceived(ServerInfo info)
+        {
+            if (InvokeRequired)
+            {
                 Invoke(new ServerInfoEventArgs(ClientOnServerInfoReceived), info);
                 return;
             }
@@ -295,21 +380,25 @@ namespace Netbattle.Forms {
             AddMessage($"Currently {info.OnlinePlayers} trainer(s) online, with a maximum of {info.MaxPlayers} trainers.", Color.Blue, true, true);
             AddMessage($"Flood count is set to {info.FloodTolerance}", Color.Red, true, true);
             AddMessage($"Your team's power is {_client.You.TeamPower}.", Color.Black, true, true);
-            
+
             if (_client.EncryptionEnabled)
                 AddMessage("This server encrypts traffic.", Color.Green, true, true);
 
             this.Text = "Stadium: " + info.ServerName;
+            
         }
         #endregion
 
-        private void ServerWindow_FormClosing(object sender, FormClosingEventArgs e) {
-            if (_client.Connected) {
+        private void ServerWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (_client.Connected)
+            {
                 _client.Disconnect();
             }
         }
 
-        private void privateMessageToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void privateMessageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
             if (lstPlayers.SelectedIndices.Count == 0)
                 return;
 
@@ -321,7 +410,8 @@ namespace Netbattle.Forms {
 
             PrivateMessage theWindow;
 
-            if (!_pmWindows.ContainsKey(player.Value.Id)) {
+            if (!_pmWindows.ContainsKey(player.Value.Id))
+            {
                 theWindow = new PrivateMessage(this.MdiParent, _client, player.Value);
                 theWindow.FormClosing += TheWindowOnFormClosing;
                 _pmWindows.Add(player.Value.Id, theWindow);
@@ -329,8 +419,9 @@ namespace Netbattle.Forms {
             }
         }
 
-        private void TheWindowOnFormClosing(object sender, FormClosingEventArgs e) {
-            _pmWindows.Remove( ((PrivateMessage)sender)._playerTo.Id);
+        private void TheWindowOnFormClosing(object sender, FormClosingEventArgs e)
+        {
+            _pmWindows.Remove(((PrivateMessage)sender)._playerTo.Id);
         }
 
         public void ToggleAway()
@@ -347,22 +438,61 @@ namespace Netbattle.Forms {
                 _client.SendPacket(new PlayerBack());
             }
         }
-        
+
         private void awayToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ToggleAway();
         }
-        
-        private void openTeamBuilderToolStripMenuItem_Click(object sender, EventArgs e) {
+
+        private void openTeamBuilderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
             if (!_client.You.Away)
                 ToggleAway();
-            
+
             var tb = new TeamBuilder(this);
-            tb.FormClosed += (s, args) => {
+            tb.FormClosed += (s, args) =>
+            {
                 if (_client.You.Away)
                     ToggleAway();
             };
             tb.Show();
+        }
+
+        private void controlWindowToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (lstPlayers.SelectedIndices.Count == 0)
+                return;
+
+            var selectedItem = lstPlayers.SelectedIndices[0];
+            var player = _client.OnlinePlayers.ElementAt(selectedItem);
+
+            var infoWindow = new UserInfo(this.MdiParent, _client, player.Value);
+            infoWindow.Show();
+        }
+
+        private void kickToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void challengeInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (lstPlayers.SelectedIndices.Count == 0)
+                return;
+
+            var selectedItem = lstPlayers.SelectedIndices[0];
+            var player = _client.OnlinePlayers.ElementAt(selectedItem);
+
+            if (player.Value.Name == _client.You.Name)
+                return;
+
+            var chln = new ChallengeWindow(_client, player.Value, this);
+            chln.Show();
+        }
+
+        private void watchBattleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

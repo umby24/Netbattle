@@ -46,7 +46,6 @@ namespace Netbattle.Core.Common {
             lock (_opLocker) {
                 byte[] data = ReadBytes(2);
                 RemoveBytes(2);
-                Array.Reverse(data);
                 return BitConverter.ToInt16(data, 0);
             }
         }
@@ -55,7 +54,6 @@ namespace Netbattle.Core.Common {
             lock (_opLocker) {
                 byte[] data = ReadBytes(4);
                 RemoveBytes(4);
-                Array.Reverse(data);
                 return BitConverter.ToInt32(data, 0);
             }
         }

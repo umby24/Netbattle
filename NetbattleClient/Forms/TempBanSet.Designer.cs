@@ -31,68 +31,74 @@ namespace Netbattle.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TempBanSet));
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnOk = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.duration = new System.Windows.Forms.NumericUpDown();
-            ((System.ComponentModel.ISupportInitialize)(this.duration)).BeginInit();
-            this.SuspendLayout();
+            ComponentResourceManager resources = new ComponentResourceManager(typeof(TempBanSet));
+            btnCancel = new Button();
+            btnOk = new Button();
+            label1 = new Label();
+            duration = new NumericUpDown();
+            ((ISupportInitialize)duration).BeginInit();
+            SuspendLayout();
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(9, 59);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(50, 24);
-            this.btnCancel.TabIndex = 0;
-            this.btnCancel.Text = "&Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Location = new Point(10, 68);
+            btnCancel.Margin = new Padding(4, 3, 4, 3);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(58, 28);
+            btnCancel.TabIndex = 0;
+            btnCancel.Text = "&Cancel";
+            btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += btnCancel_Click;
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(65, 60);
-            this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(50, 24);
-            this.btnOk.TabIndex = 1;
-            this.btnOk.Text = "&OK";
-            this.btnOk.UseVisualStyleBackColor = true;
-            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
+            btnOk.Location = new Point(76, 69);
+            btnOk.Margin = new Padding(4, 3, 4, 3);
+            btnOk.Name = "btnOk";
+            btnOk.Size = new Size(58, 28);
+            btnOk.TabIndex = 1;
+            btnOk.Text = "&OK";
+            btnOk.UseVisualStyleBackColor = true;
+            btnOk.Click += btnOk_Click;
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(9, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(90, 17);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Enter duration:";
+            label1.Location = new Point(10, 10);
+            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(105, 20);
+            label1.TabIndex = 2;
+            label1.Text = "Enter duration:";
             // 
             // duration
             // 
-            this.duration.Location = new System.Drawing.Point(12, 29);
-            this.duration.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
-            this.duration.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
-            this.duration.Name = "duration";
-            this.duration.Size = new System.Drawing.Size(61, 20);
-            this.duration.TabIndex = 3;
-            this.duration.Value = new decimal(new int[] { 15, 0, 0, 0 });
+            duration.Location = new Point(14, 33);
+            duration.Margin = new Padding(4, 3, 4, 3);
+            duration.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
+            duration.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            duration.Name = "duration";
+            duration.Size = new Size(71, 23);
+            duration.TabIndex = 3;
+            duration.Value = new decimal(new int[] { 15, 0, 0, 0 });
             // 
             // TempBanSet
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(118, 84);
-            this.Controls.Add(this.duration);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnOk);
-            this.Controls.Add(this.btnCancel);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "TempBanSet";
-            this.Text = "Temp Ban";
-            ((System.ComponentModel.ISupportInitialize)(this.duration)).EndInit();
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(138, 97);
+            Controls.Add(duration);
+            Controls.Add(label1);
+            Controls.Add(btnOk);
+            Controls.Add(btnCancel);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(4, 3, 4, 3);
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "TempBanSet";
+            Text = "Temp Ban";
+            ((ISupportInitialize)duration).EndInit();
+            ResumeLayout(false);
         }
 
         private System.Windows.Forms.NumericUpDown duration;

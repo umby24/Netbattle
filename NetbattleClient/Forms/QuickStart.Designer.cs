@@ -52,7 +52,7 @@
             // 
             // btnJoinServer
             // 
-            btnJoinServer.BackgroundImage = global::NetbattleClient.Properties.Resources.StartBattling_Up;
+            btnJoinServer.BackgroundImage = global::NetbattleClient.Properties.Resources.StartBattling_Disabled;
             btnJoinServer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             btnJoinServer.FlatAppearance.BorderSize = 0;
             btnJoinServer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -100,6 +100,7 @@
             menuStrip1.Size = new System.Drawing.Size(271, 24);
             menuStrip1.TabIndex = 4;
             menuStrip1.Text = "menuStrip1";
+            menuStrip1.ItemClicked += menuStrip1_ItemClicked;
             // 
             // fileToolStripMenuItem
             // 
@@ -111,19 +112,19 @@
             // newToolStripMenuItem
             // 
             newToolStripMenuItem.Name = "newToolStripMenuItem";
-            newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            newToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             newToolStripMenuItem.Text = "&New";
             // 
             // openToolStripMenuItem
             // 
             openToolStripMenuItem.Name = "openToolStripMenuItem";
-            openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            openToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             openToolStripMenuItem.Text = "&Open";
             // 
             // settingsToolStripMenuItem
             // 
             settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            settingsToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             settingsToolStripMenuItem.Text = "&Settings";
             settingsToolStripMenuItem.Click += settingsToolStripMenuItem_Click;
             // 

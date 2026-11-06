@@ -16,6 +16,8 @@ namespace Netbattle.Core.Network {
         public bool Battling { get; set; }
         
         public Dictionary<int, Player> OnlinePlayers { get; set; }
+        public List<BanListEntry> BanList { get; set; } = new List<BanListEntry>();
+        public int FloodCount { get; set; }
         #region Private Variables
         private ClientSocket _serverSocket;
         private ByteBuffer _inputBuffer;
@@ -39,6 +41,7 @@ namespace Netbattle.Core.Network {
                 Version = "0.9.7",
                 GameVersion = (int)UserSettings.CurrentSettings.CurrentCompatibilityMode,
                 GraphicsVersion = (int)UserSettings.CurrentSettings.CurrentGraphicsMode,
+                TeamPower = NbMethods.GetTeamRank(UserSettings.CurrentSettings.Team),
                 StationID = NbMethods.DecompressSid(NbMethods.GetSerialNumber())
             };
             
@@ -88,7 +91,20 @@ namespace Netbattle.Core.Network {
             };
             SendPacket(privatePacket);
         }
-
+        public void QueryPlayerInfo(string playerName) {
+            var queryPacket = new Lookup() {
+                PlayerName = playerName
+            };
+            SendPacket(queryPacket);
+        }
+        public void QueryPlayerAlias(string playerName) {
+            var queryPacket = new Aliases() {
+                PlayerName = playerName
+            };
+            SendPacket(queryPacket);
+        }
+        
+#region Helper Methods
         public void InterpretPlayerData(byte[] data, bool announce = false) {
             var decompStream = new ByteBuffer();
             decompStream.AddBytes(data);
@@ -211,7 +227,7 @@ namespace Netbattle.Core.Network {
         public void AddPlayerlistData(byte[] data) {
             _plistBuffer.AddBytes(data);
         }
-
+#endregion
         #region Client Events
 
         public event EmptyEventArgs ServerConnected;
@@ -230,6 +246,9 @@ namespace Netbattle.Core.Network {
         public event MessageEventArgs RegistryMessageReceived;
         public event MessageEventArgs TempBanned;
         public event PrivateMessageEventArgs PmReceived;
+        public event EmptyEventArgs BanListUpdated;
+        public event UserLookupEventArgs LookupResultReceived;
+        public event AliasDataEventArgs AliasDataRecieved;
 
         public event PlayerEventArgs PlayerJoined;
         public event PlayerEventArgs PlayerLeft;
@@ -237,9 +256,19 @@ namespace Netbattle.Core.Network {
         public event PlayerEventArgs PlayerBack;
         public event PlayerEventArgs PlayerInfoUpdated;
         public event PlayerEventArgs PlayerKicked;
+        public event PlayerEventArgs PlayerPingUpdated;
+        public event DoublePlayerEventArgs PlayerBanned;
+        public event DoublePlayerEventArgs PlayerTempBanned;
+        public event DoublePlayerEventArgs BattleStarted;
 
+        public event PlayerEventArgs ChallengeCancelled;
         public event PlayersEventArgs PlayerlistUpdated;
         public event ChallengeEventArgs ChallengeReceived;
+
+        public void InvokePingUpdated(Player p)
+        {
+            PlayerPingUpdated?.Invoke(p);
+        }
 
         public void InvokeIpBanned() {
             IpBanned?.Invoke();
@@ -342,6 +371,11 @@ namespace Netbattle.Core.Network {
         }
 
         private void ServerSocketOnDataReceived(DataReceivedArgs args) {
+            if (!args.BaseSocket.IsConnected)
+            {
+                Logger.Log(LogType.Debug, $"Socket disconnected while receiving data from {ServerIp}");
+                return;
+            }
             lock (_inputBuffer) {
                 _inputBuffer.AddBytes(args.Data);
             }
@@ -470,6 +504,200 @@ namespace Netbattle.Core.Network {
                 }
             }
             InvokeChatMessage($"{playerKicked} has been kicked");
+        }
+
+        public void InvokeBanListUpdate()
+        {
+            BanListUpdated?.Invoke();
+        }
+
+        public void TempBan(string playerName, int duration) {
+            var tbp = new TempBan() {
+                PlayerName = playerName,
+                Duration = duration
+            };
+            SendPacket(tbp);
+        }
+        
+        public void SidBan(string playerName) {
+            var sbp = new SIDBan() {
+                PlayerName = playerName
+            };
+            SendPacket(sbp);
+        }
+        
+        public void IPBan(string playerName) {
+            var ibp = new IPBan() {
+                PlayerName = playerName
+            };
+            SendPacket(ibp);
+        }
+
+        public void Unban(string tag, string text) {
+            var unban = new UnbanPacket() {
+                Tag = tag,
+                PlayerName = text
+            };
+            SendPacket(unban);
+        }
+
+        internal void ProcessBanList(string data)
+        {
+            BanList.Clear();
+            if (data == "||")
+            {
+                BanList.Add(new BanListEntry() { Name = "[No current bans]" });
+                InvokeBanListUpdate();
+                return;
+            }
+            
+            string[] items = data.Split('|');
+            if (items.Length > 0)
+            {
+                string[] tempBans = items[0].Split(',');
+                foreach (var t in tempBans)
+                {
+                    if (string.IsNullOrEmpty(t)) continue;
+                    var final = t.Split(':');
+                    var entry = new BanListEntry
+                    {
+                        Name = final[0],
+                        Type = "T",
+                        Duration = final[1]
+                    };
+                    BanList.Add(entry);
+                }
+                string[] sidBans = items[1].Split(',');
+                foreach (var s in sidBans)
+                {
+                    if (string.IsNullOrEmpty(s)) continue;
+                    var entry = new BanListEntry
+                    {
+                        Name = s,
+                        Type = "S",
+                        Duration = "Permanent"
+                    };
+                    BanList.Add(entry);
+                }
+                string[] ipBans = items[2].Split(',');
+                foreach (var i in ipBans)
+                {
+                    if (string.IsNullOrEmpty(i)) continue;
+                    var entry = new BanListEntry
+                    {
+                        Name = i,
+                        Type = "I",
+                        Duration = "Permanent"
+                    };
+                    BanList.Add(entry);
+                }
+
+
+            }
+
+            InvokeBanListUpdate();
+        }
+
+        public void RequestBanList()
+        {
+            var blp = new UnbanPacket(); // -- QUIRKY: This is a packet that the server will respond to with the ban list. It doesn't actually unban anyone.
+            blp.PlayerName = "";
+            blp.Tag = "";
+            SendPacket(blp);
+        }
+
+        internal void InvokeLookupResult(string data)
+        {
+            if (data.StartsWith('|')) { // -- Server reports no such user.
+                LookupResultReceived?.Invoke(new UserLookupResult { Found = false });
+                return;
+            }
+
+            // -- Split on the first two bars only, so the last login text can't shift the IP.
+            var parts = data.Split('|', 3);
+            if (parts.Length < 2 || parts[1].Length < 22)
+            {
+                Logger.Log(LogType.Warning, $"Invalid lookup result received: {data}");
+                return;
+            }
+
+            var result = new UserLookupResult {
+                Found = true,
+                Name = parts[0],
+                Status = parts[1][0] - '0', // -- Val(Mid(Data, 2, 1))
+                StationId = parts[1].Substring(1, 21),
+                LastLogin = parts[1].Substring(22),
+                IP = parts.Length > 2 ? parts[2] : ""
+            };
+
+            LookupResultReceived?.Invoke(result);
+        }
+
+        internal void InvokePlayerTempBanned(int playerId, short duration, string playerBanned)
+        {
+            var gotPlayer = OnlinePlayers.TryGetValue(playerId, out Player banner);
+            if (!gotPlayer)
+            {
+                Logger.Log(LogType.Warning, $"[Weird Server Behavior] PlayerTempBanned invoked for unknown playerId {playerId}");
+                return;
+            }
+            var bannedPlayer = OnlinePlayers.Values.FirstOrDefault(p => string.Equals(p.Name, playerBanned, StringComparison.OrdinalIgnoreCase));
+            if (bannedPlayer == null)
+            {
+                Logger.Log(LogType.Warning, $"[Weird Server Behavior] PlayerTempBanned invoked for unknown playerName {playerBanned}");
+                return;
+            }
+
+            PlayerTempBanned?.Invoke(banner, bannedPlayer);
+        }
+
+        internal void ProcessAliasData(string aliasData)
+        {
+            List<string> aliases = new List<string>();
+
+            while (aliasData.Length > 0)
+            {
+                string entry = aliasData.Substring(0, Math.Min(20, aliasData.Length)).Trim();
+                if (!string.IsNullOrEmpty(entry))
+                    aliases.Add(entry);
+
+                aliasData = aliasData.Substring(Math.Min(20, aliasData.Length));
+            }
+
+            InvokeAliasData(aliases);
+        }
+
+        private void InvokeAliasData(List<string> aliases)
+        {
+            AliasDataRecieved?.Invoke(aliases);
+        }
+
+        internal void InvokePlayerBanned(byte playerId, string bannedName)
+        {
+            var gotPlayer = OnlinePlayers.TryGetValue(playerId, out Player banner);
+            if (!gotPlayer)
+            {
+                Logger.Log(LogType.Warning, $"[Weird Server Behavior] PlayerTempBanned invoked for unknown playerId {playerId}");
+                return;
+            }
+            var bannedPlayer = OnlinePlayers.Values.FirstOrDefault(p => string.Equals(p.Name, bannedName, StringComparison.OrdinalIgnoreCase));
+            if (bannedPlayer == null)
+            {
+                Logger.Log(LogType.Warning, $"[Weird Server Behavior] PlayerTempBanned invoked for unknown playerName {bannedPlayer}");
+                return;
+            }
+
+            PlayerBanned?.Invoke(banner, bannedPlayer);
+        }
+
+        internal void InvokeBattleStarted(Player player1, Player player2)
+        {
+            BattleStarted?.Invoke(player1, player2);
+        }
+
+        internal void RaiseChallengeCancelled(Player p)
+        {
+            ChallengeCancelled?.Invoke(p);
         }
     }
 }

@@ -25,352 +25,360 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChallengeWindow));
-            this.btnChallenge = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.lblClauses = new System.Windows.Forms.Label();
-            this.grpTeam = new System.Windows.Forms.GroupBox();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblEstPower = new System.Windows.Forms.Label();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.lblExtraInfo = new System.Windows.Forms.Label();
-            this.pk6 = new System.Windows.Forms.PictureBox();
-            this.pk5 = new System.Windows.Forms.PictureBox();
-            this.pk4 = new System.Windows.Forms.PictureBox();
-            this.pk3 = new System.Windows.Forms.PictureBox();
-            this.pk2 = new System.Windows.Forms.PictureBox();
-            this.pk1 = new System.Windows.Forms.PictureBox();
-            this.grpRulesModes = new System.Windows.Forms.GroupBox();
-            this.lblTerrain = new System.Windows.Forms.Label();
-            this.lblMode = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.grpTeam.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pk6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pk5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pk4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pk3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pk2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pk1)).BeginInit();
-            this.grpRulesModes.SuspendLayout();
-            this.SuspendLayout();
+            btnChallenge = new Button();
+            btnCancel = new Button();
+            listView1 = new ListView();
+            lblClauses = new Label();
+            grpTeam = new GroupBox();
+            panel3 = new Panel();
+            panel2 = new Panel();
+            panel1 = new Panel();
+            pictureBox1 = new PictureBox();
+            label3 = new Label();
+            label2 = new Label();
+            label1 = new Label();
+            lblEstPower = new Label();
+            progressBar1 = new ProgressBar();
+            lblExtraInfo = new Label();
+            pk6 = new PictureBox();
+            pk5 = new PictureBox();
+            pk4 = new PictureBox();
+            pk3 = new PictureBox();
+            pk2 = new PictureBox();
+            pk1 = new PictureBox();
+            grpRulesModes = new GroupBox();
+            lblTerrain = new Label();
+            lblMode = new Label();
+            comboBox2 = new ComboBox();
+            comboBox1 = new ComboBox();
+            label4 = new Label();
+            grpTeam.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pk6).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pk5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pk4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pk3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pk2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pk1).BeginInit();
+            grpRulesModes.SuspendLayout();
+            SuspendLayout();
             // 
             // btnChallenge
             // 
-            this.btnChallenge.Location = new System.Drawing.Point(11, 358);
-            this.btnChallenge.Margin = new System.Windows.Forms.Padding(2);
-            this.btnChallenge.Name = "btnChallenge";
-            this.btnChallenge.Size = new System.Drawing.Size(142, 19);
-            this.btnChallenge.TabIndex = 0;
-            this.btnChallenge.Text = "Challenge!";
-            this.btnChallenge.UseVisualStyleBackColor = true;
+            btnChallenge.Location = new Point(13, 413);
+            btnChallenge.Margin = new Padding(2);
+            btnChallenge.Name = "btnChallenge";
+            btnChallenge.Size = new Size(166, 22);
+            btnChallenge.TabIndex = 0;
+            btnChallenge.Text = "Challenge!";
+            btnChallenge.UseVisualStyleBackColor = true;
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(157, 358);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(135, 19);
-            this.btnCancel.TabIndex = 1;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            btnCancel.Location = new Point(183, 413);
+            btnCancel.Margin = new Padding(2);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(158, 22);
+            btnCancel.TabIndex = 1;
+            btnCancel.Text = "Cancel";
+            btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += btnCancel_Click;
             // 
             // listView1
             // 
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(5, 71);
-            this.listView1.Margin = new System.Windows.Forms.Padding(2);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(278, 80);
-            this.listView1.TabIndex = 2;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            listView1.Location = new Point(6, 82);
+            listView1.Margin = new Padding(2);
+            listView1.Name = "listView1";
+            listView1.Size = new Size(324, 92);
+            listView1.TabIndex = 2;
+            listView1.UseCompatibleStateImageBehavior = false;
+            listView1.SelectedIndexChanged += listView1_SelectedIndexChanged;
             // 
             // lblClauses
             // 
-            this.lblClauses.AutoSize = true;
-            this.lblClauses.Location = new System.Drawing.Point(5, 56);
-            this.lblClauses.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblClauses.Name = "lblClauses";
-            this.lblClauses.Size = new System.Drawing.Size(44, 13);
-            this.lblClauses.TabIndex = 3;
-            this.lblClauses.Text = "Clauses";
+            lblClauses.AutoSize = true;
+            lblClauses.Location = new Point(6, 65);
+            lblClauses.Margin = new Padding(2, 0, 2, 0);
+            lblClauses.Name = "lblClauses";
+            lblClauses.Size = new Size(47, 15);
+            lblClauses.TabIndex = 3;
+            lblClauses.Text = "Clauses";
             // 
             // grpTeam
             // 
-            this.grpTeam.Controls.Add(this.panel3);
-            this.grpTeam.Controls.Add(this.panel2);
-            this.grpTeam.Controls.Add(this.panel1);
-            this.grpTeam.Controls.Add(this.pictureBox1);
-            this.grpTeam.Controls.Add(this.label3);
-            this.grpTeam.Controls.Add(this.label2);
-            this.grpTeam.Controls.Add(this.label1);
-            this.grpTeam.Controls.Add(this.lblEstPower);
-            this.grpTeam.Controls.Add(this.progressBar1);
-            this.grpTeam.Controls.Add(this.lblExtraInfo);
-            this.grpTeam.Controls.Add(this.pk6);
-            this.grpTeam.Controls.Add(this.pk5);
-            this.grpTeam.Controls.Add(this.pk4);
-            this.grpTeam.Controls.Add(this.pk3);
-            this.grpTeam.Controls.Add(this.pk2);
-            this.grpTeam.Controls.Add(this.pk1);
-            this.grpTeam.Location = new System.Drawing.Point(11, 39);
-            this.grpTeam.Margin = new System.Windows.Forms.Padding(2);
-            this.grpTeam.Name = "grpTeam";
-            this.grpTeam.Padding = new System.Windows.Forms.Padding(2);
-            this.grpTeam.Size = new System.Drawing.Size(284, 146);
-            this.grpTeam.TabIndex = 4;
-            this.grpTeam.TabStop = false;
-            this.grpTeam.Text = "Player and Team Info";
+            grpTeam.Controls.Add(panel3);
+            grpTeam.Controls.Add(panel2);
+            grpTeam.Controls.Add(panel1);
+            grpTeam.Controls.Add(pictureBox1);
+            grpTeam.Controls.Add(label3);
+            grpTeam.Controls.Add(label2);
+            grpTeam.Controls.Add(label1);
+            grpTeam.Controls.Add(lblEstPower);
+            grpTeam.Controls.Add(progressBar1);
+            grpTeam.Controls.Add(lblExtraInfo);
+            grpTeam.Controls.Add(pk6);
+            grpTeam.Controls.Add(pk5);
+            grpTeam.Controls.Add(pk4);
+            grpTeam.Controls.Add(pk3);
+            grpTeam.Controls.Add(pk2);
+            grpTeam.Controls.Add(pk1);
+            grpTeam.Location = new Point(13, 45);
+            grpTeam.Margin = new Padding(2);
+            grpTeam.Name = "grpTeam";
+            grpTeam.Padding = new Padding(2);
+            grpTeam.Size = new Size(331, 168);
+            grpTeam.TabIndex = 4;
+            grpTeam.TabStop = false;
+            grpTeam.Text = "Player and Team Info";
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel3.Location = new System.Drawing.Point(235, 111);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(33, 33);
-            this.panel3.TabIndex = 15;
+            panel3.BackColor = Color.FromArgb(255, 255, 192);
+            panel3.BorderStyle = BorderStyle.Fixed3D;
+            panel3.Location = new Point(274, 128);
+            panel3.Margin = new Padding(4, 3, 4, 3);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(38, 37);
+            panel3.TabIndex = 15;
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel2.Location = new System.Drawing.Point(196, 111);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(33, 33);
-            this.panel2.TabIndex = 14;
+            panel2.BackColor = Color.FromArgb(255, 192, 192);
+            panel2.BorderStyle = BorderStyle.Fixed3D;
+            panel2.Location = new Point(229, 128);
+            panel2.Margin = new Padding(4, 3, 4, 3);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(38, 37);
+            panel2.TabIndex = 14;
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel1.Location = new System.Drawing.Point(157, 111);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(33, 33);
-            this.panel1.TabIndex = 13;
+            panel1.BackColor = Color.FromArgb(192, 255, 192);
+            panel1.BorderStyle = BorderStyle.Fixed3D;
+            panel1.Location = new Point(183, 128);
+            panel1.Margin = new Padding(4, 3, 4, 3);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(38, 37);
+            panel1.TabIndex = 13;
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(4, 106);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox1.TabIndex = 12;
-            this.pictureBox1.TabStop = false;
+            pictureBox1.Location = new Point(5, 122);
+            pictureBox1.Margin = new Padding(2);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(37, 37);
+            pictureBox1.TabIndex = 12;
+            pictureBox1.TabStop = false;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(238, 95);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(30, 13);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "Ties:";
+            label3.AutoSize = true;
+            label3.Location = new Point(278, 110);
+            label3.Margin = new Padding(2, 0, 2, 0);
+            label3.Name = "label3";
+            label3.Size = new Size(30, 15);
+            label3.TabIndex = 11;
+            label3.Text = "Ties:";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(196, 95);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(43, 13);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "Losses:";
+            label2.AutoSize = true;
+            label2.Location = new Point(229, 110);
+            label2.Margin = new Padding(2, 0, 2, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(44, 15);
+            label2.TabIndex = 10;
+            label2.Text = "Losses:";
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(156, 95);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(34, 13);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Wins:";
+            label1.AutoSize = true;
+            label1.Location = new Point(182, 110);
+            label1.Margin = new Padding(2, 0, 2, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(36, 15);
+            label1.TabIndex = 9;
+            label1.Text = "Wins:";
             // 
             // lblEstPower
             // 
-            this.lblEstPower.AutoSize = true;
-            this.lblEstPower.Location = new System.Drawing.Point(49, 104);
-            this.lblEstPower.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblEstPower.Name = "lblEstPower";
-            this.lblEstPower.Size = new System.Drawing.Size(58, 13);
-            this.lblEstPower.TabIndex = 8;
-            this.lblEstPower.Text = "Est. Power";
+            lblEstPower.AutoSize = true;
+            lblEstPower.Location = new Point(57, 120);
+            lblEstPower.Margin = new Padding(2, 0, 2, 0);
+            lblEstPower.Name = "lblEstPower";
+            lblEstPower.Size = new Size(61, 15);
+            lblEstPower.TabIndex = 8;
+            lblEstPower.Text = "Est. Power";
             // 
             // progressBar1
             // 
-            this.progressBar1.BackColor = System.Drawing.Color.Black;
-            this.progressBar1.ForeColor = System.Drawing.Color.Lime;
-            this.progressBar1.Location = new System.Drawing.Point(40, 119);
-            this.progressBar1.Margin = new System.Windows.Forms.Padding(2);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(85, 19);
-            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
-            this.progressBar1.TabIndex = 7;
-            this.progressBar1.Value = 50;
+            progressBar1.BackColor = Color.Black;
+            progressBar1.ForeColor = Color.Lime;
+            progressBar1.Location = new Point(47, 137);
+            progressBar1.Margin = new Padding(2);
+            progressBar1.Name = "progressBar1";
+            progressBar1.Size = new Size(99, 22);
+            progressBar1.Style = ProgressBarStyle.Marquee;
+            progressBar1.TabIndex = 7;
+            progressBar1.Value = 50;
             // 
             // lblExtraInfo
             // 
-            this.lblExtraInfo.AutoSize = true;
-            this.lblExtraInfo.Location = new System.Drawing.Point(14, 61);
-            this.lblExtraInfo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblExtraInfo.Name = "lblExtraInfo";
-            this.lblExtraInfo.Size = new System.Drawing.Size(44, 13);
-            this.lblExtraInfo.TabIndex = 6;
-            this.lblExtraInfo.Text = "Clauses";
+            lblExtraInfo.AutoSize = true;
+            lblExtraInfo.Location = new Point(16, 70);
+            lblExtraInfo.Margin = new Padding(2, 0, 2, 0);
+            lblExtraInfo.Name = "lblExtraInfo";
+            lblExtraInfo.Size = new Size(47, 15);
+            lblExtraInfo.TabIndex = 6;
+            lblExtraInfo.Text = "Clauses";
             // 
             // pk6
             // 
-            this.pk6.Location = new System.Drawing.Point(193, 27);
-            this.pk6.Margin = new System.Windows.Forms.Padding(2);
-            this.pk6.Name = "pk6";
-            this.pk6.Size = new System.Drawing.Size(32, 32);
-            this.pk6.TabIndex = 5;
-            this.pk6.TabStop = false;
+            pk6.Location = new Point(225, 31);
+            pk6.Margin = new Padding(2);
+            pk6.Name = "pk6";
+            pk6.Size = new Size(37, 37);
+            pk6.TabIndex = 5;
+            pk6.TabStop = false;
             // 
             // pk5
             // 
-            this.pk5.Location = new System.Drawing.Point(157, 27);
-            this.pk5.Margin = new System.Windows.Forms.Padding(2);
-            this.pk5.Name = "pk5";
-            this.pk5.Size = new System.Drawing.Size(32, 32);
-            this.pk5.TabIndex = 4;
-            this.pk5.TabStop = false;
+            pk5.Location = new Point(183, 31);
+            pk5.Margin = new Padding(2);
+            pk5.Name = "pk5";
+            pk5.Size = new Size(37, 37);
+            pk5.TabIndex = 4;
+            pk5.TabStop = false;
             // 
             // pk4
             // 
-            this.pk4.Location = new System.Drawing.Point(121, 27);
-            this.pk4.Margin = new System.Windows.Forms.Padding(2);
-            this.pk4.Name = "pk4";
-            this.pk4.Size = new System.Drawing.Size(32, 32);
-            this.pk4.TabIndex = 3;
-            this.pk4.TabStop = false;
+            pk4.Location = new Point(141, 31);
+            pk4.Margin = new Padding(2);
+            pk4.Name = "pk4";
+            pk4.Size = new Size(37, 37);
+            pk4.TabIndex = 3;
+            pk4.TabStop = false;
             // 
             // pk3
             // 
-            this.pk3.Location = new System.Drawing.Point(85, 27);
-            this.pk3.Margin = new System.Windows.Forms.Padding(2);
-            this.pk3.Name = "pk3";
-            this.pk3.Size = new System.Drawing.Size(32, 32);
-            this.pk3.TabIndex = 2;
-            this.pk3.TabStop = false;
-            this.pk3.Click += new System.EventHandler(this.pictureBox3_Click);
+            pk3.Location = new Point(99, 31);
+            pk3.Margin = new Padding(2);
+            pk3.Name = "pk3";
+            pk3.Size = new Size(37, 37);
+            pk3.TabIndex = 2;
+            pk3.TabStop = false;
+            pk3.Click += pictureBox3_Click;
             // 
             // pk2
             // 
-            this.pk2.Location = new System.Drawing.Point(49, 27);
-            this.pk2.Margin = new System.Windows.Forms.Padding(2);
-            this.pk2.Name = "pk2";
-            this.pk2.Size = new System.Drawing.Size(32, 32);
-            this.pk2.TabIndex = 1;
-            this.pk2.TabStop = false;
+            pk2.Location = new Point(57, 31);
+            pk2.Margin = new Padding(2);
+            pk2.Name = "pk2";
+            pk2.Size = new Size(37, 37);
+            pk2.TabIndex = 1;
+            pk2.TabStop = false;
             // 
             // pk1
             // 
-            this.pk1.Location = new System.Drawing.Point(13, 27);
-            this.pk1.Margin = new System.Windows.Forms.Padding(2);
-            this.pk1.Name = "pk1";
-            this.pk1.Size = new System.Drawing.Size(32, 32);
-            this.pk1.TabIndex = 0;
-            this.pk1.TabStop = false;
+            pk1.Location = new Point(15, 31);
+            pk1.Margin = new Padding(2);
+            pk1.Name = "pk1";
+            pk1.Size = new Size(37, 37);
+            pk1.TabIndex = 0;
+            pk1.TabStop = false;
             // 
             // grpRulesModes
             // 
-            this.grpRulesModes.Controls.Add(this.lblTerrain);
-            this.grpRulesModes.Controls.Add(this.lblMode);
-            this.grpRulesModes.Controls.Add(this.comboBox2);
-            this.grpRulesModes.Controls.Add(this.comboBox1);
-            this.grpRulesModes.Controls.Add(this.lblClauses);
-            this.grpRulesModes.Controls.Add(this.listView1);
-            this.grpRulesModes.Location = new System.Drawing.Point(12, 190);
-            this.grpRulesModes.Name = "grpRulesModes";
-            this.grpRulesModes.Size = new System.Drawing.Size(292, 163);
-            this.grpRulesModes.TabIndex = 5;
-            this.grpRulesModes.TabStop = false;
-            this.grpRulesModes.Text = "Rules && Modes";
+            grpRulesModes.Controls.Add(lblTerrain);
+            grpRulesModes.Controls.Add(lblMode);
+            grpRulesModes.Controls.Add(comboBox2);
+            grpRulesModes.Controls.Add(comboBox1);
+            grpRulesModes.Controls.Add(lblClauses);
+            grpRulesModes.Controls.Add(listView1);
+            grpRulesModes.Location = new Point(14, 219);
+            grpRulesModes.Margin = new Padding(4, 3, 4, 3);
+            grpRulesModes.Name = "grpRulesModes";
+            grpRulesModes.Padding = new Padding(4, 3, 4, 3);
+            grpRulesModes.Size = new Size(341, 188);
+            grpRulesModes.TabIndex = 5;
+            grpRulesModes.TabStop = false;
+            grpRulesModes.Text = "Rules && Modes";
             // 
             // lblTerrain
             // 
-            this.lblTerrain.AutoSize = true;
-            this.lblTerrain.Location = new System.Drawing.Point(181, 16);
-            this.lblTerrain.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblTerrain.Name = "lblTerrain";
-            this.lblTerrain.Size = new System.Drawing.Size(40, 13);
-            this.lblTerrain.TabIndex = 7;
-            this.lblTerrain.Text = "Terrain";
+            lblTerrain.AutoSize = true;
+            lblTerrain.Location = new Point(211, 18);
+            lblTerrain.Margin = new Padding(2, 0, 2, 0);
+            lblTerrain.Name = "lblTerrain";
+            lblTerrain.Size = new Size(42, 15);
+            lblTerrain.TabIndex = 7;
+            lblTerrain.Text = "Terrain";
             // 
             // lblMode
             // 
-            this.lblMode.AutoSize = true;
-            this.lblMode.Location = new System.Drawing.Point(5, 16);
-            this.lblMode.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblMode.Name = "lblMode";
-            this.lblMode.Size = new System.Drawing.Size(34, 13);
-            this.lblMode.TabIndex = 6;
-            this.lblMode.Text = "Mode";
+            lblMode.AutoSize = true;
+            lblMode.Location = new Point(6, 18);
+            lblMode.Margin = new Padding(2, 0, 2, 0);
+            lblMode.Name = "lblMode";
+            lblMode.Size = new Size(38, 15);
+            lblMode.TabIndex = 6;
+            lblMode.Text = "Mode";
             // 
             // comboBox2
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(184, 32);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(98, 21);
-            this.comboBox2.TabIndex = 5;
+            comboBox2.FormattingEnabled = true;
+            comboBox2.Location = new Point(215, 37);
+            comboBox2.Margin = new Padding(4, 3, 4, 3);
+            comboBox2.Name = "comboBox2";
+            comboBox2.Size = new Size(114, 23);
+            comboBox2.TabIndex = 5;
             // 
             // comboBox1
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(6, 32);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(163, 21);
-            this.comboBox1.TabIndex = 4;
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(7, 37);
+            comboBox1.Margin = new Padding(4, 3, 4, 3);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(190, 23);
+            comboBox1.TabIndex = 4;
             // 
             // label4
             // 
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(24, 8);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(266, 29);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "You have been challenged!";
+            label4.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.Location = new Point(28, 9);
+            label4.Margin = new Padding(4, 0, 4, 0);
+            label4.Name = "label4";
+            label4.Size = new Size(310, 33);
+            label4.TabIndex = 6;
+            label4.Text = "You have been challenged!";
             // 
             // ChallengeWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(303, 388);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.grpRulesModes);
-            this.Controls.Add(this.grpTeam);
-            this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnChallenge);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "ChallengeWindow";
-            this.Text = "Player Details";
-            this.grpTeam.ResumeLayout(false);
-            this.grpTeam.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pk6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pk5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pk4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pk3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pk2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pk1)).EndInit();
-            this.grpRulesModes.ResumeLayout(false);
-            this.grpRulesModes.PerformLayout();
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(354, 448);
+            Controls.Add(label4);
+            Controls.Add(grpRulesModes);
+            Controls.Add(grpTeam);
+            Controls.Add(btnCancel);
+            Controls.Add(btnChallenge);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(2);
+            Name = "ChallengeWindow";
+            Text = "Player Details";
+            Load += ChallengeWindow_Load;
+            grpTeam.ResumeLayout(false);
+            grpTeam.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pk6).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pk5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pk4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pk3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pk2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pk1).EndInit();
+            grpRulesModes.ResumeLayout(false);
+            grpRulesModes.PerformLayout();
+            ResumeLayout(false);
         }
 
         private System.Windows.Forms.Panel panel2;

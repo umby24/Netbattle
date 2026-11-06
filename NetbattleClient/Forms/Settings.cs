@@ -22,7 +22,6 @@ namespace Netbattle.Forms
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e) {
-            throw new System.NotImplementedException();
         }
     }
 }

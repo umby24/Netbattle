@@ -29,377 +29,372 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SSTab1 = new System.Windows.Forms.TabControl();
-            this.SSTab1_Page0 = new System.Windows.Forms.TabPage();
-            this.Text1 = new System.Windows.Forms.TextBox();
-            this.cmdLookup = new System.Windows.Forms.Button();
-            this.Command_0 = new System.Windows.Forms.Button();
-            this.txtInfo_0 = new System.Windows.Forms.TextBox();
-            this.txtInfo_1 = new System.Windows.Forms.TextBox();
-            this.txtInfo_2 = new System.Windows.Forms.TextBox();
-            this.txtInfo_3 = new System.Windows.Forms.TextBox();
-            this.Command_1 = new System.Windows.Forms.Button();
-            this.Command_2 = new System.Windows.Forms.Button();
-            this.txtInfo_4 = new System.Windows.Forms.TextBox();
-            this.Label1 = new System.Windows.Forms.Label();
-            this.Label2 = new System.Windows.Forms.Label();
-            this.Label3 = new System.Windows.Forms.Label();
-            this.Label4 = new System.Windows.Forms.Label();
-            this.Label5 = new System.Windows.Forms.Label();
-            this.SSTab1_Page1 = new System.Windows.Forms.TabPage();
-            this.cmdRefresh = new System.Windows.Forms.Button();
-            this.cmdUnban = new System.Windows.Forms.Button();
-            this.BanList = new System.Windows.Forms.ListView();
-            this.BanList_Col1 = new System.Windows.Forms.ColumnHeader();
-            this.BanList_Col2 = new System.Windows.Forms.ColumnHeader();
-            this.SSTab1_Page2 = new System.Windows.Forms.TabPage();
-            this.cmdALook = new System.Windows.Forms.Button();
-            this.Text2 = new System.Windows.Forms.TextBox();
-            this.NickList = new System.Windows.Forms.ListView();
-            this.NickList_Col1 = new System.Windows.Forms.ColumnHeader();
-            this.StatusBar = new System.Windows.Forms.StatusStrip();
-            this.StatusBar_Panel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.SSTab1.SuspendLayout();
-            this.SSTab1_Page0.SuspendLayout();
-            this.SSTab1_Page1.SuspendLayout();
-            this.SSTab1_Page2.SuspendLayout();
-            this.StatusBar.SuspendLayout();
-            this.SuspendLayout();
+            SSTab1 = new TabControl();
+            SSTab1_Page0 = new TabPage();
+            Text1 = new TextBox();
+            cmdLookup = new Button();
+            Command_0 = new Button();
+            txtInfo_0 = new TextBox();
+            txtInfo_1 = new TextBox();
+            txtInfo_2 = new TextBox();
+            txtInfo_3 = new TextBox();
+            Command_1 = new Button();
+            Command_2 = new Button();
+            txtInfo_4 = new TextBox();
+            Label1 = new Label();
+            Label2 = new Label();
+            Label3 = new Label();
+            Label4 = new Label();
+            Label5 = new Label();
+            SSTab1_Page1 = new TabPage();
+            cmdRefresh = new Button();
+            cmdUnban = new Button();
+            BanList = new ListView();
+            BanList_Col1 = new ColumnHeader();
+            BanList_Col2 = new ColumnHeader();
+            SSTab1_Page2 = new TabPage();
+            cmdALook = new Button();
+            Text2 = new TextBox();
+            NickList = new ListView();
+            NickList_Col1 = new ColumnHeader();
+            StatusBar = new StatusStrip();
+            StatusBar_Panel1 = new ToolStripStatusLabel();
+            SSTab1.SuspendLayout();
+            SSTab1_Page0.SuspendLayout();
+            SSTab1_Page1.SuspendLayout();
+            SSTab1_Page2.SuspendLayout();
+            StatusBar.SuspendLayout();
+            SuspendLayout();
             // 
             // SSTab1
             // 
-            this.SSTab1.Controls.Add(this.SSTab1_Page0);
-            this.SSTab1.Controls.Add(this.SSTab1_Page1);
-            this.SSTab1.Controls.Add(this.SSTab1_Page2);
-            this.SSTab1.Location = new System.Drawing.Point(4, 4);
-            this.SSTab1.Name = "SSTab1";
-            this.SSTab1.Size = new System.Drawing.Size(241, 177);
-            this.SSTab1.TabIndex = 1;
+            SSTab1.Controls.Add(SSTab1_Page0);
+            SSTab1.Controls.Add(SSTab1_Page1);
+            SSTab1.Controls.Add(SSTab1_Page2);
+            SSTab1.Location = new Point(4, 4);
+            SSTab1.Name = "SSTab1";
+            SSTab1.SelectedIndex = 0;
+            SSTab1.Size = new Size(241, 177);
+            SSTab1.TabIndex = 1;
             // 
             // SSTab1_Page0
             // 
-            this.SSTab1_Page0.Controls.Add(this.Text1);
-            this.SSTab1_Page0.Controls.Add(this.cmdLookup);
-            this.SSTab1_Page0.Controls.Add(this.Command_0);
-            this.SSTab1_Page0.Controls.Add(this.txtInfo_0);
-            this.SSTab1_Page0.Controls.Add(this.txtInfo_1);
-            this.SSTab1_Page0.Controls.Add(this.txtInfo_2);
-            this.SSTab1_Page0.Controls.Add(this.txtInfo_3);
-            this.SSTab1_Page0.Controls.Add(this.Command_1);
-            this.SSTab1_Page0.Controls.Add(this.Command_2);
-            this.SSTab1_Page0.Controls.Add(this.txtInfo_4);
-            this.SSTab1_Page0.Controls.Add(this.Label1);
-            this.SSTab1_Page0.Controls.Add(this.Label2);
-            this.SSTab1_Page0.Controls.Add(this.Label3);
-            this.SSTab1_Page0.Controls.Add(this.Label4);
-            this.SSTab1_Page0.Controls.Add(this.Label5);
-            this.SSTab1_Page0.Location = new System.Drawing.Point(4, 22);
-            this.SSTab1_Page0.Name = "SSTab1_Page0";
-            this.SSTab1_Page0.Size = new System.Drawing.Size(233, 151);
-            this.SSTab1_Page0.TabIndex = 0;
-            this.SSTab1_Page0.Text = "User Lookup";
-            this.SSTab1_Page0.UseVisualStyleBackColor = true;
+            SSTab1_Page0.Controls.Add(Text1);
+            SSTab1_Page0.Controls.Add(cmdLookup);
+            SSTab1_Page0.Controls.Add(Command_0);
+            SSTab1_Page0.Controls.Add(txtInfo_0);
+            SSTab1_Page0.Controls.Add(txtInfo_1);
+            SSTab1_Page0.Controls.Add(txtInfo_2);
+            SSTab1_Page0.Controls.Add(txtInfo_3);
+            SSTab1_Page0.Controls.Add(Command_1);
+            SSTab1_Page0.Controls.Add(Command_2);
+            SSTab1_Page0.Controls.Add(txtInfo_4);
+            SSTab1_Page0.Controls.Add(Label1);
+            SSTab1_Page0.Controls.Add(Label2);
+            SSTab1_Page0.Controls.Add(Label3);
+            SSTab1_Page0.Controls.Add(Label4);
+            SSTab1_Page0.Controls.Add(Label5);
+            SSTab1_Page0.Location = new Point(4, 22);
+            SSTab1_Page0.Name = "SSTab1_Page0";
+            SSTab1_Page0.Size = new Size(233, 151);
+            SSTab1_Page0.TabIndex = 0;
+            SSTab1_Page0.Text = "User Lookup";
+            SSTab1_Page0.UseVisualStyleBackColor = true;
             // 
             // Text1
             // 
-            this.Text1.Location = new System.Drawing.Point(4, 6);
-            this.Text1.Name = "Text1";
-            this.Text1.Size = new System.Drawing.Size(169, 21);
-            this.Text1.TabIndex = 11;
-            this.Text1.Text = "";
+            Text1.Location = new Point(4, 6);
+            Text1.Name = "Text1";
+            Text1.Size = new Size(169, 20);
+            Text1.TabIndex = 11;
             // 
             // cmdLookup
             // 
-            this.cmdLookup.Location = new System.Drawing.Point(180, 6);
-            this.cmdLookup.Name = "cmdLookup";
-            this.cmdLookup.Size = new System.Drawing.Size(49, 21);
-            this.cmdLookup.TabIndex = 10;
-            this.cmdLookup.Text = "Lookup";
-            this.cmdLookup.UseVisualStyleBackColor = true;
+            cmdLookup.Location = new Point(180, 6);
+            cmdLookup.Name = "cmdLookup";
+            cmdLookup.Size = new Size(49, 21);
+            cmdLookup.TabIndex = 10;
+            cmdLookup.Text = "Lookup";
+            cmdLookup.UseVisualStyleBackColor = true;
+            cmdLookup.Click += cmdLookup_Click;
             // 
             // Command_0
             // 
-            this.Command_0.Location = new System.Drawing.Point(4, 126);
-            this.Command_0.Name = "Command_0";
-            this.Command_0.Size = new System.Drawing.Size(65, 21);
-            this.Command_0.TabIndex = 9;
-            this.Command_0.Enabled = false;
-            this.Command_0.Text = "TempBan";
-            this.Command_0.UseVisualStyleBackColor = true;
+            Command_0.Enabled = false;
+            Command_0.Location = new Point(4, 126);
+            Command_0.Name = "Command_0";
+            Command_0.Size = new Size(65, 21);
+            Command_0.TabIndex = 9;
+            Command_0.Text = "TempBan";
+            Command_0.UseVisualStyleBackColor = true;
+            Command_0.Click += Command_0_Click;
             // 
             // txtInfo_0
             // 
-            this.txtInfo_0.Location = new System.Drawing.Point(68, 38);
-            this.txtInfo_0.Name = "txtInfo_0";
-            this.txtInfo_0.Size = new System.Drawing.Size(161, 13);
-            this.txtInfo_0.TabIndex = 8;
-            this.txtInfo_0.BackColor = System.Drawing.SystemColors.Control;
-            this.txtInfo_0.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtInfo_0.ReadOnly = true;
-            this.txtInfo_0.Text = "[No User Selected]";
+            txtInfo_0.BackColor = SystemColors.Control;
+            txtInfo_0.BorderStyle = BorderStyle.None;
+            txtInfo_0.Location = new Point(68, 38);
+            txtInfo_0.Name = "txtInfo_0";
+            txtInfo_0.ReadOnly = true;
+            txtInfo_0.Size = new Size(161, 13);
+            txtInfo_0.TabIndex = 8;
+            txtInfo_0.Text = "[No User Selected]";
             // 
             // txtInfo_1
             // 
-            this.txtInfo_1.Location = new System.Drawing.Point(68, 54);
-            this.txtInfo_1.Name = "txtInfo_1";
-            this.txtInfo_1.Size = new System.Drawing.Size(161, 13);
-            this.txtInfo_1.TabIndex = 7;
-            this.txtInfo_1.BackColor = System.Drawing.SystemColors.Control;
-            this.txtInfo_1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtInfo_1.ReadOnly = true;
-            this.txtInfo_1.Text = "";
+            txtInfo_1.BackColor = SystemColors.Control;
+            txtInfo_1.BorderStyle = BorderStyle.None;
+            txtInfo_1.Location = new Point(68, 54);
+            txtInfo_1.Name = "txtInfo_1";
+            txtInfo_1.ReadOnly = true;
+            txtInfo_1.Size = new Size(161, 13);
+            txtInfo_1.TabIndex = 7;
             // 
             // txtInfo_2
             // 
-            this.txtInfo_2.Location = new System.Drawing.Point(68, 70);
-            this.txtInfo_2.Name = "txtInfo_2";
-            this.txtInfo_2.Size = new System.Drawing.Size(161, 13);
-            this.txtInfo_2.TabIndex = 6;
-            this.txtInfo_2.BackColor = System.Drawing.SystemColors.Control;
-            this.txtInfo_2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtInfo_2.ReadOnly = true;
-            this.txtInfo_2.Text = "";
+            txtInfo_2.BackColor = SystemColors.Control;
+            txtInfo_2.BorderStyle = BorderStyle.None;
+            txtInfo_2.Location = new Point(68, 70);
+            txtInfo_2.Name = "txtInfo_2";
+            txtInfo_2.ReadOnly = true;
+            txtInfo_2.Size = new Size(161, 13);
+            txtInfo_2.TabIndex = 6;
             // 
             // txtInfo_3
             // 
-            this.txtInfo_3.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtInfo_3.Location = new System.Drawing.Point(68, 102);
-            this.txtInfo_3.Name = "txtInfo_3";
-            this.txtInfo_3.Size = new System.Drawing.Size(161, 14);
-            this.txtInfo_3.TabIndex = 5;
-            this.txtInfo_3.BackColor = System.Drawing.SystemColors.Control;
-            this.txtInfo_3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtInfo_3.ReadOnly = true;
-            this.txtInfo_3.Text = "";
+            txtInfo_3.BackColor = SystemColors.Control;
+            txtInfo_3.BorderStyle = BorderStyle.None;
+            txtInfo_3.Font = new Font("Courier New", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtInfo_3.Location = new Point(68, 102);
+            txtInfo_3.Name = "txtInfo_3";
+            txtInfo_3.ReadOnly = true;
+            txtInfo_3.Size = new Size(161, 13);
+            txtInfo_3.TabIndex = 5;
             // 
             // Command_1
             // 
-            this.Command_1.Location = new System.Drawing.Point(164, 126);
-            this.Command_1.Name = "Command_1";
-            this.Command_1.Size = new System.Drawing.Size(65, 21);
-            this.Command_1.TabIndex = 4;
-            this.Command_1.Enabled = false;
-            this.Command_1.Visible = false;
-            this.Command_1.Text = "IP Ban";
-            this.Command_1.UseVisualStyleBackColor = true;
+            Command_1.Enabled = false;
+            Command_1.Location = new Point(164, 126);
+            Command_1.Name = "Command_1";
+            Command_1.Size = new Size(65, 21);
+            Command_1.TabIndex = 4;
+            Command_1.Text = "IP Ban";
+            Command_1.UseVisualStyleBackColor = true;
+            Command_1.Visible = false;
+            Command_1.Click += Command_1_Click;
             // 
             // Command_2
             // 
-            this.Command_2.Location = new System.Drawing.Point(84, 126);
-            this.Command_2.Name = "Command_2";
-            this.Command_2.Size = new System.Drawing.Size(65, 21);
-            this.Command_2.TabIndex = 3;
-            this.Command_2.Enabled = false;
-            this.Command_2.Visible = false;
-            this.Command_2.Text = "SID Ban";
-            this.Command_2.UseVisualStyleBackColor = true;
+            Command_2.Enabled = false;
+            Command_2.Location = new Point(84, 126);
+            Command_2.Name = "Command_2";
+            Command_2.Size = new Size(65, 21);
+            Command_2.TabIndex = 3;
+            Command_2.Text = "SID Ban";
+            Command_2.UseVisualStyleBackColor = true;
+            Command_2.Visible = false;
+            Command_2.Click += Command_2_Click;
             // 
             // txtInfo_4
             // 
-            this.txtInfo_4.Location = new System.Drawing.Point(68, 86);
-            this.txtInfo_4.Name = "txtInfo_4";
-            this.txtInfo_4.Size = new System.Drawing.Size(161, 13);
-            this.txtInfo_4.TabIndex = 2;
-            this.txtInfo_4.BackColor = System.Drawing.SystemColors.Control;
-            this.txtInfo_4.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtInfo_4.ReadOnly = true;
-            this.txtInfo_4.Text = "";
+            txtInfo_4.BackColor = SystemColors.Control;
+            txtInfo_4.BorderStyle = BorderStyle.None;
+            txtInfo_4.Location = new Point(68, 86);
+            txtInfo_4.Name = "txtInfo_4";
+            txtInfo_4.ReadOnly = true;
+            txtInfo_4.Size = new Size(161, 13);
+            txtInfo_4.TabIndex = 2;
             // 
             // Label1
             // 
-            this.Label1.Location = new System.Drawing.Point(4, 54);
-            this.Label1.Name = "Label1";
-            this.Label1.Size = new System.Drawing.Size(93, 13);
-            this.Label1.TabIndex = 16;
-            this.Label1.Text = "Status:";
+            Label1.Location = new Point(4, 54);
+            Label1.Name = "Label1";
+            Label1.Size = new Size(93, 13);
+            Label1.TabIndex = 16;
+            Label1.Text = "Status:";
             // 
             // Label2
             // 
-            this.Label2.Location = new System.Drawing.Point(4, 86);
-            this.Label2.Name = "Label2";
-            this.Label2.Size = new System.Drawing.Size(93, 13);
-            this.Label2.TabIndex = 15;
-            this.Label2.Text = "IP Address:";
+            Label2.Location = new Point(4, 86);
+            Label2.Name = "Label2";
+            Label2.Size = new Size(93, 13);
+            Label2.TabIndex = 15;
+            Label2.Text = "IP Address:";
             // 
             // Label3
             // 
-            this.Label3.Location = new System.Drawing.Point(4, 102);
-            this.Label3.Name = "Label3";
-            this.Label3.Size = new System.Drawing.Size(73, 17);
-            this.Label3.TabIndex = 14;
-            this.Label3.Text = "Station ID:";
+            Label3.Location = new Point(4, 102);
+            Label3.Name = "Label3";
+            Label3.Size = new Size(73, 17);
+            Label3.TabIndex = 14;
+            Label3.Text = "Station ID:";
             // 
             // Label4
             // 
-            this.Label4.Location = new System.Drawing.Point(4, 70);
-            this.Label4.Name = "Label4";
-            this.Label4.Size = new System.Drawing.Size(73, 17);
-            this.Label4.TabIndex = 13;
-            this.Label4.Text = "Authority:";
+            Label4.Location = new Point(4, 70);
+            Label4.Name = "Label4";
+            Label4.Size = new Size(73, 17);
+            Label4.TabIndex = 13;
+            Label4.Text = "Authority:";
             // 
             // Label5
             // 
-            this.Label5.Location = new System.Drawing.Point(4, 38);
-            this.Label5.Name = "Label5";
-            this.Label5.Size = new System.Drawing.Size(93, 13);
-            this.Label5.TabIndex = 12;
-            this.Label5.Text = "Username:";
+            Label5.Location = new Point(4, 38);
+            Label5.Name = "Label5";
+            Label5.Size = new Size(93, 13);
+            Label5.TabIndex = 12;
+            Label5.Text = "Username:";
             // 
             // SSTab1_Page1
             // 
-            this.SSTab1_Page1.Controls.Add(this.cmdRefresh);
-            this.SSTab1_Page1.Controls.Add(this.cmdUnban);
-            this.SSTab1_Page1.Controls.Add(this.BanList);
-            this.SSTab1_Page1.Location = new System.Drawing.Point(4, 22);
-            this.SSTab1_Page1.Name = "SSTab1_Page1";
-            this.SSTab1_Page1.Size = new System.Drawing.Size(233, 151);
-            this.SSTab1_Page1.TabIndex = 1;
-            this.SSTab1_Page1.Text = "Ban List";
-            this.SSTab1_Page1.UseVisualStyleBackColor = true;
+            SSTab1_Page1.Controls.Add(cmdRefresh);
+            SSTab1_Page1.Controls.Add(cmdUnban);
+            SSTab1_Page1.Controls.Add(BanList);
+            SSTab1_Page1.Location = new Point(4, 22);
+            SSTab1_Page1.Name = "SSTab1_Page1";
+            SSTab1_Page1.Size = new Size(233, 151);
+            SSTab1_Page1.TabIndex = 1;
+            SSTab1_Page1.Text = "Ban List";
+            SSTab1_Page1.UseVisualStyleBackColor = true;
             // 
             // cmdRefresh
             // 
-            this.cmdRefresh.Location = new System.Drawing.Point(4, 122);
-            this.cmdRefresh.Name = "cmdRefresh";
-            this.cmdRefresh.Size = new System.Drawing.Size(105, 25);
-            this.cmdRefresh.TabIndex = 19;
-            this.cmdRefresh.Text = "Refresh";
-            this.cmdRefresh.UseVisualStyleBackColor = true;
+            cmdRefresh.Location = new Point(4, 122);
+            cmdRefresh.Name = "cmdRefresh";
+            cmdRefresh.Size = new Size(105, 25);
+            cmdRefresh.TabIndex = 19;
+            cmdRefresh.Text = "Refresh";
+            cmdRefresh.UseVisualStyleBackColor = true;
+            cmdRefresh.Click += cmdRefresh_Click;
             // 
             // cmdUnban
             // 
-            this.cmdUnban.Location = new System.Drawing.Point(124, 122);
-            this.cmdUnban.Name = "cmdUnban";
-            this.cmdUnban.Size = new System.Drawing.Size(105, 25);
-            this.cmdUnban.TabIndex = 18;
-            this.cmdUnban.Text = "Unban";
-            this.cmdUnban.UseVisualStyleBackColor = true;
+            cmdUnban.Location = new Point(124, 122);
+            cmdUnban.Name = "cmdUnban";
+            cmdUnban.Size = new Size(105, 25);
+            cmdUnban.TabIndex = 18;
+            cmdUnban.Text = "Unban";
+            cmdUnban.UseVisualStyleBackColor = true;
+            cmdUnban.Click += cmdUnban_Click;
             // 
             // BanList
             // 
-            this.BanList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-                        this.BanList_Col1,
-                        this.BanList_Col2});
-            this.BanList.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.BanList.FullRowSelect = true;
-            this.BanList.HideSelection = false;
-            this.BanList.MultiSelect = false;
-            this.BanList.Location = new System.Drawing.Point(4, 6);
-            this.BanList.Name = "BanList";
-            this.BanList.Size = new System.Drawing.Size(225, 113);
-            this.BanList.TabIndex = 17;
-            this.BanList.UseCompatibleStateImageBehavior = false;
-            this.BanList.View = System.Windows.Forms.View.Details;
+            BanList.Columns.AddRange(new ColumnHeader[] { BanList_Col1, BanList_Col2 });
+            BanList.FullRowSelect = true;
+            BanList.Location = new Point(4, 6);
+            BanList.MultiSelect = false;
+            BanList.Name = "BanList";
+            BanList.Size = new Size(225, 113);
+            BanList.TabIndex = 17;
+            BanList.UseCompatibleStateImageBehavior = false;
+            BanList.View = View.Details;
             // 
             // BanList_Col1
             // 
-            this.BanList_Col1.Text = "Name/IP";
-            this.BanList_Col1.Width = 224;
+            BanList_Col1.Name = "BanList_Col1";
+            BanList_Col1.Text = "Name/IP";
+            BanList_Col1.Width = 224;
             // 
             // BanList_Col2
             // 
-            this.BanList_Col2.Text = "Ban Type";
-            this.BanList_Col2.Width = 162;
+            BanList_Col2.Name = "BanList_Col2";
+            BanList_Col2.Text = "Ban Type";
+            BanList_Col2.Width = 162;
             // 
             // SSTab1_Page2
             // 
-            this.SSTab1_Page2.Controls.Add(this.cmdALook);
-            this.SSTab1_Page2.Controls.Add(this.Text2);
-            this.SSTab1_Page2.Controls.Add(this.NickList);
-            this.SSTab1_Page2.Location = new System.Drawing.Point(4, 22);
-            this.SSTab1_Page2.Name = "SSTab1_Page2";
-            this.SSTab1_Page2.Size = new System.Drawing.Size(233, 151);
-            this.SSTab1_Page2.TabIndex = 2;
-            this.SSTab1_Page2.Text = "Alias Lookup";
-            this.SSTab1_Page2.UseVisualStyleBackColor = true;
+            SSTab1_Page2.Controls.Add(cmdALook);
+            SSTab1_Page2.Controls.Add(Text2);
+            SSTab1_Page2.Controls.Add(NickList);
+            SSTab1_Page2.Location = new Point(4, 24);
+            SSTab1_Page2.Name = "SSTab1_Page2";
+            SSTab1_Page2.Size = new Size(233, 149);
+            SSTab1_Page2.TabIndex = 2;
+            SSTab1_Page2.Text = "Alias Lookup";
+            SSTab1_Page2.UseVisualStyleBackColor = true;
             // 
             // cmdALook
             // 
-            this.cmdALook.Location = new System.Drawing.Point(180, 6);
-            this.cmdALook.Name = "cmdALook";
-            this.cmdALook.Size = new System.Drawing.Size(49, 21);
-            this.cmdALook.TabIndex = 22;
-            this.cmdALook.Text = "Lookup";
-            this.cmdALook.UseVisualStyleBackColor = true;
+            cmdALook.Location = new Point(180, 6);
+            cmdALook.Name = "cmdALook";
+            cmdALook.Size = new Size(49, 21);
+            cmdALook.TabIndex = 22;
+            cmdALook.Text = "Lookup";
+            cmdALook.UseVisualStyleBackColor = true;
+            cmdALook.Click += cmdALook_Click;
             // 
             // Text2
             // 
-            this.Text2.Location = new System.Drawing.Point(4, 6);
-            this.Text2.Name = "Text2";
-            this.Text2.Size = new System.Drawing.Size(169, 21);
-            this.Text2.TabIndex = 21;
-            this.Text2.Text = "";
+            Text2.Location = new Point(4, 6);
+            Text2.Name = "Text2";
+            Text2.Size = new Size(169, 20);
+            Text2.TabIndex = 21;
             // 
             // NickList
             // 
-            this.NickList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-                        this.NickList_Col1});
-            this.NickList.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.NickList.FullRowSelect = true;
-            this.NickList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.NickList.HideSelection = false;
-            this.NickList.MultiSelect = false;
-            this.NickList.Location = new System.Drawing.Point(4, 34);
-            this.NickList.Name = "NickList";
-            this.NickList.Size = new System.Drawing.Size(225, 113);
-            this.NickList.TabIndex = 20;
-            this.NickList.UseCompatibleStateImageBehavior = false;
-            this.NickList.View = System.Windows.Forms.View.Details;
+            NickList.Columns.AddRange(new ColumnHeader[] { NickList_Col1 });
+            NickList.FullRowSelect = true;
+            NickList.HeaderStyle = ColumnHeaderStyle.None;
+            NickList.Location = new Point(4, 34);
+            NickList.MultiSelect = false;
+            NickList.Name = "NickList";
+            NickList.Size = new Size(225, 113);
+            NickList.TabIndex = 20;
+            NickList.UseCompatibleStateImageBehavior = false;
+            NickList.View = View.Details;
             // 
             // NickList_Col1
             // 
-            this.NickList_Col1.Text = "";
-            this.NickList_Col1.Width = 224;
+            NickList_Col1.Name = "NickList_Col1";
+            NickList_Col1.Text = "";
+            NickList_Col1.Width = 224;
             // 
             // StatusBar
             // 
-            this.StatusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-                        this.StatusBar_Panel1});
-            this.StatusBar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.StatusBar.Location = new System.Drawing.Point(0, 185);
-            this.StatusBar.Name = "StatusBar";
-            this.StatusBar.Size = new System.Drawing.Size(250, 17);
-            this.StatusBar.TabIndex = 0;
-            this.StatusBar.Text = "StatusBar";
+            StatusBar.Items.AddRange(new ToolStripItem[] { StatusBar_Panel1 });
+            StatusBar.Location = new Point(0, 180);
+            StatusBar.Name = "StatusBar";
+            StatusBar.Padding = new Padding(1, 0, 3, 0);
+            StatusBar.Size = new Size(250, 22);
+            StatusBar.TabIndex = 0;
+            StatusBar.Text = "StatusBar";
             // 
             // StatusBar_Panel1
             // 
-            this.StatusBar_Panel1.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.All;
-            this.StatusBar_Panel1.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
-            this.StatusBar_Panel1.Name = "StatusBar_Panel1";
-            this.StatusBar_Panel1.AutoSize = false;
-            this.StatusBar_Panel1.Size = new System.Drawing.Size(96, 17);
-            this.StatusBar_Panel1.Text = "";
-            this.StatusBar_Panel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            StatusBar_Panel1.AutoSize = false;
+            StatusBar_Panel1.BorderSides = ToolStripStatusLabelBorderSides.Left | ToolStripStatusLabelBorderSides.Top | ToolStripStatusLabelBorderSides.Right | ToolStripStatusLabelBorderSides.Bottom;
+            StatusBar_Panel1.BorderStyle = Border3DStyle.SunkenOuter;
+            StatusBar_Panel1.Name = "StatusBar_Panel1";
+            StatusBar_Panel1.Size = new Size(96, 17);
+            StatusBar_Panel1.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // UserInfo
             // 
-            this.AcceptButton = this.cmdLookup;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(250, 202);
-            this.Controls.Add(this.SSTab1);
-            this.Controls.Add(this.StatusBar);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "UserInfo";
-            this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "User Info";
-            this.SSTab1.ResumeLayout(false);
-            this.SSTab1.PerformLayout();
-            this.SSTab1_Page0.ResumeLayout(false);
-            this.SSTab1_Page0.PerformLayout();
-            this.SSTab1_Page1.ResumeLayout(false);
-            this.SSTab1_Page1.PerformLayout();
-            this.SSTab1_Page2.ResumeLayout(false);
-            this.SSTab1_Page2.PerformLayout();
-            this.StatusBar.ResumeLayout(false);
-            this.StatusBar.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AcceptButton = cmdLookup;
+            AutoScaleDimensions = new SizeF(6F, 13F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(250, 202);
+            Controls.Add(SSTab1);
+            Controls.Add(StatusBar);
+            Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "UserInfo";
+            ShowInTaskbar = false;
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "User Info";
+            Load += UserInfo_Load;
+            SSTab1.ResumeLayout(false);
+            SSTab1_Page0.ResumeLayout(false);
+            SSTab1_Page0.PerformLayout();
+            SSTab1_Page1.ResumeLayout(false);
+            SSTab1_Page2.ResumeLayout(false);
+            SSTab1_Page2.PerformLayout();
+            StatusBar.ResumeLayout(false);
+            StatusBar.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

@@ -1,4 +1,4 @@
-﻿namespace Netbattle.Forms {
+﻿namespace NetbattleClient.Forms {
     partial class Container {
         /// <summary>
         /// Required designer variable.

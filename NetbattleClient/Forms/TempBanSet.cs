@@ -24,6 +24,13 @@ namespace Netbattle.Forms
 
         private void btnOk_Click(object sender, EventArgs e)
         {
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
             Close();
         }
     }

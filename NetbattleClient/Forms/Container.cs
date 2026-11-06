@@ -1,22 +1,17 @@
-﻿using Netbattle.Common;
-using System;
-using System.Windows.Forms;
+﻿using Netbattle;
+using Netbattle.Common;
 using Netbattle.Core.Database;
-using NetbattleClient.Forms;
 
-namespace Netbattle.Forms {
+namespace NetbattleClient.Forms {
     public partial class Container : Form {
-        private Form1 _qs;
+        private readonly Form1 _qs;
 
         public Container() {
             InitializeComponent();
+            _qs = new Form1(this);
         }
 
         private void Container_Load(object sender, EventArgs e) {
-            _qs = new Form1(this);
-            _qs.Show();
-
-
             MoveDatabase.Load();
             TypeDatabase.Load();
             GraphicsDatabase.Load();
@@ -26,10 +21,6 @@ namespace Netbattle.Forms {
             Configuration.Load();
             UserSettings.Load(Configuration.CurrentSettings.LastJnb, Configuration.CurrentSettings.LastPnb);
             BattleSystem.GenerateStatTable();
-        }
-        
-
-        private void mehToolStripMenuItem_Click(object sender, EventArgs e) {
             _qs.Show();
         }
     }

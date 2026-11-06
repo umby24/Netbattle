@@ -68,6 +68,7 @@ namespace Netbattle.Core.Common {
     public delegate void ServerInfoEventArgs(ServerInfo info);
 
     public delegate void PrivateMessageEventArgs(Player player, string message);
+    public delegate void AliasDataEventArgs(List<string> aliases);
     public delegate void MessageEventArgs(string message);
     
     public enum StatTypes {
@@ -379,6 +380,35 @@ namespace Netbattle.Core.Common {
         nbDark,
         nbSteel
     }
+    public struct BanListEntry
+    {
+        public string Name { get; set; }
+        public string Type { get; set; }
+        public string Duration { get; set; }
+    }
+
+    // -- The server's answer to a LOOK: query, as handled in MasterServer.frm.
+    // -- The payload is "Name|<status:1><station id:21><last login>|<ip>".
+    public struct UserLookupResult
+    {
+        public bool Found { get; set; }  // -- False when the server reports no such user (payload starts with "|").
+        public string Name { get; set; } // -- The name as the server spells it.
+        public int Status { get; set; }  // -- 0 Banned, 1 TempBanned, 2 Normal User, 3 Moderator, 4 Administrator.
+        public string StationId { get; set; }
+        public string LastLogin { get; set; }
+        public string IP { get; set; }   // -- Only meaningful when the user is online.
+
+        public string StatusText => Status switch {
+            0 => "Banned",
+            1 => "TempBanned",
+            2 => "Normal User",
+            3 => "Moderator",
+            4 => "Administrator",
+            _ => ""
+        };
+    }
+
+    public delegate void UserLookupEventArgs(UserLookupResult result);
 
     public enum TerrainTypes {
         nbShortGrass,
@@ -530,6 +560,7 @@ namespace Netbattle.Core.Common {
 
     public class Player {
         public int Id { get; set; }
+        public string IP { get; set; }
         public int GameVersion { get; set; }
         public int Picture { get; set; }
         public int GraphicsVersion { get; set; }
@@ -566,5 +597,6 @@ namespace Netbattle.Core.Common {
 
     public delegate void NoArgs();
     public delegate void PlayerEventArgs(Player player);
+    public delegate void DoublePlayerEventArgs(Player player1, Player player2);
     public delegate void PlayersEventArgs(List<Player> players);
 }

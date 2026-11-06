@@ -1,11 +1,30 @@
-﻿using Netbattle.Common;
-using Netbattle.Core.Battle;
+﻿using Netbattle.Core.Battle;
 using Netbattle.Core.Common;
 
 namespace Netbattle.Core.Database {
     public class BattleSystem {
         public static NatureType[] NatureStats = BuildStatTable();
 
+        /// <summary>
+        /// Determine if the current team is eligible to battle.
+        /// </summary>
+        /// <returns></returns>
+        public static bool BattleEligible() {
+            if (string.IsNullOrWhiteSpace(UserSettings.CurrentSettings.Username)) {
+                return false;
+            }
+
+            foreach (var tm in UserSettings.CurrentSettings.Team) {
+                if (tm.Pokemon.No == 0) {
+                    return false;
+                }
+                if (tm.Move[0] == 0 || tm.Move[0] == -1 || tm.Move[1] == 0 || tm.Move[1] == -1 || tm.Move[2] == 0 || tm.Move[2] == -1 || tm.Move[3] == 0 || tm.Move[3] == -1) {
+                    return false;
+                }
+            }
+            
+            return true;
+        }
         public static int GetGenerationStat(CompatModes mode, int baseVal, int iv, int ev, int level, int pmod) {
             switch (mode) {
                 case CompatModes.nbTrueRBY:

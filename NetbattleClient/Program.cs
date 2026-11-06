@@ -1,5 +1,6 @@
 using Netbattle.Core.Common;
 using Netbattle.Forms;
+using NetbattleClient.Forms;
 
 namespace NetbattleClient;
 

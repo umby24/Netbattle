@@ -487,8 +487,9 @@ namespace Netbattle.Forms {
                 int moveIndex = GetMoveIndex(moveObj);
                 if (moveIndex == -1) return;
 
-                _currentPokemon.Move[moveIndex] = -1;
+                _currentPokemon.Move[moveIndex] = 0;
                 UpdateMoveBoxes();
+                _changed = true;
                 return;
             }
 
