@@ -10,7 +10,7 @@ Steve, in response to attacks on his own server and himself in possestion of the
 
 (I at one point obtained Steve's Netbattle, by tricking a friend of steve into a TeamViewer session and stealing it off his desktop. We later became friends lol. An issue though was Steve had implemented some kind of UN/PW auth to access Steve's netbattle. It took a few months, but we eventually found a copy of it: SNB Server. A simple app to register users. The security behind it all was really weak honestly. Anyways. Here's a screenshot of it.)
 
-![SNB Client](snb client.png)
+![SNB Client](snbclient.png)
 
 
 In addition to the immunity, Steve now distributed this software to a few trusted individuals, and he and those _also_ began running attacks on public servers.
