@@ -1,5 +1,6 @@
 ### Netbattle Station ID (SID)
-1. Gets a value using 'virtual.drv', a dll that derives a unique system identifier based on your hard drive's hardware ID.
+1. ~Gets a value using 'virtual.drv', a dll that derives a unique system identifier based on your hard drive's hardware ID.~ This previous statement is only true for windows 95/98.
+1. Gets the hard drive serial number using a direct call to the device.
 2. Makes an MD5 Hash of that value.
 3. Converts each individual character in the hash into a 4 byte long hex value.
 4. Cuts down whatever the length of the total thing is down to only 100 characters
