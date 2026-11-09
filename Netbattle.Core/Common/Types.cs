@@ -30,6 +30,8 @@ namespace Netbattle.Core.Common {
 
     public delegate void EmptyEventArgs();
 
+    public delegate void IntEventArgs(int value);
+
     public enum LogType {
         Verbose,
         Debug,
@@ -62,8 +64,7 @@ namespace Netbattle.Core.Common {
         public string ServerName;
     }
 
-    public delegate void ChallengeEventArgs(Player challenger, TerrainTypes terrain, BattleModes challengeMode,
-        byte[] ruleSet);
+    public delegate void ChallengeEventArgs(Player challenger, ChallengeSettings settings);
     
     public delegate void ServerInfoEventArgs(ServerInfo info);
 

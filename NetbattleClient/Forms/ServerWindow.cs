@@ -50,7 +50,7 @@ namespace Netbattle.Forms {
             _client.TempBanned += ClientOnTempBanned;
             _client.ServerLocked += ClientOnServerLocked;
             _client.PlayerInfoUpdated += ClientOnPlayerInfoUpdated;
-            _client.PlayerKicked += ClientOnPlayerKicked;
+            _client.PlayerKickedByServer += ClientOnPlayerKickedByServer;
             _client.PlayerBanned += _client_PlayerBanned;
             _client.PlayerTempBanned += _client_PlayerTempBanned;
             _client.BattleStarted += _client_BattleStarted;
@@ -81,7 +81,7 @@ namespace Netbattle.Forms {
             AddMessage($"Admin {player1.Name} has banned " + player2.Name, Color.Red, true, true);
         }
 
-        private void ClientOnPlayerKicked(Player player)
+        private void ClientOnPlayerKickedByServer(Player player)
         {
             AddMessage($"SERVER HAS KICKED TRAINER: {player.Name}", Color.Red, true, true);
         }
@@ -133,15 +133,15 @@ namespace Netbattle.Forms {
             }
         }
 
-        private void ClientOnChallengeReceived(Player challenger, TerrainTypes terrain, BattleModes challengeMode, byte[] ruleSet)
+        private void ClientOnChallengeReceived(Player challenger, ChallengeSettings settings)
         {
             if (InvokeRequired)
             {
-                Invoke(new ChallengeEventArgs(ClientOnChallengeReceived), challenger, terrain, challengeMode, ruleSet);
+                Invoke(new ChallengeEventArgs(ClientOnChallengeReceived), challenger, settings);
                 return;
             }
 
-            var chWind = new ChallengeWindow(_client, challenger, this, terrain, challengeMode, ruleSet);
+            var chWind = new ChallengeWindow(_client, challenger, this, settings);
             chWind.Show();
         }
 
@@ -486,6 +486,7 @@ namespace Netbattle.Forms {
             if (player.Value.Name == _client.You.Name)
                 return;
 
+            ChallengeWindow.Current?.CloseAndCancel(); // -- Only one challenge at a time, as in VB.
             var chln = new ChallengeWindow(_client, player.Value, this);
             chln.Show();
         }

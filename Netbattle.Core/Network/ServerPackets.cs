@@ -178,7 +178,6 @@ namespace Netbattle.Network {
         public void Handle(NbClient client) {
             client.EncryptionEnabled = UseEncryption;
             client.LoginCode = loginCode;
-            client.FloodCount = FloodTolerance;
 
             var info = new ServerInfo {
                 FloodTolerance = FloodTolerance,
@@ -404,7 +403,6 @@ namespace Netbattle.Network {
 
         public void Read(ByteBuffer reader) {
             ListData = reader.GetAllBytes();
-
         }
 
         public void Write(ByteBuffer writer) {
@@ -435,6 +433,10 @@ namespace Netbattle.Network {
         //    throw new NotImplementedException();
             Logger.Log(LogType.Debug, "Received DB Mod data: " + ModData);
             Logger.Log(LogType.Debug, "DB Mod Len:" + ModData.Length);
+            client.AddModData(ModData);
+            if (ModData.Length != 201) {
+                client.ActivateDbMod();
+            }
         }
     }
 
@@ -535,7 +537,8 @@ namespace Netbattle.Network {
             client.InvokePlayerUpdate(client.OnlinePlayers[PlayerId]);
         }
     }
-
+    // -- QUIRK: In the original source, this is only sent by the server to the client when you are connecting, you are
+    // -- banned, and its about to kick you. But first, here's your stats! :D 
     public struct YourNumber : IPacket {
         public string Command => "YNUM";
         public void Read(ByteBuffer reader) {
@@ -553,10 +556,10 @@ namespace Netbattle.Network {
 
     public struct PlayerList2 : IPacket {
         public string Command => "PLST";
-        
+        public byte[] ListData { get; set; }
 
         public void Read(ByteBuffer reader) {
-           
+            ListData = reader.GetAllBytes();
         }
 
         public void Write(ByteBuffer writer) {
@@ -564,7 +567,8 @@ namespace Netbattle.Network {
         }
 
         public void Handle(NbClient client) {
-            
+            client.AddPlayerlistData(ListData);
+            client.ParsePlayerList();
         }
     }
 
@@ -587,8 +591,9 @@ namespace Netbattle.Network {
 
     public struct PlayerUpdate : IPacket {
         public string Command => "PUPD";
+        public string Blob { get; set; }
         public void Read(ByteBuffer reader) {
-            throw new NotImplementedException();
+            Blob = reader.ReadString(reader.Length);
         }
 
         public void Write(ByteBuffer writer) {
@@ -596,10 +601,16 @@ namespace Netbattle.Network {
         }
 
         public void Handle(NbClient client) {
+            // -- If the blob starts with 'T', there was a name change of this client.
+            // -- If T, following the T is the byteval player id, then 20 chars of text (new name).
+            // -- Else, passes to Interpret player Data.
+            
+            client.InterpretPlayerData(Encoding.ASCII.GetBytes(Blob), true);
             throw new NotImplementedException();
         }
     }
-
+    
+    // -- Not in the server source code, client only..
     public struct NewPlayer : IPacket {
         public string Command => "NPLY";
         public void Read(ByteBuffer reader) {
@@ -658,8 +669,9 @@ namespace Netbattle.Network {
 
     public struct RequestUpdate : IPacket { // -- Guessing here, no comments in og source.
         public string Command => "RPUD";
+        public string Data { get; set; }
         public void Read(ByteBuffer reader) {
-            throw new NotImplementedException();
+            Data = reader.ReadString(reader.Length);
         }
 
         public void Write(ByteBuffer writer) {
@@ -667,7 +679,19 @@ namespace Netbattle.Network {
         }
 
         public void Handle(NbClient client) {
-            throw new NotImplementedException();
+            var up = new UserPacket {
+                Username = client.You.Name,
+                Password = "",
+                ServerPassword = "potato",
+                LoginCode = Encoding.ASCII.GetBytes(Data),
+                Sid = client.You.StationID,
+                ClientVersion = client.You.Version,
+                ClientPicture = client.You.Picture,
+                Options = new bool[10],
+                ExtraInfo = client.You.Description
+            };
+            
+            client.SendPacket(up);
         }
     }
 
@@ -744,7 +768,7 @@ namespace Netbattle.Network {
         }
 
         public void Handle(NbClient client) {
-            throw new NotImplementedException();
+            client.InvokeServerShutdown();
         }
     }
 
@@ -799,8 +823,9 @@ namespace Netbattle.Network {
 
     public struct MaxUserChange : IPacket {
         public string Command => "MUCG";
+        public int MaxUsers { get; set; }
         public void Read(ByteBuffer reader) {
-            throw new NotImplementedException();
+            MaxUsers = int.Parse(reader.ReadString(reader.Length));
         }
 
         public void Write(ByteBuffer writer) {
@@ -808,38 +833,57 @@ namespace Netbattle.Network {
         }
 
         public void Handle(NbClient client) {
-            throw new NotImplementedException();
+            client.Info.MaxPlayers = MaxUsers;
+            client.InvokeMaxUsersUpdate();
         }
     }
 
+    /// <summary>
+    /// CHLN: both ways. Received: "CHLN:" slot(3 hex) mode(1 hex) terrain(1 hex) rules(8 hex) speed.
+    /// Sent: "CHLN:" target(3 hex) target's GameVersion mode(1 hex) terrain(1 hex) rules(8 hex).
+    /// </summary>
     public struct ChallengeReceived : IPacket {
         public string Command => "CHLN";
-        public string ChallengerSlot;
-        public BattleModes ChallengeMode;
-        public TerrainTypes ChallengeTerrain;
-        public byte[] rules;
-        public int ping;
-        
+        public int PlayerId;     // -- The challenger when received, the target when sent.
+        public int GameVersion;  // -- Sent only: the target's GameVersion.
+        public ChallengeSettings Settings;
+        public string Speed;     // -- Received only: the challenger's ping speed text.
+
         public void Read(ByteBuffer reader) {
-            ChallengerSlot = reader.ReadString(3);
-            ChallengeMode = (BattleModes)reader.ReadByte();
-            ChallengeTerrain = (TerrainTypes)reader.ReadByte();
-            rules = reader.ReadByteArray(8);
-            ping = Convert.ToInt32(reader.ReadString(reader.Length), 16);
+            string data = reader.ReadString(reader.Length);
+            PlayerId = (int)ChallengeRules.Dec(data.Substring(0, Math.Min(3, data.Length)));
+
+            if (data.Length < 13) { // -- Busy replies only need the slot.
+                Settings = new ChallengeSettings { Rules = new bool[ChallengeRules.RuleCount + 1] };
+                Speed = "";
+                return;
+            }
+
+            Settings = new ChallengeSettings {
+                Mode = (int)ChallengeRules.Dec(data.Substring(3, 1)),
+                Terrain = (int)ChallengeRules.Dec(data.Substring(4, 1)),
+                Rules = ChallengeRules.ReadBinArray(ChallengeRules.Dec(data.Substring(5, 8)))
+            };
+            Speed = data.Substring(13);
         }
 
         public void Write(ByteBuffer writer) {
-            throw new NotImplementedException();
+            writer.WriteString(Command + ":" +
+                               ChallengeRules.FixedHex(PlayerId, 3) +
+                               GameVersion +
+                               ChallengeRules.FixedHex(Settings.Mode, 1) +
+                               ChallengeRules.FixedHex(Settings.Terrain, 1) +
+                               ChallengeRules.FixedHex(ChallengeRules.MakeBinArray(Settings.Rules), 8));
+            writer.Purge();
         }
 
         public void Handle(NbClient client) {
-            if (client.You.Away || client.You.BattlingWith == 1025 || client.Battling) {
-                var bsy = new PlayerBusy() { Slot = ChallengerSlot  };
-                client.SendPacket(bsy);
+            if (client.ChallengeWindowOpen || client.Battling || client.You.BattlingWith == 1025) {
+                client.SendPacket(new PlayerBusy { Slot = PlayerId.ToString() });
                 return;
             }
-            
-            client.InvokeChallengeReceived(ChallengerSlot, ChallengeMode, ChallengeTerrain, rules, ping);
+
+            client.InvokeChallengeReceived(PlayerId, Settings, Speed);
         }
     }
 
@@ -858,15 +902,20 @@ namespace Netbattle.Network {
         }
 
         public void Handle(NbClient client) {
-            client.InvokeChatMessage("Player " + Slot + " is busy and cannot battle right now.\nThey may be in battle, switching teams, or away.");
-            client.You.BattlingWith = -1;
+            int.TryParse(Slot, out int id);
+            client.InvokeChatMessage(client.PlayerName(id) + " can't be challenged at this time.\nThey may be in battle, switching teams, waiting for a challenge, or have the challenge window open.");
+            client.ChallengePending = false;
+            if (client.ChallengeIsOutgoing)
+                client.InvokeChallengeEnded();
         }
     }
 
     public struct PlayerInBattle : IPacket {
         public string Command => "SBSY";
+        public int PlayerId { get; set; }
         public void Read(ByteBuffer reader) {
-            throw new NotImplementedException();
+            int.TryParse(reader.ReadString(reader.Length), out int id);
+            PlayerId = id;
         }
 
         public void Write(ByteBuffer writer) {
@@ -874,7 +923,9 @@ namespace Netbattle.Network {
         }
 
         public void Handle(NbClient client) {
-            throw new NotImplementedException();
+            client.InvokeChatMessage(client.PlayerName(PlayerId) + " is already in a battle.");
+            client.ChallengePending = false;
+            client.InvokeChallengeEnded();
         }
     }
 
@@ -882,24 +933,27 @@ namespace Netbattle.Network {
         public string Command => "PREF";
         public byte ChallengeNumber { get; set; }
         public void Read(ByteBuffer reader) {
-            throw new NotImplementedException();
+            ChallengeNumber = byte.Parse(reader.ReadString(reader.Length));
         }
 
         public void Write(ByteBuffer writer) {
-            writer.WriteString(Command + ":");
-            writer.WriteByte(ChallengeNumber);
+            writer.WriteString(Command + ":" + ChallengeNumber);
             writer.Purge();
         }
 
         public void Handle(NbClient client) {
-            throw new NotImplementedException();
+            client.InvokeChatMessage(client.PlayerName(ChallengeNumber) + " has refused the challenge.");
+            client.ChallengePending = false;
+            if (client.OnlinePlayers.TryGetValue(ChallengeNumber, out Player? challenger))
+                client.InvokeChallengeRefused(challenger);
+            client.InvokeChallengeEnded();
         }
     }
 
     public struct ServerRefusedBattle : IPacket {
         public string Command => "SREF";
         public void Read(ByteBuffer reader) {
-            throw new NotImplementedException();
+            reader.ReadString(reader.Length); // -- The player number; VB doesn't use it.
         }
 
         public void Write(ByteBuffer writer) {
@@ -907,29 +961,58 @@ namespace Netbattle.Network {
         }
 
         public void Handle(NbClient client) {
-            throw new NotImplementedException();
+            client.ChallengePending = false;
+            client.InvokeChallengeEnded();
         }
     }
 
+    /// <summary>
+    /// PACC: both ways. Received: "PACC:" player number (decimal).
+    /// Sent: "PACC:" challenger(3 hex) mode(1 hex) terrain(1 hex) rules(8 hex).
+    /// </summary>
     public struct PlayerAcceptedChallenge : IPacket {
         public string Command => "PACC";
+        public int PlayerId { get; set; }
+        public ChallengeSettings Settings { get; set; } // -- Sent only.
         public void Read(ByteBuffer reader) {
-            throw new NotImplementedException();
+            int.TryParse(reader.ReadString(reader.Length), out int id);
+            PlayerId = id;
         }
 
         public void Write(ByteBuffer writer) {
-            throw new NotImplementedException();
+            writer.WriteString(Command + ":" +
+                               ChallengeRules.FixedHex(PlayerId, 3) +
+                               ChallengeRules.FixedHex(Settings.Mode, 1) +
+                               ChallengeRules.FixedHex(Settings.Terrain, 1) +
+                               ChallengeRules.FixedHex(ChallengeRules.MakeBinArray(Settings.Rules), 8));
+            writer.Purge();
         }
 
         public void Handle(NbClient client) {
-            throw new NotImplementedException();
+            if (!client.ChallengePending) {
+                client.SendPacket(new ChallengedCancelled { ChallengeNumber = (byte)PlayerId });
+                return;
+            }
+
+            if (client.ChallengeNumber != PlayerId) {
+                client.SendPacket(new PlayerBusy { Slot = PlayerId.ToString() });
+                return;
+            }
+
+            client.InvokeChatMessage(client.PlayerName(PlayerId) + " has accepted the challenge!");
+            client.You.BattlingWith = PlayerId;
+            if (client.OnlinePlayers.TryGetValue(PlayerId, out Player? challenger))
+                client.InvokeChallengeAccepted(challenger);
         }
     }
 
     public struct StartBattle : IPacket {
         public string Command => "SBAT";
+        public byte PlayerId { get; set; } // -- Original comments say this is unused, for a planned multi-battle mode.
+        public string BattleData { get; set; }
         public void Read(ByteBuffer reader) {
-            throw new NotImplementedException();
+            PlayerId = reader.ReadByte();
+            BattleData = reader.ReadString(reader.Length);
         }
 
         public void Write(ByteBuffer writer) {
@@ -937,14 +1020,15 @@ namespace Netbattle.Network {
         }
 
         public void Handle(NbClient client) {
-            throw new NotImplementedException();
+            client.InvokeStartBattle(BattleData);
         }
     }
 
     public struct StartWatch : IPacket {
         public string Command => "SWAT";
+        public string WatchID { get; set; }
         public void Read(ByteBuffer reader) {
-            throw new NotImplementedException();
+            WatchID = reader.ReadString(reader.Length);
         }
 
         public void Write(ByteBuffer writer) {
@@ -952,14 +1036,15 @@ namespace Netbattle.Network {
         }
 
         public void Handle(NbClient client) {
-            throw new NotImplementedException();
+            client.InvokeStartWatching(WatchID);
         }
     }
 
-    public struct WorldRefused : IPacket {
+    public struct WatchRefused : IPacket {
         public string Command => "WREF";
+        public int ErrorCode { get; set; }
         public void Read(ByteBuffer reader) {
-            throw new NotImplementedException();
+            ErrorCode = int.Parse(reader.ReadString(reader.Length));
         }
 
         public void Write(ByteBuffer writer) {
@@ -967,7 +1052,7 @@ namespace Netbattle.Network {
         }
 
         public void Handle(NbClient client) {
-            throw new NotImplementedException();
+            client.InvokeWatchRejected(ErrorCode);
         }
 
 // -- Battle refused for some pre-defined reason.
@@ -981,13 +1066,16 @@ namespace Netbattle.Network {
         }
 
         public void Write(ByteBuffer writer) {
-            writer.WriteString(Command + ":");
-            writer.WriteByte(ChallengeNumber);
+            writer.WriteString(Command + ":" + ChallengeNumber.ToString());
             writer.Purge();
         }
 
         public void Handle(NbClient client) {
-            client.RaiseChallengeCancelled(client.OnlinePlayers[ChallengeNumber]);
+            client.InvokeChatMessage(client.PlayerName(ChallengeNumber) + " has cancelled the challenge.");
+            client.ChallengePending = false;
+            if (client.OnlinePlayers.TryGetValue(ChallengeNumber, out Player? challenger))
+                client.RaiseChallengeCancelled(challenger);
+            client.InvokeChallengeEnded();
         }
     }
 
@@ -1026,6 +1114,11 @@ namespace Netbattle.Network {
 
     public struct Pong : IPacket {
         public string Command => "PONG";
+        /// <summary>
+        /// Client -> Server only
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <exception cref="NotImplementedException"></exception>
         public void Read(ByteBuffer reader) {
             throw new NotImplementedException();
         }
@@ -1052,7 +1145,8 @@ namespace Netbattle.Network {
         }
 
         public void Handle(NbClient client) {
-            client.FloodCount = int.Parse(FloodVal);
+            client.Info.FloodTolerance = int.Parse(FloodVal);
+            client.InvokeServerInfoReceived();
         }
     }
     
@@ -1126,7 +1220,8 @@ namespace Netbattle.Network {
             if (!client.OnlinePlayers.ContainsKey(playerId))
                 return;
 
-            client.OnlinePlayers[playerId].Ping = int.Parse(Ping);
+            int.TryParse(Ping, out int ping); // -- The server can send "WAIT" here.
+            client.OnlinePlayers[playerId].Ping = ping;
             client.InvokePingUpdated(client.OnlinePlayers[playerId]);
         }
 
@@ -1145,7 +1240,12 @@ namespace Netbattle.Network {
         }
 
         public void Handle(NbClient client) {
-            throw new NotImplementedException();
+            var parts = Blob.Split(":");
+            var foundPlayer1 = client.OnlinePlayers.TryGetValue(int.Parse(parts[0]), out Player admin);
+            var foundplayer2 = client.OnlinePlayers.TryGetValue(int.Parse(parts[1]), out Player kicked);
+            
+            if (foundPlayer1 && foundplayer2)
+                client.InvokePlayerKicked(admin, kicked);
         }
     }
 
@@ -1154,7 +1254,7 @@ namespace Netbattle.Network {
         public byte PlayerId { get; set; }
         public string BannedName { get; set; }
         public void Read(ByteBuffer reader) {
-            PlayerId = reader.ReadByte();
+            PlayerId = byte.Parse(reader.ReadString(1));
             BannedName = reader.ReadString(reader.Length);
         }
 

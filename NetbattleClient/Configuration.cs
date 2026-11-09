@@ -16,6 +16,10 @@ namespace Netbattle {
         public string RegistryIp { get; set; }
         public List<string> AdvConnects { get; set; }
 
+        // -- The challenge window's last used rules and mode. VB kept these in the registry under "Battle Rules".
+        public List<bool> BattleRules { get; set; } = new List<bool>(); // -- Index 0 is rule 1.
+        public int BattleMode { get; set; } = 2; // -- Mode list index; VB's default is 2, Advance.
+
         public Configuration() {
             EnableLogging = false;
             LastJnb = "";

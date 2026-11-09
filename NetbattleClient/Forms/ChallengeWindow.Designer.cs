@@ -24,7 +24,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChallengeWindow));
+            lblWins = new Label();
+            lblLosses = new Label();
+            lblTies = new Label();
+            lblUbers = new Label();
+            ruleColumn = new ColumnHeader();
+            toolTip1 = new ToolTip(components);
+            tmrRandbat = new System.Windows.Forms.Timer(components);
             btnChallenge = new Button();
             btnCancel = new Button();
             listView1 = new ListView();
@@ -72,6 +80,7 @@
             btnChallenge.TabIndex = 0;
             btnChallenge.Text = "Challenge!";
             btnChallenge.UseVisualStyleBackColor = true;
+            btnChallenge.Click += btnChallenge_Click;
             // 
             // btnCancel
             // 
@@ -86,13 +95,25 @@
             // 
             // listView1
             // 
+            listView1.Columns.AddRange(new ColumnHeader[] { ruleColumn });
+            listView1.FullRowSelect = true;
+            listView1.HeaderStyle = ColumnHeaderStyle.None;
             listView1.Location = new Point(6, 82);
             listView1.Margin = new Padding(2);
+            listView1.MultiSelect = false;
             listView1.Name = "listView1";
+            listView1.ShowItemToolTips = true;
             listView1.Size = new Size(324, 92);
             listView1.TabIndex = 2;
             listView1.UseCompatibleStateImageBehavior = false;
+            listView1.View = View.Details;
+            listView1.ItemCheck += listView1_ItemCheck;
+            listView1.ItemChecked += listView1_ItemChecked;
             listView1.SelectedIndexChanged += listView1_SelectedIndexChanged;
+            //
+            // ruleColumn
+            //
+            ruleColumn.Width = 300;
             // 
             // lblClauses
             // 
@@ -106,6 +127,7 @@
             // 
             // grpTeam
             // 
+            grpTeam.Controls.Add(lblUbers);
             grpTeam.Controls.Add(panel3);
             grpTeam.Controls.Add(panel2);
             grpTeam.Controls.Add(panel1);
@@ -135,6 +157,7 @@
             // 
             panel3.BackColor = Color.FromArgb(255, 255, 192);
             panel3.BorderStyle = BorderStyle.Fixed3D;
+            panel3.Controls.Add(lblTies);
             panel3.Location = new Point(274, 128);
             panel3.Margin = new Padding(4, 3, 4, 3);
             panel3.Name = "panel3";
@@ -145,6 +168,7 @@
             // 
             panel2.BackColor = Color.FromArgb(255, 192, 192);
             panel2.BorderStyle = BorderStyle.Fixed3D;
+            panel2.Controls.Add(lblLosses);
             panel2.Location = new Point(229, 128);
             panel2.Margin = new Padding(4, 3, 4, 3);
             panel2.Name = "panel2";
@@ -155,6 +179,7 @@
             // 
             panel1.BackColor = Color.FromArgb(192, 255, 192);
             panel1.BorderStyle = BorderStyle.Fixed3D;
+            panel1.Controls.Add(lblWins);
             panel1.Location = new Point(183, 128);
             panel1.Margin = new Padding(4, 3, 4, 3);
             panel1.Name = "panel1";
@@ -224,13 +249,49 @@
             // 
             // lblExtraInfo
             // 
-            lblExtraInfo.AutoSize = true;
-            lblExtraInfo.Location = new Point(16, 70);
+            lblExtraInfo.Location = new Point(6, 70);
             lblExtraInfo.Margin = new Padding(2, 0, 2, 0);
             lblExtraInfo.Name = "lblExtraInfo";
-            lblExtraInfo.Size = new Size(47, 15);
+            lblExtraInfo.Size = new Size(319, 38);
             lblExtraInfo.TabIndex = 6;
-            lblExtraInfo.Text = "Clauses";
+            lblExtraInfo.Text = "Extra Info";
+            //
+            // lblWins
+            //
+            lblWins.Dock = DockStyle.Fill;
+            lblWins.Font = new Font("Microsoft Sans Serif", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblWins.Name = "lblWins";
+            lblWins.TabIndex = 0;
+            lblWins.TextAlign = ContentAlignment.MiddleCenter;
+            //
+            // lblLosses
+            //
+            lblLosses.Dock = DockStyle.Fill;
+            lblLosses.Font = new Font("Microsoft Sans Serif", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblLosses.Name = "lblLosses";
+            lblLosses.TabIndex = 0;
+            lblLosses.TextAlign = ContentAlignment.MiddleCenter;
+            //
+            // lblTies
+            //
+            lblTies.Dock = DockStyle.Fill;
+            lblTies.Font = new Font("Microsoft Sans Serif", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTies.Name = "lblTies";
+            lblTies.TabIndex = 0;
+            lblTies.TextAlign = ContentAlignment.MiddleCenter;
+            //
+            // lblUbers
+            //
+            lblUbers.ForeColor = Color.Red;
+            lblUbers.Location = new Point(266, 31);
+            lblUbers.Name = "lblUbers";
+            lblUbers.Size = new Size(62, 37);
+            lblUbers.TabIndex = 16;
+            lblUbers.TextAlign = ContentAlignment.MiddleCenter;
+            //
+            // tmrRandbat
+            //
+            tmrRandbat.Tick += tmrRandbat_Tick;
             // 
             // pk6
             // 
@@ -267,7 +328,6 @@
             pk3.Size = new Size(37, 37);
             pk3.TabIndex = 2;
             pk3.TabStop = false;
-            pk3.Click += pictureBox3_Click;
             // 
             // pk2
             // 
@@ -326,6 +386,7 @@
             // 
             // comboBox2
             // 
+            comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox2.FormattingEnabled = true;
             comboBox2.Location = new Point(215, 37);
             comboBox2.Margin = new Padding(4, 3, 4, 3);
@@ -335,7 +396,9 @@
             // 
             // comboBox1
             // 
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.FormattingEnabled = true;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             comboBox1.Location = new Point(7, 37);
             comboBox1.Margin = new Padding(4, 3, 4, 3);
             comboBox1.Name = "comboBox1";
@@ -366,6 +429,8 @@
             Margin = new Padding(2);
             Name = "ChallengeWindow";
             Text = "Player Details";
+            FormClosing += ChallengeWindow_FormClosing;
+            FormClosed += ChallengeWindow_FormClosed;
             Load += ChallengeWindow_Load;
             grpTeam.ResumeLayout(false);
             grpTeam.PerformLayout();
@@ -413,5 +478,12 @@
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label lblWins;
+        private System.Windows.Forms.Label lblLosses;
+        private System.Windows.Forms.Label lblTies;
+        private System.Windows.Forms.Label lblUbers;
+        private System.Windows.Forms.ColumnHeader ruleColumn;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Timer tmrRandbat;
     }
 }

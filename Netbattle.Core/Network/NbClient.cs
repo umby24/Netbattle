@@ -14,15 +14,29 @@ namespace Netbattle.Core.Network {
         public bool Connected { get; set; }
         
         public bool Battling { get; set; }
-        
+
+        // -- Challenge state, from the VB globals of the same names.
+        public int ChallengeNumber { get; set; }          // -- Who the open or pending challenge is with.
+        public bool ChallengePending { get; set; }        // -- A challenge has been sent or received and not answered yet.
+        public bool ChallengeWindowOpen { get; set; }     // -- VB's MasterServer.ChallengeLoaded.
+        public bool ChallengeIsOutgoing { get; set; }     // -- VB's ICalled: we're the challenger.
+
         public Dictionary<int, Player> OnlinePlayers { get; set; }
+
+        /// <summary>
+        /// Your own entry in the player list, which has the server's view of your data, or You before the list arrives.
+        /// </summary>
+        public Player Me => OnlinePlayers != null && OnlinePlayers.TryGetValue(You.Id, out Player? p) ? p : You;
+
+        public string PlayerName(int id) =>
+            OnlinePlayers != null && OnlinePlayers.TryGetValue(id, out Player? p) ? p.Name : $"Player {id}";
         public List<BanListEntry> BanList { get; set; } = new List<BanListEntry>();
-        public int FloodCount { get; set; }
         #region Private Variables
         private ClientSocket _serverSocket;
         private ByteBuffer _inputBuffer;
         private ByteBuffer _outBuffer;
         private ByteBuffer _plistBuffer;
+        private string _dbModBuffer;
         private Dictionary<string, IPacket> _packets;
         public byte[] LoginCode { get; set; }
         #endregion
@@ -227,6 +241,10 @@ namespace Netbattle.Core.Network {
         public void AddPlayerlistData(byte[] data) {
             _plistBuffer.AddBytes(data);
         }
+
+        public void AddModData(string data) {
+            _dbModBuffer += data;
+        }
 #endregion
         #region Client Events
 
@@ -255,15 +273,21 @@ namespace Netbattle.Core.Network {
         public event PlayerEventArgs PlayerAway;
         public event PlayerEventArgs PlayerBack;
         public event PlayerEventArgs PlayerInfoUpdated;
-        public event PlayerEventArgs PlayerKicked;
+        public event PlayerEventArgs PlayerKickedByServer;
         public event PlayerEventArgs PlayerPingUpdated;
+        public event DoublePlayerEventArgs PlayerKicked;
         public event DoublePlayerEventArgs PlayerBanned;
         public event DoublePlayerEventArgs PlayerTempBanned;
         public event DoublePlayerEventArgs BattleStarted;
 
         public event PlayerEventArgs ChallengeCancelled;
+        public event PlayerEventArgs ChallengeAccepted;
+        public event PlayerEventArgs ChallengeRefused;
+        public event EmptyEventArgs ChallengeEnded;
         public event PlayersEventArgs PlayerlistUpdated;
         public event ChallengeEventArgs ChallengeReceived;
+        public event MessageEventArgs WatchBegin;
+        public event IntEventArgs WatchRejected;
 
         public void InvokePingUpdated(Player p)
         {
@@ -324,6 +348,10 @@ namespace Netbattle.Core.Network {
             WelcomeMessageReceived?.Invoke(message);
         }
 
+        public void InvokeWatchRejected(int reason) {
+            WatchRejected?.Invoke(reason);
+        }
+        
         public void InvokePlayerlistUpdate(Dictionary<int, Player> players) {
             PlayerlistUpdated?.Invoke(players.Values.ToList());
         }
@@ -461,30 +489,11 @@ namespace Netbattle.Core.Network {
         }
         #endregion
 
-        public void InvokeChallengeReceived(string challengerSlot, BattleModes challengeMode, TerrainTypes challengeTerrain, byte[] rules, int ping) {
-            if (!int.TryParse(challengerSlot, out int slot)) {
-                Logger.Log(LogType.Error, $"[Weird Server Behavior] Invalid challengerSlot {challengerSlot}");
-                return;
-            }
-            if (!OnlinePlayers.ContainsKey(slot)) {
-                Logger.Log(LogType.Error, $"[Weird Server Behavior] Challenge received from unknown slot {slot}");
-                return;
-            }
-            Player challenger = OnlinePlayers[slot];
-            challenger.Ping = ping;
-            
-            ChallengeReceived?.Invoke(challenger, challengeTerrain, challengeMode, rules);
-        }
-
-        public void InvokeTempBanned(string banMessage) {
-            TempBanned?.Invoke(banMessage);
-        }
-
         public void SendServerPassword(string password) {
             var up = new UserPacket {
                 Username = You.Name,
                 Password = password,
-                ServerPassword =  "potato",
+                ServerPassword = "potato",
                 LoginCode = LoginCode,
                 Sid = You.StationID,
                 ClientVersion = You.Version,
@@ -494,21 +503,6 @@ namespace Netbattle.Core.Network {
             };
 
             SendPacket(up);
-        }
-
-        public void InvokePlayerKicked(string playerKicked) {
-            if (int.TryParse(playerKicked, out int result)) {
-                if (OnlinePlayers.TryGetValue(result-1, out Player playerObj)) {
-                    PlayerKicked?.Invoke(playerObj);
-                    return;
-                }
-            }
-            InvokeChatMessage($"{playerKicked} has been kicked");
-        }
-
-        public void InvokeBanListUpdate()
-        {
-            BanListUpdated?.Invoke();
         }
 
         public void TempBan(string playerName, int duration) {
@@ -606,6 +600,75 @@ namespace Netbattle.Core.Network {
             SendPacket(blp);
         }
 
+        public void InvokeChallengeReceived(int slot, ChallengeSettings settings, string speed) {
+            if (!OnlinePlayers.TryGetValue(slot, out Player? challenger)) {
+                Logger.Log(LogType.Error, $"[Weird Server Behavior] Challenge received from unknown slot {slot}");
+                return;
+            }
+            if (int.TryParse(speed, out int ping))
+                challenger.Ping = ping;
+
+            ChallengeNumber = slot;
+            ChallengeIsOutgoing = false;
+            ChallengeReceived?.Invoke(challenger, settings);
+        }
+
+        public void SendChallenge(Player target, ChallengeSettings settings) {
+            SendPacket(new ChallengeReceived {
+                PlayerId = target.Id,
+                GameVersion = target.GameVersion,
+                Settings = settings
+            });
+            ChallengePending = true;
+        }
+
+        public void AcceptChallenge(ChallengeSettings settings) {
+            You.BattlingWith = ChallengeNumber;
+            SendPacket(new PlayerAcceptedChallenge { PlayerId = ChallengeNumber, Settings = settings });
+        }
+
+        public void RefuseChallenge() {
+            SendPacket(new PlayerRefusedBattle { ChallengeNumber = (byte)ChallengeNumber });
+            ChallengeNumber = 0;
+            ChallengePending = false;
+        }
+
+        public void CancelChallenge(bool sent) {
+            if (sent)
+                SendPacket(new ChallengedCancelled { ChallengeNumber = (byte)ChallengeNumber });
+            ChallengeNumber = 0;
+            ChallengePending = false;
+        }
+
+        /// <summary>
+        /// The server or the other player ended the challenge: the challenge window should close without replying.
+        /// </summary>
+        public void InvokeChallengeEnded() {
+            ChallengeEnded?.Invoke();
+        }
+
+        public void InvokeTempBanned(string banMessage) {
+            TempBanned?.Invoke(banMessage);
+        }
+        public void InvokePlayerKicked(string playerKicked) {
+            if (int.TryParse(playerKicked, out int result)) {
+                if (OnlinePlayers.TryGetValue(result-1, out Player playerObj)) {
+                    PlayerKickedByServer?.Invoke(playerObj);
+                    return;
+                }
+            }
+            InvokeChatMessage($"{playerKicked} has been kicked");
+        }
+
+        public void InvokePlayerKicked(Player admin, Player kicked) {
+            PlayerKicked?.Invoke(admin, kicked);
+        }
+        
+        public void InvokeBanListUpdate()
+        {
+            BanListUpdated?.Invoke();
+        }
+        
         internal void InvokeLookupResult(string data)
         {
             if (data.StartsWith('|')) { // -- Server reports no such user.
@@ -698,6 +761,36 @@ namespace Netbattle.Core.Network {
         internal void RaiseChallengeCancelled(Player p)
         {
             ChallengeCancelled?.Invoke(p);
+        }
+
+        public void InvokeStartWatching(string watchId) {
+            WatchBegin?.Invoke(watchId);
+        }
+
+        public void InvokeStartBattle(string battleData) {
+            ChallengePending = false;
+            ChallengeEnded?.Invoke(); // -- The challenge window closes once the battle starts.
+            throw new NotImplementedException("The battle window isn't ported yet.");
+        }
+
+        public void InvokeChallengeAccepted(Player challenger) {
+            ChallengeAccepted?.Invoke(challenger);
+        }
+
+        public void InvokeChallengeRefused(Player challenger) {
+            ChallengeRefused?.Invoke(challenger);
+        }
+
+        public void InvokeMaxUsersUpdate() {
+            throw new NotImplementedException();
+        }
+
+        public void InvokeServerShutdown() {
+            throw new NotImplementedException();
+        }
+
+        public void ActivateDbMod() {
+            throw new NotImplementedException();
         }
     }
 }
