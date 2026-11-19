@@ -22,14 +22,43 @@ namespace Netbattle.Forms
             _client.LookupResultReceived += _client_LookupResultReceived;
             _client.BanListUpdated += _client_BanListUpdated;
             _client.AliasDataRecieved += _client_HandleAliasData;
-
+            _client.BanResultReceived += ClientOnBanResultReceived;
+            
             FormClosed += (_, _) => {
                 _client.LookupResultReceived -= _client_LookupResultReceived;
                 _client.BanListUpdated -= _client_BanListUpdated;
                 _client.AliasDataRecieved -= _client_HandleAliasData;
+                _client.BanResultReceived -= ClientOnBanResultReceived;
             };
+            
             Text1.Text = targetPlayer.Name;
             Text2.Text = targetPlayer.Name;
+        }
+
+        private void ClientOnBanResultReceived(BanResult result) {
+            switch (result) {
+                case BanResult.AuthorityConflict:
+                    StatusBar_Panel1.Text = "Request rejected: Authority conflict.";
+                    break;
+                case BanResult.BanSuccess:
+                    StatusBar_Panel1.Text = "Ban successful.";
+                    txtInfo_2.Text = "Banned";
+                    Command_0.Enabled = false;
+                    Command_2.Enabled = false;
+                    break;
+                case BanResult.DuplicateBan:
+                    StatusBar_Panel1.Text = "Request rejected: User already banned.";
+                    break;
+                case BanResult.TempBanSuccess:
+                    StatusBar_Panel1.Text = "TempBan successful.";
+                    txtInfo_2.Text = "TempBanned";
+                    Command_0.Enabled = false;
+                    Command_2.Enabled = true;
+                    break;
+                case BanResult.UserNotFound:
+                    StatusBar_Panel1.Text = "Request rejected: User not found.";
+                    break;
+            }
         }
 
         private void _client_HandleAliasData(List<string> aliases)

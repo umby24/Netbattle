@@ -17,7 +17,13 @@ namespace Netbattle.Core.Common {
         void Write(ByteBuffer writer);
         void Handle(NbClient client);
     }
-
+    public interface IBattlePacket {
+        string Command { get; }
+        void Read(ByteBuffer reader);
+        void Write(ByteBuffer writer);
+        void Handle(NbClient client);
+    }
+    
     public struct ServerListing {
         public int ServerNumber { get; set; }
         public string Name { get; set; }
@@ -71,6 +77,8 @@ namespace Netbattle.Core.Common {
     public delegate void PrivateMessageEventArgs(Player player, string message);
     public delegate void AliasDataEventArgs(List<string> aliases);
     public delegate void MessageEventArgs(string message);
+
+    public delegate void BanResultEventArgs(Netbattle.Core.Common.BanResult result);
     
     public enum StatTypes {
         nbHP = 0,
@@ -585,7 +593,15 @@ namespace Netbattle.Core.Common {
         public string Description { get; set; }
         public string StationID { get; set; }
     }
-
+//  0 = ban successful. 1 = user already banned 2 = user not found 3 = authority conflict 4 = tempban success.
+    public enum BanResult {
+        BanSuccess = 0,
+        DuplicateBan,
+        UserNotFound,
+        AuthorityConflict,
+        TempBanSuccess
+    }
+    
     public struct PokedexInfo {
         public string RedBlue { get; set; }
         public string Yellow { get; set; }

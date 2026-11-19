@@ -10,5 +10,9 @@ namespace Netbattle.Forms
         {
             InitializeComponent();
         }
+
+        private void BattleWindow_Load(object sender, EventArgs e) {
+           
+        }
     }
 }

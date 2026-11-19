@@ -1,4 +1,5 @@
-﻿using Netbattle.Core.Common;
+﻿using Netbattle;
+using Netbattle.Core.Common;
 using Netbattle.Core.Network;
 using Netbattle.Forms;
 
@@ -14,10 +15,22 @@ namespace NetbattleClient.Forms {
         public ServerList(Form parent) {
             MdiParent = parent;
             InitializeComponent();
-            _regClient = new RegistryClient();
-            _regClient.ServerListChanged += RefreshList;
-            _regClient.Disconnected += RegClientOnDisconnected;
-            _regClient.RegistryBanned += RegClientOnRegistryBanned;
+            lblStatus.Text = "Connecting to Registry at " + Configuration.CurrentSettings.RegistryIp;
+            try {
+                _regClient = new RegistryClient();
+                _regClient.Connected += RegClientOnConnected;
+                _regClient.ServerListChanged += RefreshList;
+                _regClient.Disconnected += RegClientOnDisconnected;
+                _regClient.RegistryBanned += RegClientOnRegistryBanned;
+            }
+            catch (Exception ex) {
+                MessageBox.Show("Failed to connect to server registry! Trying advanced mode.");
+                btnDirect.PerformClick();
+            }
+        }
+
+        private void RegClientOnConnected() {
+            lblStatus.Text = "Connected!";
         }
 
         private void RegClientOnRegistryBanned() {
@@ -26,7 +39,7 @@ namespace NetbattleClient.Forms {
         }
 
         private void RegClientOnDisconnected() {
-            
+            lblStatus.Text = "Disconnected from Registry.";
         }
 
 
@@ -38,6 +51,8 @@ namespace NetbattleClient.Forms {
                 Invoke(new MethodInvoker(RefreshList));
                 return;
             }
+
+            lblStatus.Text = "Connected!";
             
             lstServers.Items.Clear();
 
@@ -65,9 +80,6 @@ namespace NetbattleClient.Forms {
 
             string ip = UnpackIp(_regClient.Servers[lstServers.SelectedIndices[0]].Ip);
 
-            if (ip == "66.69.46.171")
-                ip = "127.0.0.1";
-
             // -- Close rather than Hide: hiding an MDI child destroys its handle, and a later Close() then disposes it
             // -- without raising FormClosing/FormClosed. Whoever opened us picks the server window up from OpenedServer.
             OpenedServer = new ServerWindow(MdiParent, ip);
@@ -89,12 +101,20 @@ namespace NetbattleClient.Forms {
         }
 
         private void ServerList_FormClosed(object sender, FormClosedEventArgs e) {
-            _regClient.ServerListChanged -= RefreshList;
-            _regClient.Disconnect();
+            if (_regClient != null) {
+                _regClient.ServerListChanged -= RefreshList;
+                _regClient.Disconnect();
+            }
         }
 
         private void lstServers_MouseDoubleClick(object sender, MouseEventArgs e) {
             btnConnect.PerformClick();
+        }
+
+        private void btnDirect_Click(object sender, EventArgs e) {
+            var advWindow = new AdvancedConnect(MdiParent);
+            advWindow.Show();
+            Close();
         }
     }
 }

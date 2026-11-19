@@ -27,2486 +27,2466 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
-        {
-            this.components = new System.ComponentModel.Container();
+        private void InitializeComponent() {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BattleWindow));
-            this.cmdUndo = new System.Windows.Forms.Button();
-            this.cmdTarget_0 = new System.Windows.Forms.Button();
-            this.cmdTarget_1 = new System.Windows.Forms.Button();
-            this.cmdTarget_2 = new System.Windows.Forms.Button();
-            this.txtWatchIgnore = new System.Windows.Forms.TextBox();
-            this.cmdCancel = new System.Windows.Forms.Button();
-            this.cmdLeave = new System.Windows.Forms.Button();
-            this.SendMsg = new System.Windows.Forms.Button();
-            this.picBuild = new System.Windows.Forms.PictureBox();
-            this.picPKMNMask_0 = new System.Windows.Forms.PictureBox();
-            this.picPKMNImage_0 = new System.Windows.Forms.PictureBox();
-            this.picShadowMask = new System.Windows.Forms.PictureBox();
-            this.picShadow = new System.Windows.Forms.PictureBox();
-            this.picTerrain = new System.Windows.Forms.PictureBox();
-            this.Messages = new System.Windows.Forms.RichTextBox();
-            this.BattleArea = new System.Windows.Forms.Panel();
-            this.PokeCenter = new System.Windows.Forms.PictureBox();
-            this.Computer = new System.Windows.Forms.PictureBox();
-            this.Chatbox = new System.Windows.Forms.TextBox();
-            this.ControlTab = new System.Windows.Forms.TabControl();
-            this.ControlTab_Page0 = new System.Windows.Forms.TabPage();
-            this.Command1 = new System.Windows.Forms.Button();
-            this.Attack = new System.Windows.Forms.Button();
-            this.MoveSel_0 = new System.Windows.Forms.Panel();
-            this.AttackTile_0 = new System.Windows.Forms.Label();
-            this.MoveNameLabel_0 = new System.Windows.Forms.Label();
-            this.MoveType_0 = new System.Windows.Forms.PictureBox();
-            this.PPLabel_0 = new System.Windows.Forms.Label();
-            this.MoveSel_1 = new System.Windows.Forms.Panel();
-            this.AttackTile_1 = new System.Windows.Forms.Label();
-            this.PPLabel_1 = new System.Windows.Forms.Label();
-            this.MoveType_1 = new System.Windows.Forms.PictureBox();
-            this.MoveNameLabel_1 = new System.Windows.Forms.Label();
-            this.MoveSel_2 = new System.Windows.Forms.Panel();
-            this.AttackTile_2 = new System.Windows.Forms.Label();
-            this.MoveNameLabel_2 = new System.Windows.Forms.Label();
-            this.MoveType_2 = new System.Windows.Forms.PictureBox();
-            this.PPLabel_2 = new System.Windows.Forms.Label();
-            this.MoveSel_3 = new System.Windows.Forms.Panel();
-            this.AttackTile_3 = new System.Windows.Forms.Label();
-            this.MoveNameLabel_3 = new System.Windows.Forms.Label();
-            this.MoveType_3 = new System.Windows.Forms.PictureBox();
-            this.PPLabel_3 = new System.Windows.Forms.Label();
-            this.MoveDesc = new System.Windows.Forms.RichTextBox();
-            this.ControlTab_Page1 = new System.Windows.Forms.TabPage();
-            this.PokeTiles = new System.Windows.Forms.Panel();
-            this.Entry_0 = new System.Windows.Forms.Panel();
-            this.SwitchTile_0 = new System.Windows.Forms.Label();
-            this.PKLevel_0 = new System.Windows.Forms.Label();
-            this.PKHP_0 = new System.Windows.Forms.Label();
-            this.PKGender_0 = new System.Windows.Forms.PictureBox();
-            this.PokeIcon_0 = new System.Windows.Forms.PictureBox();
-            this.PKName_0 = new System.Windows.Forms.Label();
-            this.StatIcon_0 = new System.Windows.Forms.PictureBox();
-            this.Entry_1 = new System.Windows.Forms.Panel();
-            this.SwitchTile_1 = new System.Windows.Forms.Label();
-            this.PKName_1 = new System.Windows.Forms.Label();
-            this.PokeIcon_1 = new System.Windows.Forms.PictureBox();
-            this.PKGender_1 = new System.Windows.Forms.PictureBox();
-            this.PKHP_1 = new System.Windows.Forms.Label();
-            this.PKLevel_1 = new System.Windows.Forms.Label();
-            this.StatIcon_1 = new System.Windows.Forms.PictureBox();
-            this.Entry_2 = new System.Windows.Forms.Panel();
-            this.SwitchTile_2 = new System.Windows.Forms.Label();
-            this.PKLevel_2 = new System.Windows.Forms.Label();
-            this.PKHP_2 = new System.Windows.Forms.Label();
-            this.PKGender_2 = new System.Windows.Forms.PictureBox();
-            this.PokeIcon_2 = new System.Windows.Forms.PictureBox();
-            this.PKName_2 = new System.Windows.Forms.Label();
-            this.StatIcon_2 = new System.Windows.Forms.PictureBox();
-            this.Entry_3 = new System.Windows.Forms.Panel();
-            this.SwitchTile_3 = new System.Windows.Forms.Label();
-            this.PKName_3 = new System.Windows.Forms.Label();
-            this.PokeIcon_3 = new System.Windows.Forms.PictureBox();
-            this.PKGender_3 = new System.Windows.Forms.PictureBox();
-            this.StatIcon_3 = new System.Windows.Forms.PictureBox();
-            this.PKHP_3 = new System.Windows.Forms.Label();
-            this.PKLevel_3 = new System.Windows.Forms.Label();
-            this.Entry_4 = new System.Windows.Forms.Panel();
-            this.SwitchTile_4 = new System.Windows.Forms.Label();
-            this.PKName_4 = new System.Windows.Forms.Label();
-            this.PokeIcon_4 = new System.Windows.Forms.PictureBox();
-            this.PKGender_4 = new System.Windows.Forms.PictureBox();
-            this.StatIcon_4 = new System.Windows.Forms.PictureBox();
-            this.PKHP_4 = new System.Windows.Forms.Label();
-            this.PKLevel_4 = new System.Windows.Forms.Label();
-            this.Entry_5 = new System.Windows.Forms.Panel();
-            this.SwitchTile_5 = new System.Windows.Forms.Label();
-            this.PKName_5 = new System.Windows.Forms.Label();
-            this.PokeIcon_5 = new System.Windows.Forms.PictureBox();
-            this.PKGender_5 = new System.Windows.Forms.PictureBox();
-            this.StatIcon_5 = new System.Windows.Forms.PictureBox();
-            this.PKHP_5 = new System.Windows.Forms.Label();
-            this.PKLevel_5 = new System.Windows.Forms.Label();
-            this.Switch = new System.Windows.Forms.Button();
-            this.picStatus_2 = new System.Windows.Forms.Panel();
-            this.HPBar_2 = new System.Windows.Forms.ProgressBar();
-            this.HPBar_4 = new System.Windows.Forms.ProgressBar();
-            this.PokeCond_2 = new System.Windows.Forms.PictureBox();
-            this.PokeCond_4 = new System.Windows.Forms.PictureBox();
-            this.SelPKMN_4 = new System.Windows.Forms.Label();
-            this.SelPKMN_2 = new System.Windows.Forms.Label();
-            this.PokeText_4 = new System.Windows.Forms.Label();
-            this.PokeText_2 = new System.Windows.Forms.Label();
-            this.picStatus_1 = new System.Windows.Forms.Panel();
-            this.HPBar_3 = new System.Windows.Forms.ProgressBar();
-            this.HPBar_1 = new System.Windows.Forms.ProgressBar();
-            this.PokeCond_3 = new System.Windows.Forms.PictureBox();
-            this.SelPKMN_3 = new System.Windows.Forms.Label();
-            this.PokeCond_1 = new System.Windows.Forms.PictureBox();
-            this.SelPKMN_1 = new System.Windows.Forms.Label();
-            this.PokeText_1 = new System.Windows.Forms.Label();
-            this.PokeText_3 = new System.Windows.Forms.Label();
-            this.ReplayControls = new System.Windows.Forms.Panel();
-            this.cmdStop = new System.Windows.Forms.Button();
-            this.cmdPlay = new System.Windows.Forms.Button();
-            this.cmdPause = new System.Windows.Forms.Button();
-            this.cmdNext = new System.Windows.Forms.Button();
-            this.cmdSwitchTeam = new System.Windows.Forms.Button();
-            this.cmdQuit = new System.Windows.Forms.Button();
-            this.Slider1 = new System.Windows.Forms.TrackBar();
-            this.WaitList = new System.Windows.Forms.Label();
-            this.OldSwitchFrame = new System.Windows.Forms.GroupBox();
-            this.OldPokeList = new System.Windows.Forms.ListView();
-            this.OldPokeList_Col1 = new System.Windows.Forms.ColumnHeader();
-            this.OldPokeList_Col2 = new System.Windows.Forms.ColumnHeader();
-            this.Picture2 = new System.Windows.Forms.Panel();
-            this.cmdOldCancel = new System.Windows.Forms.Button();
-            this.OldSwitch = new System.Windows.Forms.Button();
-            this.OldAttackFrame = new System.Windows.Forms.GroupBox();
-            this.Picture1 = new System.Windows.Forms.Panel();
-            this.OldAttack_0 = new System.Windows.Forms.RadioButton();
-            this.OldAttack_1 = new System.Windows.Forms.RadioButton();
-            this.OldAttack_2 = new System.Windows.Forms.RadioButton();
-            this.OldAttack_3 = new System.Windows.Forms.RadioButton();
-            this.OldAttackButton = new System.Windows.Forms.Button();
-            this.OldPP_0 = new System.Windows.Forms.Label();
-            this.OldPP_1 = new System.Windows.Forms.Label();
-            this.OldPP_2 = new System.Windows.Forms.Label();
-            this.OldPP_3 = new System.Windows.Forms.Label();
-            this.TIcon_1 = new System.Windows.Forms.PictureBox();
-            this.OpponentStat_5 = new System.Windows.Forms.PictureBox();
-            this.OpponentStat_4 = new System.Windows.Forms.PictureBox();
-            this.OpponentStat_3 = new System.Windows.Forms.PictureBox();
-            this.OpponentStat_2 = new System.Windows.Forms.PictureBox();
-            this.OpponentStat_1 = new System.Windows.Forms.PictureBox();
-            this.OpponentStat_0 = new System.Windows.Forms.PictureBox();
-            this.OpponentStat_6 = new System.Windows.Forms.PictureBox();
-            this.OpponentStat_7 = new System.Windows.Forms.PictureBox();
-            this.OpponentStat_8 = new System.Windows.Forms.PictureBox();
-            this.OpponentStat_9 = new System.Windows.Forms.PictureBox();
-            this.OpponentStat_10 = new System.Windows.Forms.PictureBox();
-            this.OpponentStat_11 = new System.Windows.Forms.PictureBox();
-            this.TIcon_0 = new System.Windows.Forms.PictureBox();
-            this.GoodImage = new System.Windows.Forms.PictureBox();
-            this.GenderImage_2 = new System.Windows.Forms.PictureBox();
-            this.GenderImage_1 = new System.Windows.Forms.PictureBox();
-            this.SelImage = new System.Windows.Forms.PictureBox();
-            this.BadImage = new System.Windows.Forms.PictureBox();
-            this.PKBall_2 = new System.Windows.Forms.PictureBox();
-            this.PKBall_1 = new System.Windows.Forms.PictureBox();
-            this.PKBall_0 = new System.Windows.Forms.PictureBox();
-            this.StatusBar1 = new System.Windows.Forms.StatusStrip();
-            this.StatusBar1_Panel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.StatusBar1_Panel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.StatusBar1_Panel3 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.menuStrip = new System.Windows.Forms.MenuStrip();
-            this.mnuFile = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuFileItem_0 = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuFileItem_1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuFileItem_2 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnuFileItem_3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuFileItem_4 = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuReplayFile = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuReplayFileItem_0 = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuReplayFileItem_1 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnuReplayFileItem_2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuReplayFileItem_3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuBattle = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuBattleItem_0 = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuBattleItem_1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuBattleItem_2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuBattleItem_3 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnuBattleItem_4 = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuBattleItem_5 = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuDebug = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuDebugItem_0 = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuDebugItem_1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuDebugItem_2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuDebugItem_3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuDebugItem_4 = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuDebugItem_5 = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuDebugItem_6 = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuDebugItem_7 = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuOptions = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuOptionsItem_0 = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuOptionsItem_1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuOptionsItem_2 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnuOptionsItem_3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuOptionsItem_4 = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuPokedex = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuPokedexItem_0 = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuPokedexItem_1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuPokedexItem_2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuPokedexItem_3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuWindow = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuHelp = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuHelpItem_0 = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuHelpItem_1 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnuHelpItem_2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.tmrDX = new System.Windows.Forms.Timer(this.components);
-            this.tmrDelay = new System.Windows.Forms.Timer(this.components);
-            this.tmrBattleQueue = new System.Windows.Forms.Timer(this.components);
-            this.PBTimer = new System.Windows.Forms.Timer(this.components);
-            this.FlashTimer = new System.Windows.Forms.Timer(this.components);
-            this.HPAnimTimer = new System.Windows.Forms.Timer(this.components);
-            this.ReadyTimer = new System.Windows.Forms.Timer(this.components);
-            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.picBuild)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picPKMNMask_0)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picPKMNImage_0)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picShadowMask)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picShadow)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picTerrain)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PokeCenter)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Computer)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MoveType_0)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MoveType_1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MoveType_2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MoveType_3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PKGender_0)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PokeIcon_0)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.StatIcon_0)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PokeIcon_1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PKGender_1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.StatIcon_1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PKGender_2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PokeIcon_2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.StatIcon_2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PokeIcon_3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PKGender_3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.StatIcon_3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PokeIcon_4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PKGender_4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.StatIcon_4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PokeIcon_5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PKGender_5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.StatIcon_5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PokeCond_2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PokeCond_4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PokeCond_3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PokeCond_1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Slider1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TIcon_1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OpponentStat_5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OpponentStat_4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OpponentStat_3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OpponentStat_2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OpponentStat_1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OpponentStat_0)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OpponentStat_6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OpponentStat_7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OpponentStat_8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OpponentStat_9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OpponentStat_10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OpponentStat_11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TIcon_0)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GoodImage)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GenderImage_2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GenderImage_1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SelImage)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BadImage)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PKBall_2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PKBall_1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PKBall_0)).BeginInit();
-            this.menuStrip.SuspendLayout();
-            this.BattleArea.SuspendLayout();
-            this.ControlTab.SuspendLayout();
-            this.ControlTab_Page0.SuspendLayout();
-            this.MoveSel_0.SuspendLayout();
-            this.MoveSel_1.SuspendLayout();
-            this.MoveSel_2.SuspendLayout();
-            this.MoveSel_3.SuspendLayout();
-            this.ControlTab_Page1.SuspendLayout();
-            this.PokeTiles.SuspendLayout();
-            this.Entry_0.SuspendLayout();
-            this.Entry_1.SuspendLayout();
-            this.Entry_2.SuspendLayout();
-            this.Entry_3.SuspendLayout();
-            this.Entry_4.SuspendLayout();
-            this.Entry_5.SuspendLayout();
-            this.picStatus_2.SuspendLayout();
-            this.picStatus_1.SuspendLayout();
-            this.ReplayControls.SuspendLayout();
-            this.OldSwitchFrame.SuspendLayout();
-            this.Picture2.SuspendLayout();
-            this.OldAttackFrame.SuspendLayout();
-            this.Picture1.SuspendLayout();
-            this.StatusBar1.SuspendLayout();
-            this.SuspendLayout();
+            cmdUndo = new System.Windows.Forms.Button();
+            cmdTarget_0 = new System.Windows.Forms.Button();
+            cmdTarget_1 = new System.Windows.Forms.Button();
+            cmdTarget_2 = new System.Windows.Forms.Button();
+            txtWatchIgnore = new System.Windows.Forms.TextBox();
+            cmdCancel = new System.Windows.Forms.Button();
+            cmdLeave = new System.Windows.Forms.Button();
+            SendMsg = new System.Windows.Forms.Button();
+            picBuild = new System.Windows.Forms.PictureBox();
+            picPKMNMask_0 = new System.Windows.Forms.PictureBox();
+            picPKMNImage_0 = new System.Windows.Forms.PictureBox();
+            picShadowMask = new System.Windows.Forms.PictureBox();
+            picShadow = new System.Windows.Forms.PictureBox();
+            picTerrain = new System.Windows.Forms.PictureBox();
+            Messages = new System.Windows.Forms.RichTextBox();
+            BattleArea = new System.Windows.Forms.Panel();
+            PokeCenter = new System.Windows.Forms.PictureBox();
+            Computer = new System.Windows.Forms.PictureBox();
+            Chatbox = new System.Windows.Forms.TextBox();
+            ControlTab = new System.Windows.Forms.TabControl();
+            ControlTab_Page0 = new System.Windows.Forms.TabPage();
+            Command1 = new System.Windows.Forms.Button();
+            Attack = new System.Windows.Forms.Button();
+            MoveSel_0 = new System.Windows.Forms.Panel();
+            AttackTile_0 = new System.Windows.Forms.Label();
+            MoveNameLabel_0 = new System.Windows.Forms.Label();
+            MoveType_0 = new System.Windows.Forms.PictureBox();
+            PPLabel_0 = new System.Windows.Forms.Label();
+            MoveSel_1 = new System.Windows.Forms.Panel();
+            AttackTile_1 = new System.Windows.Forms.Label();
+            PPLabel_1 = new System.Windows.Forms.Label();
+            MoveType_1 = new System.Windows.Forms.PictureBox();
+            MoveNameLabel_1 = new System.Windows.Forms.Label();
+            MoveSel_2 = new System.Windows.Forms.Panel();
+            AttackTile_2 = new System.Windows.Forms.Label();
+            MoveNameLabel_2 = new System.Windows.Forms.Label();
+            MoveType_2 = new System.Windows.Forms.PictureBox();
+            PPLabel_2 = new System.Windows.Forms.Label();
+            MoveSel_3 = new System.Windows.Forms.Panel();
+            AttackTile_3 = new System.Windows.Forms.Label();
+            MoveNameLabel_3 = new System.Windows.Forms.Label();
+            MoveType_3 = new System.Windows.Forms.PictureBox();
+            PPLabel_3 = new System.Windows.Forms.Label();
+            MoveDesc = new System.Windows.Forms.RichTextBox();
+            ControlTab_Page1 = new System.Windows.Forms.TabPage();
+            PokeTiles = new System.Windows.Forms.Panel();
+            Entry_0 = new System.Windows.Forms.Panel();
+            SwitchTile_0 = new System.Windows.Forms.Label();
+            PKLevel_0 = new System.Windows.Forms.Label();
+            PKHP_0 = new System.Windows.Forms.Label();
+            PKGender_0 = new System.Windows.Forms.PictureBox();
+            PokeIcon_0 = new System.Windows.Forms.PictureBox();
+            PKName_0 = new System.Windows.Forms.Label();
+            StatIcon_0 = new System.Windows.Forms.PictureBox();
+            Entry_1 = new System.Windows.Forms.Panel();
+            SwitchTile_1 = new System.Windows.Forms.Label();
+            PKName_1 = new System.Windows.Forms.Label();
+            PokeIcon_1 = new System.Windows.Forms.PictureBox();
+            PKGender_1 = new System.Windows.Forms.PictureBox();
+            PKHP_1 = new System.Windows.Forms.Label();
+            PKLevel_1 = new System.Windows.Forms.Label();
+            StatIcon_1 = new System.Windows.Forms.PictureBox();
+            Entry_2 = new System.Windows.Forms.Panel();
+            SwitchTile_2 = new System.Windows.Forms.Label();
+            PKLevel_2 = new System.Windows.Forms.Label();
+            PKHP_2 = new System.Windows.Forms.Label();
+            PKGender_2 = new System.Windows.Forms.PictureBox();
+            PokeIcon_2 = new System.Windows.Forms.PictureBox();
+            PKName_2 = new System.Windows.Forms.Label();
+            StatIcon_2 = new System.Windows.Forms.PictureBox();
+            Entry_3 = new System.Windows.Forms.Panel();
+            SwitchTile_3 = new System.Windows.Forms.Label();
+            PKName_3 = new System.Windows.Forms.Label();
+            PokeIcon_3 = new System.Windows.Forms.PictureBox();
+            PKGender_3 = new System.Windows.Forms.PictureBox();
+            StatIcon_3 = new System.Windows.Forms.PictureBox();
+            PKHP_3 = new System.Windows.Forms.Label();
+            PKLevel_3 = new System.Windows.Forms.Label();
+            Entry_4 = new System.Windows.Forms.Panel();
+            SwitchTile_4 = new System.Windows.Forms.Label();
+            PKName_4 = new System.Windows.Forms.Label();
+            PokeIcon_4 = new System.Windows.Forms.PictureBox();
+            PKGender_4 = new System.Windows.Forms.PictureBox();
+            StatIcon_4 = new System.Windows.Forms.PictureBox();
+            PKHP_4 = new System.Windows.Forms.Label();
+            PKLevel_4 = new System.Windows.Forms.Label();
+            Entry_5 = new System.Windows.Forms.Panel();
+            SwitchTile_5 = new System.Windows.Forms.Label();
+            PKName_5 = new System.Windows.Forms.Label();
+            PokeIcon_5 = new System.Windows.Forms.PictureBox();
+            PKGender_5 = new System.Windows.Forms.PictureBox();
+            StatIcon_5 = new System.Windows.Forms.PictureBox();
+            PKHP_5 = new System.Windows.Forms.Label();
+            PKLevel_5 = new System.Windows.Forms.Label();
+            Switch = new System.Windows.Forms.Button();
+            picStatus_2 = new System.Windows.Forms.Panel();
+            HPBar_2 = new System.Windows.Forms.ProgressBar();
+            HPBar_4 = new System.Windows.Forms.ProgressBar();
+            PokeCond_2 = new System.Windows.Forms.PictureBox();
+            PokeCond_4 = new System.Windows.Forms.PictureBox();
+            SelPKMN_4 = new System.Windows.Forms.Label();
+            SelPKMN_2 = new System.Windows.Forms.Label();
+            PokeText_4 = new System.Windows.Forms.Label();
+            PokeText_2 = new System.Windows.Forms.Label();
+            picStatus_1 = new System.Windows.Forms.Panel();
+            HPBar_3 = new System.Windows.Forms.ProgressBar();
+            HPBar_1 = new System.Windows.Forms.ProgressBar();
+            PokeCond_3 = new System.Windows.Forms.PictureBox();
+            SelPKMN_3 = new System.Windows.Forms.Label();
+            PokeCond_1 = new System.Windows.Forms.PictureBox();
+            SelPKMN_1 = new System.Windows.Forms.Label();
+            PokeText_1 = new System.Windows.Forms.Label();
+            PokeText_3 = new System.Windows.Forms.Label();
+            ReplayControls = new System.Windows.Forms.Panel();
+            cmdStop = new System.Windows.Forms.Button();
+            cmdPlay = new System.Windows.Forms.Button();
+            cmdPause = new System.Windows.Forms.Button();
+            cmdNext = new System.Windows.Forms.Button();
+            cmdSwitchTeam = new System.Windows.Forms.Button();
+            cmdQuit = new System.Windows.Forms.Button();
+            Slider1 = new System.Windows.Forms.TrackBar();
+            WaitList = new System.Windows.Forms.Label();
+            OldSwitchFrame = new System.Windows.Forms.GroupBox();
+            OldPokeList = new System.Windows.Forms.ListView();
+            OldPokeList_Col1 = new System.Windows.Forms.ColumnHeader();
+            OldPokeList_Col2 = new System.Windows.Forms.ColumnHeader();
+            Picture2 = new System.Windows.Forms.Panel();
+            cmdOldCancel = new System.Windows.Forms.Button();
+            OldSwitch = new System.Windows.Forms.Button();
+            OldAttackFrame = new System.Windows.Forms.GroupBox();
+            Picture1 = new System.Windows.Forms.Panel();
+            OldAttack_0 = new System.Windows.Forms.RadioButton();
+            OldAttack_1 = new System.Windows.Forms.RadioButton();
+            OldAttack_2 = new System.Windows.Forms.RadioButton();
+            OldAttack_3 = new System.Windows.Forms.RadioButton();
+            OldAttackButton = new System.Windows.Forms.Button();
+            OldPP_0 = new System.Windows.Forms.Label();
+            OldPP_1 = new System.Windows.Forms.Label();
+            OldPP_2 = new System.Windows.Forms.Label();
+            OldPP_3 = new System.Windows.Forms.Label();
+            TIcon_1 = new System.Windows.Forms.PictureBox();
+            OpponentStat_5 = new System.Windows.Forms.PictureBox();
+            OpponentStat_4 = new System.Windows.Forms.PictureBox();
+            OpponentStat_3 = new System.Windows.Forms.PictureBox();
+            OpponentStat_2 = new System.Windows.Forms.PictureBox();
+            OpponentStat_1 = new System.Windows.Forms.PictureBox();
+            OpponentStat_0 = new System.Windows.Forms.PictureBox();
+            OpponentStat_6 = new System.Windows.Forms.PictureBox();
+            OpponentStat_7 = new System.Windows.Forms.PictureBox();
+            OpponentStat_8 = new System.Windows.Forms.PictureBox();
+            OpponentStat_9 = new System.Windows.Forms.PictureBox();
+            OpponentStat_10 = new System.Windows.Forms.PictureBox();
+            OpponentStat_11 = new System.Windows.Forms.PictureBox();
+            TIcon_0 = new System.Windows.Forms.PictureBox();
+            GoodImage = new System.Windows.Forms.PictureBox();
+            GenderImage_2 = new System.Windows.Forms.PictureBox();
+            GenderImage_1 = new System.Windows.Forms.PictureBox();
+            SelImage = new System.Windows.Forms.PictureBox();
+            BadImage = new System.Windows.Forms.PictureBox();
+            PKBall_2 = new System.Windows.Forms.PictureBox();
+            PKBall_1 = new System.Windows.Forms.PictureBox();
+            PKBall_0 = new System.Windows.Forms.PictureBox();
+            StatusBar1 = new System.Windows.Forms.StatusStrip();
+            StatusBar1_Panel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            StatusBar1_Panel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            StatusBar1_Panel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            menuStrip = new System.Windows.Forms.MenuStrip();
+            mnuFile = new System.Windows.Forms.ToolStripMenuItem();
+            mnuFileItem_0 = new System.Windows.Forms.ToolStripMenuItem();
+            mnuFileItem_1 = new System.Windows.Forms.ToolStripMenuItem();
+            mnuFileItem_2 = new System.Windows.Forms.ToolStripSeparator();
+            mnuFileItem_3 = new System.Windows.Forms.ToolStripMenuItem();
+            mnuFileItem_4 = new System.Windows.Forms.ToolStripMenuItem();
+            mnuReplayFile = new System.Windows.Forms.ToolStripMenuItem();
+            mnuReplayFileItem_0 = new System.Windows.Forms.ToolStripMenuItem();
+            mnuReplayFileItem_1 = new System.Windows.Forms.ToolStripSeparator();
+            mnuReplayFileItem_2 = new System.Windows.Forms.ToolStripMenuItem();
+            mnuReplayFileItem_3 = new System.Windows.Forms.ToolStripMenuItem();
+            mnuBattle = new System.Windows.Forms.ToolStripMenuItem();
+            mnuBattleItem_0 = new System.Windows.Forms.ToolStripMenuItem();
+            mnuBattleItem_1 = new System.Windows.Forms.ToolStripMenuItem();
+            mnuBattleItem_2 = new System.Windows.Forms.ToolStripMenuItem();
+            mnuBattleItem_3 = new System.Windows.Forms.ToolStripSeparator();
+            mnuBattleItem_4 = new System.Windows.Forms.ToolStripMenuItem();
+            mnuBattleItem_5 = new System.Windows.Forms.ToolStripMenuItem();
+            mnuDebug = new System.Windows.Forms.ToolStripMenuItem();
+            mnuDebugItem_0 = new System.Windows.Forms.ToolStripMenuItem();
+            mnuDebugItem_1 = new System.Windows.Forms.ToolStripMenuItem();
+            mnuDebugItem_2 = new System.Windows.Forms.ToolStripMenuItem();
+            mnuDebugItem_3 = new System.Windows.Forms.ToolStripMenuItem();
+            mnuDebugItem_4 = new System.Windows.Forms.ToolStripMenuItem();
+            mnuDebugItem_5 = new System.Windows.Forms.ToolStripMenuItem();
+            mnuDebugItem_6 = new System.Windows.Forms.ToolStripMenuItem();
+            mnuDebugItem_7 = new System.Windows.Forms.ToolStripMenuItem();
+            mnuOptions = new System.Windows.Forms.ToolStripMenuItem();
+            mnuOptionsItem_0 = new System.Windows.Forms.ToolStripMenuItem();
+            mnuOptionsItem_1 = new System.Windows.Forms.ToolStripMenuItem();
+            mnuOptionsItem_2 = new System.Windows.Forms.ToolStripSeparator();
+            mnuOptionsItem_3 = new System.Windows.Forms.ToolStripMenuItem();
+            mnuOptionsItem_4 = new System.Windows.Forms.ToolStripMenuItem();
+            mnuPokedex = new System.Windows.Forms.ToolStripMenuItem();
+            mnuPokedexItem_0 = new System.Windows.Forms.ToolStripMenuItem();
+            mnuPokedexItem_1 = new System.Windows.Forms.ToolStripMenuItem();
+            mnuPokedexItem_2 = new System.Windows.Forms.ToolStripMenuItem();
+            mnuPokedexItem_3 = new System.Windows.Forms.ToolStripMenuItem();
+            mnuWindow = new System.Windows.Forms.ToolStripMenuItem();
+            mnuHelp = new System.Windows.Forms.ToolStripMenuItem();
+            mnuHelpItem_0 = new System.Windows.Forms.ToolStripMenuItem();
+            mnuHelpItem_1 = new System.Windows.Forms.ToolStripSeparator();
+            mnuHelpItem_2 = new System.Windows.Forms.ToolStripMenuItem();
+            tmrDX = new System.Windows.Forms.Timer(components);
+            tmrDelay = new System.Windows.Forms.Timer(components);
+            tmrBattleQueue = new System.Windows.Forms.Timer(components);
+            PBTimer = new System.Windows.Forms.Timer(components);
+            FlashTimer = new System.Windows.Forms.Timer(components);
+            HPAnimTimer = new System.Windows.Forms.Timer(components);
+            ReadyTimer = new System.Windows.Forms.Timer(components);
+            toolTip = new System.Windows.Forms.ToolTip(components);
+            ((System.ComponentModel.ISupportInitialize)picBuild).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picPKMNMask_0).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picPKMNImage_0).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picShadowMask).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picShadow).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picTerrain).BeginInit();
+            BattleArea.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)PokeCenter).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)Computer).BeginInit();
+            ControlTab.SuspendLayout();
+            ControlTab_Page0.SuspendLayout();
+            MoveSel_0.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)MoveType_0).BeginInit();
+            MoveSel_1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)MoveType_1).BeginInit();
+            MoveSel_2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)MoveType_2).BeginInit();
+            MoveSel_3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)MoveType_3).BeginInit();
+            ControlTab_Page1.SuspendLayout();
+            PokeTiles.SuspendLayout();
+            Entry_0.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)PKGender_0).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PokeIcon_0).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)StatIcon_0).BeginInit();
+            Entry_1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)PokeIcon_1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PKGender_1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)StatIcon_1).BeginInit();
+            Entry_2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)PKGender_2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PokeIcon_2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)StatIcon_2).BeginInit();
+            Entry_3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)PokeIcon_3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PKGender_3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)StatIcon_3).BeginInit();
+            Entry_4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)PokeIcon_4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PKGender_4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)StatIcon_4).BeginInit();
+            Entry_5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)PokeIcon_5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PKGender_5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)StatIcon_5).BeginInit();
+            picStatus_2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)PokeCond_2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PokeCond_4).BeginInit();
+            picStatus_1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)PokeCond_3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PokeCond_1).BeginInit();
+            ReplayControls.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)Slider1).BeginInit();
+            OldSwitchFrame.SuspendLayout();
+            Picture2.SuspendLayout();
+            OldAttackFrame.SuspendLayout();
+            Picture1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)TIcon_1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)OpponentStat_5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)OpponentStat_4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)OpponentStat_3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)OpponentStat_2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)OpponentStat_1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)OpponentStat_0).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)OpponentStat_6).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)OpponentStat_7).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)OpponentStat_8).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)OpponentStat_9).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)OpponentStat_10).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)OpponentStat_11).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)TIcon_0).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)GoodImage).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)GenderImage_2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)GenderImage_1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)SelImage).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)BadImage).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PKBall_2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PKBall_1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PKBall_0).BeginInit();
+            StatusBar1.SuspendLayout();
+            menuStrip.SuspendLayout();
+            SuspendLayout();
             // 
             // cmdUndo
             // 
-            this.cmdUndo.Location = new System.Drawing.Point(24, 416);
-            this.cmdUndo.Name = "cmdUndo";
-            this.cmdUndo.Size = new System.Drawing.Size(150, 25);
-            this.cmdUndo.TabIndex = 103;
-            this.cmdUndo.TabStop = false;
-            this.cmdUndo.Text = "&Undo Move";
-            this.cmdUndo.UseVisualStyleBackColor = true;
+            cmdUndo.Location = new System.Drawing.Point(24, 416);
+            cmdUndo.Name = "cmdUndo";
+            cmdUndo.Size = new System.Drawing.Size(150, 25);
+            cmdUndo.TabIndex = 103;
+            cmdUndo.TabStop = false;
+            cmdUndo.Text = "&Undo Move";
+            cmdUndo.UseVisualStyleBackColor = true;
             // 
             // cmdTarget_0
             // 
-            this.cmdTarget_0.Location = new System.Drawing.Point(360, 336);
-            this.cmdTarget_0.Name = "cmdTarget_0";
-            this.cmdTarget_0.Size = new System.Drawing.Size(150, 22);
-            this.cmdTarget_0.TabIndex = 102;
-            this.cmdTarget_0.TabStop = false;
-            this.cmdTarget_0.Visible = false;
-            this.cmdTarget_0.Text = "&1: Ally Deoxys";
-            this.cmdTarget_0.UseVisualStyleBackColor = true;
+            cmdTarget_0.Location = new System.Drawing.Point(360, 336);
+            cmdTarget_0.Name = "cmdTarget_0";
+            cmdTarget_0.Size = new System.Drawing.Size(150, 22);
+            cmdTarget_0.TabIndex = 102;
+            cmdTarget_0.TabStop = false;
+            cmdTarget_0.Text = "&1: Ally Deoxys";
+            cmdTarget_0.UseVisualStyleBackColor = true;
+            cmdTarget_0.Visible = false;
             // 
             // cmdTarget_1
             // 
-            this.cmdTarget_1.Location = new System.Drawing.Point(360, 361);
-            this.cmdTarget_1.Name = "cmdTarget_1";
-            this.cmdTarget_1.Size = new System.Drawing.Size(150, 22);
-            this.cmdTarget_1.TabIndex = 101;
-            this.cmdTarget_1.TabStop = false;
-            this.cmdTarget_1.Visible = false;
-            this.cmdTarget_1.Text = "&1: Ally Deoxys";
-            this.cmdTarget_1.UseVisualStyleBackColor = true;
+            cmdTarget_1.Location = new System.Drawing.Point(360, 361);
+            cmdTarget_1.Name = "cmdTarget_1";
+            cmdTarget_1.Size = new System.Drawing.Size(150, 22);
+            cmdTarget_1.TabIndex = 101;
+            cmdTarget_1.TabStop = false;
+            cmdTarget_1.Text = "&1: Ally Deoxys";
+            cmdTarget_1.UseVisualStyleBackColor = true;
+            cmdTarget_1.Visible = false;
             // 
             // cmdTarget_2
             // 
-            this.cmdTarget_2.Location = new System.Drawing.Point(360, 386);
-            this.cmdTarget_2.Name = "cmdTarget_2";
-            this.cmdTarget_2.Size = new System.Drawing.Size(150, 22);
-            this.cmdTarget_2.TabIndex = 100;
-            this.cmdTarget_2.TabStop = false;
-            this.cmdTarget_2.Visible = false;
-            this.cmdTarget_2.Text = "&1: Ally Deoxys";
-            this.cmdTarget_2.UseVisualStyleBackColor = true;
+            cmdTarget_2.Location = new System.Drawing.Point(360, 386);
+            cmdTarget_2.Name = "cmdTarget_2";
+            cmdTarget_2.Size = new System.Drawing.Size(150, 22);
+            cmdTarget_2.TabIndex = 100;
+            cmdTarget_2.TabStop = false;
+            cmdTarget_2.Text = "&1: Ally Deoxys";
+            cmdTarget_2.UseVisualStyleBackColor = true;
+            cmdTarget_2.Visible = false;
             // 
             // txtWatchIgnore
             // 
-            this.txtWatchIgnore.Location = new System.Drawing.Point(251, 256);
-            this.txtWatchIgnore.Name = "txtWatchIgnore";
-            this.txtWatchIgnore.Size = new System.Drawing.Size(281, 37);
-            this.txtWatchIgnore.TabIndex = 99;
-            this.txtWatchIgnore.Enabled = false;
-            this.txtWatchIgnore.Visible = false;
-            this.txtWatchIgnore.Text = "Both players are ignoring spectator chat.";
+            txtWatchIgnore.Enabled = false;
+            txtWatchIgnore.Location = new System.Drawing.Point(251, 256);
+            txtWatchIgnore.Name = "txtWatchIgnore";
+            txtWatchIgnore.Size = new System.Drawing.Size(281, 20);
+            txtWatchIgnore.TabIndex = 99;
+            txtWatchIgnore.Text = "Both players are ignoring spectator chat.";
+            txtWatchIgnore.Visible = false;
             // 
             // cmdCancel
             // 
-            this.cmdCancel.Location = new System.Drawing.Point(360, 416);
-            this.cmdCancel.Name = "cmdCancel";
-            this.cmdCancel.Size = new System.Drawing.Size(150, 25);
-            this.cmdCancel.TabIndex = 42;
-            this.cmdCancel.TabStop = false;
-            this.cmdCancel.Visible = false;
-            this.cmdCancel.Text = "&Cancel";
-            this.cmdCancel.UseVisualStyleBackColor = true;
+            cmdCancel.Location = new System.Drawing.Point(360, 416);
+            cmdCancel.Name = "cmdCancel";
+            cmdCancel.Size = new System.Drawing.Size(150, 25);
+            cmdCancel.TabIndex = 42;
+            cmdCancel.TabStop = false;
+            cmdCancel.Text = "&Cancel";
+            cmdCancel.UseVisualStyleBackColor = true;
+            cmdCancel.Visible = false;
             // 
             // cmdLeave
             // 
-            this.cmdLeave.Location = new System.Drawing.Point(252, 296);
-            this.cmdLeave.Name = "cmdLeave";
-            this.cmdLeave.Size = new System.Drawing.Size(84, 25);
-            this.cmdLeave.TabIndex = 3;
-            this.cmdLeave.TabStop = false;
-            this.cmdLeave.Text = "&Leave";
-            this.cmdLeave.UseVisualStyleBackColor = true;
+            cmdLeave.Location = new System.Drawing.Point(252, 296);
+            cmdLeave.Name = "cmdLeave";
+            cmdLeave.Size = new System.Drawing.Size(84, 25);
+            cmdLeave.TabIndex = 3;
+            cmdLeave.TabStop = false;
+            cmdLeave.Text = "&Leave";
+            cmdLeave.UseVisualStyleBackColor = true;
             // 
             // SendMsg
             // 
-            this.SendMsg.Location = new System.Drawing.Point(448, 296);
-            this.SendMsg.Name = "SendMsg";
-            this.SendMsg.Size = new System.Drawing.Size(84, 25);
-            this.SendMsg.TabIndex = 4;
-            this.SendMsg.TabStop = false;
-            this.SendMsg.Text = "Sen&d";
-            this.SendMsg.UseVisualStyleBackColor = true;
+            SendMsg.Location = new System.Drawing.Point(448, 296);
+            SendMsg.Name = "SendMsg";
+            SendMsg.Size = new System.Drawing.Size(84, 25);
+            SendMsg.TabIndex = 4;
+            SendMsg.TabStop = false;
+            SendMsg.Text = "Sen&d";
+            SendMsg.UseVisualStyleBackColor = true;
             // 
             // picBuild
             // 
-            this.picBuild.Location = new System.Drawing.Point(632, 176);
-            this.picBuild.Name = "picBuild";
-            this.picBuild.Size = new System.Drawing.Size(17, 17);
-            this.picBuild.Visible = false;
-            this.picBuild.BackColor = System.Drawing.SystemColors.Window;
-            this.picBuild.TabStop = false;
+            picBuild.BackColor = System.Drawing.SystemColors.Window;
+            picBuild.Location = new System.Drawing.Point(632, 176);
+            picBuild.Name = "picBuild";
+            picBuild.Size = new System.Drawing.Size(17, 17);
+            picBuild.TabIndex = 104;
+            picBuild.TabStop = false;
+            picBuild.Visible = false;
             // 
             // picPKMNMask_0
             // 
-            this.picPKMNMask_0.Location = new System.Drawing.Point(608, 176);
-            this.picPKMNMask_0.Name = "picPKMNMask_0";
-            this.picPKMNMask_0.Size = new System.Drawing.Size(17, 17);
-            this.picPKMNMask_0.Visible = false;
-            this.picPKMNMask_0.BackColor = System.Drawing.SystemColors.Window;
-            this.picPKMNMask_0.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.picPKMNMask_0.TabStop = false;
+            picPKMNMask_0.BackColor = System.Drawing.SystemColors.Window;
+            picPKMNMask_0.Location = new System.Drawing.Point(608, 176);
+            picPKMNMask_0.Name = "picPKMNMask_0";
+            picPKMNMask_0.Size = new System.Drawing.Size(17, 17);
+            picPKMNMask_0.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            picPKMNMask_0.TabIndex = 105;
+            picPKMNMask_0.TabStop = false;
+            picPKMNMask_0.Visible = false;
             // 
             // picPKMNImage_0
             // 
-            this.picPKMNImage_0.Location = new System.Drawing.Point(584, 176);
-            this.picPKMNImage_0.Name = "picPKMNImage_0";
-            this.picPKMNImage_0.Size = new System.Drawing.Size(17, 17);
-            this.picPKMNImage_0.Visible = false;
-            this.picPKMNImage_0.BackColor = System.Drawing.SystemColors.Window;
-            this.picPKMNImage_0.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.picPKMNImage_0.TabStop = false;
+            picPKMNImage_0.BackColor = System.Drawing.SystemColors.Window;
+            picPKMNImage_0.Location = new System.Drawing.Point(584, 176);
+            picPKMNImage_0.Name = "picPKMNImage_0";
+            picPKMNImage_0.Size = new System.Drawing.Size(17, 17);
+            picPKMNImage_0.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            picPKMNImage_0.TabIndex = 106;
+            picPKMNImage_0.TabStop = false;
+            picPKMNImage_0.Visible = false;
             // 
             // picShadowMask
             // 
-            this.picShadowMask.Location = new System.Drawing.Point(656, 192);
-            this.picShadowMask.Name = "picShadowMask";
-            this.picShadowMask.Size = new System.Drawing.Size(36, 12);
-            this.picShadowMask.Visible = false;
-            this.picShadowMask.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.picShadowMask.TabStop = false;
+            picShadowMask.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            picShadowMask.Location = new System.Drawing.Point(656, 192);
+            picShadowMask.Name = "picShadowMask";
+            picShadowMask.Size = new System.Drawing.Size(36, 12);
+            picShadowMask.TabIndex = 107;
+            picShadowMask.TabStop = false;
+            picShadowMask.Visible = false;
             // 
             // picShadow
             // 
-            this.picShadow.Location = new System.Drawing.Point(656, 176);
-            this.picShadow.Name = "picShadow";
-            this.picShadow.Size = new System.Drawing.Size(36, 12);
-            this.picShadow.Visible = false;
-            this.picShadow.Image = ((System.Drawing.Image)(resources.GetObject("picShadow.Image")));
-            this.picShadow.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.picShadow.TabStop = false;
+            picShadow.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            picShadow.Image = ((System.Drawing.Image)resources.GetObject("picShadow.Image"));
+            picShadow.Location = new System.Drawing.Point(656, 176);
+            picShadow.Name = "picShadow";
+            picShadow.Size = new System.Drawing.Size(36, 12);
+            picShadow.TabIndex = 108;
+            picShadow.TabStop = false;
+            picShadow.Visible = false;
             // 
             // picTerrain
             // 
-            this.picTerrain.Location = new System.Drawing.Point(560, 176);
-            this.picTerrain.Name = "picTerrain";
-            this.picTerrain.Size = new System.Drawing.Size(17, 17);
-            this.picTerrain.Visible = false;
-            this.picTerrain.BackColor = System.Drawing.SystemColors.Window;
-            this.picTerrain.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.picTerrain.TabStop = false;
+            picTerrain.BackColor = System.Drawing.SystemColors.Window;
+            picTerrain.Location = new System.Drawing.Point(560, 176);
+            picTerrain.Name = "picTerrain";
+            picTerrain.Size = new System.Drawing.Size(17, 17);
+            picTerrain.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            picTerrain.TabIndex = 109;
+            picTerrain.TabStop = false;
+            picTerrain.Visible = false;
             // 
             // Messages
             // 
-            this.Messages.Location = new System.Drawing.Point(251, 28);
-            this.Messages.Name = "Messages";
-            this.Messages.Size = new System.Drawing.Size(281, 225);
-            this.Messages.TabIndex = 21;
-            this.Messages.TabStop = false;
-            this.Messages.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Messages.ReadOnly = true;
-            this.Messages.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.Messages.Text = "";
+            Messages.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            Messages.Location = new System.Drawing.Point(251, 28);
+            Messages.Name = "Messages";
+            Messages.ReadOnly = true;
+            Messages.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            Messages.Size = new System.Drawing.Size(281, 225);
+            Messages.TabIndex = 21;
+            Messages.TabStop = false;
+            Messages.Text = "";
             // 
             // BattleArea
             // 
-            this.BattleArea.Controls.Add(this.PokeCenter);
-            this.BattleArea.Controls.Add(this.Computer);
-            this.BattleArea.Location = new System.Drawing.Point(4, 108);
-            this.BattleArea.Name = "BattleArea";
-            this.BattleArea.Size = new System.Drawing.Size(242, 113);
-            this.BattleArea.TabIndex = 2;
-            this.BattleArea.BackColor = System.Drawing.SystemColors.Window;
-            this.BattleArea.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            BattleArea.BackColor = System.Drawing.SystemColors.Window;
+            BattleArea.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            BattleArea.Controls.Add(PokeCenter);
+            BattleArea.Controls.Add(Computer);
+            BattleArea.Location = new System.Drawing.Point(4, 108);
+            BattleArea.Name = "BattleArea";
+            BattleArea.Size = new System.Drawing.Size(242, 113);
+            BattleArea.TabIndex = 2;
             // 
             // PokeCenter
             // 
-            this.PokeCenter.Location = new System.Drawing.Point(0, 0);
-            this.PokeCenter.Name = "PokeCenter";
-            this.PokeCenter.Size = new System.Drawing.Size(240, 112);
-            this.PokeCenter.BackColor = System.Drawing.Color.Transparent;
-            this.PokeCenter.Image = ((System.Drawing.Image)(resources.GetObject("PokeCenter.Image")));
-            this.PokeCenter.TabStop = false;
+            PokeCenter.BackColor = System.Drawing.Color.Transparent;
+            PokeCenter.Image = ((System.Drawing.Image)resources.GetObject("PokeCenter.Image"));
+            PokeCenter.Location = new System.Drawing.Point(0, 0);
+            PokeCenter.Name = "PokeCenter";
+            PokeCenter.Size = new System.Drawing.Size(240, 112);
+            PokeCenter.TabIndex = 0;
+            PokeCenter.TabStop = false;
             // 
             // Computer
             // 
-            this.Computer.Location = new System.Drawing.Point(0, 0);
-            this.Computer.Name = "Computer";
-            this.Computer.Size = new System.Drawing.Size(240, 112);
-            this.Computer.Visible = false;
-            this.Computer.BackColor = System.Drawing.Color.Transparent;
-            this.Computer.Image = ((System.Drawing.Image)(resources.GetObject("Computer.Image")));
-            this.Computer.TabStop = false;
+            Computer.BackColor = System.Drawing.Color.Transparent;
+            Computer.Image = ((System.Drawing.Image)resources.GetObject("Computer.Image"));
+            Computer.Location = new System.Drawing.Point(0, 0);
+            Computer.Name = "Computer";
+            Computer.Size = new System.Drawing.Size(240, 112);
+            Computer.TabIndex = 1;
+            Computer.TabStop = false;
+            Computer.Visible = false;
             // 
             // Chatbox
             // 
-            this.Chatbox.Location = new System.Drawing.Point(251, 256);
-            this.Chatbox.Name = "Chatbox";
-            this.Chatbox.Size = new System.Drawing.Size(281, 37);
-            this.Chatbox.TabIndex = 1;
-            this.Chatbox.MaxLength = 235;
-            this.Chatbox.Multiline = true;
-            this.Chatbox.Text = "";
+            Chatbox.Location = new System.Drawing.Point(251, 256);
+            Chatbox.MaxLength = 235;
+            Chatbox.Multiline = true;
+            Chatbox.Name = "Chatbox";
+            Chatbox.Size = new System.Drawing.Size(281, 37);
+            Chatbox.TabIndex = 1;
             // 
             // ControlTab
             // 
-            this.ControlTab.Controls.Add(this.ControlTab_Page0);
-            this.ControlTab.Controls.Add(this.ControlTab_Page1);
-            this.ControlTab.Location = new System.Drawing.Point(8, 304);
-            this.ControlTab.Name = "ControlTab";
-            this.ControlTab.Size = new System.Drawing.Size(524, 145);
-            this.ControlTab.TabIndex = 5;
-            this.ControlTab.TabStop = false;
+            ControlTab.Controls.Add(ControlTab_Page0);
+            ControlTab.Controls.Add(ControlTab_Page1);
+            ControlTab.Location = new System.Drawing.Point(8, 304);
+            ControlTab.Name = "ControlTab";
+            ControlTab.SelectedIndex = 0;
+            ControlTab.Size = new System.Drawing.Size(524, 145);
+            ControlTab.TabIndex = 5;
+            ControlTab.TabStop = false;
             // 
             // ControlTab_Page0
             // 
-            this.ControlTab_Page0.Controls.Add(this.Command1);
-            this.ControlTab_Page0.Controls.Add(this.Attack);
-            this.ControlTab_Page0.Controls.Add(this.MoveSel_0);
-            this.ControlTab_Page0.Controls.Add(this.MoveSel_1);
-            this.ControlTab_Page0.Controls.Add(this.MoveSel_2);
-            this.ControlTab_Page0.Controls.Add(this.MoveSel_3);
-            this.ControlTab_Page0.Controls.Add(this.MoveDesc);
-            this.ControlTab_Page0.Location = new System.Drawing.Point(4, 22);
-            this.ControlTab_Page0.Name = "ControlTab_Page0";
-            this.ControlTab_Page0.Size = new System.Drawing.Size(516, 119);
-            this.ControlTab_Page0.TabIndex = 0;
-            this.ControlTab_Page0.Text = "Attack";
-            this.ControlTab_Page0.UseVisualStyleBackColor = true;
+            ControlTab_Page0.Controls.Add(Command1);
+            ControlTab_Page0.Controls.Add(Attack);
+            ControlTab_Page0.Controls.Add(MoveSel_0);
+            ControlTab_Page0.Controls.Add(MoveSel_1);
+            ControlTab_Page0.Controls.Add(MoveSel_2);
+            ControlTab_Page0.Controls.Add(MoveSel_3);
+            ControlTab_Page0.Controls.Add(MoveDesc);
+            ControlTab_Page0.Location = new System.Drawing.Point(4, 22);
+            ControlTab_Page0.Name = "ControlTab_Page0";
+            ControlTab_Page0.Size = new System.Drawing.Size(516, 119);
+            ControlTab_Page0.TabIndex = 0;
+            ControlTab_Page0.Text = "Attack";
+            ControlTab_Page0.UseVisualStyleBackColor = true;
             // 
             // Command1
             // 
-            this.Command1.Location = new System.Drawing.Point(180, 90);
-            this.Command1.Name = "Command1";
-            this.Command1.Size = new System.Drawing.Size(145, 25);
-            this.Command1.TabIndex = 104;
-            this.Command1.Text = "Restart Battle";
-            this.Command1.UseVisualStyleBackColor = true;
+            Command1.Location = new System.Drawing.Point(180, 90);
+            Command1.Name = "Command1";
+            Command1.Size = new System.Drawing.Size(145, 25);
+            Command1.TabIndex = 104;
+            Command1.Text = "Restart Battle";
+            Command1.UseVisualStyleBackColor = true;
             // 
             // Attack
             // 
-            this.Attack.Location = new System.Drawing.Point(348, 90);
-            this.Attack.Name = "Attack";
-            this.Attack.Size = new System.Drawing.Size(150, 25);
-            this.Attack.TabIndex = 18;
-            this.Attack.Text = "&Attack";
-            this.Attack.UseVisualStyleBackColor = true;
+            Attack.Location = new System.Drawing.Point(348, 90);
+            Attack.Name = "Attack";
+            Attack.Size = new System.Drawing.Size(150, 25);
+            Attack.TabIndex = 18;
+            Attack.Text = "&Attack";
+            Attack.UseVisualStyleBackColor = true;
             // 
             // MoveSel_0
             // 
-            this.MoveSel_0.Controls.Add(this.AttackTile_0);
-            this.MoveSel_0.Controls.Add(this.MoveNameLabel_0);
-            this.MoveSel_0.Controls.Add(this.MoveType_0);
-            this.MoveSel_0.Controls.Add(this.PPLabel_0);
-            this.MoveSel_0.Location = new System.Drawing.Point(12, 10);
-            this.MoveSel_0.Name = "MoveSel_0";
-            this.MoveSel_0.Size = new System.Drawing.Size(150, 33);
-            this.MoveSel_0.TabIndex = 15;
-            this.MoveSel_0.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("MoveSel_0.BackgroundImage")));
-            this.MoveSel_0.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            MoveSel_0.BackgroundImage = ((System.Drawing.Image)resources.GetObject("MoveSel_0.BackgroundImage"));
+            MoveSel_0.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            MoveSel_0.Controls.Add(AttackTile_0);
+            MoveSel_0.Controls.Add(MoveNameLabel_0);
+            MoveSel_0.Controls.Add(MoveType_0);
+            MoveSel_0.Controls.Add(PPLabel_0);
+            MoveSel_0.Location = new System.Drawing.Point(12, 10);
+            MoveSel_0.Name = "MoveSel_0";
+            MoveSel_0.Size = new System.Drawing.Size(150, 33);
+            MoveSel_0.TabIndex = 15;
             // 
             // AttackTile_0
             // 
-            this.AttackTile_0.Location = new System.Drawing.Point(-8, -8);
-            this.AttackTile_0.Name = "AttackTile_0";
-            this.AttackTile_0.Size = new System.Drawing.Size(169, 49);
-            this.AttackTile_0.TabIndex = 22;
-            this.AttackTile_0.BackColor = System.Drawing.Color.Transparent;
-            this.AttackTile_0.Text = "";
+            AttackTile_0.BackColor = System.Drawing.Color.Transparent;
+            AttackTile_0.Location = new System.Drawing.Point(-8, -8);
+            AttackTile_0.Name = "AttackTile_0";
+            AttackTile_0.Size = new System.Drawing.Size(169, 49);
+            AttackTile_0.TabIndex = 22;
             // 
             // MoveNameLabel_0
             // 
-            this.MoveNameLabel_0.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MoveNameLabel_0.Location = new System.Drawing.Point(8, 2);
-            this.MoveNameLabel_0.Name = "MoveNameLabel_0";
-            this.MoveNameLabel_0.Size = new System.Drawing.Size(137, 17);
-            this.MoveNameLabel_0.TabIndex = 17;
-            this.MoveNameLabel_0.BackColor = System.Drawing.Color.Transparent;
-            this.MoveNameLabel_0.ForeColor = System.Drawing.Color.White;
-            this.MoveNameLabel_0.Text = "Move Name";
+            MoveNameLabel_0.BackColor = System.Drawing.Color.Transparent;
+            MoveNameLabel_0.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)0));
+            MoveNameLabel_0.ForeColor = System.Drawing.Color.White;
+            MoveNameLabel_0.Location = new System.Drawing.Point(8, 2);
+            MoveNameLabel_0.Name = "MoveNameLabel_0";
+            MoveNameLabel_0.Size = new System.Drawing.Size(137, 17);
+            MoveNameLabel_0.TabIndex = 17;
+            MoveNameLabel_0.Text = "Move Name";
             // 
             // MoveType_0
             // 
-            this.MoveType_0.Location = new System.Drawing.Point(8, 16);
-            this.MoveType_0.Name = "MoveType_0";
-            this.MoveType_0.Size = new System.Drawing.Size(16, 16);
-            this.MoveType_0.BackColor = System.Drawing.Color.Transparent;
-            this.MoveType_0.TabStop = false;
+            MoveType_0.BackColor = System.Drawing.Color.Transparent;
+            MoveType_0.Location = new System.Drawing.Point(8, 16);
+            MoveType_0.Name = "MoveType_0";
+            MoveType_0.Size = new System.Drawing.Size(16, 16);
+            MoveType_0.TabIndex = 23;
+            MoveType_0.TabStop = false;
             // 
             // PPLabel_0
             // 
-            this.PPLabel_0.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PPLabel_0.Location = new System.Drawing.Point(32, 16);
-            this.PPLabel_0.Name = "PPLabel_0";
-            this.PPLabel_0.Size = new System.Drawing.Size(113, 17);
-            this.PPLabel_0.TabIndex = 16;
-            this.PPLabel_0.BackColor = System.Drawing.Color.Transparent;
-            this.PPLabel_0.ForeColor = System.Drawing.Color.White;
-            this.PPLabel_0.Text = "00/00";
-            this.PPLabel_0.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            PPLabel_0.BackColor = System.Drawing.Color.Transparent;
+            PPLabel_0.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)0));
+            PPLabel_0.ForeColor = System.Drawing.Color.White;
+            PPLabel_0.Location = new System.Drawing.Point(32, 16);
+            PPLabel_0.Name = "PPLabel_0";
+            PPLabel_0.Size = new System.Drawing.Size(113, 17);
+            PPLabel_0.TabIndex = 16;
+            PPLabel_0.Text = "00/00";
+            PPLabel_0.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // MoveSel_1
             // 
-            this.MoveSel_1.Controls.Add(this.AttackTile_1);
-            this.MoveSel_1.Controls.Add(this.PPLabel_1);
-            this.MoveSel_1.Controls.Add(this.MoveType_1);
-            this.MoveSel_1.Controls.Add(this.MoveNameLabel_1);
-            this.MoveSel_1.Location = new System.Drawing.Point(180, 10);
-            this.MoveSel_1.Name = "MoveSel_1";
-            this.MoveSel_1.Size = new System.Drawing.Size(150, 33);
-            this.MoveSel_1.TabIndex = 12;
-            this.MoveSel_1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("MoveSel_1.BackgroundImage")));
-            this.MoveSel_1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            MoveSel_1.BackgroundImage = ((System.Drawing.Image)resources.GetObject("MoveSel_1.BackgroundImage"));
+            MoveSel_1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            MoveSel_1.Controls.Add(AttackTile_1);
+            MoveSel_1.Controls.Add(PPLabel_1);
+            MoveSel_1.Controls.Add(MoveType_1);
+            MoveSel_1.Controls.Add(MoveNameLabel_1);
+            MoveSel_1.Location = new System.Drawing.Point(180, 10);
+            MoveSel_1.Name = "MoveSel_1";
+            MoveSel_1.Size = new System.Drawing.Size(150, 33);
+            MoveSel_1.TabIndex = 12;
             // 
             // AttackTile_1
             // 
-            this.AttackTile_1.Location = new System.Drawing.Point(-8, -8);
-            this.AttackTile_1.Name = "AttackTile_1";
-            this.AttackTile_1.Size = new System.Drawing.Size(169, 49);
-            this.AttackTile_1.TabIndex = 23;
-            this.AttackTile_1.BackColor = System.Drawing.Color.Transparent;
-            this.AttackTile_1.Text = "";
+            AttackTile_1.BackColor = System.Drawing.Color.Transparent;
+            AttackTile_1.Location = new System.Drawing.Point(-8, -8);
+            AttackTile_1.Name = "AttackTile_1";
+            AttackTile_1.Size = new System.Drawing.Size(169, 49);
+            AttackTile_1.TabIndex = 23;
             // 
             // PPLabel_1
             // 
-            this.PPLabel_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PPLabel_1.Location = new System.Drawing.Point(32, 16);
-            this.PPLabel_1.Name = "PPLabel_1";
-            this.PPLabel_1.Size = new System.Drawing.Size(113, 17);
-            this.PPLabel_1.TabIndex = 14;
-            this.PPLabel_1.BackColor = System.Drawing.Color.Transparent;
-            this.PPLabel_1.ForeColor = System.Drawing.Color.White;
-            this.PPLabel_1.Text = "00/00";
-            this.PPLabel_1.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            PPLabel_1.BackColor = System.Drawing.Color.Transparent;
+            PPLabel_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)0));
+            PPLabel_1.ForeColor = System.Drawing.Color.White;
+            PPLabel_1.Location = new System.Drawing.Point(32, 16);
+            PPLabel_1.Name = "PPLabel_1";
+            PPLabel_1.Size = new System.Drawing.Size(113, 17);
+            PPLabel_1.TabIndex = 14;
+            PPLabel_1.Text = "00/00";
+            PPLabel_1.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // MoveType_1
             // 
-            this.MoveType_1.Location = new System.Drawing.Point(8, 16);
-            this.MoveType_1.Name = "MoveType_1";
-            this.MoveType_1.Size = new System.Drawing.Size(16, 16);
-            this.MoveType_1.BackColor = System.Drawing.Color.Transparent;
-            this.MoveType_1.TabStop = false;
+            MoveType_1.BackColor = System.Drawing.Color.Transparent;
+            MoveType_1.Location = new System.Drawing.Point(8, 16);
+            MoveType_1.Name = "MoveType_1";
+            MoveType_1.Size = new System.Drawing.Size(16, 16);
+            MoveType_1.TabIndex = 24;
+            MoveType_1.TabStop = false;
             // 
             // MoveNameLabel_1
             // 
-            this.MoveNameLabel_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MoveNameLabel_1.Location = new System.Drawing.Point(8, 2);
-            this.MoveNameLabel_1.Name = "MoveNameLabel_1";
-            this.MoveNameLabel_1.Size = new System.Drawing.Size(137, 17);
-            this.MoveNameLabel_1.TabIndex = 13;
-            this.MoveNameLabel_1.BackColor = System.Drawing.Color.Transparent;
-            this.MoveNameLabel_1.ForeColor = System.Drawing.Color.White;
-            this.MoveNameLabel_1.Text = "Move Name";
+            MoveNameLabel_1.BackColor = System.Drawing.Color.Transparent;
+            MoveNameLabel_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)0));
+            MoveNameLabel_1.ForeColor = System.Drawing.Color.White;
+            MoveNameLabel_1.Location = new System.Drawing.Point(8, 2);
+            MoveNameLabel_1.Name = "MoveNameLabel_1";
+            MoveNameLabel_1.Size = new System.Drawing.Size(137, 17);
+            MoveNameLabel_1.TabIndex = 13;
+            MoveNameLabel_1.Text = "Move Name";
             // 
             // MoveSel_2
             // 
-            this.MoveSel_2.Controls.Add(this.AttackTile_2);
-            this.MoveSel_2.Controls.Add(this.MoveNameLabel_2);
-            this.MoveSel_2.Controls.Add(this.MoveType_2);
-            this.MoveSel_2.Controls.Add(this.PPLabel_2);
-            this.MoveSel_2.Location = new System.Drawing.Point(12, 50);
-            this.MoveSel_2.Name = "MoveSel_2";
-            this.MoveSel_2.Size = new System.Drawing.Size(150, 33);
-            this.MoveSel_2.TabIndex = 9;
-            this.MoveSel_2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("MoveSel_2.BackgroundImage")));
-            this.MoveSel_2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            MoveSel_2.BackgroundImage = ((System.Drawing.Image)resources.GetObject("MoveSel_2.BackgroundImage"));
+            MoveSel_2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            MoveSel_2.Controls.Add(AttackTile_2);
+            MoveSel_2.Controls.Add(MoveNameLabel_2);
+            MoveSel_2.Controls.Add(MoveType_2);
+            MoveSel_2.Controls.Add(PPLabel_2);
+            MoveSel_2.Location = new System.Drawing.Point(12, 50);
+            MoveSel_2.Name = "MoveSel_2";
+            MoveSel_2.Size = new System.Drawing.Size(150, 33);
+            MoveSel_2.TabIndex = 9;
             // 
             // AttackTile_2
             // 
-            this.AttackTile_2.Location = new System.Drawing.Point(-8, -8);
-            this.AttackTile_2.Name = "AttackTile_2";
-            this.AttackTile_2.Size = new System.Drawing.Size(169, 49);
-            this.AttackTile_2.TabIndex = 24;
-            this.AttackTile_2.BackColor = System.Drawing.Color.Transparent;
-            this.AttackTile_2.Text = "";
+            AttackTile_2.BackColor = System.Drawing.Color.Transparent;
+            AttackTile_2.Location = new System.Drawing.Point(-8, -8);
+            AttackTile_2.Name = "AttackTile_2";
+            AttackTile_2.Size = new System.Drawing.Size(169, 49);
+            AttackTile_2.TabIndex = 24;
             // 
             // MoveNameLabel_2
             // 
-            this.MoveNameLabel_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MoveNameLabel_2.Location = new System.Drawing.Point(8, 2);
-            this.MoveNameLabel_2.Name = "MoveNameLabel_2";
-            this.MoveNameLabel_2.Size = new System.Drawing.Size(137, 17);
-            this.MoveNameLabel_2.TabIndex = 11;
-            this.MoveNameLabel_2.BackColor = System.Drawing.Color.Transparent;
-            this.MoveNameLabel_2.ForeColor = System.Drawing.Color.White;
-            this.MoveNameLabel_2.Text = "Move Name";
+            MoveNameLabel_2.BackColor = System.Drawing.Color.Transparent;
+            MoveNameLabel_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)0));
+            MoveNameLabel_2.ForeColor = System.Drawing.Color.White;
+            MoveNameLabel_2.Location = new System.Drawing.Point(8, 2);
+            MoveNameLabel_2.Name = "MoveNameLabel_2";
+            MoveNameLabel_2.Size = new System.Drawing.Size(137, 17);
+            MoveNameLabel_2.TabIndex = 11;
+            MoveNameLabel_2.Text = "Move Name";
             // 
             // MoveType_2
             // 
-            this.MoveType_2.Location = new System.Drawing.Point(8, 16);
-            this.MoveType_2.Name = "MoveType_2";
-            this.MoveType_2.Size = new System.Drawing.Size(16, 16);
-            this.MoveType_2.BackColor = System.Drawing.Color.Transparent;
-            this.MoveType_2.TabStop = false;
+            MoveType_2.BackColor = System.Drawing.Color.Transparent;
+            MoveType_2.Location = new System.Drawing.Point(8, 16);
+            MoveType_2.Name = "MoveType_2";
+            MoveType_2.Size = new System.Drawing.Size(16, 16);
+            MoveType_2.TabIndex = 25;
+            MoveType_2.TabStop = false;
             // 
             // PPLabel_2
             // 
-            this.PPLabel_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PPLabel_2.Location = new System.Drawing.Point(32, 16);
-            this.PPLabel_2.Name = "PPLabel_2";
-            this.PPLabel_2.Size = new System.Drawing.Size(113, 17);
-            this.PPLabel_2.TabIndex = 10;
-            this.PPLabel_2.BackColor = System.Drawing.Color.Transparent;
-            this.PPLabel_2.ForeColor = System.Drawing.Color.White;
-            this.PPLabel_2.Text = "00/00";
-            this.PPLabel_2.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            PPLabel_2.BackColor = System.Drawing.Color.Transparent;
+            PPLabel_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)0));
+            PPLabel_2.ForeColor = System.Drawing.Color.White;
+            PPLabel_2.Location = new System.Drawing.Point(32, 16);
+            PPLabel_2.Name = "PPLabel_2";
+            PPLabel_2.Size = new System.Drawing.Size(113, 17);
+            PPLabel_2.TabIndex = 10;
+            PPLabel_2.Text = "00/00";
+            PPLabel_2.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // MoveSel_3
             // 
-            this.MoveSel_3.Controls.Add(this.AttackTile_3);
-            this.MoveSel_3.Controls.Add(this.MoveNameLabel_3);
-            this.MoveSel_3.Controls.Add(this.MoveType_3);
-            this.MoveSel_3.Controls.Add(this.PPLabel_3);
-            this.MoveSel_3.Location = new System.Drawing.Point(180, 50);
-            this.MoveSel_3.Name = "MoveSel_3";
-            this.MoveSel_3.Size = new System.Drawing.Size(150, 33);
-            this.MoveSel_3.TabIndex = 6;
-            this.MoveSel_3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("MoveSel_3.BackgroundImage")));
-            this.MoveSel_3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            MoveSel_3.BackgroundImage = ((System.Drawing.Image)resources.GetObject("MoveSel_3.BackgroundImage"));
+            MoveSel_3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            MoveSel_3.Controls.Add(AttackTile_3);
+            MoveSel_3.Controls.Add(MoveNameLabel_3);
+            MoveSel_3.Controls.Add(MoveType_3);
+            MoveSel_3.Controls.Add(PPLabel_3);
+            MoveSel_3.Location = new System.Drawing.Point(180, 50);
+            MoveSel_3.Name = "MoveSel_3";
+            MoveSel_3.Size = new System.Drawing.Size(150, 33);
+            MoveSel_3.TabIndex = 6;
             // 
             // AttackTile_3
             // 
-            this.AttackTile_3.Location = new System.Drawing.Point(-8, -8);
-            this.AttackTile_3.Name = "AttackTile_3";
-            this.AttackTile_3.Size = new System.Drawing.Size(169, 49);
-            this.AttackTile_3.TabIndex = 25;
-            this.AttackTile_3.BackColor = System.Drawing.Color.Transparent;
-            this.AttackTile_3.Text = "";
+            AttackTile_3.BackColor = System.Drawing.Color.Transparent;
+            AttackTile_3.Location = new System.Drawing.Point(-8, -8);
+            AttackTile_3.Name = "AttackTile_3";
+            AttackTile_3.Size = new System.Drawing.Size(169, 49);
+            AttackTile_3.TabIndex = 25;
             // 
             // MoveNameLabel_3
             // 
-            this.MoveNameLabel_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MoveNameLabel_3.Location = new System.Drawing.Point(8, 2);
-            this.MoveNameLabel_3.Name = "MoveNameLabel_3";
-            this.MoveNameLabel_3.Size = new System.Drawing.Size(137, 17);
-            this.MoveNameLabel_3.TabIndex = 8;
-            this.MoveNameLabel_3.BackColor = System.Drawing.Color.Transparent;
-            this.MoveNameLabel_3.ForeColor = System.Drawing.Color.White;
-            this.MoveNameLabel_3.Text = "Move Name";
+            MoveNameLabel_3.BackColor = System.Drawing.Color.Transparent;
+            MoveNameLabel_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)0));
+            MoveNameLabel_3.ForeColor = System.Drawing.Color.White;
+            MoveNameLabel_3.Location = new System.Drawing.Point(8, 2);
+            MoveNameLabel_3.Name = "MoveNameLabel_3";
+            MoveNameLabel_3.Size = new System.Drawing.Size(137, 17);
+            MoveNameLabel_3.TabIndex = 8;
+            MoveNameLabel_3.Text = "Move Name";
             // 
             // MoveType_3
             // 
-            this.MoveType_3.Location = new System.Drawing.Point(8, 16);
-            this.MoveType_3.Name = "MoveType_3";
-            this.MoveType_3.Size = new System.Drawing.Size(16, 16);
-            this.MoveType_3.BackColor = System.Drawing.Color.Transparent;
-            this.MoveType_3.TabStop = false;
+            MoveType_3.BackColor = System.Drawing.Color.Transparent;
+            MoveType_3.Location = new System.Drawing.Point(8, 16);
+            MoveType_3.Name = "MoveType_3";
+            MoveType_3.Size = new System.Drawing.Size(16, 16);
+            MoveType_3.TabIndex = 26;
+            MoveType_3.TabStop = false;
             // 
             // PPLabel_3
             // 
-            this.PPLabel_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PPLabel_3.Location = new System.Drawing.Point(32, 16);
-            this.PPLabel_3.Name = "PPLabel_3";
-            this.PPLabel_3.Size = new System.Drawing.Size(113, 17);
-            this.PPLabel_3.TabIndex = 7;
-            this.PPLabel_3.BackColor = System.Drawing.Color.Transparent;
-            this.PPLabel_3.ForeColor = System.Drawing.Color.White;
-            this.PPLabel_3.Text = "00/00";
-            this.PPLabel_3.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            PPLabel_3.BackColor = System.Drawing.Color.Transparent;
+            PPLabel_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)0));
+            PPLabel_3.ForeColor = System.Drawing.Color.White;
+            PPLabel_3.Location = new System.Drawing.Point(32, 16);
+            PPLabel_3.Name = "PPLabel_3";
+            PPLabel_3.Size = new System.Drawing.Size(113, 17);
+            PPLabel_3.TabIndex = 7;
+            PPLabel_3.Text = "00/00";
+            PPLabel_3.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // MoveDesc
             // 
-            this.MoveDesc.Location = new System.Drawing.Point(348, 10);
-            this.MoveDesc.Name = "MoveDesc";
-            this.MoveDesc.Size = new System.Drawing.Size(150, 73);
-            this.MoveDesc.TabIndex = 20;
-            this.MoveDesc.Tag = "0";
-            this.MoveDesc.ReadOnly = true;
-            this.MoveDesc.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.MoveDesc.Text = "";
+            MoveDesc.Location = new System.Drawing.Point(348, 10);
+            MoveDesc.Name = "MoveDesc";
+            MoveDesc.ReadOnly = true;
+            MoveDesc.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            MoveDesc.Size = new System.Drawing.Size(150, 73);
+            MoveDesc.TabIndex = 20;
+            MoveDesc.Tag = "0";
+            MoveDesc.Text = "";
             // 
             // ControlTab_Page1
             // 
-            this.ControlTab_Page1.Controls.Add(this.PokeTiles);
-            this.ControlTab_Page1.Controls.Add(this.Switch);
-            this.ControlTab_Page1.Location = new System.Drawing.Point(4, 22);
-            this.ControlTab_Page1.Name = "ControlTab_Page1";
-            this.ControlTab_Page1.Size = new System.Drawing.Size(516, 119);
-            this.ControlTab_Page1.TabIndex = 1;
-            this.ControlTab_Page1.Text = "Pokémon";
-            this.ControlTab_Page1.UseVisualStyleBackColor = true;
+            ControlTab_Page1.Controls.Add(PokeTiles);
+            ControlTab_Page1.Controls.Add(Switch);
+            ControlTab_Page1.Location = new System.Drawing.Point(4, 24);
+            ControlTab_Page1.Name = "ControlTab_Page1";
+            ControlTab_Page1.Size = new System.Drawing.Size(516, 117);
+            ControlTab_Page1.TabIndex = 1;
+            ControlTab_Page1.Text = "Pokémon";
+            ControlTab_Page1.UseVisualStyleBackColor = true;
             // 
             // PokeTiles
             // 
-            this.PokeTiles.Controls.Add(this.Entry_0);
-            this.PokeTiles.Controls.Add(this.Entry_1);
-            this.PokeTiles.Controls.Add(this.Entry_2);
-            this.PokeTiles.Controls.Add(this.Entry_3);
-            this.PokeTiles.Controls.Add(this.Entry_4);
-            this.PokeTiles.Controls.Add(this.Entry_5);
-            this.PokeTiles.Location = new System.Drawing.Point(12, 10);
-            this.PokeTiles.Name = "PokeTiles";
-            this.PokeTiles.Size = new System.Drawing.Size(489, 73);
-            this.PokeTiles.TabIndex = 68;
+            PokeTiles.Controls.Add(Entry_0);
+            PokeTiles.Controls.Add(Entry_1);
+            PokeTiles.Controls.Add(Entry_2);
+            PokeTiles.Controls.Add(Entry_3);
+            PokeTiles.Controls.Add(Entry_4);
+            PokeTiles.Controls.Add(Entry_5);
+            PokeTiles.Location = new System.Drawing.Point(12, 10);
+            PokeTiles.Name = "PokeTiles";
+            PokeTiles.Size = new System.Drawing.Size(489, 73);
+            PokeTiles.TabIndex = 68;
             // 
             // Entry_0
             // 
-            this.Entry_0.Controls.Add(this.SwitchTile_0);
-            this.Entry_0.Controls.Add(this.PKLevel_0);
-            this.Entry_0.Controls.Add(this.PKHP_0);
-            this.Entry_0.Controls.Add(this.PKGender_0);
-            this.Entry_0.Controls.Add(this.PokeIcon_0);
-            this.Entry_0.Controls.Add(this.PKName_0);
-            this.Entry_0.Controls.Add(this.StatIcon_0);
-            this.Entry_0.Location = new System.Drawing.Point(0, 0);
-            this.Entry_0.Name = "Entry_0";
-            this.Entry_0.Size = new System.Drawing.Size(150, 33);
-            this.Entry_0.TabIndex = 94;
-            this.Entry_0.TabStop = false;
-            this.Entry_0.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Entry_0.BackgroundImage")));
-            this.Entry_0.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            Entry_0.BackgroundImage = ((System.Drawing.Image)resources.GetObject("Entry_0.BackgroundImage"));
+            Entry_0.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            Entry_0.Controls.Add(SwitchTile_0);
+            Entry_0.Controls.Add(PKLevel_0);
+            Entry_0.Controls.Add(PKHP_0);
+            Entry_0.Controls.Add(PKGender_0);
+            Entry_0.Controls.Add(PokeIcon_0);
+            Entry_0.Controls.Add(PKName_0);
+            Entry_0.Controls.Add(StatIcon_0);
+            Entry_0.Location = new System.Drawing.Point(0, 0);
+            Entry_0.Name = "Entry_0";
+            Entry_0.Size = new System.Drawing.Size(150, 33);
+            Entry_0.TabIndex = 94;
             // 
             // SwitchTile_0
             // 
-            this.SwitchTile_0.Location = new System.Drawing.Point(-16, -8);
-            this.SwitchTile_0.Name = "SwitchTile_0";
-            this.SwitchTile_0.Size = new System.Drawing.Size(169, 49);
-            this.SwitchTile_0.TabIndex = 98;
-            this.SwitchTile_0.BackColor = System.Drawing.Color.Transparent;
-            this.SwitchTile_0.Text = "";
+            SwitchTile_0.BackColor = System.Drawing.Color.Transparent;
+            SwitchTile_0.Location = new System.Drawing.Point(-16, -8);
+            SwitchTile_0.Name = "SwitchTile_0";
+            SwitchTile_0.Size = new System.Drawing.Size(169, 49);
+            SwitchTile_0.TabIndex = 98;
             // 
             // PKLevel_0
             // 
-            this.PKLevel_0.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PKLevel_0.Location = new System.Drawing.Point(120, 16);
-            this.PKLevel_0.Name = "PKLevel_0";
-            this.PKLevel_0.Size = new System.Drawing.Size(31, 17);
-            this.PKLevel_0.TabIndex = 97;
-            this.PKLevel_0.BackColor = System.Drawing.Color.Transparent;
-            this.PKLevel_0.ForeColor = System.Drawing.Color.White;
-            this.PKLevel_0.Text = "";
-            this.PKLevel_0.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            PKLevel_0.BackColor = System.Drawing.Color.Transparent;
+            PKLevel_0.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)0));
+            PKLevel_0.ForeColor = System.Drawing.Color.White;
+            PKLevel_0.Location = new System.Drawing.Point(120, 16);
+            PKLevel_0.Name = "PKLevel_0";
+            PKLevel_0.Size = new System.Drawing.Size(31, 17);
+            PKLevel_0.TabIndex = 97;
+            PKLevel_0.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // PKHP_0
             // 
-            this.PKHP_0.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PKHP_0.Location = new System.Drawing.Point(56, 16);
-            this.PKHP_0.Name = "PKHP_0";
-            this.PKHP_0.Size = new System.Drawing.Size(63, 17);
-            this.PKHP_0.TabIndex = 96;
-            this.PKHP_0.BackColor = System.Drawing.Color.Transparent;
-            this.PKHP_0.ForeColor = System.Drawing.Color.White;
-            this.PKHP_0.Text = "";
-            this.PKHP_0.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            PKHP_0.BackColor = System.Drawing.Color.Transparent;
+            PKHP_0.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)0));
+            PKHP_0.ForeColor = System.Drawing.Color.White;
+            PKHP_0.Location = new System.Drawing.Point(56, 16);
+            PKHP_0.Name = "PKHP_0";
+            PKHP_0.Size = new System.Drawing.Size(63, 17);
+            PKHP_0.TabIndex = 96;
+            PKHP_0.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // PKGender_0
             // 
-            this.PKGender_0.Location = new System.Drawing.Point(128, 0);
-            this.PKGender_0.Name = "PKGender_0";
-            this.PKGender_0.Size = new System.Drawing.Size(16, 16);
-            this.PKGender_0.BackColor = System.Drawing.Color.Transparent;
-            this.PKGender_0.TabStop = false;
+            PKGender_0.BackColor = System.Drawing.Color.Transparent;
+            PKGender_0.Location = new System.Drawing.Point(128, 0);
+            PKGender_0.Name = "PKGender_0";
+            PKGender_0.Size = new System.Drawing.Size(16, 16);
+            PKGender_0.TabIndex = 99;
+            PKGender_0.TabStop = false;
             // 
             // PokeIcon_0
             // 
-            this.PokeIcon_0.Location = new System.Drawing.Point(4, 0);
-            this.PokeIcon_0.Name = "PokeIcon_0";
-            this.PokeIcon_0.Size = new System.Drawing.Size(32, 32);
-            this.PokeIcon_0.BackColor = System.Drawing.Color.Transparent;
-            this.PokeIcon_0.TabStop = false;
+            PokeIcon_0.BackColor = System.Drawing.Color.Transparent;
+            PokeIcon_0.Location = new System.Drawing.Point(4, 0);
+            PokeIcon_0.Name = "PokeIcon_0";
+            PokeIcon_0.Size = new System.Drawing.Size(32, 32);
+            PokeIcon_0.TabIndex = 100;
+            PokeIcon_0.TabStop = false;
             // 
             // PKName_0
             // 
-            this.PKName_0.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PKName_0.Location = new System.Drawing.Point(44, 2);
-            this.PKName_0.Name = "PKName_0";
-            this.PKName_0.Size = new System.Drawing.Size(87, 17);
-            this.PKName_0.TabIndex = 95;
-            this.PKName_0.BackColor = System.Drawing.Color.Transparent;
-            this.PKName_0.ForeColor = System.Drawing.Color.White;
-            this.PKName_0.Text = "";
+            PKName_0.BackColor = System.Drawing.Color.Transparent;
+            PKName_0.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)0));
+            PKName_0.ForeColor = System.Drawing.Color.White;
+            PKName_0.Location = new System.Drawing.Point(44, 2);
+            PKName_0.Name = "PKName_0";
+            PKName_0.Size = new System.Drawing.Size(87, 17);
+            PKName_0.TabIndex = 95;
             // 
             // StatIcon_0
             // 
-            this.StatIcon_0.Location = new System.Drawing.Point(40, 16);
-            this.StatIcon_0.Name = "StatIcon_0";
-            this.StatIcon_0.Size = new System.Drawing.Size(16, 16);
-            this.StatIcon_0.BackColor = System.Drawing.Color.Transparent;
-            this.StatIcon_0.TabStop = false;
+            StatIcon_0.BackColor = System.Drawing.Color.Transparent;
+            StatIcon_0.Location = new System.Drawing.Point(40, 16);
+            StatIcon_0.Name = "StatIcon_0";
+            StatIcon_0.Size = new System.Drawing.Size(16, 16);
+            StatIcon_0.TabIndex = 101;
+            StatIcon_0.TabStop = false;
             // 
             // Entry_1
             // 
-            this.Entry_1.Controls.Add(this.SwitchTile_1);
-            this.Entry_1.Controls.Add(this.PKName_1);
-            this.Entry_1.Controls.Add(this.PokeIcon_1);
-            this.Entry_1.Controls.Add(this.PKGender_1);
-            this.Entry_1.Controls.Add(this.PKHP_1);
-            this.Entry_1.Controls.Add(this.PKLevel_1);
-            this.Entry_1.Controls.Add(this.StatIcon_1);
-            this.Entry_1.Location = new System.Drawing.Point(168, 0);
-            this.Entry_1.Name = "Entry_1";
-            this.Entry_1.Size = new System.Drawing.Size(150, 33);
-            this.Entry_1.TabIndex = 89;
-            this.Entry_1.TabStop = false;
-            this.Entry_1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Entry_1.BackgroundImage")));
-            this.Entry_1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            Entry_1.BackgroundImage = ((System.Drawing.Image)resources.GetObject("Entry_1.BackgroundImage"));
+            Entry_1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            Entry_1.Controls.Add(SwitchTile_1);
+            Entry_1.Controls.Add(PKName_1);
+            Entry_1.Controls.Add(PokeIcon_1);
+            Entry_1.Controls.Add(PKGender_1);
+            Entry_1.Controls.Add(PKHP_1);
+            Entry_1.Controls.Add(PKLevel_1);
+            Entry_1.Controls.Add(StatIcon_1);
+            Entry_1.Location = new System.Drawing.Point(168, 0);
+            Entry_1.Name = "Entry_1";
+            Entry_1.Size = new System.Drawing.Size(150, 33);
+            Entry_1.TabIndex = 89;
             // 
             // SwitchTile_1
             // 
-            this.SwitchTile_1.Location = new System.Drawing.Point(-8, -8);
-            this.SwitchTile_1.Name = "SwitchTile_1";
-            this.SwitchTile_1.Size = new System.Drawing.Size(169, 49);
-            this.SwitchTile_1.TabIndex = 93;
-            this.SwitchTile_1.BackColor = System.Drawing.Color.Transparent;
-            this.SwitchTile_1.Text = "";
+            SwitchTile_1.BackColor = System.Drawing.Color.Transparent;
+            SwitchTile_1.Location = new System.Drawing.Point(-8, -8);
+            SwitchTile_1.Name = "SwitchTile_1";
+            SwitchTile_1.Size = new System.Drawing.Size(169, 49);
+            SwitchTile_1.TabIndex = 93;
             // 
             // PKName_1
             // 
-            this.PKName_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PKName_1.Location = new System.Drawing.Point(44, 2);
-            this.PKName_1.Name = "PKName_1";
-            this.PKName_1.Size = new System.Drawing.Size(87, 17);
-            this.PKName_1.TabIndex = 92;
-            this.PKName_1.BackColor = System.Drawing.Color.Transparent;
-            this.PKName_1.ForeColor = System.Drawing.Color.White;
-            this.PKName_1.Text = "";
+            PKName_1.BackColor = System.Drawing.Color.Transparent;
+            PKName_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)0));
+            PKName_1.ForeColor = System.Drawing.Color.White;
+            PKName_1.Location = new System.Drawing.Point(44, 2);
+            PKName_1.Name = "PKName_1";
+            PKName_1.Size = new System.Drawing.Size(87, 17);
+            PKName_1.TabIndex = 92;
             // 
             // PokeIcon_1
             // 
-            this.PokeIcon_1.Location = new System.Drawing.Point(4, 0);
-            this.PokeIcon_1.Name = "PokeIcon_1";
-            this.PokeIcon_1.Size = new System.Drawing.Size(32, 32);
-            this.PokeIcon_1.BackColor = System.Drawing.Color.Transparent;
-            this.PokeIcon_1.TabStop = false;
+            PokeIcon_1.BackColor = System.Drawing.Color.Transparent;
+            PokeIcon_1.Location = new System.Drawing.Point(4, 0);
+            PokeIcon_1.Name = "PokeIcon_1";
+            PokeIcon_1.Size = new System.Drawing.Size(32, 32);
+            PokeIcon_1.TabIndex = 94;
+            PokeIcon_1.TabStop = false;
             // 
             // PKGender_1
             // 
-            this.PKGender_1.Location = new System.Drawing.Point(128, 0);
-            this.PKGender_1.Name = "PKGender_1";
-            this.PKGender_1.Size = new System.Drawing.Size(16, 16);
-            this.PKGender_1.BackColor = System.Drawing.Color.Transparent;
-            this.PKGender_1.TabStop = false;
+            PKGender_1.BackColor = System.Drawing.Color.Transparent;
+            PKGender_1.Location = new System.Drawing.Point(128, 0);
+            PKGender_1.Name = "PKGender_1";
+            PKGender_1.Size = new System.Drawing.Size(16, 16);
+            PKGender_1.TabIndex = 95;
+            PKGender_1.TabStop = false;
             // 
             // PKHP_1
             // 
-            this.PKHP_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PKHP_1.Location = new System.Drawing.Point(56, 16);
-            this.PKHP_1.Name = "PKHP_1";
-            this.PKHP_1.Size = new System.Drawing.Size(63, 17);
-            this.PKHP_1.TabIndex = 91;
-            this.PKHP_1.BackColor = System.Drawing.Color.Transparent;
-            this.PKHP_1.ForeColor = System.Drawing.Color.White;
-            this.PKHP_1.Text = "";
-            this.PKHP_1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            PKHP_1.BackColor = System.Drawing.Color.Transparent;
+            PKHP_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)0));
+            PKHP_1.ForeColor = System.Drawing.Color.White;
+            PKHP_1.Location = new System.Drawing.Point(56, 16);
+            PKHP_1.Name = "PKHP_1";
+            PKHP_1.Size = new System.Drawing.Size(63, 17);
+            PKHP_1.TabIndex = 91;
+            PKHP_1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // PKLevel_1
             // 
-            this.PKLevel_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PKLevel_1.Location = new System.Drawing.Point(120, 16);
-            this.PKLevel_1.Name = "PKLevel_1";
-            this.PKLevel_1.Size = new System.Drawing.Size(31, 17);
-            this.PKLevel_1.TabIndex = 90;
-            this.PKLevel_1.BackColor = System.Drawing.Color.Transparent;
-            this.PKLevel_1.ForeColor = System.Drawing.Color.White;
-            this.PKLevel_1.Text = "";
-            this.PKLevel_1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            PKLevel_1.BackColor = System.Drawing.Color.Transparent;
+            PKLevel_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)0));
+            PKLevel_1.ForeColor = System.Drawing.Color.White;
+            PKLevel_1.Location = new System.Drawing.Point(120, 16);
+            PKLevel_1.Name = "PKLevel_1";
+            PKLevel_1.Size = new System.Drawing.Size(31, 17);
+            PKLevel_1.TabIndex = 90;
+            PKLevel_1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // StatIcon_1
             // 
-            this.StatIcon_1.Location = new System.Drawing.Point(40, 16);
-            this.StatIcon_1.Name = "StatIcon_1";
-            this.StatIcon_1.Size = new System.Drawing.Size(16, 16);
-            this.StatIcon_1.BackColor = System.Drawing.Color.Transparent;
-            this.StatIcon_1.TabStop = false;
+            StatIcon_1.BackColor = System.Drawing.Color.Transparent;
+            StatIcon_1.Location = new System.Drawing.Point(40, 16);
+            StatIcon_1.Name = "StatIcon_1";
+            StatIcon_1.Size = new System.Drawing.Size(16, 16);
+            StatIcon_1.TabIndex = 96;
+            StatIcon_1.TabStop = false;
             // 
             // Entry_2
             // 
-            this.Entry_2.Controls.Add(this.SwitchTile_2);
-            this.Entry_2.Controls.Add(this.PKLevel_2);
-            this.Entry_2.Controls.Add(this.PKHP_2);
-            this.Entry_2.Controls.Add(this.PKGender_2);
-            this.Entry_2.Controls.Add(this.PokeIcon_2);
-            this.Entry_2.Controls.Add(this.PKName_2);
-            this.Entry_2.Controls.Add(this.StatIcon_2);
-            this.Entry_2.Location = new System.Drawing.Point(337, 0);
-            this.Entry_2.Name = "Entry_2";
-            this.Entry_2.Size = new System.Drawing.Size(150, 33);
-            this.Entry_2.TabIndex = 84;
-            this.Entry_2.TabStop = false;
-            this.Entry_2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Entry_2.BackgroundImage")));
-            this.Entry_2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            Entry_2.BackgroundImage = ((System.Drawing.Image)resources.GetObject("Entry_2.BackgroundImage"));
+            Entry_2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            Entry_2.Controls.Add(SwitchTile_2);
+            Entry_2.Controls.Add(PKLevel_2);
+            Entry_2.Controls.Add(PKHP_2);
+            Entry_2.Controls.Add(PKGender_2);
+            Entry_2.Controls.Add(PokeIcon_2);
+            Entry_2.Controls.Add(PKName_2);
+            Entry_2.Controls.Add(StatIcon_2);
+            Entry_2.Location = new System.Drawing.Point(337, 0);
+            Entry_2.Name = "Entry_2";
+            Entry_2.Size = new System.Drawing.Size(150, 33);
+            Entry_2.TabIndex = 84;
             // 
             // SwitchTile_2
             // 
-            this.SwitchTile_2.Location = new System.Drawing.Point(-8, -8);
-            this.SwitchTile_2.Name = "SwitchTile_2";
-            this.SwitchTile_2.Size = new System.Drawing.Size(169, 49);
-            this.SwitchTile_2.TabIndex = 88;
-            this.SwitchTile_2.BackColor = System.Drawing.Color.Transparent;
-            this.SwitchTile_2.Text = "";
+            SwitchTile_2.BackColor = System.Drawing.Color.Transparent;
+            SwitchTile_2.Location = new System.Drawing.Point(-8, -8);
+            SwitchTile_2.Name = "SwitchTile_2";
+            SwitchTile_2.Size = new System.Drawing.Size(169, 49);
+            SwitchTile_2.TabIndex = 88;
             // 
             // PKLevel_2
             // 
-            this.PKLevel_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PKLevel_2.Location = new System.Drawing.Point(120, 16);
-            this.PKLevel_2.Name = "PKLevel_2";
-            this.PKLevel_2.Size = new System.Drawing.Size(31, 17);
-            this.PKLevel_2.TabIndex = 87;
-            this.PKLevel_2.BackColor = System.Drawing.Color.Transparent;
-            this.PKLevel_2.ForeColor = System.Drawing.Color.White;
-            this.PKLevel_2.Text = "";
-            this.PKLevel_2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            PKLevel_2.BackColor = System.Drawing.Color.Transparent;
+            PKLevel_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)0));
+            PKLevel_2.ForeColor = System.Drawing.Color.White;
+            PKLevel_2.Location = new System.Drawing.Point(120, 16);
+            PKLevel_2.Name = "PKLevel_2";
+            PKLevel_2.Size = new System.Drawing.Size(31, 17);
+            PKLevel_2.TabIndex = 87;
+            PKLevel_2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // PKHP_2
             // 
-            this.PKHP_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PKHP_2.Location = new System.Drawing.Point(56, 16);
-            this.PKHP_2.Name = "PKHP_2";
-            this.PKHP_2.Size = new System.Drawing.Size(63, 17);
-            this.PKHP_2.TabIndex = 86;
-            this.PKHP_2.BackColor = System.Drawing.Color.Transparent;
-            this.PKHP_2.ForeColor = System.Drawing.Color.White;
-            this.PKHP_2.Text = "";
-            this.PKHP_2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            PKHP_2.BackColor = System.Drawing.Color.Transparent;
+            PKHP_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)0));
+            PKHP_2.ForeColor = System.Drawing.Color.White;
+            PKHP_2.Location = new System.Drawing.Point(56, 16);
+            PKHP_2.Name = "PKHP_2";
+            PKHP_2.Size = new System.Drawing.Size(63, 17);
+            PKHP_2.TabIndex = 86;
+            PKHP_2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // PKGender_2
             // 
-            this.PKGender_2.Location = new System.Drawing.Point(128, 0);
-            this.PKGender_2.Name = "PKGender_2";
-            this.PKGender_2.Size = new System.Drawing.Size(16, 16);
-            this.PKGender_2.BackColor = System.Drawing.Color.Transparent;
-            this.PKGender_2.TabStop = false;
+            PKGender_2.BackColor = System.Drawing.Color.Transparent;
+            PKGender_2.Location = new System.Drawing.Point(128, 0);
+            PKGender_2.Name = "PKGender_2";
+            PKGender_2.Size = new System.Drawing.Size(16, 16);
+            PKGender_2.TabIndex = 89;
+            PKGender_2.TabStop = false;
             // 
             // PokeIcon_2
             // 
-            this.PokeIcon_2.Location = new System.Drawing.Point(4, 0);
-            this.PokeIcon_2.Name = "PokeIcon_2";
-            this.PokeIcon_2.Size = new System.Drawing.Size(32, 32);
-            this.PokeIcon_2.BackColor = System.Drawing.Color.Transparent;
-            this.PokeIcon_2.TabStop = false;
+            PokeIcon_2.BackColor = System.Drawing.Color.Transparent;
+            PokeIcon_2.Location = new System.Drawing.Point(4, 0);
+            PokeIcon_2.Name = "PokeIcon_2";
+            PokeIcon_2.Size = new System.Drawing.Size(32, 32);
+            PokeIcon_2.TabIndex = 90;
+            PokeIcon_2.TabStop = false;
             // 
             // PKName_2
             // 
-            this.PKName_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PKName_2.Location = new System.Drawing.Point(44, 2);
-            this.PKName_2.Name = "PKName_2";
-            this.PKName_2.Size = new System.Drawing.Size(87, 17);
-            this.PKName_2.TabIndex = 85;
-            this.PKName_2.BackColor = System.Drawing.Color.Transparent;
-            this.PKName_2.ForeColor = System.Drawing.Color.White;
-            this.PKName_2.Text = "";
+            PKName_2.BackColor = System.Drawing.Color.Transparent;
+            PKName_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)0));
+            PKName_2.ForeColor = System.Drawing.Color.White;
+            PKName_2.Location = new System.Drawing.Point(44, 2);
+            PKName_2.Name = "PKName_2";
+            PKName_2.Size = new System.Drawing.Size(87, 17);
+            PKName_2.TabIndex = 85;
             // 
             // StatIcon_2
             // 
-            this.StatIcon_2.Location = new System.Drawing.Point(40, 16);
-            this.StatIcon_2.Name = "StatIcon_2";
-            this.StatIcon_2.Size = new System.Drawing.Size(16, 16);
-            this.StatIcon_2.BackColor = System.Drawing.Color.Transparent;
-            this.StatIcon_2.TabStop = false;
+            StatIcon_2.BackColor = System.Drawing.Color.Transparent;
+            StatIcon_2.Location = new System.Drawing.Point(40, 16);
+            StatIcon_2.Name = "StatIcon_2";
+            StatIcon_2.Size = new System.Drawing.Size(16, 16);
+            StatIcon_2.TabIndex = 91;
+            StatIcon_2.TabStop = false;
             // 
             // Entry_3
             // 
-            this.Entry_3.Controls.Add(this.SwitchTile_3);
-            this.Entry_3.Controls.Add(this.PKName_3);
-            this.Entry_3.Controls.Add(this.PokeIcon_3);
-            this.Entry_3.Controls.Add(this.PKGender_3);
-            this.Entry_3.Controls.Add(this.StatIcon_3);
-            this.Entry_3.Controls.Add(this.PKHP_3);
-            this.Entry_3.Controls.Add(this.PKLevel_3);
-            this.Entry_3.Location = new System.Drawing.Point(0, 40);
-            this.Entry_3.Name = "Entry_3";
-            this.Entry_3.Size = new System.Drawing.Size(150, 33);
-            this.Entry_3.TabIndex = 79;
-            this.Entry_3.TabStop = false;
-            this.Entry_3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Entry_3.BackgroundImage")));
-            this.Entry_3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            Entry_3.BackgroundImage = ((System.Drawing.Image)resources.GetObject("Entry_3.BackgroundImage"));
+            Entry_3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            Entry_3.Controls.Add(SwitchTile_3);
+            Entry_3.Controls.Add(PKName_3);
+            Entry_3.Controls.Add(PokeIcon_3);
+            Entry_3.Controls.Add(PKGender_3);
+            Entry_3.Controls.Add(StatIcon_3);
+            Entry_3.Controls.Add(PKHP_3);
+            Entry_3.Controls.Add(PKLevel_3);
+            Entry_3.Location = new System.Drawing.Point(0, 40);
+            Entry_3.Name = "Entry_3";
+            Entry_3.Size = new System.Drawing.Size(150, 33);
+            Entry_3.TabIndex = 79;
             // 
             // SwitchTile_3
             // 
-            this.SwitchTile_3.Location = new System.Drawing.Point(-8, -8);
-            this.SwitchTile_3.Name = "SwitchTile_3";
-            this.SwitchTile_3.Size = new System.Drawing.Size(169, 49);
-            this.SwitchTile_3.TabIndex = 83;
-            this.SwitchTile_3.BackColor = System.Drawing.Color.Transparent;
-            this.SwitchTile_3.Text = "";
+            SwitchTile_3.BackColor = System.Drawing.Color.Transparent;
+            SwitchTile_3.Location = new System.Drawing.Point(-8, -8);
+            SwitchTile_3.Name = "SwitchTile_3";
+            SwitchTile_3.Size = new System.Drawing.Size(169, 49);
+            SwitchTile_3.TabIndex = 83;
             // 
             // PKName_3
             // 
-            this.PKName_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PKName_3.Location = new System.Drawing.Point(44, 2);
-            this.PKName_3.Name = "PKName_3";
-            this.PKName_3.Size = new System.Drawing.Size(87, 17);
-            this.PKName_3.TabIndex = 82;
-            this.PKName_3.BackColor = System.Drawing.Color.Transparent;
-            this.PKName_3.ForeColor = System.Drawing.Color.White;
-            this.PKName_3.Text = "";
+            PKName_3.BackColor = System.Drawing.Color.Transparent;
+            PKName_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)0));
+            PKName_3.ForeColor = System.Drawing.Color.White;
+            PKName_3.Location = new System.Drawing.Point(44, 2);
+            PKName_3.Name = "PKName_3";
+            PKName_3.Size = new System.Drawing.Size(87, 17);
+            PKName_3.TabIndex = 82;
             // 
             // PokeIcon_3
             // 
-            this.PokeIcon_3.Location = new System.Drawing.Point(4, 0);
-            this.PokeIcon_3.Name = "PokeIcon_3";
-            this.PokeIcon_3.Size = new System.Drawing.Size(32, 32);
-            this.PokeIcon_3.BackColor = System.Drawing.Color.Transparent;
-            this.PokeIcon_3.TabStop = false;
+            PokeIcon_3.BackColor = System.Drawing.Color.Transparent;
+            PokeIcon_3.Location = new System.Drawing.Point(4, 0);
+            PokeIcon_3.Name = "PokeIcon_3";
+            PokeIcon_3.Size = new System.Drawing.Size(32, 32);
+            PokeIcon_3.TabIndex = 84;
+            PokeIcon_3.TabStop = false;
             // 
             // PKGender_3
             // 
-            this.PKGender_3.Location = new System.Drawing.Point(128, 0);
-            this.PKGender_3.Name = "PKGender_3";
-            this.PKGender_3.Size = new System.Drawing.Size(16, 16);
-            this.PKGender_3.BackColor = System.Drawing.Color.Transparent;
-            this.PKGender_3.TabStop = false;
+            PKGender_3.BackColor = System.Drawing.Color.Transparent;
+            PKGender_3.Location = new System.Drawing.Point(128, 0);
+            PKGender_3.Name = "PKGender_3";
+            PKGender_3.Size = new System.Drawing.Size(16, 16);
+            PKGender_3.TabIndex = 85;
+            PKGender_3.TabStop = false;
             // 
             // StatIcon_3
             // 
-            this.StatIcon_3.Location = new System.Drawing.Point(40, 16);
-            this.StatIcon_3.Name = "StatIcon_3";
-            this.StatIcon_3.Size = new System.Drawing.Size(16, 16);
-            this.StatIcon_3.BackColor = System.Drawing.Color.Transparent;
-            this.StatIcon_3.TabStop = false;
+            StatIcon_3.BackColor = System.Drawing.Color.Transparent;
+            StatIcon_3.Location = new System.Drawing.Point(40, 16);
+            StatIcon_3.Name = "StatIcon_3";
+            StatIcon_3.Size = new System.Drawing.Size(16, 16);
+            StatIcon_3.TabIndex = 86;
+            StatIcon_3.TabStop = false;
             // 
             // PKHP_3
             // 
-            this.PKHP_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PKHP_3.Location = new System.Drawing.Point(56, 16);
-            this.PKHP_3.Name = "PKHP_3";
-            this.PKHP_3.Size = new System.Drawing.Size(63, 17);
-            this.PKHP_3.TabIndex = 81;
-            this.PKHP_3.BackColor = System.Drawing.Color.Transparent;
-            this.PKHP_3.ForeColor = System.Drawing.Color.White;
-            this.PKHP_3.Text = "";
-            this.PKHP_3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            PKHP_3.BackColor = System.Drawing.Color.Transparent;
+            PKHP_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)0));
+            PKHP_3.ForeColor = System.Drawing.Color.White;
+            PKHP_3.Location = new System.Drawing.Point(56, 16);
+            PKHP_3.Name = "PKHP_3";
+            PKHP_3.Size = new System.Drawing.Size(63, 17);
+            PKHP_3.TabIndex = 81;
+            PKHP_3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // PKLevel_3
             // 
-            this.PKLevel_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PKLevel_3.Location = new System.Drawing.Point(120, 16);
-            this.PKLevel_3.Name = "PKLevel_3";
-            this.PKLevel_3.Size = new System.Drawing.Size(31, 17);
-            this.PKLevel_3.TabIndex = 80;
-            this.PKLevel_3.BackColor = System.Drawing.Color.Transparent;
-            this.PKLevel_3.ForeColor = System.Drawing.Color.White;
-            this.PKLevel_3.Text = "";
-            this.PKLevel_3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            PKLevel_3.BackColor = System.Drawing.Color.Transparent;
+            PKLevel_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)0));
+            PKLevel_3.ForeColor = System.Drawing.Color.White;
+            PKLevel_3.Location = new System.Drawing.Point(120, 16);
+            PKLevel_3.Name = "PKLevel_3";
+            PKLevel_3.Size = new System.Drawing.Size(31, 17);
+            PKLevel_3.TabIndex = 80;
+            PKLevel_3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // Entry_4
             // 
-            this.Entry_4.Controls.Add(this.SwitchTile_4);
-            this.Entry_4.Controls.Add(this.PKName_4);
-            this.Entry_4.Controls.Add(this.PokeIcon_4);
-            this.Entry_4.Controls.Add(this.PKGender_4);
-            this.Entry_4.Controls.Add(this.StatIcon_4);
-            this.Entry_4.Controls.Add(this.PKHP_4);
-            this.Entry_4.Controls.Add(this.PKLevel_4);
-            this.Entry_4.Location = new System.Drawing.Point(168, 40);
-            this.Entry_4.Name = "Entry_4";
-            this.Entry_4.Size = new System.Drawing.Size(150, 33);
-            this.Entry_4.TabIndex = 74;
-            this.Entry_4.TabStop = false;
-            this.Entry_4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Entry_4.BackgroundImage")));
-            this.Entry_4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            Entry_4.BackgroundImage = ((System.Drawing.Image)resources.GetObject("Entry_4.BackgroundImage"));
+            Entry_4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            Entry_4.Controls.Add(SwitchTile_4);
+            Entry_4.Controls.Add(PKName_4);
+            Entry_4.Controls.Add(PokeIcon_4);
+            Entry_4.Controls.Add(PKGender_4);
+            Entry_4.Controls.Add(StatIcon_4);
+            Entry_4.Controls.Add(PKHP_4);
+            Entry_4.Controls.Add(PKLevel_4);
+            Entry_4.Location = new System.Drawing.Point(168, 40);
+            Entry_4.Name = "Entry_4";
+            Entry_4.Size = new System.Drawing.Size(150, 33);
+            Entry_4.TabIndex = 74;
             // 
             // SwitchTile_4
             // 
-            this.SwitchTile_4.Location = new System.Drawing.Point(-8, -8);
-            this.SwitchTile_4.Name = "SwitchTile_4";
-            this.SwitchTile_4.Size = new System.Drawing.Size(169, 49);
-            this.SwitchTile_4.TabIndex = 78;
-            this.SwitchTile_4.BackColor = System.Drawing.Color.Transparent;
-            this.SwitchTile_4.Text = "";
+            SwitchTile_4.BackColor = System.Drawing.Color.Transparent;
+            SwitchTile_4.Location = new System.Drawing.Point(-8, -8);
+            SwitchTile_4.Name = "SwitchTile_4";
+            SwitchTile_4.Size = new System.Drawing.Size(169, 49);
+            SwitchTile_4.TabIndex = 78;
             // 
             // PKName_4
             // 
-            this.PKName_4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PKName_4.Location = new System.Drawing.Point(44, 2);
-            this.PKName_4.Name = "PKName_4";
-            this.PKName_4.Size = new System.Drawing.Size(87, 17);
-            this.PKName_4.TabIndex = 77;
-            this.PKName_4.BackColor = System.Drawing.Color.Transparent;
-            this.PKName_4.ForeColor = System.Drawing.Color.White;
-            this.PKName_4.Text = "";
+            PKName_4.BackColor = System.Drawing.Color.Transparent;
+            PKName_4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)0));
+            PKName_4.ForeColor = System.Drawing.Color.White;
+            PKName_4.Location = new System.Drawing.Point(44, 2);
+            PKName_4.Name = "PKName_4";
+            PKName_4.Size = new System.Drawing.Size(87, 17);
+            PKName_4.TabIndex = 77;
             // 
             // PokeIcon_4
             // 
-            this.PokeIcon_4.Location = new System.Drawing.Point(4, 0);
-            this.PokeIcon_4.Name = "PokeIcon_4";
-            this.PokeIcon_4.Size = new System.Drawing.Size(32, 32);
-            this.PokeIcon_4.BackColor = System.Drawing.Color.Transparent;
-            this.PokeIcon_4.TabStop = false;
+            PokeIcon_4.BackColor = System.Drawing.Color.Transparent;
+            PokeIcon_4.Location = new System.Drawing.Point(4, 0);
+            PokeIcon_4.Name = "PokeIcon_4";
+            PokeIcon_4.Size = new System.Drawing.Size(32, 32);
+            PokeIcon_4.TabIndex = 79;
+            PokeIcon_4.TabStop = false;
             // 
             // PKGender_4
             // 
-            this.PKGender_4.Location = new System.Drawing.Point(128, 0);
-            this.PKGender_4.Name = "PKGender_4";
-            this.PKGender_4.Size = new System.Drawing.Size(16, 16);
-            this.PKGender_4.BackColor = System.Drawing.Color.Transparent;
-            this.PKGender_4.TabStop = false;
+            PKGender_4.BackColor = System.Drawing.Color.Transparent;
+            PKGender_4.Location = new System.Drawing.Point(128, 0);
+            PKGender_4.Name = "PKGender_4";
+            PKGender_4.Size = new System.Drawing.Size(16, 16);
+            PKGender_4.TabIndex = 80;
+            PKGender_4.TabStop = false;
             // 
             // StatIcon_4
             // 
-            this.StatIcon_4.Location = new System.Drawing.Point(40, 16);
-            this.StatIcon_4.Name = "StatIcon_4";
-            this.StatIcon_4.Size = new System.Drawing.Size(16, 16);
-            this.StatIcon_4.BackColor = System.Drawing.Color.Transparent;
-            this.StatIcon_4.TabStop = false;
+            StatIcon_4.BackColor = System.Drawing.Color.Transparent;
+            StatIcon_4.Location = new System.Drawing.Point(40, 16);
+            StatIcon_4.Name = "StatIcon_4";
+            StatIcon_4.Size = new System.Drawing.Size(16, 16);
+            StatIcon_4.TabIndex = 81;
+            StatIcon_4.TabStop = false;
             // 
             // PKHP_4
             // 
-            this.PKHP_4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PKHP_4.Location = new System.Drawing.Point(56, 16);
-            this.PKHP_4.Name = "PKHP_4";
-            this.PKHP_4.Size = new System.Drawing.Size(63, 17);
-            this.PKHP_4.TabIndex = 76;
-            this.PKHP_4.BackColor = System.Drawing.Color.Transparent;
-            this.PKHP_4.ForeColor = System.Drawing.Color.White;
-            this.PKHP_4.Text = "";
-            this.PKHP_4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            PKHP_4.BackColor = System.Drawing.Color.Transparent;
+            PKHP_4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)0));
+            PKHP_4.ForeColor = System.Drawing.Color.White;
+            PKHP_4.Location = new System.Drawing.Point(56, 16);
+            PKHP_4.Name = "PKHP_4";
+            PKHP_4.Size = new System.Drawing.Size(63, 17);
+            PKHP_4.TabIndex = 76;
+            PKHP_4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // PKLevel_4
             // 
-            this.PKLevel_4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PKLevel_4.Location = new System.Drawing.Point(120, 16);
-            this.PKLevel_4.Name = "PKLevel_4";
-            this.PKLevel_4.Size = new System.Drawing.Size(31, 17);
-            this.PKLevel_4.TabIndex = 75;
-            this.PKLevel_4.BackColor = System.Drawing.Color.Transparent;
-            this.PKLevel_4.ForeColor = System.Drawing.Color.White;
-            this.PKLevel_4.Text = "";
-            this.PKLevel_4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            PKLevel_4.BackColor = System.Drawing.Color.Transparent;
+            PKLevel_4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)0));
+            PKLevel_4.ForeColor = System.Drawing.Color.White;
+            PKLevel_4.Location = new System.Drawing.Point(120, 16);
+            PKLevel_4.Name = "PKLevel_4";
+            PKLevel_4.Size = new System.Drawing.Size(31, 17);
+            PKLevel_4.TabIndex = 75;
+            PKLevel_4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // Entry_5
             // 
-            this.Entry_5.Controls.Add(this.SwitchTile_5);
-            this.Entry_5.Controls.Add(this.PKName_5);
-            this.Entry_5.Controls.Add(this.PokeIcon_5);
-            this.Entry_5.Controls.Add(this.PKGender_5);
-            this.Entry_5.Controls.Add(this.StatIcon_5);
-            this.Entry_5.Controls.Add(this.PKHP_5);
-            this.Entry_5.Controls.Add(this.PKLevel_5);
-            this.Entry_5.Location = new System.Drawing.Point(337, 40);
-            this.Entry_5.Name = "Entry_5";
-            this.Entry_5.Size = new System.Drawing.Size(150, 33);
-            this.Entry_5.TabIndex = 69;
-            this.Entry_5.TabStop = false;
-            this.Entry_5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Entry_5.BackgroundImage")));
-            this.Entry_5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            Entry_5.BackgroundImage = ((System.Drawing.Image)resources.GetObject("Entry_5.BackgroundImage"));
+            Entry_5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            Entry_5.Controls.Add(SwitchTile_5);
+            Entry_5.Controls.Add(PKName_5);
+            Entry_5.Controls.Add(PokeIcon_5);
+            Entry_5.Controls.Add(PKGender_5);
+            Entry_5.Controls.Add(StatIcon_5);
+            Entry_5.Controls.Add(PKHP_5);
+            Entry_5.Controls.Add(PKLevel_5);
+            Entry_5.Location = new System.Drawing.Point(337, 40);
+            Entry_5.Name = "Entry_5";
+            Entry_5.Size = new System.Drawing.Size(150, 33);
+            Entry_5.TabIndex = 69;
             // 
             // SwitchTile_5
             // 
-            this.SwitchTile_5.Location = new System.Drawing.Point(-8, -8);
-            this.SwitchTile_5.Name = "SwitchTile_5";
-            this.SwitchTile_5.Size = new System.Drawing.Size(169, 49);
-            this.SwitchTile_5.TabIndex = 73;
-            this.SwitchTile_5.BackColor = System.Drawing.Color.Transparent;
-            this.SwitchTile_5.Text = "";
+            SwitchTile_5.BackColor = System.Drawing.Color.Transparent;
+            SwitchTile_5.Location = new System.Drawing.Point(-8, -8);
+            SwitchTile_5.Name = "SwitchTile_5";
+            SwitchTile_5.Size = new System.Drawing.Size(169, 49);
+            SwitchTile_5.TabIndex = 73;
             // 
             // PKName_5
             // 
-            this.PKName_5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PKName_5.Location = new System.Drawing.Point(44, 2);
-            this.PKName_5.Name = "PKName_5";
-            this.PKName_5.Size = new System.Drawing.Size(87, 17);
-            this.PKName_5.TabIndex = 72;
-            this.PKName_5.BackColor = System.Drawing.Color.Transparent;
-            this.PKName_5.ForeColor = System.Drawing.Color.White;
-            this.PKName_5.Text = "";
+            PKName_5.BackColor = System.Drawing.Color.Transparent;
+            PKName_5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)0));
+            PKName_5.ForeColor = System.Drawing.Color.White;
+            PKName_5.Location = new System.Drawing.Point(44, 2);
+            PKName_5.Name = "PKName_5";
+            PKName_5.Size = new System.Drawing.Size(87, 17);
+            PKName_5.TabIndex = 72;
             // 
             // PokeIcon_5
             // 
-            this.PokeIcon_5.Location = new System.Drawing.Point(4, 0);
-            this.PokeIcon_5.Name = "PokeIcon_5";
-            this.PokeIcon_5.Size = new System.Drawing.Size(32, 32);
-            this.PokeIcon_5.BackColor = System.Drawing.Color.Transparent;
-            this.PokeIcon_5.TabStop = false;
+            PokeIcon_5.BackColor = System.Drawing.Color.Transparent;
+            PokeIcon_5.Location = new System.Drawing.Point(4, 0);
+            PokeIcon_5.Name = "PokeIcon_5";
+            PokeIcon_5.Size = new System.Drawing.Size(32, 32);
+            PokeIcon_5.TabIndex = 74;
+            PokeIcon_5.TabStop = false;
             // 
             // PKGender_5
             // 
-            this.PKGender_5.Location = new System.Drawing.Point(128, 0);
-            this.PKGender_5.Name = "PKGender_5";
-            this.PKGender_5.Size = new System.Drawing.Size(16, 16);
-            this.PKGender_5.BackColor = System.Drawing.Color.Transparent;
-            this.PKGender_5.TabStop = false;
+            PKGender_5.BackColor = System.Drawing.Color.Transparent;
+            PKGender_5.Location = new System.Drawing.Point(128, 0);
+            PKGender_5.Name = "PKGender_5";
+            PKGender_5.Size = new System.Drawing.Size(16, 16);
+            PKGender_5.TabIndex = 75;
+            PKGender_5.TabStop = false;
             // 
             // StatIcon_5
             // 
-            this.StatIcon_5.Location = new System.Drawing.Point(40, 16);
-            this.StatIcon_5.Name = "StatIcon_5";
-            this.StatIcon_5.Size = new System.Drawing.Size(16, 16);
-            this.StatIcon_5.BackColor = System.Drawing.Color.Transparent;
-            this.StatIcon_5.TabStop = false;
+            StatIcon_5.BackColor = System.Drawing.Color.Transparent;
+            StatIcon_5.Location = new System.Drawing.Point(40, 16);
+            StatIcon_5.Name = "StatIcon_5";
+            StatIcon_5.Size = new System.Drawing.Size(16, 16);
+            StatIcon_5.TabIndex = 76;
+            StatIcon_5.TabStop = false;
             // 
             // PKHP_5
             // 
-            this.PKHP_5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PKHP_5.Location = new System.Drawing.Point(56, 16);
-            this.PKHP_5.Name = "PKHP_5";
-            this.PKHP_5.Size = new System.Drawing.Size(63, 17);
-            this.PKHP_5.TabIndex = 71;
-            this.PKHP_5.BackColor = System.Drawing.Color.Transparent;
-            this.PKHP_5.ForeColor = System.Drawing.Color.White;
-            this.PKHP_5.Text = "";
-            this.PKHP_5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            PKHP_5.BackColor = System.Drawing.Color.Transparent;
+            PKHP_5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)0));
+            PKHP_5.ForeColor = System.Drawing.Color.White;
+            PKHP_5.Location = new System.Drawing.Point(56, 16);
+            PKHP_5.Name = "PKHP_5";
+            PKHP_5.Size = new System.Drawing.Size(63, 17);
+            PKHP_5.TabIndex = 71;
+            PKHP_5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // PKLevel_5
             // 
-            this.PKLevel_5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PKLevel_5.Location = new System.Drawing.Point(120, 16);
-            this.PKLevel_5.Name = "PKLevel_5";
-            this.PKLevel_5.Size = new System.Drawing.Size(31, 17);
-            this.PKLevel_5.TabIndex = 70;
-            this.PKLevel_5.BackColor = System.Drawing.Color.Transparent;
-            this.PKLevel_5.ForeColor = System.Drawing.Color.White;
-            this.PKLevel_5.Text = "";
-            this.PKLevel_5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            PKLevel_5.BackColor = System.Drawing.Color.Transparent;
+            PKLevel_5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)0));
+            PKLevel_5.ForeColor = System.Drawing.Color.White;
+            PKLevel_5.Location = new System.Drawing.Point(120, 16);
+            PKLevel_5.Name = "PKLevel_5";
+            PKLevel_5.Size = new System.Drawing.Size(31, 17);
+            PKLevel_5.TabIndex = 70;
+            PKLevel_5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // Switch
             // 
-            this.Switch.Location = new System.Drawing.Point(348, 90);
-            this.Switch.Name = "Switch";
-            this.Switch.Size = new System.Drawing.Size(150, 25);
-            this.Switch.TabIndex = 19;
-            this.Switch.Text = "&Switch";
-            this.Switch.UseVisualStyleBackColor = true;
+            Switch.Location = new System.Drawing.Point(348, 90);
+            Switch.Name = "Switch";
+            Switch.Size = new System.Drawing.Size(150, 25);
+            Switch.TabIndex = 19;
+            Switch.Text = "&Switch";
+            Switch.UseVisualStyleBackColor = true;
             // 
             // picStatus_2
             // 
-            this.picStatus_2.Controls.Add(this.HPBar_2);
-            this.picStatus_2.Controls.Add(this.HPBar_4);
-            this.picStatus_2.Controls.Add(this.PokeCond_2);
-            this.picStatus_2.Controls.Add(this.PokeCond_4);
-            this.picStatus_2.Controls.Add(this.SelPKMN_4);
-            this.picStatus_2.Controls.Add(this.SelPKMN_2);
-            this.picStatus_2.Controls.Add(this.PokeText_4);
-            this.picStatus_2.Controls.Add(this.PokeText_2);
-            this.picStatus_2.Location = new System.Drawing.Point(0, 224);
-            this.picStatus_2.Name = "picStatus_2";
-            this.picStatus_2.Size = new System.Drawing.Size(197, 81);
-            this.picStatus_2.TabIndex = 26;
+            picStatus_2.Controls.Add(HPBar_2);
+            picStatus_2.Controls.Add(HPBar_4);
+            picStatus_2.Controls.Add(PokeCond_2);
+            picStatus_2.Controls.Add(PokeCond_4);
+            picStatus_2.Controls.Add(SelPKMN_4);
+            picStatus_2.Controls.Add(SelPKMN_2);
+            picStatus_2.Controls.Add(PokeText_4);
+            picStatus_2.Controls.Add(PokeText_2);
+            picStatus_2.Location = new System.Drawing.Point(0, 224);
+            picStatus_2.Name = "picStatus_2";
+            picStatus_2.Size = new System.Drawing.Size(197, 81);
+            picStatus_2.TabIndex = 26;
             // 
             // HPBar_2
             // 
-            this.HPBar_2.Location = new System.Drawing.Point(13, 58);
-            this.HPBar_2.Name = "HPBar_2";
-            this.HPBar_2.Size = new System.Drawing.Size(177, 18);
-            this.HPBar_2.TabIndex = 27;
+            HPBar_2.Location = new System.Drawing.Point(13, 58);
+            HPBar_2.Name = "HPBar_2";
+            HPBar_2.Size = new System.Drawing.Size(177, 18);
+            HPBar_2.TabIndex = 27;
             // 
             // HPBar_4
             // 
-            this.HPBar_4.Location = new System.Drawing.Point(5, 18);
-            this.HPBar_4.Name = "HPBar_4";
-            this.HPBar_4.Size = new System.Drawing.Size(177, 18);
-            this.HPBar_4.TabIndex = 29;
+            HPBar_4.Location = new System.Drawing.Point(5, 18);
+            HPBar_4.Name = "HPBar_4";
+            HPBar_4.Size = new System.Drawing.Size(177, 18);
+            HPBar_4.TabIndex = 29;
             // 
             // PokeCond_2
             // 
-            this.PokeCond_2.Location = new System.Drawing.Point(173, 42);
-            this.PokeCond_2.Name = "PokeCond_2";
-            this.PokeCond_2.Size = new System.Drawing.Size(16, 16);
-            this.PokeCond_2.BackColor = System.Drawing.Color.Transparent;
-            this.PokeCond_2.TabStop = false;
+            PokeCond_2.BackColor = System.Drawing.Color.Transparent;
+            PokeCond_2.Location = new System.Drawing.Point(173, 42);
+            PokeCond_2.Name = "PokeCond_2";
+            PokeCond_2.Size = new System.Drawing.Size(16, 16);
+            PokeCond_2.TabIndex = 30;
+            PokeCond_2.TabStop = false;
             // 
             // PokeCond_4
             // 
-            this.PokeCond_4.Location = new System.Drawing.Point(165, 2);
-            this.PokeCond_4.Name = "PokeCond_4";
-            this.PokeCond_4.Size = new System.Drawing.Size(16, 16);
-            this.PokeCond_4.BackColor = System.Drawing.Color.Transparent;
-            this.PokeCond_4.TabStop = false;
+            PokeCond_4.BackColor = System.Drawing.Color.Transparent;
+            PokeCond_4.Location = new System.Drawing.Point(165, 2);
+            PokeCond_4.Name = "PokeCond_4";
+            PokeCond_4.Size = new System.Drawing.Size(16, 16);
+            PokeCond_4.TabIndex = 31;
+            PokeCond_4.TabStop = false;
             // 
             // SelPKMN_4
             // 
-            this.SelPKMN_4.Location = new System.Drawing.Point(4, 2);
-            this.SelPKMN_4.Name = "SelPKMN_4";
-            this.SelPKMN_4.Size = new System.Drawing.Size(180, 36);
-            this.SelPKMN_4.Visible = false;
-            this.SelPKMN_4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SelPKMN_4.BackColor = System.Drawing.Color.Transparent;
+            SelPKMN_4.BackColor = System.Drawing.Color.Transparent;
+            SelPKMN_4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            SelPKMN_4.Location = new System.Drawing.Point(4, 2);
+            SelPKMN_4.Name = "SelPKMN_4";
+            SelPKMN_4.Size = new System.Drawing.Size(180, 36);
+            SelPKMN_4.TabIndex = 32;
+            SelPKMN_4.Visible = false;
             // 
             // SelPKMN_2
             // 
-            this.SelPKMN_2.Location = new System.Drawing.Point(12, 42);
-            this.SelPKMN_2.Name = "SelPKMN_2";
-            this.SelPKMN_2.Size = new System.Drawing.Size(180, 36);
-            this.SelPKMN_2.Visible = false;
-            this.SelPKMN_2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SelPKMN_2.BackColor = System.Drawing.Color.Transparent;
+            SelPKMN_2.BackColor = System.Drawing.Color.Transparent;
+            SelPKMN_2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            SelPKMN_2.Location = new System.Drawing.Point(12, 42);
+            SelPKMN_2.Name = "SelPKMN_2";
+            SelPKMN_2.Size = new System.Drawing.Size(180, 36);
+            SelPKMN_2.TabIndex = 33;
+            SelPKMN_2.Visible = false;
             // 
             // PokeText_4
             // 
-            this.PokeText_4.Location = new System.Drawing.Point(7, 4);
-            this.PokeText_4.Name = "PokeText_4";
-            this.PokeText_4.Size = new System.Drawing.Size(173, 17);
-            this.PokeText_4.TabIndex = 30;
-            this.PokeText_4.BackColor = System.Drawing.Color.Transparent;
-            this.PokeText_4.Text = "";
+            PokeText_4.BackColor = System.Drawing.Color.Transparent;
+            PokeText_4.Location = new System.Drawing.Point(7, 4);
+            PokeText_4.Name = "PokeText_4";
+            PokeText_4.Size = new System.Drawing.Size(173, 17);
+            PokeText_4.TabIndex = 30;
             // 
             // PokeText_2
             // 
-            this.PokeText_2.Location = new System.Drawing.Point(15, 44);
-            this.PokeText_2.Name = "PokeText_2";
-            this.PokeText_2.Size = new System.Drawing.Size(173, 17);
-            this.PokeText_2.TabIndex = 28;
-            this.PokeText_2.BackColor = System.Drawing.Color.Transparent;
-            this.PokeText_2.Text = "";
+            PokeText_2.BackColor = System.Drawing.Color.Transparent;
+            PokeText_2.Location = new System.Drawing.Point(15, 44);
+            PokeText_2.Name = "PokeText_2";
+            PokeText_2.Size = new System.Drawing.Size(173, 17);
+            PokeText_2.TabIndex = 28;
             // 
             // picStatus_1
             // 
-            this.picStatus_1.Controls.Add(this.HPBar_3);
-            this.picStatus_1.Controls.Add(this.HPBar_1);
-            this.picStatus_1.Controls.Add(this.PokeCond_3);
-            this.picStatus_1.Controls.Add(this.SelPKMN_3);
-            this.picStatus_1.Controls.Add(this.PokeCond_1);
-            this.picStatus_1.Controls.Add(this.SelPKMN_1);
-            this.picStatus_1.Controls.Add(this.PokeText_1);
-            this.picStatus_1.Controls.Add(this.PokeText_3);
-            this.picStatus_1.Location = new System.Drawing.Point(56, 26);
-            this.picStatus_1.Name = "picStatus_1";
-            this.picStatus_1.Size = new System.Drawing.Size(197, 81);
-            this.picStatus_1.TabIndex = 31;
+            picStatus_1.Controls.Add(HPBar_3);
+            picStatus_1.Controls.Add(HPBar_1);
+            picStatus_1.Controls.Add(PokeCond_3);
+            picStatus_1.Controls.Add(SelPKMN_3);
+            picStatus_1.Controls.Add(PokeCond_1);
+            picStatus_1.Controls.Add(SelPKMN_1);
+            picStatus_1.Controls.Add(PokeText_1);
+            picStatus_1.Controls.Add(PokeText_3);
+            picStatus_1.Location = new System.Drawing.Point(56, 26);
+            picStatus_1.Name = "picStatus_1";
+            picStatus_1.Size = new System.Drawing.Size(197, 81);
+            picStatus_1.TabIndex = 31;
             // 
             // HPBar_3
             // 
-            this.HPBar_3.Location = new System.Drawing.Point(13, 58);
-            this.HPBar_3.Name = "HPBar_3";
-            this.HPBar_3.Size = new System.Drawing.Size(177, 18);
-            this.HPBar_3.TabIndex = 32;
+            HPBar_3.Location = new System.Drawing.Point(13, 58);
+            HPBar_3.Name = "HPBar_3";
+            HPBar_3.Size = new System.Drawing.Size(177, 18);
+            HPBar_3.TabIndex = 32;
             // 
             // HPBar_1
             // 
-            this.HPBar_1.Location = new System.Drawing.Point(5, 18);
-            this.HPBar_1.Name = "HPBar_1";
-            this.HPBar_1.Size = new System.Drawing.Size(177, 18);
-            this.HPBar_1.TabIndex = 33;
+            HPBar_1.Location = new System.Drawing.Point(5, 18);
+            HPBar_1.Name = "HPBar_1";
+            HPBar_1.Size = new System.Drawing.Size(177, 18);
+            HPBar_1.TabIndex = 33;
             // 
             // PokeCond_3
             // 
-            this.PokeCond_3.Location = new System.Drawing.Point(173, 42);
-            this.PokeCond_3.Name = "PokeCond_3";
-            this.PokeCond_3.Size = new System.Drawing.Size(16, 16);
-            this.PokeCond_3.BackColor = System.Drawing.Color.Transparent;
-            this.PokeCond_3.TabStop = false;
+            PokeCond_3.BackColor = System.Drawing.Color.Transparent;
+            PokeCond_3.Location = new System.Drawing.Point(173, 42);
+            PokeCond_3.Name = "PokeCond_3";
+            PokeCond_3.Size = new System.Drawing.Size(16, 16);
+            PokeCond_3.TabIndex = 34;
+            PokeCond_3.TabStop = false;
             // 
             // SelPKMN_3
             // 
-            this.SelPKMN_3.Location = new System.Drawing.Point(12, 42);
-            this.SelPKMN_3.Name = "SelPKMN_3";
-            this.SelPKMN_3.Size = new System.Drawing.Size(180, 36);
-            this.SelPKMN_3.Visible = false;
-            this.SelPKMN_3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SelPKMN_3.BackColor = System.Drawing.Color.Transparent;
+            SelPKMN_3.BackColor = System.Drawing.Color.Transparent;
+            SelPKMN_3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            SelPKMN_3.Location = new System.Drawing.Point(12, 42);
+            SelPKMN_3.Name = "SelPKMN_3";
+            SelPKMN_3.Size = new System.Drawing.Size(180, 36);
+            SelPKMN_3.TabIndex = 35;
+            SelPKMN_3.Visible = false;
             // 
             // PokeCond_1
             // 
-            this.PokeCond_1.Location = new System.Drawing.Point(165, 2);
-            this.PokeCond_1.Name = "PokeCond_1";
-            this.PokeCond_1.Size = new System.Drawing.Size(16, 16);
-            this.PokeCond_1.BackColor = System.Drawing.Color.Transparent;
-            this.PokeCond_1.TabStop = false;
+            PokeCond_1.BackColor = System.Drawing.Color.Transparent;
+            PokeCond_1.Location = new System.Drawing.Point(165, 2);
+            PokeCond_1.Name = "PokeCond_1";
+            PokeCond_1.Size = new System.Drawing.Size(16, 16);
+            PokeCond_1.TabIndex = 36;
+            PokeCond_1.TabStop = false;
             // 
             // SelPKMN_1
             // 
-            this.SelPKMN_1.Location = new System.Drawing.Point(4, 2);
-            this.SelPKMN_1.Name = "SelPKMN_1";
-            this.SelPKMN_1.Size = new System.Drawing.Size(180, 36);
-            this.SelPKMN_1.Visible = false;
-            this.SelPKMN_1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SelPKMN_1.BackColor = System.Drawing.Color.Transparent;
+            SelPKMN_1.BackColor = System.Drawing.Color.Transparent;
+            SelPKMN_1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            SelPKMN_1.Location = new System.Drawing.Point(4, 2);
+            SelPKMN_1.Name = "SelPKMN_1";
+            SelPKMN_1.Size = new System.Drawing.Size(180, 36);
+            SelPKMN_1.TabIndex = 37;
+            SelPKMN_1.Visible = false;
             // 
             // PokeText_1
             // 
-            this.PokeText_1.Location = new System.Drawing.Point(7, 4);
-            this.PokeText_1.Name = "PokeText_1";
-            this.PokeText_1.Size = new System.Drawing.Size(173, 17);
-            this.PokeText_1.TabIndex = 34;
-            this.PokeText_1.BackColor = System.Drawing.Color.Transparent;
-            this.PokeText_1.Text = "";
+            PokeText_1.BackColor = System.Drawing.Color.Transparent;
+            PokeText_1.Location = new System.Drawing.Point(7, 4);
+            PokeText_1.Name = "PokeText_1";
+            PokeText_1.Size = new System.Drawing.Size(173, 17);
+            PokeText_1.TabIndex = 34;
             // 
             // PokeText_3
             // 
-            this.PokeText_3.Location = new System.Drawing.Point(15, 44);
-            this.PokeText_3.Name = "PokeText_3";
-            this.PokeText_3.Size = new System.Drawing.Size(173, 17);
-            this.PokeText_3.TabIndex = 35;
-            this.PokeText_3.BackColor = System.Drawing.Color.Transparent;
-            this.PokeText_3.Text = "";
+            PokeText_3.BackColor = System.Drawing.Color.Transparent;
+            PokeText_3.Location = new System.Drawing.Point(15, 44);
+            PokeText_3.Name = "PokeText_3";
+            PokeText_3.Size = new System.Drawing.Size(173, 17);
+            PokeText_3.TabIndex = 35;
             // 
             // ReplayControls
             // 
-            this.ReplayControls.Controls.Add(this.cmdStop);
-            this.ReplayControls.Controls.Add(this.cmdPlay);
-            this.ReplayControls.Controls.Add(this.cmdPause);
-            this.ReplayControls.Controls.Add(this.cmdNext);
-            this.ReplayControls.Controls.Add(this.cmdSwitchTeam);
-            this.ReplayControls.Controls.Add(this.cmdQuit);
-            this.ReplayControls.Controls.Add(this.Slider1);
-            this.ReplayControls.Controls.Add(this.WaitList);
-            this.ReplayControls.Location = new System.Drawing.Point(252, 232);
-            this.ReplayControls.Name = "ReplayControls";
-            this.ReplayControls.Size = new System.Drawing.Size(281, 73);
-            this.ReplayControls.TabIndex = 43;
-            this.ReplayControls.Visible = false;
+            ReplayControls.Controls.Add(cmdStop);
+            ReplayControls.Controls.Add(cmdPlay);
+            ReplayControls.Controls.Add(cmdPause);
+            ReplayControls.Controls.Add(cmdNext);
+            ReplayControls.Controls.Add(cmdSwitchTeam);
+            ReplayControls.Controls.Add(cmdQuit);
+            ReplayControls.Controls.Add(Slider1);
+            ReplayControls.Controls.Add(WaitList);
+            ReplayControls.Location = new System.Drawing.Point(252, 232);
+            ReplayControls.Name = "ReplayControls";
+            ReplayControls.Size = new System.Drawing.Size(281, 73);
+            ReplayControls.TabIndex = 43;
+            ReplayControls.Visible = false;
             // 
             // cmdStop
             // 
-            this.cmdStop.Location = new System.Drawing.Point(64, 8);
-            this.cmdStop.Name = "cmdStop";
-            this.cmdStop.Size = new System.Drawing.Size(25, 25);
-            this.cmdStop.TabIndex = 50;
-            this.cmdStop.Enabled = false;
-            this.cmdStop.Image = ((System.Drawing.Image)(resources.GetObject("cmdStop.Image")));
-            this.cmdStop.Text = "";
-            this.cmdStop.UseVisualStyleBackColor = true;
+            cmdStop.Enabled = false;
+            cmdStop.Image = ((System.Drawing.Image)resources.GetObject("cmdStop.Image"));
+            cmdStop.Location = new System.Drawing.Point(64, 8);
+            cmdStop.Name = "cmdStop";
+            cmdStop.Size = new System.Drawing.Size(25, 25);
+            cmdStop.TabIndex = 50;
+            cmdStop.UseVisualStyleBackColor = true;
             // 
             // cmdPlay
             // 
-            this.cmdPlay.Location = new System.Drawing.Point(0, 8);
-            this.cmdPlay.Name = "cmdPlay";
-            this.cmdPlay.Size = new System.Drawing.Size(25, 25);
-            this.cmdPlay.TabIndex = 49;
-            this.cmdPlay.Enabled = false;
-            this.cmdPlay.Image = ((System.Drawing.Image)(resources.GetObject("cmdPlay.Image")));
-            this.cmdPlay.Text = "";
-            this.cmdPlay.UseVisualStyleBackColor = true;
+            cmdPlay.Enabled = false;
+            cmdPlay.Image = ((System.Drawing.Image)resources.GetObject("cmdPlay.Image"));
+            cmdPlay.Location = new System.Drawing.Point(0, 8);
+            cmdPlay.Name = "cmdPlay";
+            cmdPlay.Size = new System.Drawing.Size(25, 25);
+            cmdPlay.TabIndex = 49;
+            cmdPlay.UseVisualStyleBackColor = true;
             // 
             // cmdPause
             // 
-            this.cmdPause.Location = new System.Drawing.Point(32, 8);
-            this.cmdPause.Name = "cmdPause";
-            this.cmdPause.Size = new System.Drawing.Size(25, 25);
-            this.cmdPause.TabIndex = 48;
-            this.cmdPause.Enabled = false;
-            this.cmdPause.Image = ((System.Drawing.Image)(resources.GetObject("cmdPause.Image")));
-            this.cmdPause.Text = "";
-            this.cmdPause.UseVisualStyleBackColor = true;
+            cmdPause.Enabled = false;
+            cmdPause.Image = ((System.Drawing.Image)resources.GetObject("cmdPause.Image"));
+            cmdPause.Location = new System.Drawing.Point(32, 8);
+            cmdPause.Name = "cmdPause";
+            cmdPause.Size = new System.Drawing.Size(25, 25);
+            cmdPause.TabIndex = 48;
+            cmdPause.UseVisualStyleBackColor = true;
             // 
             // cmdNext
             // 
-            this.cmdNext.Location = new System.Drawing.Point(0, 40);
-            this.cmdNext.Name = "cmdNext";
-            this.cmdNext.Size = new System.Drawing.Size(89, 25);
-            this.cmdNext.TabIndex = 46;
-            this.cmdNext.Enabled = false;
-            this.cmdNext.Text = "Next";
-            this.cmdNext.UseVisualStyleBackColor = true;
+            cmdNext.Enabled = false;
+            cmdNext.Location = new System.Drawing.Point(0, 40);
+            cmdNext.Name = "cmdNext";
+            cmdNext.Size = new System.Drawing.Size(89, 25);
+            cmdNext.TabIndex = 46;
+            cmdNext.Text = "Next";
+            cmdNext.UseVisualStyleBackColor = true;
             // 
             // cmdSwitchTeam
             // 
-            this.cmdSwitchTeam.Location = new System.Drawing.Point(96, 40);
-            this.cmdSwitchTeam.Name = "cmdSwitchTeam";
-            this.cmdSwitchTeam.Size = new System.Drawing.Size(89, 25);
-            this.cmdSwitchTeam.TabIndex = 45;
-            this.cmdSwitchTeam.Enabled = false;
-            this.cmdSwitchTeam.Text = "&Switch Team";
-            this.cmdSwitchTeam.UseVisualStyleBackColor = true;
+            cmdSwitchTeam.Enabled = false;
+            cmdSwitchTeam.Location = new System.Drawing.Point(96, 40);
+            cmdSwitchTeam.Name = "cmdSwitchTeam";
+            cmdSwitchTeam.Size = new System.Drawing.Size(89, 25);
+            cmdSwitchTeam.TabIndex = 45;
+            cmdSwitchTeam.Text = "&Switch Team";
+            cmdSwitchTeam.UseVisualStyleBackColor = true;
             // 
             // cmdQuit
             // 
-            this.cmdQuit.Location = new System.Drawing.Point(192, 40);
-            this.cmdQuit.Name = "cmdQuit";
-            this.cmdQuit.Size = new System.Drawing.Size(89, 25);
-            this.cmdQuit.TabIndex = 44;
-            this.cmdQuit.Text = "Quit";
-            this.cmdQuit.UseVisualStyleBackColor = true;
+            cmdQuit.Location = new System.Drawing.Point(192, 40);
+            cmdQuit.Name = "cmdQuit";
+            cmdQuit.Size = new System.Drawing.Size(89, 25);
+            cmdQuit.TabIndex = 44;
+            cmdQuit.Text = "Quit";
+            cmdQuit.UseVisualStyleBackColor = true;
             // 
             // Slider1
             // 
-            this.Slider1.AutoSize = false;
-            this.Slider1.Location = new System.Drawing.Point(96, 0);
-            this.Slider1.Name = "Slider1";
-            this.Slider1.Size = new System.Drawing.Size(185, 33);
-            this.Slider1.TabIndex = 47;
-            this.toolTip.SetToolTip(this.Slider1, "Move Interval");
-            this.Slider1.LargeChange = 4;
-            this.Slider1.Maximum = 10;
-            this.Slider1.Minimum = 1;
-            this.Slider1.SmallChange = 1;
-            this.Slider1.TickFrequency = 1;
-            this.Slider1.Value = 5;
+            Slider1.AutoSize = false;
+            Slider1.LargeChange = 4;
+            Slider1.Location = new System.Drawing.Point(96, 0);
+            Slider1.Minimum = 1;
+            Slider1.Name = "Slider1";
+            Slider1.Size = new System.Drawing.Size(185, 33);
+            Slider1.TabIndex = 47;
+            toolTip.SetToolTip(Slider1, "Move Interval");
+            Slider1.Value = 5;
             // 
             // WaitList
             // 
-            this.WaitList.Location = new System.Drawing.Point(0, 40);
-            this.WaitList.Name = "WaitList";
-            this.WaitList.Size = new System.Drawing.Size(89, 25);
-            this.WaitList.TabIndex = 51;
-            this.WaitList.Visible = false;
-            this.WaitList.BackColor = System.Drawing.Color.Transparent;
-            this.WaitList.Text = "Wait Time:  5 seconds";
+            WaitList.BackColor = System.Drawing.Color.Transparent;
+            WaitList.Location = new System.Drawing.Point(0, 40);
+            WaitList.Name = "WaitList";
+            WaitList.Size = new System.Drawing.Size(89, 25);
+            WaitList.TabIndex = 51;
+            WaitList.Text = "Wait Time:  5 seconds";
+            WaitList.Visible = false;
             // 
             // OldSwitchFrame
             // 
-            this.OldSwitchFrame.Controls.Add(this.OldPokeList);
-            this.OldSwitchFrame.Controls.Add(this.Picture2);
-            this.OldSwitchFrame.Location = new System.Drawing.Point(216, 328);
-            this.OldSwitchFrame.Name = "OldSwitchFrame";
-            this.OldSwitchFrame.Size = new System.Drawing.Size(313, 113);
-            this.OldSwitchFrame.TabIndex = 52;
-            this.OldSwitchFrame.Visible = false;
-            this.OldSwitchFrame.TabStop = false;
-            this.OldSwitchFrame.Text = "Pokémon";
+            OldSwitchFrame.Controls.Add(OldPokeList);
+            OldSwitchFrame.Controls.Add(Picture2);
+            OldSwitchFrame.Location = new System.Drawing.Point(216, 328);
+            OldSwitchFrame.Name = "OldSwitchFrame";
+            OldSwitchFrame.Size = new System.Drawing.Size(313, 113);
+            OldSwitchFrame.TabIndex = 52;
+            OldSwitchFrame.TabStop = false;
+            OldSwitchFrame.Text = "Pokémon";
+            OldSwitchFrame.Visible = false;
             // 
             // OldPokeList
             // 
-            this.OldPokeList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-                        this.OldPokeList_Col1,
-                        this.OldPokeList_Col2});
-            this.OldPokeList.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.OldPokeList.FullRowSelect = true;
-            this.OldPokeList.GridLines = true;
-            this.OldPokeList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.OldPokeList.HideSelection = false;
-            this.OldPokeList.LabelEdit = true;
-            this.OldPokeList.MultiSelect = false;
-            this.OldPokeList.Location = new System.Drawing.Point(8, 16);
-            this.OldPokeList.Name = "OldPokeList";
-            this.OldPokeList.Size = new System.Drawing.Size(297, 57);
-            this.OldPokeList.TabIndex = 66;
-            this.OldPokeList.UseCompatibleStateImageBehavior = false;
-            this.OldPokeList.View = System.Windows.Forms.View.Details;
+            OldPokeList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { OldPokeList_Col1, OldPokeList_Col2 });
+            OldPokeList.FullRowSelect = true;
+            OldPokeList.GridLines = true;
+            OldPokeList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            OldPokeList.LabelEdit = true;
+            OldPokeList.Location = new System.Drawing.Point(8, 16);
+            OldPokeList.MultiSelect = false;
+            OldPokeList.Name = "OldPokeList";
+            OldPokeList.Size = new System.Drawing.Size(297, 57);
+            OldPokeList.TabIndex = 66;
+            OldPokeList.UseCompatibleStateImageBehavior = false;
+            OldPokeList.View = System.Windows.Forms.View.Details;
             // 
             // OldPokeList_Col1
             // 
-            this.OldPokeList_Col1.Text = "Name";
-            this.OldPokeList_Col1.Width = 169;
+            OldPokeList_Col1.Name = "OldPokeList_Col1";
+            OldPokeList_Col1.Text = "Name";
+            OldPokeList_Col1.Width = 169;
             // 
             // OldPokeList_Col2
             // 
-            this.OldPokeList_Col2.Text = "HP";
-            this.OldPokeList_Col2.Width = 169;
+            OldPokeList_Col2.Name = "OldPokeList_Col2";
+            OldPokeList_Col2.Text = "HP";
+            OldPokeList_Col2.Width = 169;
             // 
             // Picture2
             // 
-            this.Picture2.Controls.Add(this.cmdOldCancel);
-            this.Picture2.Controls.Add(this.OldSwitch);
-            this.Picture2.Location = new System.Drawing.Point(8, 16);
-            this.Picture2.Name = "Picture2";
-            this.Picture2.Size = new System.Drawing.Size(297, 89);
-            this.Picture2.TabIndex = 64;
+            Picture2.Controls.Add(cmdOldCancel);
+            Picture2.Controls.Add(OldSwitch);
+            Picture2.Location = new System.Drawing.Point(8, 16);
+            Picture2.Name = "Picture2";
+            Picture2.Size = new System.Drawing.Size(297, 89);
+            Picture2.TabIndex = 64;
             // 
             // cmdOldCancel
             // 
-            this.cmdOldCancel.Location = new System.Drawing.Point(0, 64);
-            this.cmdOldCancel.Name = "cmdOldCancel";
-            this.cmdOldCancel.Size = new System.Drawing.Size(121, 25);
-            this.cmdOldCancel.TabIndex = 67;
-            this.cmdOldCancel.Visible = false;
-            this.cmdOldCancel.Text = "&Cancel";
-            this.cmdOldCancel.UseVisualStyleBackColor = true;
+            cmdOldCancel.Location = new System.Drawing.Point(0, 64);
+            cmdOldCancel.Name = "cmdOldCancel";
+            cmdOldCancel.Size = new System.Drawing.Size(121, 25);
+            cmdOldCancel.TabIndex = 67;
+            cmdOldCancel.Text = "&Cancel";
+            cmdOldCancel.UseVisualStyleBackColor = true;
+            cmdOldCancel.Visible = false;
             // 
             // OldSwitch
             // 
-            this.OldSwitch.Location = new System.Drawing.Point(128, 64);
-            this.OldSwitch.Name = "OldSwitch";
-            this.OldSwitch.Size = new System.Drawing.Size(169, 25);
-            this.OldSwitch.TabIndex = 65;
-            this.OldSwitch.Visible = false;
-            this.OldSwitch.Text = "&Switch";
-            this.OldSwitch.UseVisualStyleBackColor = true;
+            OldSwitch.Location = new System.Drawing.Point(128, 64);
+            OldSwitch.Name = "OldSwitch";
+            OldSwitch.Size = new System.Drawing.Size(169, 25);
+            OldSwitch.TabIndex = 65;
+            OldSwitch.Text = "&Switch";
+            OldSwitch.UseVisualStyleBackColor = true;
+            OldSwitch.Visible = false;
             // 
             // OldAttackFrame
             // 
-            this.OldAttackFrame.Controls.Add(this.Picture1);
-            this.OldAttackFrame.Location = new System.Drawing.Point(16, 328);
-            this.OldAttackFrame.Name = "OldAttackFrame";
-            this.OldAttackFrame.Size = new System.Drawing.Size(185, 113);
-            this.OldAttackFrame.TabIndex = 53;
-            this.OldAttackFrame.Visible = false;
-            this.OldAttackFrame.TabStop = false;
-            this.OldAttackFrame.Text = "Attacks";
+            OldAttackFrame.Controls.Add(Picture1);
+            OldAttackFrame.Location = new System.Drawing.Point(16, 328);
+            OldAttackFrame.Name = "OldAttackFrame";
+            OldAttackFrame.Size = new System.Drawing.Size(185, 113);
+            OldAttackFrame.TabIndex = 53;
+            OldAttackFrame.TabStop = false;
+            OldAttackFrame.Text = "Attacks";
+            OldAttackFrame.Visible = false;
             // 
             // Picture1
             // 
-            this.Picture1.Controls.Add(this.OldAttack_0);
-            this.Picture1.Controls.Add(this.OldAttack_1);
-            this.Picture1.Controls.Add(this.OldAttack_2);
-            this.Picture1.Controls.Add(this.OldAttack_3);
-            this.Picture1.Controls.Add(this.OldAttackButton);
-            this.Picture1.Controls.Add(this.OldPP_0);
-            this.Picture1.Controls.Add(this.OldPP_1);
-            this.Picture1.Controls.Add(this.OldPP_2);
-            this.Picture1.Controls.Add(this.OldPP_3);
-            this.Picture1.Location = new System.Drawing.Point(8, 16);
-            this.Picture1.Name = "Picture1";
-            this.Picture1.Size = new System.Drawing.Size(169, 89);
-            this.Picture1.TabIndex = 54;
+            Picture1.Controls.Add(OldAttack_0);
+            Picture1.Controls.Add(OldAttack_1);
+            Picture1.Controls.Add(OldAttack_2);
+            Picture1.Controls.Add(OldAttack_3);
+            Picture1.Controls.Add(OldAttackButton);
+            Picture1.Controls.Add(OldPP_0);
+            Picture1.Controls.Add(OldPP_1);
+            Picture1.Controls.Add(OldPP_2);
+            Picture1.Controls.Add(OldPP_3);
+            Picture1.Location = new System.Drawing.Point(8, 16);
+            Picture1.Name = "Picture1";
+            Picture1.Size = new System.Drawing.Size(169, 89);
+            Picture1.TabIndex = 54;
             // 
             // OldAttack_0
             // 
-            this.OldAttack_0.Location = new System.Drawing.Point(0, 0);
-            this.OldAttack_0.Name = "OldAttack_0";
-            this.OldAttack_0.Size = new System.Drawing.Size(121, 17);
-            this.OldAttack_0.TabIndex = 59;
-            this.OldAttack_0.Text = "OldAttack";
-            this.OldAttack_0.UseVisualStyleBackColor = true;
+            OldAttack_0.Location = new System.Drawing.Point(0, 0);
+            OldAttack_0.Name = "OldAttack_0";
+            OldAttack_0.Size = new System.Drawing.Size(121, 17);
+            OldAttack_0.TabIndex = 59;
+            OldAttack_0.Text = "OldAttack";
+            OldAttack_0.UseVisualStyleBackColor = true;
             // 
             // OldAttack_1
             // 
-            this.OldAttack_1.Location = new System.Drawing.Point(0, 16);
-            this.OldAttack_1.Name = "OldAttack_1";
-            this.OldAttack_1.Size = new System.Drawing.Size(121, 17);
-            this.OldAttack_1.TabIndex = 58;
-            this.OldAttack_1.Text = "OldAttack";
-            this.OldAttack_1.UseVisualStyleBackColor = true;
+            OldAttack_1.Location = new System.Drawing.Point(0, 16);
+            OldAttack_1.Name = "OldAttack_1";
+            OldAttack_1.Size = new System.Drawing.Size(121, 17);
+            OldAttack_1.TabIndex = 58;
+            OldAttack_1.Text = "OldAttack";
+            OldAttack_1.UseVisualStyleBackColor = true;
             // 
             // OldAttack_2
             // 
-            this.OldAttack_2.Location = new System.Drawing.Point(0, 32);
-            this.OldAttack_2.Name = "OldAttack_2";
-            this.OldAttack_2.Size = new System.Drawing.Size(121, 17);
-            this.OldAttack_2.TabIndex = 57;
-            this.OldAttack_2.Text = "OldAttack";
-            this.OldAttack_2.UseVisualStyleBackColor = true;
+            OldAttack_2.Location = new System.Drawing.Point(0, 32);
+            OldAttack_2.Name = "OldAttack_2";
+            OldAttack_2.Size = new System.Drawing.Size(121, 17);
+            OldAttack_2.TabIndex = 57;
+            OldAttack_2.Text = "OldAttack";
+            OldAttack_2.UseVisualStyleBackColor = true;
             // 
             // OldAttack_3
             // 
-            this.OldAttack_3.Location = new System.Drawing.Point(0, 48);
-            this.OldAttack_3.Name = "OldAttack_3";
-            this.OldAttack_3.Size = new System.Drawing.Size(121, 17);
-            this.OldAttack_3.TabIndex = 56;
-            this.OldAttack_3.Text = "OldAttack";
-            this.OldAttack_3.UseVisualStyleBackColor = true;
+            OldAttack_3.Location = new System.Drawing.Point(0, 48);
+            OldAttack_3.Name = "OldAttack_3";
+            OldAttack_3.Size = new System.Drawing.Size(121, 17);
+            OldAttack_3.TabIndex = 56;
+            OldAttack_3.Text = "OldAttack";
+            OldAttack_3.UseVisualStyleBackColor = true;
             // 
             // OldAttackButton
             // 
-            this.OldAttackButton.Location = new System.Drawing.Point(0, 64);
-            this.OldAttackButton.Name = "OldAttackButton";
-            this.OldAttackButton.Size = new System.Drawing.Size(169, 25);
-            this.OldAttackButton.TabIndex = 55;
-            this.OldAttackButton.Text = "&Attack";
-            this.OldAttackButton.UseVisualStyleBackColor = true;
+            OldAttackButton.Location = new System.Drawing.Point(0, 64);
+            OldAttackButton.Name = "OldAttackButton";
+            OldAttackButton.Size = new System.Drawing.Size(169, 25);
+            OldAttackButton.TabIndex = 55;
+            OldAttackButton.Text = "&Attack";
+            OldAttackButton.UseVisualStyleBackColor = true;
             // 
             // OldPP_0
             // 
-            this.OldPP_0.Location = new System.Drawing.Point(128, 0);
-            this.OldPP_0.Name = "OldPP_0";
-            this.OldPP_0.Size = new System.Drawing.Size(41, 17);
-            this.OldPP_0.TabIndex = 63;
-            this.OldPP_0.Text = "00/00";
-            this.OldPP_0.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            OldPP_0.Location = new System.Drawing.Point(128, 0);
+            OldPP_0.Name = "OldPP_0";
+            OldPP_0.Size = new System.Drawing.Size(41, 17);
+            OldPP_0.TabIndex = 63;
+            OldPP_0.Text = "00/00";
+            OldPP_0.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // OldPP_1
             // 
-            this.OldPP_1.Location = new System.Drawing.Point(128, 16);
-            this.OldPP_1.Name = "OldPP_1";
-            this.OldPP_1.Size = new System.Drawing.Size(41, 17);
-            this.OldPP_1.TabIndex = 62;
-            this.OldPP_1.Text = "00/00";
-            this.OldPP_1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            OldPP_1.Location = new System.Drawing.Point(128, 16);
+            OldPP_1.Name = "OldPP_1";
+            OldPP_1.Size = new System.Drawing.Size(41, 17);
+            OldPP_1.TabIndex = 62;
+            OldPP_1.Text = "00/00";
+            OldPP_1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // OldPP_2
             // 
-            this.OldPP_2.Location = new System.Drawing.Point(128, 32);
-            this.OldPP_2.Name = "OldPP_2";
-            this.OldPP_2.Size = new System.Drawing.Size(41, 17);
-            this.OldPP_2.TabIndex = 61;
-            this.OldPP_2.Text = "00/00";
-            this.OldPP_2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            OldPP_2.Location = new System.Drawing.Point(128, 32);
+            OldPP_2.Name = "OldPP_2";
+            OldPP_2.Size = new System.Drawing.Size(41, 17);
+            OldPP_2.TabIndex = 61;
+            OldPP_2.Text = "00/00";
+            OldPP_2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // OldPP_3
             // 
-            this.OldPP_3.Location = new System.Drawing.Point(128, 48);
-            this.OldPP_3.Name = "OldPP_3";
-            this.OldPP_3.Size = new System.Drawing.Size(41, 17);
-            this.OldPP_3.TabIndex = 60;
-            this.OldPP_3.Text = "00/00";
-            this.OldPP_3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            OldPP_3.Location = new System.Drawing.Point(128, 48);
+            OldPP_3.Name = "OldPP_3";
+            OldPP_3.Size = new System.Drawing.Size(41, 17);
+            OldPP_3.TabIndex = 60;
+            OldPP_3.Text = "00/00";
+            OldPP_3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // TIcon_1
             // 
-            this.TIcon_1.Location = new System.Drawing.Point(8, 28);
-            this.TIcon_1.Name = "TIcon_1";
-            this.TIcon_1.Size = new System.Drawing.Size(32, 32);
-            this.TIcon_1.BackColor = System.Drawing.Color.Transparent;
-            this.TIcon_1.TabStop = false;
+            TIcon_1.BackColor = System.Drawing.Color.Transparent;
+            TIcon_1.Location = new System.Drawing.Point(8, 28);
+            TIcon_1.Name = "TIcon_1";
+            TIcon_1.Size = new System.Drawing.Size(32, 32);
+            TIcon_1.TabIndex = 110;
+            TIcon_1.TabStop = false;
             // 
             // OpponentStat_5
             // 
-            this.OpponentStat_5.Location = new System.Drawing.Point(34, 84);
-            this.OpponentStat_5.Name = "OpponentStat_5";
-            this.OpponentStat_5.Size = new System.Drawing.Size(16, 16);
-            this.OpponentStat_5.BackColor = System.Drawing.Color.Transparent;
-            this.OpponentStat_5.Image = ((System.Drawing.Image)(resources.GetObject("OpponentStat_5.Image")));
-            this.OpponentStat_5.TabStop = false;
+            OpponentStat_5.BackColor = System.Drawing.Color.Transparent;
+            OpponentStat_5.Image = ((System.Drawing.Image)resources.GetObject("OpponentStat_5.Image"));
+            OpponentStat_5.Location = new System.Drawing.Point(34, 84);
+            OpponentStat_5.Name = "OpponentStat_5";
+            OpponentStat_5.Size = new System.Drawing.Size(16, 16);
+            OpponentStat_5.TabIndex = 111;
+            OpponentStat_5.TabStop = false;
             // 
             // OpponentStat_4
             // 
-            this.OpponentStat_4.Location = new System.Drawing.Point(18, 84);
-            this.OpponentStat_4.Name = "OpponentStat_4";
-            this.OpponentStat_4.Size = new System.Drawing.Size(16, 16);
-            this.OpponentStat_4.BackColor = System.Drawing.Color.Transparent;
-            this.OpponentStat_4.Image = ((System.Drawing.Image)(resources.GetObject("OpponentStat_4.Image")));
-            this.OpponentStat_4.TabStop = false;
+            OpponentStat_4.BackColor = System.Drawing.Color.Transparent;
+            OpponentStat_4.Image = ((System.Drawing.Image)resources.GetObject("OpponentStat_4.Image"));
+            OpponentStat_4.Location = new System.Drawing.Point(18, 84);
+            OpponentStat_4.Name = "OpponentStat_4";
+            OpponentStat_4.Size = new System.Drawing.Size(16, 16);
+            OpponentStat_4.TabIndex = 112;
+            OpponentStat_4.TabStop = false;
             // 
             // OpponentStat_3
             // 
-            this.OpponentStat_3.Location = new System.Drawing.Point(2, 84);
-            this.OpponentStat_3.Name = "OpponentStat_3";
-            this.OpponentStat_3.Size = new System.Drawing.Size(16, 16);
-            this.OpponentStat_3.BackColor = System.Drawing.Color.Transparent;
-            this.OpponentStat_3.Image = ((System.Drawing.Image)(resources.GetObject("OpponentStat_3.Image")));
-            this.OpponentStat_3.TabStop = false;
+            OpponentStat_3.BackColor = System.Drawing.Color.Transparent;
+            OpponentStat_3.Image = ((System.Drawing.Image)resources.GetObject("OpponentStat_3.Image"));
+            OpponentStat_3.Location = new System.Drawing.Point(2, 84);
+            OpponentStat_3.Name = "OpponentStat_3";
+            OpponentStat_3.Size = new System.Drawing.Size(16, 16);
+            OpponentStat_3.TabIndex = 113;
+            OpponentStat_3.TabStop = false;
             // 
             // OpponentStat_2
             // 
-            this.OpponentStat_2.Location = new System.Drawing.Point(34, 68);
-            this.OpponentStat_2.Name = "OpponentStat_2";
-            this.OpponentStat_2.Size = new System.Drawing.Size(16, 16);
-            this.OpponentStat_2.BackColor = System.Drawing.Color.Transparent;
-            this.OpponentStat_2.Image = ((System.Drawing.Image)(resources.GetObject("OpponentStat_2.Image")));
-            this.OpponentStat_2.TabStop = false;
+            OpponentStat_2.BackColor = System.Drawing.Color.Transparent;
+            OpponentStat_2.Image = ((System.Drawing.Image)resources.GetObject("OpponentStat_2.Image"));
+            OpponentStat_2.Location = new System.Drawing.Point(34, 68);
+            OpponentStat_2.Name = "OpponentStat_2";
+            OpponentStat_2.Size = new System.Drawing.Size(16, 16);
+            OpponentStat_2.TabIndex = 114;
+            OpponentStat_2.TabStop = false;
             // 
             // OpponentStat_1
             // 
-            this.OpponentStat_1.Location = new System.Drawing.Point(18, 68);
-            this.OpponentStat_1.Name = "OpponentStat_1";
-            this.OpponentStat_1.Size = new System.Drawing.Size(16, 16);
-            this.OpponentStat_1.BackColor = System.Drawing.Color.Transparent;
-            this.OpponentStat_1.Image = ((System.Drawing.Image)(resources.GetObject("OpponentStat_1.Image")));
-            this.OpponentStat_1.TabStop = false;
+            OpponentStat_1.BackColor = System.Drawing.Color.Transparent;
+            OpponentStat_1.Image = ((System.Drawing.Image)resources.GetObject("OpponentStat_1.Image"));
+            OpponentStat_1.Location = new System.Drawing.Point(18, 68);
+            OpponentStat_1.Name = "OpponentStat_1";
+            OpponentStat_1.Size = new System.Drawing.Size(16, 16);
+            OpponentStat_1.TabIndex = 115;
+            OpponentStat_1.TabStop = false;
             // 
             // OpponentStat_0
             // 
-            this.OpponentStat_0.Location = new System.Drawing.Point(2, 68);
-            this.OpponentStat_0.Name = "OpponentStat_0";
-            this.OpponentStat_0.Size = new System.Drawing.Size(16, 16);
-            this.OpponentStat_0.BackColor = System.Drawing.Color.Transparent;
-            this.OpponentStat_0.Image = ((System.Drawing.Image)(resources.GetObject("OpponentStat_0.Image")));
-            this.OpponentStat_0.TabStop = false;
+            OpponentStat_0.BackColor = System.Drawing.Color.Transparent;
+            OpponentStat_0.Image = ((System.Drawing.Image)resources.GetObject("OpponentStat_0.Image"));
+            OpponentStat_0.Location = new System.Drawing.Point(2, 68);
+            OpponentStat_0.Name = "OpponentStat_0";
+            OpponentStat_0.Size = new System.Drawing.Size(16, 16);
+            OpponentStat_0.TabIndex = 116;
+            OpponentStat_0.TabStop = false;
             // 
             // OpponentStat_6
             // 
-            this.OpponentStat_6.Location = new System.Drawing.Point(200, 228);
-            this.OpponentStat_6.Name = "OpponentStat_6";
-            this.OpponentStat_6.Size = new System.Drawing.Size(16, 16);
-            this.OpponentStat_6.BackColor = System.Drawing.Color.Transparent;
-            this.OpponentStat_6.Image = ((System.Drawing.Image)(resources.GetObject("OpponentStat_6.Image")));
-            this.OpponentStat_6.TabStop = false;
+            OpponentStat_6.BackColor = System.Drawing.Color.Transparent;
+            OpponentStat_6.Image = ((System.Drawing.Image)resources.GetObject("OpponentStat_6.Image"));
+            OpponentStat_6.Location = new System.Drawing.Point(200, 228);
+            OpponentStat_6.Name = "OpponentStat_6";
+            OpponentStat_6.Size = new System.Drawing.Size(16, 16);
+            OpponentStat_6.TabIndex = 117;
+            OpponentStat_6.TabStop = false;
             // 
             // OpponentStat_7
             // 
-            this.OpponentStat_7.Location = new System.Drawing.Point(216, 228);
-            this.OpponentStat_7.Name = "OpponentStat_7";
-            this.OpponentStat_7.Size = new System.Drawing.Size(16, 16);
-            this.OpponentStat_7.BackColor = System.Drawing.Color.Transparent;
-            this.OpponentStat_7.Image = ((System.Drawing.Image)(resources.GetObject("OpponentStat_7.Image")));
-            this.OpponentStat_7.TabStop = false;
+            OpponentStat_7.BackColor = System.Drawing.Color.Transparent;
+            OpponentStat_7.Image = ((System.Drawing.Image)resources.GetObject("OpponentStat_7.Image"));
+            OpponentStat_7.Location = new System.Drawing.Point(216, 228);
+            OpponentStat_7.Name = "OpponentStat_7";
+            OpponentStat_7.Size = new System.Drawing.Size(16, 16);
+            OpponentStat_7.TabIndex = 118;
+            OpponentStat_7.TabStop = false;
             // 
             // OpponentStat_8
             // 
-            this.OpponentStat_8.Location = new System.Drawing.Point(232, 228);
-            this.OpponentStat_8.Name = "OpponentStat_8";
-            this.OpponentStat_8.Size = new System.Drawing.Size(16, 16);
-            this.OpponentStat_8.BackColor = System.Drawing.Color.Transparent;
-            this.OpponentStat_8.Image = ((System.Drawing.Image)(resources.GetObject("OpponentStat_8.Image")));
-            this.OpponentStat_8.TabStop = false;
+            OpponentStat_8.BackColor = System.Drawing.Color.Transparent;
+            OpponentStat_8.Image = ((System.Drawing.Image)resources.GetObject("OpponentStat_8.Image"));
+            OpponentStat_8.Location = new System.Drawing.Point(232, 228);
+            OpponentStat_8.Name = "OpponentStat_8";
+            OpponentStat_8.Size = new System.Drawing.Size(16, 16);
+            OpponentStat_8.TabIndex = 119;
+            OpponentStat_8.TabStop = false;
             // 
             // OpponentStat_9
             // 
-            this.OpponentStat_9.Location = new System.Drawing.Point(200, 244);
-            this.OpponentStat_9.Name = "OpponentStat_9";
-            this.OpponentStat_9.Size = new System.Drawing.Size(16, 16);
-            this.OpponentStat_9.BackColor = System.Drawing.Color.Transparent;
-            this.OpponentStat_9.Image = ((System.Drawing.Image)(resources.GetObject("OpponentStat_9.Image")));
-            this.OpponentStat_9.TabStop = false;
+            OpponentStat_9.BackColor = System.Drawing.Color.Transparent;
+            OpponentStat_9.Image = ((System.Drawing.Image)resources.GetObject("OpponentStat_9.Image"));
+            OpponentStat_9.Location = new System.Drawing.Point(200, 244);
+            OpponentStat_9.Name = "OpponentStat_9";
+            OpponentStat_9.Size = new System.Drawing.Size(16, 16);
+            OpponentStat_9.TabIndex = 120;
+            OpponentStat_9.TabStop = false;
             // 
             // OpponentStat_10
             // 
-            this.OpponentStat_10.Location = new System.Drawing.Point(216, 244);
-            this.OpponentStat_10.Name = "OpponentStat_10";
-            this.OpponentStat_10.Size = new System.Drawing.Size(16, 16);
-            this.OpponentStat_10.BackColor = System.Drawing.Color.Transparent;
-            this.OpponentStat_10.Image = ((System.Drawing.Image)(resources.GetObject("OpponentStat_10.Image")));
-            this.OpponentStat_10.TabStop = false;
+            OpponentStat_10.BackColor = System.Drawing.Color.Transparent;
+            OpponentStat_10.Image = ((System.Drawing.Image)resources.GetObject("OpponentStat_10.Image"));
+            OpponentStat_10.Location = new System.Drawing.Point(216, 244);
+            OpponentStat_10.Name = "OpponentStat_10";
+            OpponentStat_10.Size = new System.Drawing.Size(16, 16);
+            OpponentStat_10.TabIndex = 121;
+            OpponentStat_10.TabStop = false;
             // 
             // OpponentStat_11
             // 
-            this.OpponentStat_11.Location = new System.Drawing.Point(232, 244);
-            this.OpponentStat_11.Name = "OpponentStat_11";
-            this.OpponentStat_11.Size = new System.Drawing.Size(16, 16);
-            this.OpponentStat_11.BackColor = System.Drawing.Color.Transparent;
-            this.OpponentStat_11.Image = ((System.Drawing.Image)(resources.GetObject("OpponentStat_11.Image")));
-            this.OpponentStat_11.TabStop = false;
+            OpponentStat_11.BackColor = System.Drawing.Color.Transparent;
+            OpponentStat_11.Image = ((System.Drawing.Image)resources.GetObject("OpponentStat_11.Image"));
+            OpponentStat_11.Location = new System.Drawing.Point(232, 244);
+            OpponentStat_11.Name = "OpponentStat_11";
+            OpponentStat_11.Size = new System.Drawing.Size(16, 16);
+            OpponentStat_11.TabIndex = 122;
+            OpponentStat_11.TabStop = false;
             // 
             // TIcon_0
             // 
-            this.TIcon_0.Location = new System.Drawing.Point(208, 268);
-            this.TIcon_0.Name = "TIcon_0";
-            this.TIcon_0.Size = new System.Drawing.Size(32, 32);
-            this.TIcon_0.BackColor = System.Drawing.Color.Transparent;
-            this.TIcon_0.TabStop = false;
+            TIcon_0.BackColor = System.Drawing.Color.Transparent;
+            TIcon_0.Location = new System.Drawing.Point(208, 268);
+            TIcon_0.Name = "TIcon_0";
+            TIcon_0.Size = new System.Drawing.Size(32, 32);
+            TIcon_0.TabIndex = 123;
+            TIcon_0.TabStop = false;
             // 
             // GoodImage
             // 
-            this.GoodImage.Location = new System.Drawing.Point(560, 112);
-            this.GoodImage.Name = "GoodImage";
-            this.GoodImage.Size = new System.Drawing.Size(150, 32);
-            this.GoodImage.Visible = false;
-            this.GoodImage.BackColor = System.Drawing.Color.Transparent;
-            this.GoodImage.Image = ((System.Drawing.Image)(resources.GetObject("GoodImage.Image")));
-            this.GoodImage.TabStop = false;
+            GoodImage.BackColor = System.Drawing.Color.Transparent;
+            GoodImage.Image = ((System.Drawing.Image)resources.GetObject("GoodImage.Image"));
+            GoodImage.Location = new System.Drawing.Point(560, 112);
+            GoodImage.Name = "GoodImage";
+            GoodImage.Size = new System.Drawing.Size(150, 32);
+            GoodImage.TabIndex = 124;
+            GoodImage.TabStop = false;
+            GoodImage.Visible = false;
             // 
             // GenderImage_2
             // 
-            this.GenderImage_2.Location = new System.Drawing.Point(656, 152);
-            this.GenderImage_2.Name = "GenderImage_2";
-            this.GenderImage_2.Size = new System.Drawing.Size(16, 16);
-            this.GenderImage_2.Visible = false;
-            this.GenderImage_2.BackColor = System.Drawing.Color.Transparent;
-            this.GenderImage_2.Image = ((System.Drawing.Image)(resources.GetObject("GenderImage_2.Image")));
-            this.GenderImage_2.TabStop = false;
+            GenderImage_2.BackColor = System.Drawing.Color.Transparent;
+            GenderImage_2.Image = ((System.Drawing.Image)resources.GetObject("GenderImage_2.Image"));
+            GenderImage_2.Location = new System.Drawing.Point(656, 152);
+            GenderImage_2.Name = "GenderImage_2";
+            GenderImage_2.Size = new System.Drawing.Size(16, 16);
+            GenderImage_2.TabIndex = 125;
+            GenderImage_2.TabStop = false;
+            GenderImage_2.Visible = false;
             // 
             // GenderImage_1
             // 
-            this.GenderImage_1.Location = new System.Drawing.Point(632, 152);
-            this.GenderImage_1.Name = "GenderImage_1";
-            this.GenderImage_1.Size = new System.Drawing.Size(16, 16);
-            this.GenderImage_1.Visible = false;
-            this.GenderImage_1.BackColor = System.Drawing.Color.Transparent;
-            this.GenderImage_1.Image = ((System.Drawing.Image)(resources.GetObject("GenderImage_1.Image")));
-            this.GenderImage_1.TabStop = false;
+            GenderImage_1.BackColor = System.Drawing.Color.Transparent;
+            GenderImage_1.Image = ((System.Drawing.Image)resources.GetObject("GenderImage_1.Image"));
+            GenderImage_1.Location = new System.Drawing.Point(632, 152);
+            GenderImage_1.Name = "GenderImage_1";
+            GenderImage_1.Size = new System.Drawing.Size(16, 16);
+            GenderImage_1.TabIndex = 126;
+            GenderImage_1.TabStop = false;
+            GenderImage_1.Visible = false;
             // 
             // SelImage
             // 
-            this.SelImage.Location = new System.Drawing.Point(560, 72);
-            this.SelImage.Name = "SelImage";
-            this.SelImage.Size = new System.Drawing.Size(150, 32);
-            this.SelImage.Visible = false;
-            this.SelImage.BackColor = System.Drawing.Color.Transparent;
-            this.SelImage.Image = ((System.Drawing.Image)(resources.GetObject("SelImage.Image")));
-            this.SelImage.TabStop = false;
+            SelImage.BackColor = System.Drawing.Color.Transparent;
+            SelImage.Image = ((System.Drawing.Image)resources.GetObject("SelImage.Image"));
+            SelImage.Location = new System.Drawing.Point(560, 72);
+            SelImage.Name = "SelImage";
+            SelImage.Size = new System.Drawing.Size(150, 32);
+            SelImage.TabIndex = 127;
+            SelImage.TabStop = false;
+            SelImage.Visible = false;
             // 
             // BadImage
             // 
-            this.BadImage.Location = new System.Drawing.Point(560, 32);
-            this.BadImage.Name = "BadImage";
-            this.BadImage.Size = new System.Drawing.Size(150, 32);
-            this.BadImage.Visible = false;
-            this.BadImage.BackColor = System.Drawing.Color.Transparent;
-            this.BadImage.Image = ((System.Drawing.Image)(resources.GetObject("BadImage.Image")));
-            this.BadImage.TabStop = false;
+            BadImage.BackColor = System.Drawing.Color.Transparent;
+            BadImage.Image = ((System.Drawing.Image)resources.GetObject("BadImage.Image"));
+            BadImage.Location = new System.Drawing.Point(560, 32);
+            BadImage.Name = "BadImage";
+            BadImage.Size = new System.Drawing.Size(150, 32);
+            BadImage.TabIndex = 128;
+            BadImage.TabStop = false;
+            BadImage.Visible = false;
             // 
             // PKBall_2
             // 
-            this.PKBall_2.Location = new System.Drawing.Point(608, 152);
-            this.PKBall_2.Name = "PKBall_2";
-            this.PKBall_2.Size = new System.Drawing.Size(16, 16);
-            this.PKBall_2.Visible = false;
-            this.PKBall_2.BackColor = System.Drawing.Color.Transparent;
-            this.PKBall_2.Image = ((System.Drawing.Image)(resources.GetObject("PKBall_2.Image")));
-            this.PKBall_2.TabStop = false;
+            PKBall_2.BackColor = System.Drawing.Color.Transparent;
+            PKBall_2.Image = ((System.Drawing.Image)resources.GetObject("PKBall_2.Image"));
+            PKBall_2.Location = new System.Drawing.Point(608, 152);
+            PKBall_2.Name = "PKBall_2";
+            PKBall_2.Size = new System.Drawing.Size(16, 16);
+            PKBall_2.TabIndex = 129;
+            PKBall_2.TabStop = false;
+            PKBall_2.Visible = false;
             // 
             // PKBall_1
             // 
-            this.PKBall_1.Location = new System.Drawing.Point(584, 152);
-            this.PKBall_1.Name = "PKBall_1";
-            this.PKBall_1.Size = new System.Drawing.Size(16, 16);
-            this.PKBall_1.Visible = false;
-            this.PKBall_1.BackColor = System.Drawing.Color.Transparent;
-            this.PKBall_1.Image = ((System.Drawing.Image)(resources.GetObject("PKBall_1.Image")));
-            this.PKBall_1.TabStop = false;
+            PKBall_1.BackColor = System.Drawing.Color.Transparent;
+            PKBall_1.Image = ((System.Drawing.Image)resources.GetObject("PKBall_1.Image"));
+            PKBall_1.Location = new System.Drawing.Point(584, 152);
+            PKBall_1.Name = "PKBall_1";
+            PKBall_1.Size = new System.Drawing.Size(16, 16);
+            PKBall_1.TabIndex = 130;
+            PKBall_1.TabStop = false;
+            PKBall_1.Visible = false;
             // 
             // PKBall_0
             // 
-            this.PKBall_0.Location = new System.Drawing.Point(560, 152);
-            this.PKBall_0.Name = "PKBall_0";
-            this.PKBall_0.Size = new System.Drawing.Size(16, 16);
-            this.PKBall_0.Visible = false;
-            this.PKBall_0.BackColor = System.Drawing.Color.Transparent;
-            this.PKBall_0.Image = ((System.Drawing.Image)(resources.GetObject("PKBall_0.Image")));
-            this.PKBall_0.TabStop = false;
+            PKBall_0.BackColor = System.Drawing.Color.Transparent;
+            PKBall_0.Image = ((System.Drawing.Image)resources.GetObject("PKBall_0.Image"));
+            PKBall_0.Location = new System.Drawing.Point(560, 152);
+            PKBall_0.Name = "PKBall_0";
+            PKBall_0.Size = new System.Drawing.Size(16, 16);
+            PKBall_0.TabIndex = 131;
+            PKBall_0.TabStop = false;
+            PKBall_0.Visible = false;
             // 
             // StatusBar1
             // 
-            this.StatusBar1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-                        this.StatusBar1_Panel1,
-                        this.StatusBar1_Panel2,
-                        this.StatusBar1_Panel3});
-            this.StatusBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.StatusBar1.Location = new System.Drawing.Point(0, 429);
-            this.StatusBar1.Name = "StatusBar1";
-            this.StatusBar1.Size = new System.Drawing.Size(542, 17);
-            this.StatusBar1.TabIndex = 0;
-            this.StatusBar1.Text = "StatusBar1";
+            StatusBar1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { StatusBar1_Panel1, StatusBar1_Panel2, StatusBar1_Panel3 });
+            StatusBar1.Location = new System.Drawing.Point(0, 448);
+            StatusBar1.Name = "StatusBar1";
+            StatusBar1.Size = new System.Drawing.Size(542, 22);
+            StatusBar1.TabIndex = 0;
+            StatusBar1.Text = "StatusBar1";
             // 
             // StatusBar1_Panel1
             // 
-            this.StatusBar1_Panel1.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.All;
-            this.StatusBar1_Panel1.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
-            this.StatusBar1_Panel1.Name = "StatusBar1_Panel1";
-            this.StatusBar1_Panel1.AutoSize = false;
-            this.StatusBar1_Panel1.Size = new System.Drawing.Size(96, 17);
-            this.StatusBar1_Panel1.Text = "";
-            this.StatusBar1_Panel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.StatusBar1_Panel1.ToolTipText = "Weather";
+            StatusBar1_Panel1.AutoSize = false;
+            StatusBar1_Panel1.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom));
+            StatusBar1_Panel1.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
+            StatusBar1_Panel1.Name = "StatusBar1_Panel1";
+            StatusBar1_Panel1.Size = new System.Drawing.Size(96, 17);
+            StatusBar1_Panel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            StatusBar1_Panel1.ToolTipText = "Weather";
             // 
             // StatusBar1_Panel2
             // 
-            this.StatusBar1_Panel2.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.All;
-            this.StatusBar1_Panel2.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
-            this.StatusBar1_Panel2.Name = "StatusBar1_Panel2";
-            this.StatusBar1_Panel2.AutoSize = false;
-            this.StatusBar1_Panel2.Size = new System.Drawing.Size(96, 17);
-            this.StatusBar1_Panel2.Tag = "Terrain";
-            this.StatusBar1_Panel2.Text = "";
-            this.StatusBar1_Panel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.StatusBar1_Panel2.ToolTipText = "Terrain";
+            StatusBar1_Panel2.AutoSize = false;
+            StatusBar1_Panel2.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom));
+            StatusBar1_Panel2.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
+            StatusBar1_Panel2.Name = "StatusBar1_Panel2";
+            StatusBar1_Panel2.Size = new System.Drawing.Size(96, 17);
+            StatusBar1_Panel2.Tag = "Terrain";
+            StatusBar1_Panel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            StatusBar1_Panel2.ToolTipText = "Terrain";
             // 
             // StatusBar1_Panel3
             // 
-            this.StatusBar1_Panel3.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.All;
-            this.StatusBar1_Panel3.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
-            this.StatusBar1_Panel3.Name = "StatusBar1_Panel3";
-            this.StatusBar1_Panel3.Spring = true;
-            this.StatusBar1_Panel3.AutoSize = false;
-            this.StatusBar1_Panel3.Size = new System.Drawing.Size(610, 17);
-            this.StatusBar1_Panel3.Text = "";
-            this.StatusBar1_Panel3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            StatusBar1_Panel3.AutoSize = false;
+            StatusBar1_Panel3.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom));
+            StatusBar1_Panel3.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
+            StatusBar1_Panel3.Name = "StatusBar1_Panel3";
+            StatusBar1_Panel3.Size = new System.Drawing.Size(610, 12);
+            StatusBar1_Panel3.Spring = true;
+            StatusBar1_Panel3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // menuStrip
             // 
-            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-                        this.mnuFile,
-                        this.mnuReplayFile,
-                        this.mnuBattle,
-                        this.mnuDebug,
-                        this.mnuOptions,
-                        this.mnuPokedex,
-                        this.mnuWindow,
-                        this.mnuHelp});
-            this.menuStrip.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip.MdiWindowListItem = this.mnuWindow;
-            this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(542, 24);
-            this.menuStrip.TabIndex = 0;
-            this.menuStrip.Text = "menuStrip";
+            menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { mnuFile, mnuReplayFile, mnuBattle, mnuDebug, mnuOptions, mnuPokedex, mnuWindow, mnuHelp });
+            menuStrip.Location = new System.Drawing.Point(0, 0);
+            menuStrip.MdiWindowListItem = mnuWindow;
+            menuStrip.Name = "menuStrip";
+            menuStrip.Size = new System.Drawing.Size(542, 24);
+            menuStrip.TabIndex = 0;
+            menuStrip.Text = "menuStrip";
             // 
             // mnuFile
             // 
-            this.mnuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-                        this.mnuFileItem_0,
-                        this.mnuFileItem_1,
-                        this.mnuFileItem_2,
-                        this.mnuFileItem_3,
-                        this.mnuFileItem_4});
-            this.mnuFile.Name = "mnuFile";
-            this.mnuFile.Text = "&File";
+            mnuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { mnuFileItem_0, mnuFileItem_1, mnuFileItem_2, mnuFileItem_3, mnuFileItem_4 });
+            mnuFile.Name = "mnuFile";
+            mnuFile.Size = new System.Drawing.Size(37, 20);
+            mnuFile.Text = "&File";
             // 
             // mnuFileItem_0
             // 
-            this.mnuFileItem_0.Enabled = false;
-            this.mnuFileItem_0.Name = "mnuFileItem_0";
-            this.mnuFileItem_0.Text = "&Save Log...";
+            mnuFileItem_0.Enabled = false;
+            mnuFileItem_0.Name = "mnuFileItem_0";
+            mnuFileItem_0.Size = new System.Drawing.Size(143, 22);
+            mnuFileItem_0.Text = "&Save Log...";
             // 
             // mnuFileItem_1
             // 
-            this.mnuFileItem_1.Name = "mnuFileItem_1";
-            this.mnuFileItem_1.Text = "Save &Dump...";
+            mnuFileItem_1.Name = "mnuFileItem_1";
+            mnuFileItem_1.Size = new System.Drawing.Size(143, 22);
+            mnuFileItem_1.Text = "Save &Dump...";
             // 
             // mnuFileItem_2
             // 
-            this.mnuFileItem_2.Name = "mnuFileItem_2";
+            mnuFileItem_2.Name = "mnuFileItem_2";
+            mnuFileItem_2.Size = new System.Drawing.Size(140, 6);
             // 
             // mnuFileItem_3
             // 
-            this.mnuFileItem_3.Name = "mnuFileItem_3";
-            this.mnuFileItem_3.Text = "&End Game";
+            mnuFileItem_3.Name = "mnuFileItem_3";
+            mnuFileItem_3.Size = new System.Drawing.Size(143, 22);
+            mnuFileItem_3.Text = "&End Game";
             // 
             // mnuFileItem_4
             // 
-            this.mnuFileItem_4.Name = "mnuFileItem_4";
-            this.mnuFileItem_4.Text = "E&xit";
+            mnuFileItem_4.Name = "mnuFileItem_4";
+            mnuFileItem_4.Size = new System.Drawing.Size(143, 22);
+            mnuFileItem_4.Text = "E&xit";
             // 
             // mnuReplayFile
             // 
-            this.mnuReplayFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-                        this.mnuReplayFileItem_0,
-                        this.mnuReplayFileItem_1,
-                        this.mnuReplayFileItem_2,
-                        this.mnuReplayFileItem_3});
-            this.mnuReplayFile.Name = "mnuReplayFile";
-            this.mnuReplayFile.Text = "&File";
-            this.mnuReplayFile.Visible = false;
+            mnuReplayFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { mnuReplayFileItem_0, mnuReplayFileItem_1, mnuReplayFileItem_2, mnuReplayFileItem_3 });
+            mnuReplayFile.Name = "mnuReplayFile";
+            mnuReplayFile.Size = new System.Drawing.Size(37, 20);
+            mnuReplayFile.Text = "&File";
+            mnuReplayFile.Visible = false;
             // 
             // mnuReplayFileItem_0
             // 
-            this.mnuReplayFileItem_0.Name = "mnuReplayFileItem_0";
-            this.mnuReplayFileItem_0.Text = "&Open...";
+            mnuReplayFileItem_0.Name = "mnuReplayFileItem_0";
+            mnuReplayFileItem_0.Size = new System.Drawing.Size(188, 22);
+            mnuReplayFileItem_0.Text = "&Open...";
             // 
             // mnuReplayFileItem_1
             // 
-            this.mnuReplayFileItem_1.Name = "mnuReplayFileItem_1";
+            mnuReplayFileItem_1.Name = "mnuReplayFileItem_1";
+            mnuReplayFileItem_1.Size = new System.Drawing.Size(185, 6);
             // 
             // mnuReplayFileItem_2
             // 
-            this.mnuReplayFileItem_2.Name = "mnuReplayFileItem_2";
-            this.mnuReplayFileItem_2.Text = "&Close Replay Window";
+            mnuReplayFileItem_2.Name = "mnuReplayFileItem_2";
+            mnuReplayFileItem_2.Size = new System.Drawing.Size(188, 22);
+            mnuReplayFileItem_2.Text = "&Close Replay Window";
             // 
             // mnuReplayFileItem_3
             // 
-            this.mnuReplayFileItem_3.Name = "mnuReplayFileItem_3";
-            this.mnuReplayFileItem_3.Text = "E&xit";
+            mnuReplayFileItem_3.Name = "mnuReplayFileItem_3";
+            mnuReplayFileItem_3.Size = new System.Drawing.Size(188, 22);
+            mnuReplayFileItem_3.Text = "E&xit";
             // 
             // mnuBattle
             // 
-            this.mnuBattle.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-                        this.mnuBattleItem_0,
-                        this.mnuBattleItem_1,
-                        this.mnuBattleItem_2,
-                        this.mnuBattleItem_3,
-                        this.mnuBattleItem_4,
-                        this.mnuBattleItem_5});
-            this.mnuBattle.Name = "mnuBattle";
-            this.mnuBattle.Text = "&Battle";
+            mnuBattle.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { mnuBattleItem_0, mnuBattleItem_1, mnuBattleItem_2, mnuBattleItem_3, mnuBattleItem_4, mnuBattleItem_5 });
+            mnuBattle.Name = "mnuBattle";
+            mnuBattle.Size = new System.Drawing.Size(49, 20);
+            mnuBattle.Text = "&Battle";
             // 
             // mnuBattleItem_0
             // 
-            this.mnuBattleItem_0.Name = "mnuBattleItem_0";
-            this.mnuBattleItem_0.Text = "&Run Away (Forfeit)";
+            mnuBattleItem_0.Name = "mnuBattleItem_0";
+            mnuBattleItem_0.Size = new System.Drawing.Size(194, 22);
+            mnuBattleItem_0.Text = "&Run Away (Forfeit)";
             // 
             // mnuBattleItem_1
             // 
-            this.mnuBattleItem_1.Name = "mnuBattleItem_1";
-            this.mnuBattleItem_1.Text = "&Propose Draw";
+            mnuBattleItem_1.Name = "mnuBattleItem_1";
+            mnuBattleItem_1.Size = new System.Drawing.Size(194, 22);
+            mnuBattleItem_1.Text = "&Propose Draw";
             // 
             // mnuBattleItem_2
             // 
-            this.mnuBattleItem_2.Name = "mnuBattleItem_2";
-            this.mnuBattleItem_2.Text = "Request &Unrated Battle";
+            mnuBattleItem_2.Name = "mnuBattleItem_2";
+            mnuBattleItem_2.Size = new System.Drawing.Size(194, 22);
+            mnuBattleItem_2.Text = "Request &Unrated Battle";
             // 
             // mnuBattleItem_3
             // 
-            this.mnuBattleItem_3.Name = "mnuBattleItem_3";
+            mnuBattleItem_3.Name = "mnuBattleItem_3";
+            mnuBattleItem_3.Size = new System.Drawing.Size(191, 6);
             // 
             // mnuBattleItem_4
             // 
-            this.mnuBattleItem_4.Name = "mnuBattleItem_4";
-            this.mnuBattleItem_4.Text = "&Save Replay";
+            mnuBattleItem_4.Name = "mnuBattleItem_4";
+            mnuBattleItem_4.Size = new System.Drawing.Size(194, 22);
+            mnuBattleItem_4.Text = "&Save Replay";
             // 
             // mnuBattleItem_5
             // 
-            this.mnuBattleItem_5.Name = "mnuBattleItem_5";
-            this.mnuBattleItem_5.Text = "Save &Log";
+            mnuBattleItem_5.Name = "mnuBattleItem_5";
+            mnuBattleItem_5.Size = new System.Drawing.Size(194, 22);
+            mnuBattleItem_5.Text = "Save &Log";
             // 
             // mnuDebug
             // 
-            this.mnuDebug.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-                        this.mnuDebugItem_0,
-                        this.mnuDebugItem_1,
-                        this.mnuDebugItem_2,
-                        this.mnuDebugItem_3,
-                        this.mnuDebugItem_4,
-                        this.mnuDebugItem_5,
-                        this.mnuDebugItem_6,
-                        this.mnuDebugItem_7});
-            this.mnuDebug.Name = "mnuDebug";
-            this.mnuDebug.Text = "&Debug";
-            this.mnuDebug.Visible = false;
+            mnuDebug.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { mnuDebugItem_0, mnuDebugItem_1, mnuDebugItem_2, mnuDebugItem_3, mnuDebugItem_4, mnuDebugItem_5, mnuDebugItem_6, mnuDebugItem_7 });
+            mnuDebug.Name = "mnuDebug";
+            mnuDebug.Size = new System.Drawing.Size(54, 20);
+            mnuDebug.Text = "&Debug";
+            mnuDebug.Visible = false;
             // 
             // mnuDebugItem_0
             // 
-            this.mnuDebugItem_0.Name = "mnuDebugItem_0";
-            this.mnuDebugItem_0.Text = "&Drain PP";
+            mnuDebugItem_0.Name = "mnuDebugItem_0";
+            mnuDebugItem_0.Size = new System.Drawing.Size(166, 22);
+            mnuDebugItem_0.Text = "&Drain PP";
             // 
             // mnuDebugItem_1
             // 
-            this.mnuDebugItem_1.Name = "mnuDebugItem_1";
-            this.mnuDebugItem_1.Text = "&Copy PKMN";
+            mnuDebugItem_1.Name = "mnuDebugItem_1";
+            mnuDebugItem_1.Size = new System.Drawing.Size(166, 22);
+            mnuDebugItem_1.Text = "&Copy PKMN";
             // 
             // mnuDebugItem_2
             // 
-            this.mnuDebugItem_2.Name = "mnuDebugItem_2";
-            this.mnuDebugItem_2.Text = "&Refresh Listing";
+            mnuDebugItem_2.Name = "mnuDebugItem_2";
+            mnuDebugItem_2.Size = new System.Drawing.Size(166, 22);
+            mnuDebugItem_2.Text = "&Refresh Listing";
             // 
             // mnuDebugItem_3
             // 
-            this.mnuDebugItem_3.Name = "mnuDebugItem_3";
-            this.mnuDebugItem_3.Text = "&Add messages";
+            mnuDebugItem_3.Name = "mnuDebugItem_3";
+            mnuDebugItem_3.Size = new System.Drawing.Size(166, 22);
+            mnuDebugItem_3.Text = "&Add messages";
             // 
             // mnuDebugItem_4
             // 
-            this.mnuDebugItem_4.Enabled = false;
-            this.mnuDebugItem_4.Name = "mnuDebugItem_4";
-            this.mnuDebugItem_4.Text = "&Use AI Move";
+            mnuDebugItem_4.Enabled = false;
+            mnuDebugItem_4.Name = "mnuDebugItem_4";
+            mnuDebugItem_4.Size = new System.Drawing.Size(166, 22);
+            mnuDebugItem_4.Text = "&Use AI Move";
             // 
             // mnuDebugItem_5
             // 
-            this.mnuDebugItem_5.Name = "mnuDebugItem_5";
-            this.mnuDebugItem_5.Text = "Do &Pokemon Test";
+            mnuDebugItem_5.Name = "mnuDebugItem_5";
+            mnuDebugItem_5.Size = new System.Drawing.Size(166, 22);
+            mnuDebugItem_5.Text = "Do &Pokemon Test";
             // 
             // mnuDebugItem_6
             // 
-            this.mnuDebugItem_6.Enabled = false;
-            this.mnuDebugItem_6.Name = "mnuDebugItem_6";
-            this.mnuDebugItem_6.Text = "&Sync Test";
+            mnuDebugItem_6.Enabled = false;
+            mnuDebugItem_6.Name = "mnuDebugItem_6";
+            mnuDebugItem_6.Size = new System.Drawing.Size(166, 22);
+            mnuDebugItem_6.Text = "&Sync Test";
             // 
             // mnuDebugItem_7
             // 
-            this.mnuDebugItem_7.Enabled = false;
-            this.mnuDebugItem_7.Name = "mnuDebugItem_7";
-            this.mnuDebugItem_7.Text = "&Transfer Test";
+            mnuDebugItem_7.Enabled = false;
+            mnuDebugItem_7.Name = "mnuDebugItem_7";
+            mnuDebugItem_7.Size = new System.Drawing.Size(166, 22);
+            mnuDebugItem_7.Text = "&Transfer Test";
             // 
             // mnuOptions
             // 
-            this.mnuOptions.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-                        this.mnuOptionsItem_0,
-                        this.mnuOptionsItem_1,
-                        this.mnuOptionsItem_2,
-                        this.mnuOptionsItem_3,
-                        this.mnuOptionsItem_4});
-            this.mnuOptions.Name = "mnuOptions";
-            this.mnuOptions.Text = "&Options";
+            mnuOptions.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { mnuOptionsItem_0, mnuOptionsItem_1, mnuOptionsItem_2, mnuOptionsItem_3, mnuOptionsItem_4 });
+            mnuOptions.Name = "mnuOptions";
+            mnuOptions.Size = new System.Drawing.Size(61, 20);
+            mnuOptions.Text = "&Options";
             // 
             // mnuOptionsItem_0
             // 
-            this.mnuOptionsItem_0.Name = "mnuOptionsItem_0";
-            this.mnuOptionsItem_0.Text = "&Sound";
+            mnuOptionsItem_0.Name = "mnuOptionsItem_0";
+            mnuOptionsItem_0.Size = new System.Drawing.Size(173, 22);
+            mnuOptionsItem_0.Text = "&Sound";
             // 
             // mnuOptionsItem_1
             // 
-            this.mnuOptionsItem_1.Name = "mnuOptionsItem_1";
-            this.mnuOptionsItem_1.Text = "&Music";
+            mnuOptionsItem_1.Name = "mnuOptionsItem_1";
+            mnuOptionsItem_1.Size = new System.Drawing.Size(173, 22);
+            mnuOptionsItem_1.Text = "&Music";
             // 
             // mnuOptionsItem_2
             // 
-            this.mnuOptionsItem_2.Name = "mnuOptionsItem_2";
+            mnuOptionsItem_2.Name = "mnuOptionsItem_2";
+            mnuOptionsItem_2.Size = new System.Drawing.Size(170, 6);
             // 
             // mnuOptionsItem_3
             // 
-            this.mnuOptionsItem_3.Name = "mnuOptionsItem_3";
-            this.mnuOptionsItem_3.Text = "&Disable Delay";
+            mnuOptionsItem_3.Name = "mnuOptionsItem_3";
+            mnuOptionsItem_3.Size = new System.Drawing.Size(173, 22);
+            mnuOptionsItem_3.Text = "&Disable Delay";
             // 
             // mnuOptionsItem_4
             // 
-            this.mnuOptionsItem_4.Name = "mnuOptionsItem_4";
-            this.mnuOptionsItem_4.Text = "&Ignore Watch Chat";
+            mnuOptionsItem_4.Name = "mnuOptionsItem_4";
+            mnuOptionsItem_4.Size = new System.Drawing.Size(173, 22);
+            mnuOptionsItem_4.Text = "&Ignore Watch Chat";
             // 
             // mnuPokedex
             // 
-            this.mnuPokedex.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-                        this.mnuPokedexItem_0,
-                        this.mnuPokedexItem_1,
-                        this.mnuPokedexItem_2,
-                        this.mnuPokedexItem_3});
-            this.mnuPokedex.Name = "mnuPokedex";
-            this.mnuPokedex.Text = "&DataDex";
+            mnuPokedex.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { mnuPokedexItem_0, mnuPokedexItem_1, mnuPokedexItem_2, mnuPokedexItem_3 });
+            mnuPokedex.Name = "mnuPokedex";
+            mnuPokedex.Size = new System.Drawing.Size(63, 20);
+            mnuPokedex.Text = "&DataDex";
             // 
             // mnuPokedexItem_0
             // 
-            this.mnuPokedexItem_0.Name = "mnuPokedexItem_0";
-            this.mnuPokedexItem_0.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.mnuPokedexItem_0.Text = "&PokéDex";
+            mnuPokedexItem_0.Name = "mnuPokedexItem_0";
+            mnuPokedexItem_0.ShortcutKeys = ((System.Windows.Forms.Keys)(System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P));
+            mnuPokedexItem_0.Size = new System.Drawing.Size(183, 22);
+            mnuPokedexItem_0.Text = "&PokéDex";
             // 
             // mnuPokedexItem_1
             // 
-            this.mnuPokedexItem_1.Name = "mnuPokedexItem_1";
-            this.mnuPokedexItem_1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M)));
-            this.mnuPokedexItem_1.Text = "&MoveDex";
+            mnuPokedexItem_1.Name = "mnuPokedexItem_1";
+            mnuPokedexItem_1.ShortcutKeys = ((System.Windows.Forms.Keys)(System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M));
+            mnuPokedexItem_1.Size = new System.Drawing.Size(183, 22);
+            mnuPokedexItem_1.Text = "&MoveDex";
             // 
             // mnuPokedexItem_2
             // 
-            this.mnuPokedexItem_2.Name = "mnuPokedexItem_2";
-            this.mnuPokedexItem_2.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.B)));
-            this.mnuPokedexItem_2.Text = "&BattleDex";
+            mnuPokedexItem_2.Name = "mnuPokedexItem_2";
+            mnuPokedexItem_2.ShortcutKeys = ((System.Windows.Forms.Keys)(System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.B));
+            mnuPokedexItem_2.Size = new System.Drawing.Size(183, 22);
+            mnuPokedexItem_2.Text = "&BattleDex";
             // 
             // mnuPokedexItem_3
             // 
-            this.mnuPokedexItem_3.Name = "mnuPokedexItem_3";
-            this.mnuPokedexItem_3.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
-            this.mnuPokedexItem_3.Text = "&DamageCalc";
+            mnuPokedexItem_3.Name = "mnuPokedexItem_3";
+            mnuPokedexItem_3.ShortcutKeys = ((System.Windows.Forms.Keys)(System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D));
+            mnuPokedexItem_3.Size = new System.Drawing.Size(183, 22);
+            mnuPokedexItem_3.Text = "&DamageCalc";
             // 
             // mnuWindow
             // 
-            this.mnuWindow.Name = "mnuWindow";
-            this.mnuWindow.Text = "&Window";
+            mnuWindow.Name = "mnuWindow";
+            mnuWindow.Size = new System.Drawing.Size(63, 20);
+            mnuWindow.Text = "&Window";
             // 
             // mnuHelp
             // 
-            this.mnuHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-                        this.mnuHelpItem_0,
-                        this.mnuHelpItem_1,
-                        this.mnuHelpItem_2});
-            this.mnuHelp.Name = "mnuHelp";
-            this.mnuHelp.Text = "&Help";
+            mnuHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { mnuHelpItem_0, mnuHelpItem_1, mnuHelpItem_2 });
+            mnuHelp.Name = "mnuHelp";
+            mnuHelp.Size = new System.Drawing.Size(44, 20);
+            mnuHelp.Text = "&Help";
             // 
             // mnuHelpItem_0
             // 
-            this.mnuHelpItem_0.Name = "mnuHelpItem_0";
-            this.mnuHelpItem_0.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.mnuHelpItem_0.Text = "&Web Site...";
+            mnuHelpItem_0.Name = "mnuHelpItem_0";
+            mnuHelpItem_0.ShortcutKeys = System.Windows.Forms.Keys.F1;
+            mnuHelpItem_0.Size = new System.Drawing.Size(148, 22);
+            mnuHelpItem_0.Text = "&Web Site...";
             // 
             // mnuHelpItem_1
             // 
-            this.mnuHelpItem_1.Name = "mnuHelpItem_1";
+            mnuHelpItem_1.Name = "mnuHelpItem_1";
+            mnuHelpItem_1.Size = new System.Drawing.Size(145, 6);
             // 
             // mnuHelpItem_2
             // 
-            this.mnuHelpItem_2.Name = "mnuHelpItem_2";
-            this.mnuHelpItem_2.Text = "&About...";
+            mnuHelpItem_2.Name = "mnuHelpItem_2";
+            mnuHelpItem_2.Size = new System.Drawing.Size(148, 22);
+            mnuHelpItem_2.Text = "&About...";
             // 
             // tmrDX
             // 
-            this.tmrDX.Interval = 1;
+            tmrDX.Interval = 1;
             // 
             // tmrBattleQueue
             // 
-            this.tmrBattleQueue.Enabled = true;
-            this.tmrBattleQueue.Interval = 1;
+            tmrBattleQueue.Enabled = true;
+            tmrBattleQueue.Interval = 1;
             // 
             // PBTimer
             // 
-            this.PBTimer.Interval = 1000;
+            PBTimer.Interval = 1000;
             // 
             // FlashTimer
             // 
-            this.FlashTimer.Enabled = true;
-            this.FlashTimer.Interval = 125;
-            // 
-            // HPAnimTimer
-            // 
-            this.HPAnimTimer.Interval = 100;
+            FlashTimer.Enabled = true;
+            FlashTimer.Interval = 125;
             // 
             // ReadyTimer
             // 
-            this.ReadyTimer.Interval = 30000;
+            ReadyTimer.Interval = 30000;
             // 
             // BattleWindow
             // 
-            this.AcceptButton = this.SendMsg;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(542, 470);
-            this.Controls.Add(this.cmdUndo);
-            this.Controls.Add(this.cmdTarget_0);
-            this.Controls.Add(this.cmdTarget_1);
-            this.Controls.Add(this.cmdTarget_2);
-            this.Controls.Add(this.txtWatchIgnore);
-            this.Controls.Add(this.cmdCancel);
-            this.Controls.Add(this.cmdLeave);
-            this.Controls.Add(this.SendMsg);
-            this.Controls.Add(this.picBuild);
-            this.Controls.Add(this.picPKMNMask_0);
-            this.Controls.Add(this.picPKMNImage_0);
-            this.Controls.Add(this.picShadowMask);
-            this.Controls.Add(this.picShadow);
-            this.Controls.Add(this.picTerrain);
-            this.Controls.Add(this.Messages);
-            this.Controls.Add(this.BattleArea);
-            this.Controls.Add(this.Chatbox);
-            this.Controls.Add(this.ControlTab);
-            this.Controls.Add(this.picStatus_2);
-            this.Controls.Add(this.picStatus_1);
-            this.Controls.Add(this.ReplayControls);
-            this.Controls.Add(this.OldSwitchFrame);
-            this.Controls.Add(this.OldAttackFrame);
-            this.Controls.Add(this.TIcon_1);
-            this.Controls.Add(this.OpponentStat_5);
-            this.Controls.Add(this.OpponentStat_4);
-            this.Controls.Add(this.OpponentStat_3);
-            this.Controls.Add(this.OpponentStat_2);
-            this.Controls.Add(this.OpponentStat_1);
-            this.Controls.Add(this.OpponentStat_0);
-            this.Controls.Add(this.OpponentStat_6);
-            this.Controls.Add(this.OpponentStat_7);
-            this.Controls.Add(this.OpponentStat_8);
-            this.Controls.Add(this.OpponentStat_9);
-            this.Controls.Add(this.OpponentStat_10);
-            this.Controls.Add(this.OpponentStat_11);
-            this.Controls.Add(this.TIcon_0);
-            this.Controls.Add(this.GoodImage);
-            this.Controls.Add(this.GenderImage_2);
-            this.Controls.Add(this.GenderImage_1);
-            this.Controls.Add(this.SelImage);
-            this.Controls.Add(this.BadImage);
-            this.Controls.Add(this.PKBall_2);
-            this.Controls.Add(this.PKBall_1);
-            this.Controls.Add(this.PKBall_0);
-            this.Controls.Add(this.StatusBar1);
-            this.Controls.Add(this.menuStrip);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.KeyPreview = true;
-            this.Location = new System.Drawing.Point(265, 123);
-            this.MainMenuStrip = this.menuStrip;
-            this.MaximizeBox = false;
-            this.Name = "BattleWindow";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "Battle";
-            this.menuStrip.ResumeLayout(false);
-            this.menuStrip.PerformLayout();
-            this.BattleArea.ResumeLayout(false);
-            this.BattleArea.PerformLayout();
-            this.ControlTab.ResumeLayout(false);
-            this.ControlTab.PerformLayout();
-            this.ControlTab_Page0.ResumeLayout(false);
-            this.ControlTab_Page0.PerformLayout();
-            this.MoveSel_0.ResumeLayout(false);
-            this.MoveSel_0.PerformLayout();
-            this.MoveSel_1.ResumeLayout(false);
-            this.MoveSel_1.PerformLayout();
-            this.MoveSel_2.ResumeLayout(false);
-            this.MoveSel_2.PerformLayout();
-            this.MoveSel_3.ResumeLayout(false);
-            this.MoveSel_3.PerformLayout();
-            this.ControlTab_Page1.ResumeLayout(false);
-            this.ControlTab_Page1.PerformLayout();
-            this.PokeTiles.ResumeLayout(false);
-            this.PokeTiles.PerformLayout();
-            this.Entry_0.ResumeLayout(false);
-            this.Entry_0.PerformLayout();
-            this.Entry_1.ResumeLayout(false);
-            this.Entry_1.PerformLayout();
-            this.Entry_2.ResumeLayout(false);
-            this.Entry_2.PerformLayout();
-            this.Entry_3.ResumeLayout(false);
-            this.Entry_3.PerformLayout();
-            this.Entry_4.ResumeLayout(false);
-            this.Entry_4.PerformLayout();
-            this.Entry_5.ResumeLayout(false);
-            this.Entry_5.PerformLayout();
-            this.picStatus_2.ResumeLayout(false);
-            this.picStatus_2.PerformLayout();
-            this.picStatus_1.ResumeLayout(false);
-            this.picStatus_1.PerformLayout();
-            this.ReplayControls.ResumeLayout(false);
-            this.ReplayControls.PerformLayout();
-            this.OldSwitchFrame.ResumeLayout(false);
-            this.OldSwitchFrame.PerformLayout();
-            this.Picture2.ResumeLayout(false);
-            this.Picture2.PerformLayout();
-            this.OldAttackFrame.ResumeLayout(false);
-            this.OldAttackFrame.PerformLayout();
-            this.Picture1.ResumeLayout(false);
-            this.Picture1.PerformLayout();
-            this.StatusBar1.ResumeLayout(false);
-            this.StatusBar1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picBuild)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picPKMNMask_0)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picPKMNImage_0)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picShadowMask)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picShadow)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picTerrain)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PokeCenter)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Computer)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MoveType_0)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MoveType_1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MoveType_2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MoveType_3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PKGender_0)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PokeIcon_0)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.StatIcon_0)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PokeIcon_1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PKGender_1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.StatIcon_1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PKGender_2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PokeIcon_2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.StatIcon_2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PokeIcon_3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PKGender_3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.StatIcon_3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PokeIcon_4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PKGender_4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.StatIcon_4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PokeIcon_5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PKGender_5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.StatIcon_5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PokeCond_2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PokeCond_4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PokeCond_3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PokeCond_1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Slider1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TIcon_1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OpponentStat_5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OpponentStat_4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OpponentStat_3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OpponentStat_2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OpponentStat_1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OpponentStat_0)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OpponentStat_6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OpponentStat_7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OpponentStat_8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OpponentStat_9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OpponentStat_10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OpponentStat_11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TIcon_0)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GoodImage)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GenderImage_2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GenderImage_1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SelImage)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BadImage)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PKBall_2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PKBall_1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PKBall_0)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AcceptButton = SendMsg;
+            AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(542, 470);
+            Controls.Add(cmdUndo);
+            Controls.Add(cmdTarget_0);
+            Controls.Add(cmdTarget_1);
+            Controls.Add(cmdTarget_2);
+            Controls.Add(txtWatchIgnore);
+            Controls.Add(cmdCancel);
+            Controls.Add(cmdLeave);
+            Controls.Add(SendMsg);
+            Controls.Add(picBuild);
+            Controls.Add(picPKMNMask_0);
+            Controls.Add(picPKMNImage_0);
+            Controls.Add(picShadowMask);
+            Controls.Add(picShadow);
+            Controls.Add(picTerrain);
+            Controls.Add(Messages);
+            Controls.Add(BattleArea);
+            Controls.Add(Chatbox);
+            Controls.Add(ControlTab);
+            Controls.Add(picStatus_2);
+            Controls.Add(picStatus_1);
+            Controls.Add(ReplayControls);
+            Controls.Add(OldSwitchFrame);
+            Controls.Add(OldAttackFrame);
+            Controls.Add(TIcon_1);
+            Controls.Add(OpponentStat_5);
+            Controls.Add(OpponentStat_4);
+            Controls.Add(OpponentStat_3);
+            Controls.Add(OpponentStat_2);
+            Controls.Add(OpponentStat_1);
+            Controls.Add(OpponentStat_0);
+            Controls.Add(OpponentStat_6);
+            Controls.Add(OpponentStat_7);
+            Controls.Add(OpponentStat_8);
+            Controls.Add(OpponentStat_9);
+            Controls.Add(OpponentStat_10);
+            Controls.Add(OpponentStat_11);
+            Controls.Add(TIcon_0);
+            Controls.Add(GoodImage);
+            Controls.Add(GenderImage_2);
+            Controls.Add(GenderImage_1);
+            Controls.Add(SelImage);
+            Controls.Add(BadImage);
+            Controls.Add(PKBall_2);
+            Controls.Add(PKBall_1);
+            Controls.Add(PKBall_0);
+            Controls.Add(StatusBar1);
+            Controls.Add(menuStrip);
+            Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            Icon = ((System.Drawing.Icon)resources.GetObject("$this.Icon"));
+            KeyPreview = true;
+            Location = new System.Drawing.Point(265, 123);
+            MainMenuStrip = menuStrip;
+            MaximizeBox = false;
+            StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            Text = "Battle";
+            Load += BattleWindow_Load;
+            ((System.ComponentModel.ISupportInitialize)picBuild).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picPKMNMask_0).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picPKMNImage_0).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picShadowMask).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picShadow).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picTerrain).EndInit();
+            BattleArea.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)PokeCenter).EndInit();
+            ((System.ComponentModel.ISupportInitialize)Computer).EndInit();
+            ControlTab.ResumeLayout(false);
+            ControlTab_Page0.ResumeLayout(false);
+            MoveSel_0.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)MoveType_0).EndInit();
+            MoveSel_1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)MoveType_1).EndInit();
+            MoveSel_2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)MoveType_2).EndInit();
+            MoveSel_3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)MoveType_3).EndInit();
+            ControlTab_Page1.ResumeLayout(false);
+            PokeTiles.ResumeLayout(false);
+            Entry_0.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)PKGender_0).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PokeIcon_0).EndInit();
+            ((System.ComponentModel.ISupportInitialize)StatIcon_0).EndInit();
+            Entry_1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)PokeIcon_1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PKGender_1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)StatIcon_1).EndInit();
+            Entry_2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)PKGender_2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PokeIcon_2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)StatIcon_2).EndInit();
+            Entry_3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)PokeIcon_3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PKGender_3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)StatIcon_3).EndInit();
+            Entry_4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)PokeIcon_4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PKGender_4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)StatIcon_4).EndInit();
+            Entry_5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)PokeIcon_5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PKGender_5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)StatIcon_5).EndInit();
+            picStatus_2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)PokeCond_2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PokeCond_4).EndInit();
+            picStatus_1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)PokeCond_3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PokeCond_1).EndInit();
+            ReplayControls.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)Slider1).EndInit();
+            OldSwitchFrame.ResumeLayout(false);
+            Picture2.ResumeLayout(false);
+            OldAttackFrame.ResumeLayout(false);
+            Picture1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)TIcon_1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)OpponentStat_5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)OpponentStat_4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)OpponentStat_3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)OpponentStat_2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)OpponentStat_1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)OpponentStat_0).EndInit();
+            ((System.ComponentModel.ISupportInitialize)OpponentStat_6).EndInit();
+            ((System.ComponentModel.ISupportInitialize)OpponentStat_7).EndInit();
+            ((System.ComponentModel.ISupportInitialize)OpponentStat_8).EndInit();
+            ((System.ComponentModel.ISupportInitialize)OpponentStat_9).EndInit();
+            ((System.ComponentModel.ISupportInitialize)OpponentStat_10).EndInit();
+            ((System.ComponentModel.ISupportInitialize)OpponentStat_11).EndInit();
+            ((System.ComponentModel.ISupportInitialize)TIcon_0).EndInit();
+            ((System.ComponentModel.ISupportInitialize)GoodImage).EndInit();
+            ((System.ComponentModel.ISupportInitialize)GenderImage_2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)GenderImage_1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)SelImage).EndInit();
+            ((System.ComponentModel.ISupportInitialize)BadImage).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PKBall_2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PKBall_1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PKBall_0).EndInit();
+            StatusBar1.ResumeLayout(false);
+            StatusBar1.PerformLayout();
+            menuStrip.ResumeLayout(false);
+            menuStrip.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

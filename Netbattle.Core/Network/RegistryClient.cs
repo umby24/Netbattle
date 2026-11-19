@@ -1,7 +1,7 @@
-﻿using Netbattle.Core.Common;
+﻿using ManagedSockets;
+using ManagedSockets.EventArgs;
+using Netbattle.Core.Common;
 using Netbattle.Core.Database;
-using Sockets;
-using Sockets.EventArgs;
 
 namespace Netbattle.Core.Network;
 
@@ -31,11 +31,16 @@ public class RegistryClient {
 
         _regSock.DataReceived += ReceivedRegistryData;
         _regSock.Disconnected += RegistryDisconnected;
+        _regSock.Connected += RegSockOnConnected;
         _canReceive = true;
 
         _regSock.Connect();
     }
-    
+
+    private void RegSockOnConnected(SocketConnectedArgs args) {
+        RaiseConnected();
+    }
+
     private void PopulatePackets() {
         _packets = new Dictionary<string, IRegPacket> {
             {"SERV", new ServerRegPacket() },
@@ -118,11 +123,15 @@ public class RegistryClient {
     public event NoArgs RegistryBanned;
     public event NoArgs ServerListChanged;
     public event NoArgs Disconnected;
+    public event NoArgs Connected;
     
     public void RaiseDuplicateClient() {
         DuplicateClient?.Invoke();
     }
 
+    public void RaiseConnected() {
+        Connected?.Invoke();
+    }
     public void RaiseRegistryBanned() {
         RegistryBanned?.Invoke();
     }

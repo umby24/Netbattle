@@ -11,8 +11,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Reference Include="Sockets">
-        <HintPath>..\Sockets.dll</HintPath>
+      <Reference Include="ManagedSockets">
+        <HintPath>..\ManagedSockets.dll</HintPath>
       </Reference>
     </ItemGroup>
 

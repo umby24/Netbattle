@@ -1,4 +1,5 @@
-﻿using Sockets;
+﻿using ManagedSockets;
+using ManagedSockets.EventArgs;
 using Sockets.EventArgs;
 
 namespace Netbattle.Core.Network

@@ -26,7 +26,47 @@ namespace Netbattle.Network {
             throw new NotImplementedException();
         }
     }
+    
+    /// <summary>
+    /// In the original, packets relating to battling are passed to a separate windows form and processed there
+    /// rather than in the main form.
+    /// </summary>
+    public struct BattleRelay : IPacket {
+        public string Command => "RELAY";
+        public string Blob { get; set; }
+        public void Read(ByteBuffer reader) {
+            Blob = reader.ReadString(reader.Length);
+        }
 
+        public void Write(ByteBuffer writer) {
+            throw new NotImplementedException();
+        }
+
+        public void Handle(NbClient client) {
+            if (client.You.Battling) {
+                client.HandleRelay(Blob);
+            }
+        }
+    }
+
+    public struct WatchRelay : IPacket {
+        public string Command => "WATCH";
+        public int BattleNumber { get; set; }
+        public string Data { get; set; }
+        public void Read(ByteBuffer reader) {
+            BattleNumber = int.Parse(reader.ReadString(3));
+            Data = reader.ReadString(reader.Length);
+        }
+
+        public void Write(ByteBuffer writer) {
+            throw new NotImplementedException();
+        }
+
+        public void Handle(NbClient client) {
+            client.HandleWatchRelay(BattleNumber, Data);
+        }
+    }
+    
     public struct UserPacket : IPacket {
         public string Command => "USER";
         public string Password; // -- Optional, 16 chrs.
@@ -386,7 +426,7 @@ namespace Netbattle.Network {
                 Pokemon = UserSettings.CurrentSettings.Team,
                 AllowViewing = true,
                 graphics = UserSettings.CurrentSettings.CurrentGraphicsMode,
-                TeamPower = 100
+                TeamPower = client.You.TeamPower
             };
 
             client.SendPacket(tm);
@@ -430,7 +470,6 @@ namespace Netbattle.Network {
         }
 
         public void Handle(NbClient client) {
-        //    throw new NotImplementedException();
             Logger.Log(LogType.Debug, "Received DB Mod data: " + ModData);
             Logger.Log(LogType.Debug, "DB Mod Len:" + ModData.Length);
             client.AddModData(ModData);
@@ -451,10 +490,30 @@ namespace Netbattle.Network {
         }
 
         public void Handle(NbClient client) {
-            throw new NotImplementedException();
+            var vers = new RespondVersion() {
+                VersionNumber = "0.9.7"
+            };
+            client.SendPacket(vers);
         }
     }
 
+    public struct RespondVersion : IPacket {
+        public string Command => "VERS";
+        public string VersionNumber { get; set; }
+        public void Read(ByteBuffer reader) {
+            throw new NotImplementedException();
+        }
+
+        public void Write(ByteBuffer writer) {
+            writer.WriteString(Command + ":" + VersionNumber);
+            writer.Purge();
+        }
+
+        public void Handle(NbClient client) {
+            throw new NotImplementedException();
+        }
+    }
+    
     public struct RequestPicture : IPacket {
         public string Command => "REQP";
         public void Read(ByteBuffer reader) {
@@ -466,10 +525,31 @@ namespace Netbattle.Network {
         }
 
         public void Handle(NbClient client) {
-            throw new NotImplementedException();
+            var resp = new RespondPicture() {
+                Pict = (byte)client.You.Picture
+            };
+            
+            client.SendPacket(resp);
         }
     }
 
+    public struct RespondPicture : IPacket {
+        public string Command => "PICT";
+        public byte Pict { get; set; }
+        public void Read(ByteBuffer reader) {
+            throw new NotImplementedException();
+        }
+
+        public void Write(ByteBuffer writer) {
+            writer.WriteString(Command + ":" + Pict.ToString());
+            writer.Purge();
+        }
+
+        public void Handle(NbClient client) {
+            throw new NotImplementedException();
+        }
+    }
+    
     public struct RequestUserPassword : IPacket {
         public string Command => "RUSP";
         public void Read(ByteBuffer reader) {
@@ -502,8 +582,9 @@ namespace Netbattle.Network {
 
     public struct MultiConnected : IPacket {
         public string Command => "NOIP";
+        public string Data { get; set; }
         public void Read(ByteBuffer reader) {
-            throw new NotImplementedException();
+            Data = reader.ReadString(reader.Length);
         }
 
         public void Write(ByteBuffer writer) {
@@ -511,7 +592,8 @@ namespace Netbattle.Network {
         }
 
         public void Handle(NbClient client) {
-            throw new NotImplementedException();
+            client.InvokeDuplicateName();
+            client.Disconnect();
         }
     }
 
@@ -542,7 +624,7 @@ namespace Netbattle.Network {
     public struct YourNumber : IPacket {
         public string Command => "YNUM";
         public void Read(ByteBuffer reader) {
-            throw new NotImplementedException();
+            
         }
 
         public void Write(ByteBuffer writer) {
@@ -604,9 +686,18 @@ namespace Netbattle.Network {
             // -- If the blob starts with 'T', there was a name change of this client.
             // -- If T, following the T is the byteval player id, then 20 chars of text (new name).
             // -- Else, passes to Interpret player Data.
+            if (Blob[..1] == "T") {
+                int playerNum = Blob[1];
+                string newPlayerName = Blob.Substring(2, 20).Trim();
+                if (newPlayerName != client.OnlinePlayers[playerNum].Name) {
+                    client.OnlinePlayers[playerNum].Name = newPlayerName;
+                    client.InvokePlayerNameChanged(client.OnlinePlayers[playerNum]);
+                }
+
+                Blob = Blob.Substring(1); // -- This may be incorrect, but the original only calls ChopString on the first char. The rest is 'peek' looks.
+            }
             
             client.InterpretPlayerData(Encoding.ASCII.GetBytes(Blob), true);
-            throw new NotImplementedException();
         }
     }
     
@@ -1001,6 +1092,8 @@ namespace Netbattle.Network {
 
             client.InvokeChatMessage(client.PlayerName(PlayerId) + " has accepted the challenge!");
             client.You.BattlingWith = PlayerId;
+            client.You.Battling = true;
+            
             if (client.OnlinePlayers.TryGetValue(PlayerId, out Player? challenger))
                 client.InvokeChallengeAccepted(challenger);
         }
@@ -1151,7 +1244,7 @@ namespace Netbattle.Network {
     }
     
     /// <summary>
-    /// This might actually be Player Battle Start..
+    /// Original comment says 'Players aRe BuSy, but looking at the code.. its more like players are battling.
     /// </summary>
     public struct PlayersBusy : IPacket {
         public string Command => "PRBS";
@@ -1219,15 +1312,37 @@ namespace Netbattle.Network {
         public void Handle(NbClient client) {
             if (!client.OnlinePlayers.ContainsKey(playerId))
                 return;
-
+            if (Ping == "WAIT") {
+                var req = new RequestPing() {
+                    PlayerId = playerId
+                };
+                client.SendPacket(req);
+                return;
+            }
             int.TryParse(Ping, out int ping); // -- The server can send "WAIT" here.
             client.OnlinePlayers[playerId].Ping = ping;
             client.InvokePingUpdated(client.OnlinePlayers[playerId]);
         }
-
 // -- 'Player Speed', lel.
     }
 
+    public struct RequestPing : IPacket {
+        public string Command => "GETS";
+        public byte PlayerId { get; set; }
+        public void Read(ByteBuffer reader) {
+            throw new NotImplementedException();
+        }
+
+        public void Write(ByteBuffer writer) {
+            writer.WriteString(Command + ":");
+            writer.WriteByte(PlayerId);
+            writer.Purge();
+        }
+
+        public void Handle(NbClient client) {
+            throw new NotImplementedException();
+        }
+    }
     public struct ModKick : IPacket {
         public string Command => "MKCK";
         public string Blob { get; set; }
@@ -1254,7 +1369,7 @@ namespace Netbattle.Network {
         public byte PlayerId { get; set; }
         public string BannedName { get; set; }
         public void Read(ByteBuffer reader) {
-            PlayerId = byte.Parse(reader.ReadString(1));
+            PlayerId = reader.ReadByte();
             BannedName = reader.ReadString(reader.Length);
         }
 
@@ -1273,9 +1388,9 @@ namespace Netbattle.Network {
     /// </summary>
     public struct BanResult : IPacket {
         public string Command => "BRLT";
-        public byte Response { get; set; }
+        public int Response { get; set; }
         public void Read(ByteBuffer reader) {
-            Response = reader.ReadByte();
+            Response = int.Parse(reader.ReadString(reader.Length));
         }
 
         public void Write(ByteBuffer writer) {
@@ -1283,7 +1398,8 @@ namespace Netbattle.Network {
         }
 
         public void Handle(NbClient client) {
-            throw new NotImplementedException();
+            Netbattle.Core.Common.BanResult result = Enum.Parse<Netbattle.Core.Common.BanResult>(Response.ToString());
+            client.InvokeBanResult(result);
         }
     }
 

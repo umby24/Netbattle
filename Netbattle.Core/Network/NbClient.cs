@@ -1,10 +1,12 @@
 using System.Reflection;
+using System.Text;
 using Netbattle.Common;
 using Netbattle.Core.Common;
 using Netbattle.Core.Database;
 using Netbattle.Network;
-using Sockets;
-using Sockets.EventArgs;
+using ManagedSockets;
+using ManagedSockets.EventArgs;
+using BanResult = Netbattle.Network.BanResult;
 
 namespace Netbattle.Core.Network {
     public class NbClient {
@@ -38,6 +40,7 @@ namespace Netbattle.Core.Network {
         private ByteBuffer _plistBuffer;
         private string _dbModBuffer;
         private Dictionary<string, IPacket> _packets;
+        private Dictionary<string, IBattlePacket> _battlePackets;
         public byte[] LoginCode { get; set; }
         #endregion
 
@@ -76,7 +79,13 @@ namespace Netbattle.Core.Network {
         }
 
         public void Connect() {
-            _serverSocket.Connect();
+            try {
+                _serverSocket.Connect();
+            }
+            catch (Exception ex) {
+                InvokeKicked();
+                Logger.Log(LogType.Debug, ex.Message);
+            }
         }
 
         public void Disconnect() {
@@ -257,6 +266,7 @@ namespace Netbattle.Core.Network {
         public event EmptyEventArgs PasswordRequested;
         public event EmptyEventArgs ServerLocked;
         public event EmptyEventArgs ServerFull;
+        public event EmptyEventArgs ServerClosing;
 
         public event ServerInfoEventArgs ServerInfoReceived;
         public event MessageEventArgs ChatMessageReceived;
@@ -267,6 +277,7 @@ namespace Netbattle.Core.Network {
         public event EmptyEventArgs BanListUpdated;
         public event UserLookupEventArgs LookupResultReceived;
         public event AliasDataEventArgs AliasDataRecieved;
+        public event BanResultEventArgs BanResultReceived;
 
         public event PlayerEventArgs PlayerJoined;
         public event PlayerEventArgs PlayerLeft;
@@ -288,6 +299,7 @@ namespace Netbattle.Core.Network {
         public event ChallengeEventArgs ChallengeReceived;
         public event MessageEventArgs WatchBegin;
         public event IntEventArgs WatchRejected;
+        public event MessageEventArgs BattleStart;
 
         public void InvokePingUpdated(Player p)
         {
@@ -428,14 +440,23 @@ namespace Netbattle.Core.Network {
         /// </summary>
         private void PopulatePackets() {
             _packets = new Dictionary<string, IPacket>();
-
+            _battlePackets = new Dictionary<string, IBattlePacket>();
+            
             // -- Use reflection to load the accepted packet types.
             Type[] types = Assembly.GetAssembly(typeof(IPacket)).GetTypes();
             types = types.Where(t => t.GetInterfaces().Contains(typeof(IPacket))).ToArray();
 
+            Type[] bTypes = Assembly.GetAssembly(typeof(IBattlePacket)).GetTypes();
+            bTypes = bTypes.Where(t => t.GetInterfaces().Contains(typeof(IBattlePacket))).ToArray();
+            
             foreach (Type type in types) {
                 var cmd = (IPacket)Activator.CreateInstance(type);
                 _packets.Add(cmd.Command, cmd);
+            }
+            
+            foreach (Type type in bTypes) {
+                var cmd = (IBattlePacket)Activator.CreateInstance(type);
+                _battlePackets.Add(cmd.Command, cmd);
             }
         }
 
@@ -534,7 +555,13 @@ namespace Netbattle.Core.Network {
             };
             SendPacket(unban);
         }
-
+        
+        /// <summary>
+        /// Processes an incoming ban list for the mod/admin banlist.
+        /// Incoming format is: Username:Duration,Username:Duration|Username1,Username2|IP1,IP2
+        /// [Tempbans]|SIDBans|IPBans
+        /// </summary>
+        /// <param name="data"></param>
         internal void ProcessBanList(string data)
         {
             BanList.Clear();
@@ -770,7 +797,7 @@ namespace Netbattle.Core.Network {
         public void InvokeStartBattle(string battleData) {
             ChallengePending = false;
             ChallengeEnded?.Invoke(); // -- The challenge window closes once the battle starts.
-            throw new NotImplementedException("The battle window isn't ported yet.");
+            BattleStart?.Invoke(battleData);
         }
 
         public void InvokeChallengeAccepted(Player challenger) {
@@ -782,15 +809,51 @@ namespace Netbattle.Core.Network {
         }
 
         public void InvokeMaxUsersUpdate() {
-            throw new NotImplementedException();
+            
         }
 
         public void InvokeServerShutdown() {
-            throw new NotImplementedException();
+            ServerClosing?.Invoke();
         }
 
         public void ActivateDbMod() {
             throw new NotImplementedException();
+        }
+
+        public void HandleRelay(string blob) {
+            var tempBuffer = new ByteBuffer(); // -- Create a new bytebuffer with the data
+            tempBuffer.AddBytes(Encoding.ASCII.GetBytes(blob));
+
+            string cmd = tempBuffer.ReadString(Math.Min(5, tempBuffer.Length)); // -- Get the command to find the regPacket parser..
+            // tempBuffer.ReadByte(); // -- Trim off the colon.
+
+            // -- try to find the Packet.
+            IBattlePacket packet;
+            if (!_battlePackets.TryGetValue(cmd.Substring(0, Math.Min(4, cmd.Length)), out packet) && !_battlePackets.TryGetValue(cmd, out packet)) {
+                Logger.Log(LogType.Error, "Invalid relay packet received!!");
+                return;
+            }
+
+            try {
+                packet.Read(tempBuffer);
+                packet.Handle(this);
+            }
+            catch (Exception e) when (e is NotImplementedException or EndOfStreamException) {
+                // -- Plenty of packets aren't ported yet, they shouldn't take down the socket thread.
+                Logger.Log(LogType.Warning, $"Couldn't process relay packet {cmd}: {e.Message}");
+            }
+        }
+
+        public void HandleWatchRelay(int battleNumber, string data) {
+            throw new NotImplementedException();
+        }
+
+        public void InvokePlayerNameChanged(Player clientOnlinePlayer) {
+            PlayerInfoUpdated?.Invoke(clientOnlinePlayer);
+        }
+
+        public void InvokeBanResult(Netbattle.Core.Common.BanResult result) {
+            BanResultReceived?.Invoke(result);
         }
     }
 }

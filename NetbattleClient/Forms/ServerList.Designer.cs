@@ -31,13 +31,17 @@
             btnConnect = new System.Windows.Forms.Button();
             btnDirect = new System.Windows.Forms.Button();
             txtDescription = new System.Windows.Forms.TextBox();
+            statusStrip1 = new System.Windows.Forms.StatusStrip();
+            lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            lblChoose = new System.Windows.Forms.Label();
+            statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // lstServers
             // 
             lstServers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { colName, colAdmin, colUsers });
             lstServers.GridLines = true;
-            lstServers.Location = new System.Drawing.Point(0, 0);
+            lstServers.Location = new System.Drawing.Point(0, 35);
             lstServers.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             lstServers.Name = "lstServers";
             lstServers.Size = new System.Drawing.Size(331, 192);
@@ -51,13 +55,13 @@
             // 
             colName.Name = "colName";
             colName.Text = "Name";
-            colName.Width = 100;
+            colName.Width = 138;
             // 
             // colAdmin
             // 
             colAdmin.Name = "colAdmin";
             colAdmin.Text = "Main Admin";
-            colAdmin.Width = 100;
+            colAdmin.Width = 118;
             // 
             // colUsers
             // 
@@ -67,10 +71,10 @@
             // 
             // btnCancel
             // 
-            btnCancel.Location = new System.Drawing.Point(230, 261);
+            btnCancel.Location = new System.Drawing.Point(244, 293);
             btnCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new System.Drawing.Size(102, 27);
+            btnCancel.Size = new System.Drawing.Size(87, 27);
             btnCancel.TabIndex = 1;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
@@ -78,7 +82,7 @@
             // 
             // btnConnect
             // 
-            btnConnect.Location = new System.Drawing.Point(108, 261);
+            btnConnect.Location = new System.Drawing.Point(122, 293);
             btnConnect.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             btnConnect.Name = "btnConnect";
             btnConnect.Size = new System.Drawing.Size(114, 27);
@@ -89,28 +93,55 @@
             // 
             // btnDirect
             // 
-            btnDirect.Location = new System.Drawing.Point(14, 261);
+            btnDirect.Location = new System.Drawing.Point(0, 293);
             btnDirect.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             btnDirect.Name = "btnDirect";
-            btnDirect.Size = new System.Drawing.Size(88, 27);
+            btnDirect.Size = new System.Drawing.Size(114, 27);
             btnDirect.TabIndex = 3;
-            btnDirect.Text = "Direct...";
+            btnDirect.Text = "Advanced";
             btnDirect.UseVisualStyleBackColor = true;
+            btnDirect.Click += btnDirect_Click;
             // 
             // txtDescription
             // 
-            txtDescription.Location = new System.Drawing.Point(0, 200);
+            txtDescription.Location = new System.Drawing.Point(0, 233);
             txtDescription.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             txtDescription.Multiline = true;
             txtDescription.Name = "txtDescription";
             txtDescription.Size = new System.Drawing.Size(331, 54);
             txtDescription.TabIndex = 4;
             // 
+            // statusStrip1
+            // 
+            statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { lblStatus });
+            statusStrip1.Location = new System.Drawing.Point(0, 323);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Size = new System.Drawing.Size(331, 22);
+            statusStrip1.TabIndex = 5;
+            statusStrip1.Text = "statusStrip1";
+            // 
+            // lblStatus
+            // 
+            lblStatus.Name = "lblStatus";
+            lblStatus.Size = new System.Drawing.Size(79, 17);
+            lblStatus.Text = "Disconnected";
+            // 
+            // lblChoose
+            // 
+            lblChoose.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)0));
+            lblChoose.Location = new System.Drawing.Point(30, 1);
+            lblChoose.Name = "lblChoose";
+            lblChoose.Size = new System.Drawing.Size(289, 32);
+            lblChoose.TabIndex = 6;
+            lblChoose.Text = "Please choose a server.";
+            // 
             // ServerList
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(331, 301);
+            ClientSize = new System.Drawing.Size(331, 345);
+            Controls.Add(lblChoose);
+            Controls.Add(statusStrip1);
             Controls.Add(txtDescription);
             Controls.Add(btnDirect);
             Controls.Add(btnConnect);
@@ -124,9 +155,16 @@
             Text = "Server Listing";
             FormClosed += ServerList_FormClosed;
             Load += ServerList_Load;
+            statusStrip1.ResumeLayout(false);
+            statusStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
+
+        private System.Windows.Forms.Label lblChoose;
+
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel lblStatus;
 
         #endregion
 

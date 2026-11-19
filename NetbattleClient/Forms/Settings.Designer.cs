@@ -49,6 +49,7 @@ namespace Netbattle.Forms
             chkAutoLoad = new System.Windows.Forms.CheckBox();
             tabPage2 = new System.Windows.Forms.TabPage();
             groupBox8 = new System.Windows.Forms.GroupBox();
+            btnCfgSnds = new System.Windows.Forms.Button();
             chkMusic = new System.Windows.Forms.CheckBox();
             chkSounds = new System.Windows.Forms.CheckBox();
             groupBox7 = new System.Windows.Forms.GroupBox();
@@ -140,6 +141,7 @@ namespace Netbattle.Forms
             btnStoredPassword.TabIndex = 6;
             btnStoredPassword.Text = "Change stored password";
             btnStoredPassword.UseVisualStyleBackColor = true;
+            btnStoredPassword.Click += btnStoredPassword_Click;
             // 
             // groupBox3
             // 
@@ -277,6 +279,7 @@ namespace Netbattle.Forms
             // 
             // groupBox8
             // 
+            groupBox8.Controls.Add(btnCfgSnds);
             groupBox8.Controls.Add(chkMusic);
             groupBox8.Controls.Add(chkSounds);
             groupBox8.Location = new System.Drawing.Point(169, 132);
@@ -286,9 +289,18 @@ namespace Netbattle.Forms
             groupBox8.TabStop = false;
             groupBox8.Text = "Audio";
             // 
+            // btnCfgSnds
+            // 
+            btnCfgSnds.Location = new System.Drawing.Point(6, 65);
+            btnCfgSnds.Name = "btnCfgSnds";
+            btnCfgSnds.Size = new System.Drawing.Size(127, 27);
+            btnCfgSnds.TabIndex = 2;
+            btnCfgSnds.Text = "Configure Sounds";
+            btnCfgSnds.UseVisualStyleBackColor = true;
+            // 
             // chkMusic
             // 
-            chkMusic.Location = new System.Drawing.Point(18, 56);
+            chkMusic.Location = new System.Drawing.Point(6, 40);
             chkMusic.Name = "chkMusic";
             chkMusic.Size = new System.Drawing.Size(73, 19);
             chkMusic.TabIndex = 1;
@@ -297,7 +309,7 @@ namespace Netbattle.Forms
             // 
             // chkSounds
             // 
-            chkSounds.Location = new System.Drawing.Point(18, 31);
+            chkSounds.Location = new System.Drawing.Point(6, 22);
             chkSounds.Name = "chkSounds";
             chkSounds.Size = new System.Drawing.Size(73, 19);
             chkSounds.TabIndex = 0;
@@ -558,6 +570,7 @@ namespace Netbattle.Forms
             btnOk.TabIndex = 2;
             btnOk.Text = "&Ok";
             btnOk.UseVisualStyleBackColor = true;
+            btnOk.Click += btnOk_Click;
             // 
             // btnCancel
             // 
@@ -567,6 +580,7 @@ namespace Netbattle.Forms
             btnCancel.TabIndex = 3;
             btnCancel.Text = "&Cancel";
             btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += btnCancel_Click;
             // 
             // Settings
             // 
@@ -598,6 +612,8 @@ namespace Netbattle.Forms
             groupBox9.ResumeLayout(false);
             ResumeLayout(false);
         }
+
+        private System.Windows.Forms.Button btnCfgSnds;
 
         private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.Button btnCancel;

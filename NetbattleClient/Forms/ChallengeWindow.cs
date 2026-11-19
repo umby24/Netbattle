@@ -75,6 +75,11 @@ namespace Netbattle.Forms {
         /// </summary>
         public void CloseAndCancel()
         {
+            if (InvokeRequired) {
+                Invoke(new EmptyEventArgs(CloseAndCancel));
+                return;
+            }
+            
             btnCancel_Click(this, EventArgs.Empty);
         }
 

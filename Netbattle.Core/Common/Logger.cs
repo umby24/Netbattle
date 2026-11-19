@@ -16,6 +16,7 @@
             _filename = "log." + nowTime.Year + nowTime.Month + nowTime.Day + nowTime.Hour + nowTime.Minute + ".txt";
             System.IO.File.AppendAllText(_filename, "# Log Start at " + nowTime.ToLongDateString() + " - " + nowTime.ToLongTimeString() + Environment.NewLine);
             _setup = true;
+            PruneLogs();
         }
 
         public override void Main() {
@@ -46,7 +47,31 @@
             Log(LogType.Debug, ex.InnerException.Message);
             Log(LogType.Debug, ex.InnerException.StackTrace);
         }
+        
+        private static void PruneLogs() {
+            string[] files = Directory.GetFiles(".");
 
+            if (files.Length <= 5)
+                return;
+
+            Dictionary<string, DateTime> listing = files.Where(a => a.StartsWith(".\\log.") && a.EndsWith(".txt")).ToDictionary(file => file, File.GetLastWriteTime);
+
+            List<KeyValuePair<string, DateTime>> sorted =
+                listing.OrderByDescending(pair => pair.Value).ToList();
+            if (sorted.Count > 5) {
+                for (var i = 0; i < 5; i++) {
+                    sorted.Remove(sorted[0]);
+                }
+
+                foreach (KeyValuePair<string, DateTime> keyValuePair in sorted) {
+                    if (File.Exists(keyValuePair.Key))
+                        File.Delete(keyValuePair.Key);
+                }
+
+                Log(LogType.Debug, "Log files pruned.");
+            }
+        }
+        
         private static void ConsoleOutput(LogItem item) {
             if ((int)item.Type < (int)_minimumLevel)
                 return;

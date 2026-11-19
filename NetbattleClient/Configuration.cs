@@ -19,6 +19,24 @@ namespace Netbattle {
         // -- The challenge window's last used rules and mode. VB kept these in the registry under "Battle Rules".
         public List<bool> BattleRules { get; set; } = new List<bool>(); // -- Index 0 is rule 1.
         public int BattleMode { get; set; } = 2; // -- Mode list index; VB's default is 2, Advance.
+        public bool[] MessageToggles = new bool[10];
+        public bool UseTimestamp { get; set; }
+        public bool ParseUrls { get; set; }
+        public bool EnableBackground { get; set; }
+        public bool AnimateHpBars { get; set; }
+        public bool Sounds { get; set; }
+        public bool Music { get; set; }
+        public bool PlayerNamePrefix { get; set; }
+        public bool ExtendedMessages { get; set; }
+        public bool UseNicknames { get; set; }
+        public bool ShowTeam { get; set; }
+        public bool LogsPrompt { get; set; }
+        public bool LogsAutosave { get; set; }
+        public bool ReplayPrompt { get; set; }
+        public bool ReplayAutosave { get; set; }
+        public string TimestampFormat { get; set; }
+        public string StoredPassword { get; set; }
+        
 
         public Configuration() {
             EnableLogging = false;
@@ -26,6 +44,16 @@ namespace Netbattle {
             LastPnb = "";
             RegistryIp = "192.168.1.66";
             AdvConnects = new List<string>();
+            MessageToggles = new[] { true, true, true, true, true, true, true, true, true, true };
+            ShowTeam = false;
+            ExtendedMessages = false;
+            UseNicknames = true;
+            Music = true;
+            Sounds = true;
+            PlayerNamePrefix = true;
+            ReplayPrompt = true;
+            AnimateHpBars = true;
+            EnableBackground = true;
         }
 
         public static void Load() {

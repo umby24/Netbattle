@@ -7,6 +7,7 @@ using Netbattle.Common;
 using Netbattle.Core.Common;
 using Netbattle.Core.Network;
 using Netbattle.Network;
+using BanResult = Netbattle.Core.Common.BanResult;
 
 namespace Netbattle.Forms {
     public partial class ServerWindow : Form
@@ -14,7 +15,10 @@ namespace Netbattle.Forms {
         private string _serverIp;
         private NbClient _client;
         private Dictionary<int, PrivateMessage> _pmWindows = new Dictionary<int, PrivateMessage>();
-
+        private Dictionary<int, BattleWindow> _watchWindows = new Dictionary<int, BattleWindow>();
+        private BattleWindow? _battleWindow;
+        private UserInfo? _userInfoWindow;
+        
         public ServerWindow(Form parent, string ip)
         {
             this.MdiParent = parent;
@@ -37,24 +41,86 @@ namespace Netbattle.Forms {
             _client.PlayerlistUpdated += ClientOnPlayerlistUpdated;
             _client.PlayerJoined += ClientOnPlayerJoined;
             _client.PlayerLeft += ClientOnPlayerLeft;
+            _client.PlayerAway += ClientOnPlayerAway;
+            _client.PlayerBack += ClientOnPlayerBack;
+            _client.PlayerInfoUpdated += ClientOnPlayerInfoUpdated;
+            _client.PlayerKickedByServer += ClientOnPlayerKickedByServer;
+            _client.PlayerBanned += _client_PlayerBanned;
+            _client.PlayerKicked += ClientOnPlayerKicked;
+            _client.PlayerTempBanned += _client_PlayerTempBanned;
+            _client.PlayerPingUpdated += ClientOnPlayerPingUpdated;
             _client.PmReceived += ClientOnPmReceived;
             _client.ServerKickedYou += ClientOnServerKickedYou;
             _client.DuplicateNameKick += ClientOnDuplicateNameKick;
             _client.InvalidUserPassword += ClientOnInvalidUserPassword;
             _client.IpBanned += ClientOnIpBanned;
-            _client.PlayerAway += ClientOnPlayerAway;
-            _client.PlayerBack += ClientOnPlayerBack;
             _client.ChallengeReceived += ClientOnChallengeReceived;
+            _client.ChallengeAccepted += ClientOnChallengeAccepted;
+            _client.ChallengeRefused += ClientOnChallengeRefused;
+            _client.ChallengeEnded += ClientOnChallengeEnded;
             _client.PasswordRequested += ClientOnPasswordRequested;
             _client.RegistryMessageReceived += ClientOnRegistryMessageReceived;
             _client.TempBanned += ClientOnTempBanned;
             _client.ServerLocked += ClientOnServerLocked;
-            _client.PlayerInfoUpdated += ClientOnPlayerInfoUpdated;
-            _client.PlayerKickedByServer += ClientOnPlayerKickedByServer;
-            _client.PlayerBanned += _client_PlayerBanned;
-            _client.PlayerTempBanned += _client_PlayerTempBanned;
+            _client.ServerFull += ClientOnServerFull;
+            _client.ServerClosing += ClientOnServerClosing;
             _client.BattleStarted += _client_BattleStarted;
+            _client.BattleStart += ClientOnBattleStart;
             _client.Connect();
+        }
+
+        private void ClientOnBattleStart(string message) {
+            openTeamBuilderToolStripMenuItem.Enabled = false;
+            if (_battleWindow != null) {
+                _battleWindow.Close();
+                _battleWindow.Dispose();
+            }
+
+            _battleWindow = new BattleWindow();
+            _battleWindow.Show();
+        }
+
+        private void ClientOnServerClosing() {
+            AddMessage("SERVER IS SHUTTING DOWN", Color.Red, true, true);
+            _client.Disconnect();
+        }
+
+        private void ClientOnServerFull() {
+            MessageBox.Show("Server is full - try again later.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            _client.Disconnect();
+        }
+
+        private void ClientOnPlayerKicked(Player player1, Player player2) {
+            var authString = "";
+            if (player1.Authority == 1)
+            {
+                authString = "Moderator";
+            } else
+            {
+                authString = "Admin";
+            }
+
+            AddMessage($"{authString} {player1.Name} has kicked {player2.Name}.", Color.Red, true, true);
+        }
+
+        private void ClientOnPlayerPingUpdated(Player player) {
+            ChallengeWindow.Current?.Text = ChallengeWindow.Current?.Text + " - Ping Speed: " + player.Ping;
+        }
+
+        private void ClientOnChallengeEnded() {
+            ChallengeWindow.Current?.CloseAndCancel();
+            _client.ChallengeNumber = 0;
+            _client.ChallengePending = false;
+            _client.ChallengeWindowOpen = false;
+            _client.ChallengeIsOutgoing = false;
+        }
+
+        private void ClientOnChallengeRefused(Player player) {
+            // -- Noop..
+        }
+
+        private void ClientOnChallengeAccepted(Player player) {
+            lblStatus.Text = "Challenge Accepted!";
         }
 
         private void _client_BattleStarted(Player player1, Player player2)
@@ -94,17 +160,26 @@ namespace Netbattle.Forms {
                 return;
             }
 
+            if (player.Id == _client.You.Id && player.Authority > 1) {
+                controlWindowToolStripMenuItem.Visible = true;
+                kickToolStripMenuItem.Visible = true;
+            } else if (player.Id == _client.You.Id) {
+                controlWindowToolStripMenuItem.Visible = false;
+                kickToolStripMenuItem.Visible = false;
+            }
             RefreshPlayerList();
         }
 
-        private void ClientOnServerLocked()
-        {
-            throw new NotImplementedException();
+        private void ClientOnServerLocked() {
+            MessageBox.Show("This server is not accepting new Trainers at this time. Please try again later.", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            _client.Disconnect();
         }
 
-        private void ClientOnTempBanned(string message)
-        {
-            throw new NotImplementedException();
+        private void ClientOnTempBanned(string message) {
+            MessageBox.Show("You have been TempBanned! - " + message, "Banned", MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+            _client.Disconnect();
         }
 
         private void ClientOnRegistryMessageReceived(string message)
@@ -141,6 +216,11 @@ namespace Netbattle.Forms {
                 return;
             }
 
+            _client.ChallengeNumber = challenger.Id;
+            _client.ChallengeWindowOpen = true;
+            _client.ChallengeIsOutgoing = true;
+            _client.ChallengePending = true;
+            
             var chWind = new ChallengeWindow(_client, challenger, this, settings);
             chWind.Show();
         }
@@ -239,7 +319,29 @@ namespace Netbattle.Forms {
                 return;
             }
 
-            AddMessage($"{player.Name} left.");
+            lblStatus.Text = "Trainer signed off";
+            if (player.BattlingWith > 0 && player.BattlingWith < 1025) {
+                AddMessage($"{player.Name} has disconnected from battle.");
+            }
+            
+            AddMessage($"{player.Name} signed off.");
+            
+            if (_pmWindows.ContainsKey(player.Id)) {
+                _pmWindows[player.Id].Close();
+            }
+
+            if (_client.ChallengeNumber == player.Id) {
+                _client.ChallengeNumber = 0;
+                _client.ChallengePending = false;
+                _client.ChallengeWindowOpen = false;
+                ChallengeWindow.Current?.CloseAndCancel();
+            }
+
+            if (_client.You.BattlingWith == player.Id) {
+                // -- BattleDisconnectIcon
+            }
+            // -- If you have a watch window for this person, OppDiscon()
+            
         }
 
         private void ClientOnPlayerJoined(Player player)
@@ -261,6 +363,7 @@ namespace Netbattle.Forms {
                 return;
             }
 
+            lblStatus.Text = "Received Trainer List";
             RefreshPlayerList();
         }
 
@@ -350,7 +453,13 @@ namespace Netbattle.Forms {
 
             if (newLine)
                 message += "\r\n";
-
+            
+            // -- Apply timestamps but only if its the beginning of a new line..
+            if (Configuration.CurrentSettings.UseTimestamp && txtChat.Text.Length > 0 && txtChat.Text.Substring(txtChat.Text.Length - 1) == "\n") {
+                var tsString = DateTime.Now.ToString(Configuration.CurrentSettings.TimestampFormat);
+                txtChat.AppendText(tsString + " ");
+            }
+            
             txtChat.AppendText(message);
             if (newLine)
                 txtChat.Select(txtChat.Text.Length - (message.Length - 1), message.Length - 1);
@@ -384,6 +493,10 @@ namespace Netbattle.Forms {
             if (_client.EncryptionEnabled)
                 AddMessage("This server encrypts traffic.", Color.Green, true, true);
 
+            if (_client.You.Authority == 0) {
+                controlWindowToolStripMenuItem.Visible = false;
+                kickToolStripMenuItem.Visible = false;
+            }
             this.Text = "Stadium: " + info.ServerName;
             
         }
@@ -466,8 +579,14 @@ namespace Netbattle.Forms {
             var selectedItem = lstPlayers.SelectedIndices[0];
             var player = _client.OnlinePlayers.ElementAt(selectedItem);
 
-            var infoWindow = new UserInfo(this.MdiParent, _client, player.Value);
-            infoWindow.Show();
+            if (_userInfoWindow != null) {
+                _userInfoWindow.Close();
+                _userInfoWindow.Dispose();
+                _userInfoWindow = null;
+            }
+            
+            _userInfoWindow = new UserInfo(this.MdiParent, _client, player.Value);
+            _userInfoWindow.Show();
         }
 
         private void kickToolStripMenuItem_Click(object sender, EventArgs e)
@@ -487,6 +606,8 @@ namespace Netbattle.Forms {
                 return;
 
             ChallengeWindow.Current?.CloseAndCancel(); // -- Only one challenge at a time, as in VB.
+            _client.ChallengeWindowOpen = true;
+            _client.ChallengeNumber = player.Value.Id;
             var chln = new ChallengeWindow(_client, player.Value, this);
             chln.Show();
         }

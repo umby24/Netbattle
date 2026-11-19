@@ -9,6 +9,10 @@ namespace Netbattle.Forms {
             InitializeComponent();
         }
 
+        public void SetupSavedPw() {
+            label1.Text = "Enter the user password to be saved.";
+        }
+        
         private void btnOk_Click(object sender, EventArgs e) {
             DialogResult = DialogResult.OK;
             Close();
