@@ -299,11 +299,10 @@ public class TeamMember {
         sb.Append(Shiny ? 1 : 0);
         sb.Append(NbMethods.Dec2Bin(InBox, 4));
         sb.Append(NbMethods.Dec2Bin(UnownLetter, 5));
-        // -- The teambuilder marks a cleared move as -1, the file format uses 0.
-        sb.Append(NbMethods.Dec2Bin(Math.Max(Move[0], 0), 9));
-        sb.Append(NbMethods.Dec2Bin(Math.Max(Move[1], 0), 9));
-        sb.Append(NbMethods.Dec2Bin(Math.Max(Move[2], 0), 9));
-        sb.Append(NbMethods.Dec2Bin(Math.Max(Move[3], 0), 9));
+        sb.Append(NbMethods.Dec2Bin(Move[0], 9));
+        sb.Append(NbMethods.Dec2Bin(Move[1], 9));
+        sb.Append(NbMethods.Dec2Bin(Move[2], 9));
+        sb.Append(NbMethods.Dec2Bin(Move[3], 9));
         sb.Append(NbMethods.Dec2Bin(DVs[StatTypes.nbHP], 5));
         sb.Append(NbMethods.Dec2Bin(DVs[StatTypes.nbAttack], 5));
         sb.Append(NbMethods.Dec2Bin(DVs[StatTypes.nbDefense], 5));

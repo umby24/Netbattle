@@ -49,6 +49,10 @@ public class RBYRules : IGenerationRuleset
         }
     }
 
+    public bool PokemonExists(PokemonSpecies species) {
+        return species.ExistRBY;
+    }
+
     public bool CheckMove(PokemonSpecies species, Move move)
     {
         var result = species.Moves.Sets[MoveTypes.nbRBYLevel].Contains(move) 

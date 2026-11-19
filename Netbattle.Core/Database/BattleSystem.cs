@@ -15,10 +15,10 @@ namespace Netbattle.Core.Database {
             }
 
             foreach (var tm in UserSettings.CurrentSettings.Team) {
-                if (tm.Pokemon.No == 0) {
+                if (tm?.Pokemon == null || tm.Pokemon.No == 0) {
                     return false;
                 }
-                if (tm.Move[0] == 0 || tm.Move[0] == -1 || tm.Move[1] == 0 || tm.Move[1] == -1 || tm.Move[2] == 0 || tm.Move[2] == -1 || tm.Move[3] == 0 || tm.Move[3] == -1) {
+                if (tm.Move[0] == 0 || tm.Move[1] == 0 || tm.Move[2] == 0 || tm.Move[3] == 0) {
                     return false;
                 }
             }
@@ -63,6 +63,62 @@ namespace Netbattle.Core.Database {
                 default:
                     throw new ArgumentOutOfRangeException(nameof(mode), mode, null);
             }
+        }
+
+        /// <summary>
+        /// Port of CompatCheck: which of the 7 modes the team is legal in. Every mode starts allowed, and each member can only turn modes off.
+        /// Index: 0 RBY (Trades), 1 GSC (Trades), 2 Advance, 3 Advance +, 4 Advance (Mods), 5 True RBY, 6 True GSC.
+        /// </summary>
+        public static bool[] CompatCheck(IEnumerable<TeamMember?> team) {
+            bool[] validModes = [true, true, true, true, true, true, true];
+            var rbyRules = new RBYRules();
+            var gscRules = new GSCRules();
+            var advRules = new ADVRules();
+            var advPlusRules = new ADVPlusRules();
+
+            foreach (TeamMember? member in team) {
+                if (member?.Pokemon == null || member.Pokemon.No <= 0) continue;
+
+                PokemonSpecies species = member.Pokemon;
+                if (!species.ExistRBY) {
+                    validModes[0] = false;
+                    validModes[5] = false;
+                }
+                if (!species.ExistGSC) validModes[6] = false;
+                if (!(species.ExistGSC || species.ExistRBY)) validModes[1] = false;
+                if (!species.ExistADV) validModes[2] = false;
+
+                if ((int)member.Item > 41) {
+                    validModes[1] = false;
+                    validModes[6] = false;
+                }
+                else if (!member.Item.IsAdvanceItem()) {
+                    validModes[2] = false;
+                    validModes[3] = false;
+                }
+
+                foreach (int mv in member.Move) {
+                    if (mv == 0) continue;
+                    Move move = MoveDatabase.Moves[mv];
+
+                    if (!move.RBYMove) {
+                        validModes[0] = false;
+                        validModes[5] = false;
+                    }
+
+                    if (!move.GSCMove) {
+                        validModes[1] = false;
+                        validModes[6] = false;
+                    }
+
+                    if (!rbyRules.CheckMove(species, move)) validModes[5] = false;     // -- TrueRBYCheck
+                    if (!gscRules.CheckMove(species, move)) validModes[6] = false;     // -- TrueGSCCheck
+                    if (!advRules.CheckMove(species, move)) validModes[2] = false;     // -- TrueAdvCheck
+                    if (!advPlusRules.CheckMove(species, move)) validModes[3] = false; // -- TrueAdvPlusCheck
+                }
+            }
+
+            return validModes;
         }
         
         public static IGenerationRuleset GetGenerationRuleset(CompatModes mode)

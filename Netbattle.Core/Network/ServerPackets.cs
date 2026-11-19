@@ -82,10 +82,27 @@ namespace Netbattle.Network {
         public byte[] LoginCode; // -- Code sent by server, to be returned by the client.
         public string ExtraInfo; // -- your little 'about' section.
         public int TeamPower;
-        public bool[] Compatibility;
-        
+        public int Compatibility; // -- CompatCheck's mode flags, packed by MakeBinArray.
+
         public void Read(ByteBuffer reader) {
             throw new NotImplementedException();
+        }
+
+        // -- VB's PrepareUserInfo: 15 nulls when there's no saved password, otherwise the 32 hex characters
+        // -- of the MD5 packed into 16 raw bytes. The lengths really do differ.
+        public static byte[] EncodeSavedPassword(string? md5Hex) {
+            if (string.IsNullOrEmpty(md5Hex))
+                return new byte[15];
+
+            var result = new byte[16];
+
+            for (var i = 0; i < 16; i++) {
+                string pair = i * 2 < md5Hex.Length ? md5Hex.Substring(i * 2, Math.Min(2, md5Hex.Length - i * 2)) : "";
+                // -- VB's Val("&H" & x) gives 0 for anything it can't parse.
+                result[i] = byte.TryParse(pair, System.Globalization.NumberStyles.HexNumber, null, out byte b) ? b : (byte)0;
+            }
+
+            return result;
         }
 
         public void Write(ByteBuffer writer) {
@@ -97,11 +114,8 @@ namespace Netbattle.Network {
             writer.WriteString(Username.PadRight(20));
             writer.WriteString(ClientVersion.PadRight(7));
             writer.AddBytes(NbMethods.CompressSid(Sid));
-
-            MD5 md5Er = MD5.Create();
-            byte[] bytes = md5Er.ComputeHash(Encoding.ASCII.GetBytes(ServerPassword));
-            writer.AddBytes(bytes);
-
+            writer.AddBytes(EncodeSavedPassword(ServerPassword));
+            
             var temp = "";
 
             foreach (bool option in Options) {
@@ -113,8 +127,7 @@ namespace Netbattle.Network {
             writer.WriteString(AllowViewing ? "1" : "0");
             var packedValue = NbMethods.Bin2Dec("0" + NbMethods.Dec2Bin(TeamPower, 7));
             writer.WriteByte((byte)packedValue);
-            
-            writer.WriteString(NbMethods.FixedHex(ClientPicture, 2));
+            writer.WriteString(NbMethods.FixedHex(Compatibility, 2)); // -- FixedHex(MakeBinArray(Compatibility), 2)
             writer.AddBytes(LoginCode);
             writer.WriteString(ExtraInfo);
             
@@ -293,20 +306,7 @@ namespace Netbattle.Network {
 
             client.Info = info;
             client.InvokeServerInfoReceived();
-             // -- Reply..
-             var up = new UserPacket {
-                 Username = client.You.Name,
-                 Password = "",
-                 ServerPassword =  "potato",
-                 LoginCode = SigninCode,
-                 Sid = client.You.StationID,
-                 ClientVersion = client.You.Version,
-                 ClientPicture = client.You.Picture,
-                 Options = new bool[10],
-                 ExtraInfo = client.You.Description
-             };
-
-            client.SendPacket(up);
+            client.SendUserInfo(SigninCode);
         }
     }
 
@@ -423,9 +423,9 @@ namespace Netbattle.Network {
             client.You.Authority = Authority;
 
             var tm = new Team {
-                Pokemon = UserSettings.CurrentSettings.Team,
-                AllowViewing = true,
-                graphics = UserSettings.CurrentSettings.CurrentGraphicsMode,
+                Pokemon = client.You.Team.ToArray(),
+                AllowViewing = client.You.ShowTeam,
+                graphics = (GraphicsMode)client.You.GraphicsVersion,
                 TeamPower = client.You.TeamPower
             };
 
@@ -688,7 +688,8 @@ namespace Netbattle.Network {
             // -- Else, passes to Interpret player Data.
             if (Blob[..1] == "T") {
                 int playerNum = Blob[1];
-                string newPlayerName = Blob.Substring(2, 20).Trim();
+                string newPlayerName = Blob.Substring(29, 20).Trim(); // -- VB Indexes here..
+                
                 if (newPlayerName != client.OnlinePlayers[playerNum].Name) {
                     client.OnlinePlayers[playerNum].Name = newPlayerName;
                     client.InvokePlayerNameChanged(client.OnlinePlayers[playerNum]);
@@ -697,7 +698,23 @@ namespace Netbattle.Network {
                 Blob = Blob.Substring(1); // -- This may be incorrect, but the original only calls ChopString on the first char. The rest is 'peek' looks.
             }
             
-            client.InterpretPlayerData(Encoding.ASCII.GetBytes(Blob), true);
+            client.InterpretPlayerData(Encoding.ASCII.GetBytes(Blob[1..]), true);
+        }
+    }
+
+    public struct TbUpdated : IPacket {
+        public string Command => "RKEY";
+        public void Read(ByteBuffer reader) {
+            throw new NotImplementedException();
+        }
+
+        public void Write(ByteBuffer writer) {
+            writer.WriteString(Command + ":");
+            writer.Purge();
+        }
+
+        public void Handle(NbClient client) {
+            throw new NotImplementedException();
         }
     }
     
@@ -760,9 +777,9 @@ namespace Netbattle.Network {
 
     public struct RequestUpdate : IPacket { // -- Guessing here, no comments in og source.
         public string Command => "RPUD";
-        public string Data { get; set; }
+        public byte[] Data { get; set; }
         public void Read(ByteBuffer reader) {
-            Data = reader.ReadString(reader.Length);
+            Data = reader.ReadByteArray(reader.Length);
         }
 
         public void Write(ByteBuffer writer) {
@@ -770,22 +787,49 @@ namespace Netbattle.Network {
         }
 
         public void Handle(NbClient client) {
-            var up = new UserPacket {
-                Username = client.You.Name,
-                Password = "",
-                ServerPassword = "potato",
-                LoginCode = Encoding.ASCII.GetBytes(Data),
-                Sid = client.You.StationID,
-                ClientVersion = client.You.Version,
-                ClientPicture = client.You.Picture,
-                Options = new bool[10],
-                ExtraInfo = client.You.Description
-            };
-            
-            client.SendPacket(up);
+            // -- VB: Case "RPUD:" -> SendData("USER:" & PrepareUserInfo(Data))
+            client.SendUserInfo(Data);
         }
     }
 
+    public struct TeamUpdate : IPacket {
+        public string Command => "TUPD";
+        public bool AllowViewing { get; set; }
+        public int TeamPower { get; set; }
+        public GraphicsMode graphics { get; set; }
+        public TeamMember[] Pokemon { get; set; }
+
+        public void Read(ByteBuffer reader) {
+            throw new NotImplementedException();
+        }
+
+        public void Write(ByteBuffer writer) {
+            // -- Allow Viewing (Bool 2 bin)
+            // -- Ranking (Chr)
+            // -- FixedHex (You.Version, 1) (AKA Graphics mode)
+            // -- for i = 1 -> 6, add pkmn2str.
+            string build = Command + ":";
+
+            if (AllowViewing)
+                build += "1";
+            else
+                build += "0";
+
+            build += (char) TeamPower;
+            build += NbMethods.FixedHex((int) graphics, 1);
+            writer.AddBytes(Encoding.Latin1.GetBytes(build));
+
+            for (var i = 0; i < 6; i++)
+                writer.AddBytes(Pokemon[i]?.ToStringBytes() ?? TeamMember.EmptySlotBytes());
+        
+            writer.Purge();
+        }
+
+        public void Handle(NbClient client) {
+            throw new NotImplementedException();
+        }
+    }
+    
     public struct ChatMessage : IPacket {
         public string Command => "CMSG";
         public string Message;

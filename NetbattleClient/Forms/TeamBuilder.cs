@@ -7,6 +7,10 @@ using Netbattle.Core.Files;
 
 namespace Netbattle.Forms {
     public partial class TeamBuilder : Form {
+        public bool Changed {
+            get => _changed;
+        }
+        
         private TeamMember _currentPokemon;
         private List<Move> _currentMoveset;
         private bool _changed;
@@ -129,6 +133,7 @@ namespace Netbattle.Forms {
 
             _currentPokemon = newMember;
             _workingSettings.Team[_currentSlot] = _currentPokemon;
+            _workingSettings.Team[_currentSlot].Move = new[] { 0, 0, 0, 0 };
             _changed = true;
 
             UpdateStatLabels();
@@ -419,7 +424,7 @@ namespace Netbattle.Forms {
             PopulateMoves();
 
             for (var i = 0; i < 4; i++) {
-                if (_currentPokemon.Move[i] != -1 && _currentPokemon.Move[i] != 0)
+                if (_currentPokemon.Move[i] != 0)
                     SelectMove(MoveDatabase.Moves[_currentPokemon.Move[i]].Name);
             }
 
@@ -459,7 +464,7 @@ namespace Netbattle.Forms {
 
         private int GetMoveIndex(Move move) {
             for (var i = 0; i < 4; i++) {
-                if (_currentPokemon.Move[i] == move.ID && move.ID != -1) {
+                if (_currentPokemon.Move[i] == move.ID) {
                     return i;
                 }
             }
@@ -494,8 +499,7 @@ namespace Netbattle.Forms {
             }
 
             if (_currentPokemon.Move[0] != 0 && _currentPokemon.Move[1] != 0 && _currentPokemon.Move[2] != 0 &&
-                _currentPokemon.Move[3] != 0 && _currentPokemon.Move[0] != -1 && _currentPokemon.Move[1] != -1 && _currentPokemon.Move[2] != -1 &&
-                _currentPokemon.Move[3] != -1) {
+                _currentPokemon.Move[3] != 0) {
                 MessageBox.Show("A pokemon cannot have more than 4 moves!", "Too many moves!", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 e.Item.Checked = false;
@@ -503,7 +507,7 @@ namespace Netbattle.Forms {
             }
 
             for (var i = 0; i < 4; i++) {
-                if (_currentPokemon.Move[i] == -1 || _currentPokemon.Move[i] == 0) {
+                if (_currentPokemon.Move[i] == 0) {
                     _currentPokemon.Move[i] = moveObj.ID;
                     break;
                 }
@@ -521,13 +525,13 @@ namespace Netbattle.Forms {
             txtMove4.Text = "";
 
             Move move1 = null, move2 = null, move3 = null, move4 = null;
-            if (_currentPokemon.Move[0] != -1 && _currentPokemon.Move[0] != 0)
+            if (_currentPokemon.Move[0] != 0)
                 move1 = MoveDatabase.Moves[_currentPokemon.Move[0]];
-            if (_currentPokemon.Move[1] != -1 && _currentPokemon.Move[1] != 0)
+            if (_currentPokemon.Move[1] != 0)
                 move2 = MoveDatabase.Moves[_currentPokemon.Move[1]];
-            if (_currentPokemon.Move[2] != -1 && _currentPokemon.Move[2] != 0)
+            if (_currentPokemon.Move[2] != 0)
                 move3 = MoveDatabase.Moves[_currentPokemon.Move[2]];
-            if (_currentPokemon.Move[3] != -1 && _currentPokemon.Move[3] != 0)
+            if (_currentPokemon.Move[3] != 0)
                 move4 = MoveDatabase.Moves[_currentPokemon.Move[3]];
 
             if (move1 != null)
@@ -551,13 +555,28 @@ namespace Netbattle.Forms {
             for (var i = 0; i < _workingSettings.Team.Length; i++) {
                 var p = _workingSettings.Team[i];
                 if (p == null) continue;
+                var genRules = BattleSystem.GetGenerationRuleset(newCompatMode);
+                
+                if (!genRules.PokemonExists(p.Pokemon)) {
+                    changeString += p.Nickname + " - Removed\n";
+                    _workingSettings.Team[i] = null;
+                    continue;
+                }
+
+                for (var mI = 0; mI < p.Move.Length; mI++) {
+                    int moveId = p.Move[mI];
+                    var hardMove = MoveDatabase.Moves[moveId];
+                    
+                    if (!genRules.CheckMove(p.Pokemon, hardMove)) {
+                        changeString += p.Nickname + "- Removed " + hardMove.Name + "\n";
+                        p.Move[mI] = 0;
+                    }
+                }
+
                 switch (newCompatMode) {
                     case CompatModes.nbTrueRBY:
                     case CompatModes.nbRBYTrade:
-                        if (!p.Pokemon.ExistRBY) {
-                            changeString += p.Nickname + " - Removed\n";
-                            _workingSettings.Team[i] = null;
-                        }
+
                         // -- Stats if they still exist
                         if (_workingSettings.CurrentCompatibilityMode == CompatModes.nbTrueRuSa || 
                             _workingSettings.CurrentCompatibilityMode == CompatModes.nbFullAdvance ||
@@ -570,29 +589,9 @@ namespace Netbattle.Forms {
                             changeString += p.Nickname + " - Item removed\n";
                             p.Item = Items.nbNoItem;
                         }
-
-                        for (var m = 0; m < 4; m++) {
-                            if (p.Move[m] > 0) {
-                                var mvObj = MoveDatabase.Moves[p.Move[m]];
-                                if (!mvObj.RBYMove) {
-                                    changeString += p.Nickname + " - Removed " + mvObj.Name + " (Newer Move)\n";
-                                    p.Move[m] = -1;
-                                }
-                                var rules = new RBYRules();
-                                
-                                if (!rules.CheckMove(p.Pokemon, mvObj)) {
-                                    changeString += p.Nickname + "- Removed " + mvObj.Name + " (Not Learnable in RBY)\n";
-                                    p.Move[m] = -1;
-                                }
-                            }
-                        }
                         break;
                     case CompatModes.nbTrueGSC:
                     case CompatModes.nbGSCTrade:
-                        if (!p.Pokemon.ExistGSC) {
-                            changeString += p.Nickname + " - Removed\n";
-                            _workingSettings.Team[i] = null;
-                        }
                         if (_workingSettings.CurrentCompatibilityMode == CompatModes.nbTrueRuSa || 
                             _workingSettings.CurrentCompatibilityMode == CompatModes.nbFullAdvance ||
                             _workingSettings.CurrentCompatibilityMode == CompatModes.nbModAdv) {
@@ -604,30 +603,11 @@ namespace Netbattle.Forms {
                             changeString += p.Nickname + " - Advance-Only Item removed\n";
                             p.Item = Items.nbNoItem;
                         }
-                        for (var m = 0; m < 4; m++) {
-                            if (p.Move[m] > 0) {
-                                var mvObj = MoveDatabase.Moves[p.Move[m]];
-                                if (!mvObj.GSCMove) {
-                                    changeString += p.Nickname + " - Removed " + mvObj.Name + " (Newer Move)\n";
-                                    p.Move[m] = -1;
-                                }
-                                var rules = new GSCRules();
-                                
-                                if (!rules.CheckMove(p.Pokemon, mvObj)) {
-                                    changeString += p.Nickname + "- Removed " + mvObj.Name + " (Not Learnable in GSC)\n";
-                                    p.Move[m] = -1;
-                                }
-                                
-                            }
-                        }
+                       
                         break;
                     
 
                     case CompatModes.nbTrueRuSa:
-                        if (!p.Pokemon.ExistADV) {
-                            changeString += p.Nickname + " - Removed\n";
-                            _workingSettings.Team[i] = null;
-                        }
                         if (_workingSettings.CurrentCompatibilityMode == CompatModes.nbTrueRBY || 
                             _workingSettings.CurrentCompatibilityMode == CompatModes.nbRBYTrade ||
                             _workingSettings.CurrentCompatibilityMode == CompatModes.nbTrueGSC || 
@@ -639,17 +619,6 @@ namespace Netbattle.Forms {
                             changeString += p.Nickname + " - GSC-Only Item removed\n";
                             p.Item = Items.nbNoItem;
                         }
-                        var rulesAgainStupidScopeBullshit = new ADVRules();
-                        for (var m = 0; m < 4; m++) {
-                            if (p.Move[m] > 0) {
-                                var mvObj = MoveDatabase.Moves[p.Move[m]];
-                                if (!rulesAgainStupidScopeBullshit.CheckMove(p.Pokemon, mvObj)) {
-                                    changeString += p.Nickname + " - Removed " + mvObj.Name + " (Not Learnable in RuSa)\n";
-                                    p.Move[m] = -1;
-                                }
-                            }
-                        }
-
                         break;
                 }
 

@@ -30,7 +30,6 @@ namespace NetbattleTests {
                 CurrentGraphicsMode = GraphicsMode.nbGFXEme,
                 Username = "Tester",
                 IconUsed = 1,
-                RegistryAddress = "registry.test",
                 Team = new[] { member, null, null, null, null, null }
             };
         }

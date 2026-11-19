@@ -570,27 +570,27 @@ namespace Netbattle.Core.Common {
     public class Player {
         public int Id { get; set; }
         public string IP { get; set; }
-        public int GameVersion { get; set; }
-        public int Picture { get; set; }
-        public int GraphicsVersion { get; set; }
+        public virtual int GameVersion { get; set; }
+        public virtual int Picture { get; set; }
+        public virtual int GraphicsVersion { get; set; }
         public int Authority { get; set; }
-        public bool ShowTeam { get; set; }
+        public virtual bool ShowTeam { get; set; }
         public bool StadiumOk { get; set; }
         public bool Away { get; set; }
         public bool Battling { get; set; }
-        public List<TeamMember> Team { get; set; }
+        public virtual List<TeamMember> Team { get; set; }
         public int Wins { get; set; }
         public int Losses { get; set; }
         public int Ties { get; set; }
         public int Disconnects { get; set; }
-        public int Compatibility { get; set; }
-        public int TeamPower { get; set; }
+        public virtual int Compatibility { get; set; }
+        public virtual int TeamPower { get; set; }
         public int BattlingWith { get; set; } // -- TODO: Make this a reference to another player?
 
         public int Ping { get; set; } // -- Client's ping with the server..
-        public string Name { get; set; }
+        public virtual string Name { get; set; }
         public string Version { get; set; }
-        public string Description { get; set; }
+        public virtual string Description { get; set; }
         public string StationID { get; set; }
     }
 //  0 = ban successful. 1 = user already banned 2 = user not found 3 = authority conflict 4 = tempban success.

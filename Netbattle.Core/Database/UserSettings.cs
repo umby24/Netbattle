@@ -3,6 +3,10 @@ using Netbattle.Core.Files;
 using Newtonsoft.Json;
 
 namespace Netbattle.Core.Database {
+    /// <summary>
+    /// The trainer profile and team, saved to team.jnb: the same data a .pnb holds.
+    /// App-wide options such as the stored password and registry address live in Configuration.
+    /// </summary>
     public class UserSettings {
         public static UserSettings? CurrentSettings;
         public CompatModes CurrentCompatibilityMode { get; set; }
@@ -16,7 +20,11 @@ namespace Netbattle.Core.Database {
         public string StationID { get; set; }
         public string DbModName { get; set; }
         public string DbMods { get; set; }
-        public string RegistryAddress { get; set; }
+
+        // -- Older team.jnb files stored the registry address here. It's read so it can move to Configuration, and never written.
+        [JsonProperty("RegistryAddress")]
+        private string? LegacyRegistryAddress { get; set; }
+        public bool ShouldSerializeLegacyRegistryAddress() => false;
 
         public static void Load(string lastJnb = null, string lastPnb = null) {
             if (!string.IsNullOrWhiteSpace(lastJnb) && File.Exists(lastJnb)) {
@@ -41,8 +49,7 @@ namespace Netbattle.Core.Database {
                 CurrentCompatibilityMode = CompatModes.nbModAdv,
                 CurrentGraphicsMode = GraphicsMode.nbGFXEme,
                 IconUsed = 1,
-                Team = new TeamMember[6],
-                RegistryAddress = "registry.pmnb.net"
+                Team = new TeamMember[6]
             };
         }
 
@@ -64,10 +71,23 @@ namespace Netbattle.Core.Database {
                 team[i].Initialize(CurrentSettings.CurrentCompatibilityMode);
             }
 
-            if (string.IsNullOrEmpty(CurrentSettings.RegistryAddress))
-            {
-                CurrentSettings.RegistryAddress = "registry.pmnb.net";
-            }
+            MigrateLegacyRegistryAddress();
+        }
+
+        // -- Carries a custom registry address from an old team.jnb into Configuration, unless Configuration already has its own.
+        private static void MigrateLegacyRegistryAddress() {
+            string? legacy = CurrentSettings.LegacyRegistryAddress;
+            CurrentSettings.LegacyRegistryAddress = null;
+            Configuration config = Configuration.CurrentSettings;
+
+            if (config == null || string.IsNullOrWhiteSpace(legacy) || legacy == Configuration.DefaultRegistryAddress)
+                return;
+
+            if (config.RegistryAddress != Configuration.DefaultRegistryAddress)
+                return;
+
+            config.RegistryAddress = legacy;
+            Configuration.Save();
         }
 
         protected static void LoadPnb(string filePath) {

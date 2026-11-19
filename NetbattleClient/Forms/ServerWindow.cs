@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Netbattle.Common;
 using Netbattle.Core.Common;
+using Netbattle.Core.Database;
 using Netbattle.Core.Network;
 using Netbattle.Network;
 using BanResult = Netbattle.Core.Common.BanResult;
@@ -563,11 +564,16 @@ namespace Netbattle.Forms {
                 ToggleAway();
 
             var tb = new TeamBuilder(this);
+            
             tb.FormClosed += (s, args) =>
             {
                 if (_client.You.Away)
                     ToggleAway();
+                
+                if (tb.Changed)
+                    _client.TBUpdated();
             };
+            
             tb.Show();
         }
 
@@ -615,6 +621,33 @@ namespace Netbattle.Forms {
         private void watchBattleToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void saveLogToolStripMenuItem_Click(object sender, EventArgs e) {
+            var sfd = new SaveFileDialog();
+            sfd.Title = "Save Chat Log...";
+            sfd.Filter = "TXT Files|*.txt";
+            sfd.DefaultExt = "txt";
+            var result = sfd.ShowDialog();
+            
+            if (result == DialogResult.OK) {
+                File.WriteAllText(sfd.FileName, txtChat.Text);
+                MessageBox.Show("Chat log saved.", "Saved!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e) {
+            _client.Disconnect();
+            Close();
+        }
+
+        private void rearrangeTeamToolStripMenuItem_Click(object sender, EventArgs e) {
+            var rearranger = new RearrangeTeam();
+            var result = rearranger.ShowDialog();
+            
+            if (result == DialogResult.OK && rearranger.DidChange) {
+                _client.SendTeamUpdate(); // -- You reads the team straight from UserSettings.
+            }
         }
     }
 }

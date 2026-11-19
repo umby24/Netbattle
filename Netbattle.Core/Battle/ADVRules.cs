@@ -23,6 +23,10 @@ public class ADVRules : IGenerationRuleset
         return (baseVal * 2 + iv + (ev / 4)) * level / 100 + 10 + level;
     }
 
+    public bool PokemonExists(PokemonSpecies species) {
+        return species.ExistADV;
+    }
+
     public bool CheckMove(PokemonSpecies species, Move move)
     {
         var result = species.Moves.Sets[MoveTypes.nbAdvLevel].Contains(move);
@@ -30,7 +34,7 @@ public class ADVRules : IGenerationRuleset
         if ( species.Moves.Sets[MoveTypes.nbAdvTM].Contains(move)) result = true;
         if ( species.Moves.Sets[MoveTypes.nbAdvEgg].Contains(move)) result = true;
         if ( species.Moves.Sets[MoveTypes.nbAdvSpecial].Contains(move)) result = true;
-        if ( species.Moves.Sets[MoveTypes.nbAdvTutor].Contains(move)) result = true;
+        //if ( species.Moves.Sets[MoveTypes.nbAdvTutor].Contains(move)) result = true; // -- Tutor moves not included in original.
         
         return result;
     }

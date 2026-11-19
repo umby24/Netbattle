@@ -1,6 +1,7 @@
 ﻿using Netbattle;
 using Netbattle.Core.Common;
 using Netbattle.Core.Network;
+using Netbattle.Core.Database;
 using Netbattle.Forms;
 
 namespace NetbattleClient.Forms {
@@ -15,7 +16,7 @@ namespace NetbattleClient.Forms {
         public ServerList(Form parent) {
             MdiParent = parent;
             InitializeComponent();
-            lblStatus.Text = "Connecting to Registry at " + Configuration.CurrentSettings.RegistryIp;
+            lblStatus.Text = "Connecting to Registry at " + Configuration.CurrentSettings.RegistryAddress;
             try {
                 _regClient = new RegistryClient();
                 _regClient.Connected += RegClientOnConnected;

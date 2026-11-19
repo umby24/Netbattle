@@ -6,11 +6,10 @@ using Netbattle.Core.Database;
 using Netbattle.Network;
 using ManagedSockets;
 using ManagedSockets.EventArgs;
-using BanResult = Netbattle.Network.BanResult;
 
 namespace Netbattle.Core.Network {
     public class NbClient {
-        public Player You { get; set; }
+        public LocalPlayer You { get; }
         public string ServerIp { get; set; }
         public bool EncryptionEnabled { get; set; }
         public bool Connected { get; set; }
@@ -50,16 +49,9 @@ namespace Netbattle.Core.Network {
         #endregion
 
         public NbClient(string ip) {
-            You = new Player {
-                Name = UserSettings.CurrentSettings.Username,
-                Picture = UserSettings.CurrentSettings.IconUsed,
-                Team = UserSettings.CurrentSettings.Team.ToList(),
-                Description = UserSettings.CurrentSettings.MoreInfo,
+            You = new LocalPlayer {
                 Version = "0.9.7",
-                GameVersion = (int)UserSettings.CurrentSettings.CurrentCompatibilityMode,
-                GraphicsVersion = (int)UserSettings.CurrentSettings.CurrentGraphicsMode,
-                TeamPower = NbMethods.GetTeamRank(UserSettings.CurrentSettings.Team),
-                StationID = NbMethods.DecompressSid(NbMethods.GetSerialNumber())
+                StationID = NbMethods.DecompressSid(NbMethods.GetSerialNumber()),
             };
             
             ServerIp = ip;
@@ -511,19 +503,27 @@ namespace Netbattle.Core.Network {
         #endregion
 
         public void SendServerPassword(string password) {
-            var up = new UserPacket {
+            SendUserInfo(LoginCode, password);
+        }
+
+        /// <summary>
+        /// Sends the USER packet. Port of VB's PrepareUserInfo, which every USER send goes through.
+        /// </summary>
+        public void SendUserInfo(byte[] loginCode, string serverPassword = "") {
+            SendPacket(new UserPacket {
                 Username = You.Name,
-                Password = password,
-                ServerPassword = "potato",
-                LoginCode = LoginCode,
+                Password = serverPassword,
+                ServerPassword = Configuration.CurrentSettings.StoredPassword,
+                LoginCode = loginCode,
                 Sid = You.StationID,
                 ClientVersion = You.Version,
                 ClientPicture = You.Picture,
-                Options = new bool[10],
+                Options = Configuration.CurrentSettings.MessageToggles,
+                AllowViewing = You.ShowTeam,
+                TeamPower = You.TeamPower,
+                Compatibility = You.Compatibility,
                 ExtraInfo = You.Description
-            };
-
-            SendPacket(up);
+            });
         }
 
         public void TempBan(string playerName, int duration) {
@@ -854,6 +854,22 @@ namespace Netbattle.Core.Network {
 
         public void InvokeBanResult(Netbattle.Core.Common.BanResult result) {
             BanResultReceived?.Invoke(result);
+        }
+
+        public void SendTeamUpdate() {
+            var tUpdate = new TeamUpdate() {
+                AllowViewing = You.ShowTeam,
+                graphics = (GraphicsMode)You.GraphicsVersion,
+                Pokemon = You.Team.ToArray(),
+                TeamPower = You.TeamPower
+            };
+            
+            SendPacket(tUpdate);
+        }
+
+        public void TBUpdated() {
+            var tbUpdate = new TbUpdated();
+            SendPacket(tbUpdate);
         }
     }
 }

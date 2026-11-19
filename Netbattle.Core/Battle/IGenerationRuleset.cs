@@ -9,4 +9,6 @@ public interface IGenerationRuleset
     int GetHp(int baseVal, int iv, int ev, int level);
     int HiddenPowerStrength(StatSet DVs);
     Elements HiddenPowerType(StatSet DVs);
+    bool PokemonExists(PokemonSpecies species);
+    bool CheckMove(PokemonSpecies species, Move move);
 }

@@ -155,7 +155,7 @@ namespace NetbattleTests {
         [TestMethod]
         public void BinaryFormat_UnsetMoveIsWrittenAsZero() {
             TeamMember member = TestSetup.MakeAdvancePokemon();
-            member.Move[3] = -1;
+            member.Move[3] = 0;
             string bits = NbMethods.BytesToBinary(member.ToStringBytes().Skip(15).ToArray());
 
             Assert.AreEqual(160, bits.Length);

@@ -190,7 +190,6 @@ namespace Netbattle.Forms
             txtRegAddr.Name = "txtRegAddr";
             txtRegAddr.Size = new System.Drawing.Size(148, 20);
             txtRegAddr.TabIndex = 1;
-            txtRegAddr.TextChanged += txtRegAddr_TextChanged;
             // 
             // groupBox2
             // 

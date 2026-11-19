@@ -23,10 +23,10 @@ public class RegistryClient {
         PopulatePackets();
 
         if (!serverMode) {
-            _regSock = new ClientSocket(UserSettings.CurrentSettings.RegistryAddress, RegPortClient);
+            _regSock = new ClientSocket(Configuration.CurrentSettings.RegistryAddress, RegPortClient);
         }
         else {
-            _regSock = new ClientSocket(UserSettings.CurrentSettings.RegistryAddress, RegPortServer);
+            _regSock = new ClientSocket(Configuration.CurrentSettings.RegistryAddress, RegPortServer);
         }
 
         _regSock.DataReceived += ReceivedRegistryData;

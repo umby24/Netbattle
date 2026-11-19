@@ -13,14 +13,9 @@ namespace Netbattle.Forms
             InitializeComponent();
         }
 
-        private void txtRegAddr_TextChanged(object sender, EventArgs e)
-        {
-            UserSettings.CurrentSettings.RegistryAddress = txtRegAddr.Text;
-        }
-
         private void Settings_Load(object sender, EventArgs e)
         {
-            txtRegAddr.Text = UserSettings.CurrentSettings.RegistryAddress;
+            txtRegAddr.Text = Configuration.CurrentSettings.RegistryAddress;
             chkPlayerSignOn.Checked = Configuration.CurrentSettings.MessageToggles[0];
             chkPlayerSignOff.Checked = Configuration.CurrentSettings.MessageToggles[1];
             chkBattleStart.Checked = Configuration.CurrentSettings.MessageToggles[2];
@@ -82,7 +77,7 @@ namespace Netbattle.Forms
                     chkShowNickChange.Checked
                 };
             
-            Configuration.CurrentSettings.RegistryIp = txtRegAddr.Text;
+            Configuration.CurrentSettings.RegistryAddress = txtRegAddr.Text;
             Configuration.CurrentSettings.AnimateHpBars = chkAnimateHP.Checked;
             Configuration.CurrentSettings.EnableBackground = chkEnableBackground.Checked;
             Configuration.CurrentSettings.ExtendedMessages = rdoExtended.Checked;
@@ -112,6 +107,10 @@ namespace Netbattle.Forms
             pwWind.Text = "Edit Saved Password";
             pwWind.SetupSavedPw();
             var result = pwWind.ShowDialog();
+            // -- VB only saves when a password was actually entered.
+            if (result != DialogResult.OK || string.IsNullOrEmpty(pwWind.Password))
+                return;
+
             // -- Yeah yeah I know, its just how the original did it, and we're copying it. so yeah. We'll do something better later.
             var hasher = new MD5CryptoServiceProvider();
             hasher.Initialize();

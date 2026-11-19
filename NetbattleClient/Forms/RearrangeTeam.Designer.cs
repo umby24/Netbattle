@@ -27,106 +27,108 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
-        {
-            this.MoveDown = new System.Windows.Forms.Button();
-            this.MoveUp = new System.Windows.Forms.Button();
-            this.List1 = new System.Windows.Forms.ListBox();
-            this.CancelButton_ = new System.Windows.Forms.Button();
-            this.OKButton = new System.Windows.Forms.Button();
-            this.Label2 = new System.Windows.Forms.Label();
-            this.Label1 = new System.Windows.Forms.Label();
-            this.SuspendLayout();
+        private void InitializeComponent() {
+            MoveDown = new System.Windows.Forms.Button();
+            MoveUp = new System.Windows.Forms.Button();
+            List1 = new System.Windows.Forms.ListBox();
+            CancelButton_ = new System.Windows.Forms.Button();
+            OKButton = new System.Windows.Forms.Button();
+            Label2 = new System.Windows.Forms.Label();
+            Label1 = new System.Windows.Forms.Label();
+            SuspendLayout();
             // 
             // MoveDown
             // 
-            this.MoveDown.Font = new System.Drawing.Font("Wingdings", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
-            this.MoveDown.Location = new System.Drawing.Point(8, 72);
-            this.MoveDown.Name = "MoveDown";
-            this.MoveDown.Size = new System.Drawing.Size(33, 33);
-            this.MoveDown.TabIndex = 4;
-            this.MoveDown.Text = "ê";
-            this.MoveDown.UseVisualStyleBackColor = true;
+            MoveDown.Font = new System.Drawing.Font("Wingdings", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)2));
+            MoveDown.Location = new System.Drawing.Point(5, 47);
+            MoveDown.Name = "MoveDown";
+            MoveDown.Size = new System.Drawing.Size(21, 22);
+            MoveDown.TabIndex = 4;
+            MoveDown.Text = "ê";
+            MoveDown.UseVisualStyleBackColor = true;
+            MoveDown.Click += MoveDown_Click;
             // 
             // MoveUp
             // 
-            this.MoveUp.Font = new System.Drawing.Font("Wingdings", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
-            this.MoveUp.Location = new System.Drawing.Point(8, 24);
-            this.MoveUp.Name = "MoveUp";
-            this.MoveUp.Size = new System.Drawing.Size(33, 33);
-            this.MoveUp.TabIndex = 3;
-            this.MoveUp.Text = "é";
-            this.MoveUp.UseVisualStyleBackColor = true;
+            MoveUp.Font = new System.Drawing.Font("Wingdings", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)2));
+            MoveUp.Location = new System.Drawing.Point(5, 16);
+            MoveUp.Name = "MoveUp";
+            MoveUp.Size = new System.Drawing.Size(21, 22);
+            MoveUp.TabIndex = 3;
+            MoveUp.Text = "é";
+            MoveUp.UseVisualStyleBackColor = true;
+            MoveUp.Click += MoveUp_Click;
             // 
             // List1
             // 
-            this.List1.Location = new System.Drawing.Point(48, 24);
-            this.List1.Name = "List1";
-            this.List1.Size = new System.Drawing.Size(201, 82);
-            this.List1.TabIndex = 2;
-            this.List1.FormattingEnabled = true;
+            List1.FormattingEnabled = true;
+            List1.Location = new System.Drawing.Point(30, 16);
+            List1.Name = "List1";
+            List1.Size = new System.Drawing.Size(128, 56);
+            List1.TabIndex = 2;
             // 
             // CancelButton_
             // 
-            this.CancelButton_.Location = new System.Drawing.Point(168, 112);
-            this.CancelButton_.Name = "CancelButton_";
-            this.CancelButton_.Size = new System.Drawing.Size(81, 25);
-            this.CancelButton_.TabIndex = 1;
-            this.CancelButton_.Text = "Cancel";
-            this.CancelButton_.UseVisualStyleBackColor = true;
+            CancelButton_.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            CancelButton_.Location = new System.Drawing.Point(105, 73);
+            CancelButton_.Name = "CancelButton_";
+            CancelButton_.Size = new System.Drawing.Size(51, 16);
+            CancelButton_.TabIndex = 1;
+            CancelButton_.Text = "Cancel";
+            CancelButton_.UseVisualStyleBackColor = true;
+            CancelButton_.Click += CancelButton__Click;
             // 
             // OKButton
             // 
-            this.OKButton.Location = new System.Drawing.Point(80, 112);
-            this.OKButton.Name = "OKButton";
-            this.OKButton.Size = new System.Drawing.Size(81, 25);
-            this.OKButton.TabIndex = 0;
-            this.OKButton.Text = "OK";
-            this.OKButton.UseVisualStyleBackColor = true;
+            OKButton.Location = new System.Drawing.Point(51, 73);
+            OKButton.Name = "OKButton";
+            OKButton.Size = new System.Drawing.Size(51, 16);
+            OKButton.TabIndex = 0;
+            OKButton.Text = "OK";
+            OKButton.UseVisualStyleBackColor = true;
+            OKButton.Click += OKButton_Click;
             // 
             // Label2
             // 
-            this.Label2.Location = new System.Drawing.Point(48, 8);
-            this.Label2.Name = "Label2";
-            this.Label2.Size = new System.Drawing.Size(201, 17);
-            this.Label2.TabIndex = 6;
-            this.Label2.BackColor = System.Drawing.Color.Transparent;
-            this.Label2.Text = "Current Order";
+            Label2.BackColor = System.Drawing.Color.Transparent;
+            Label2.Location = new System.Drawing.Point(30, 5);
+            Label2.Name = "Label2";
+            Label2.Size = new System.Drawing.Size(126, 11);
+            Label2.TabIndex = 6;
+            Label2.Text = "Current Order";
             // 
             // Label1
             // 
-            this.Label1.Location = new System.Drawing.Point(8, 8);
-            this.Label1.Name = "Label1";
-            this.Label1.Size = new System.Drawing.Size(33, 17);
-            this.Label1.TabIndex = 5;
-            this.Label1.BackColor = System.Drawing.Color.Transparent;
-            this.Label1.Text = "Move";
+            Label1.BackColor = System.Drawing.Color.Transparent;
+            Label1.Location = new System.Drawing.Point(5, 5);
+            Label1.Name = "Label1";
+            Label1.Size = new System.Drawing.Size(21, 11);
+            Label1.TabIndex = 5;
+            Label1.Text = "Move";
             // 
             // RearrangeTeam
             // 
-            this.AcceptButton = this.OKButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.CancelButton_;
-            this.ClientSize = new System.Drawing.Size(258, 145);
-            this.Controls.Add(this.MoveDown);
-            this.Controls.Add(this.MoveUp);
-            this.Controls.Add(this.List1);
-            this.Controls.Add(this.CancelButton_);
-            this.Controls.Add(this.OKButton);
-            this.Controls.Add(this.Label2);
-            this.Controls.Add(this.Label1);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Location = new System.Drawing.Point(184, 242);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "RearrangeTeam";
-            this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "Rearrange Team";
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AcceptButton = OKButton;
+            AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            CancelButton = CancelButton_;
+            ClientSize = new System.Drawing.Size(162, 94);
+            Controls.Add(MoveDown);
+            Controls.Add(MoveUp);
+            Controls.Add(List1);
+            Controls.Add(CancelButton_);
+            Controls.Add(OKButton);
+            Controls.Add(Label2);
+            Controls.Add(Label1);
+            Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            Location = new System.Drawing.Point(184, 242);
+            MaximizeBox = false;
+            MinimizeBox = false;
+            ShowInTaskbar = false;
+            StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            Text = "Rearrange Team";
+            ResumeLayout(false);
         }
 
         #endregion
